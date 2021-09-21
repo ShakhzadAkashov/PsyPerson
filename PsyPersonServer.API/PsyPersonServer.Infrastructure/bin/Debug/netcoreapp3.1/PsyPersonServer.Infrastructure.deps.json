@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "PsyPersonServer.Infrastructure/1.0.0": {
+        "dependencies": {
+          "PsyPersonServer.Domain": "1.0.0"
+        },
+        "runtime": {
+          "PsyPersonServer.Infrastructure.dll": {}
+        }
+      },
+      "PsyPersonServer.Domain/1.0.0": {
+        "runtime": {
+          "PsyPersonServer.Domain.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "PsyPersonServer.Infrastructure/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "PsyPersonServer.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

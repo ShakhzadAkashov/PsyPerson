@@ -1,0 +1,9 @@
+C:\Users\Shakhzad\Shakhzad\C#\AspNetCoreAngularMVC\DanilProject1\PsyPerson\PsyPersonServer.API\PsyPersonServer.Domain\bin\Debug\netcoreapp3.1\PsyPersonServer.Domain.deps.json
+C:\Users\Shakhzad\Shakhzad\C#\AspNetCoreAngularMVC\DanilProject1\PsyPerson\PsyPersonServer.API\PsyPersonServer.Domain\bin\Debug\netcoreapp3.1\PsyPersonServer.Domain.dll
+C:\Users\Shakhzad\Shakhzad\C#\AspNetCoreAngularMVC\DanilProject1\PsyPerson\PsyPersonServer.API\PsyPersonServer.Domain\bin\Debug\netcoreapp3.1\PsyPersonServer.Domain.pdb
+C:\Users\Shakhzad\Shakhzad\C#\AspNetCoreAngularMVC\DanilProject1\PsyPerson\PsyPersonServer.API\PsyPersonServer.Domain\obj\Debug\netcoreapp3.1\PsyPersonServer.Domain.csprojAssemblyReference.cache
+C:\Users\Shakhzad\Shakhzad\C#\AspNetCoreAngularMVC\DanilProject1\PsyPerson\PsyPersonServer.API\PsyPersonServer.Domain\obj\Debug\netcoreapp3.1\PsyPersonServer.Domain.AssemblyInfoInputs.cache
+C:\Users\Shakhzad\Shakhzad\C#\AspNetCoreAngularMVC\DanilProject1\PsyPerson\PsyPersonServer.API\PsyPersonServer.Domain\obj\Debug\netcoreapp3.1\PsyPersonServer.Domain.AssemblyInfo.cs
+C:\Users\Shakhzad\Shakhzad\C#\AspNetCoreAngularMVC\DanilProject1\PsyPerson\PsyPersonServer.API\PsyPersonServer.Domain\obj\Debug\netcoreapp3.1\PsyPersonServer.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Shakhzad\Shakhzad\C#\AspNetCoreAngularMVC\DanilProject1\PsyPerson\PsyPersonServer.API\PsyPersonServer.Domain\obj\Debug\netcoreapp3.1\PsyPersonServer.Domain.dll
+C:\Users\Shakhzad\Shakhzad\C#\AspNetCoreAngularMVC\DanilProject1\PsyPerson\PsyPersonServer.API\PsyPersonServer.Domain\obj\Debug\netcoreapp3.1\PsyPersonServer.Domain.pdb
