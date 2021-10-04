@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using PsyPersonServer.Application.ApplicationUsers.Commands.Register;
 using PsyPersonServer.Domain.Entities;
+using PsyPersonServer.Domain.Models.ApplicationSettings;
 using PsyPersonServer.Infrastructure;
 using System;
 using System.Collections.Generic;
@@ -32,6 +33,7 @@ namespace PsyPersonServer.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<ApplicationSettings>(Configuration.GetSection("ApplicationSettings"));
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

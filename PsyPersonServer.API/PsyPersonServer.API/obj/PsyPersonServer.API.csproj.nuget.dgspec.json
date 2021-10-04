@@ -138,6 +138,9 @@
             "projectReferences": {
               "C:\\Users\\Shakhzad\\Shakhzad\\C#\\AspNetCoreAngularMVC\\DanilProject1\\PsyPerson\\PsyPersonServer.API\\PsyPersonServer.Domain\\PsyPersonServer.Domain.csproj": {
                 "projectPath": "C:\\Users\\Shakhzad\\Shakhzad\\C#\\AspNetCoreAngularMVC\\DanilProject1\\PsyPerson\\PsyPersonServer.API\\PsyPersonServer.Domain\\PsyPersonServer.Domain.csproj"
+              },
+              "C:\\Users\\Shakhzad\\Shakhzad\\C#\\AspNetCoreAngularMVC\\DanilProject1\\PsyPerson\\PsyPersonServer.API\\PsyPersonServer.Infrastructure\\PsyPersonServer.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\Shakhzad\\Shakhzad\\C#\\AspNetCoreAngularMVC\\DanilProject1\\PsyPerson\\PsyPersonServer.API\\PsyPersonServer.Infrastructure\\PsyPersonServer.Infrastructure.csproj"
               }
             }
           }

@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PsyPersonServer.Domain\PsyPersonServer.Domain.csproj" />
+    <ProjectReference Include="..\PsyPersonServer.Infrastructure\PsyPersonServer.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1585,7 +1585,8 @@
         "dependencies": {
           "MediatR": "9.0.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "5.0.10",
-          "PsyPersonServer.Domain": "1.0.0"
+          "PsyPersonServer.Domain": "1.0.0",
+          "PsyPersonServer.Infrastructure": "1.0.0"
         },
         "compile": {
           "bin/placeholder/PsyPersonServer.Application.dll": {}
