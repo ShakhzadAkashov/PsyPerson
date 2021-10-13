@@ -1,4 +1,6 @@
 C:\Users\Shakhzad\Shakhzad\C#\AspNetCoreAngularMVC\DanilProject1\PsyPerson\PsyPersonServer.API\PsyPersonServer.Infrastructure\bin\Debug\netcoreapp3.1\PsyPersonServer.Infrastructure.deps.json
+C:\Users\Shakhzad\Shakhzad\C#\AspNetCoreAngularMVC\DanilProject1\PsyPerson\PsyPersonServer.API\PsyPersonServer.Infrastructure\bin\Debug\netcoreapp3.1\PsyPersonServer.Infrastructure.runtimeconfig.json
+C:\Users\Shakhzad\Shakhzad\C#\AspNetCoreAngularMVC\DanilProject1\PsyPerson\PsyPersonServer.API\PsyPersonServer.Infrastructure\bin\Debug\netcoreapp3.1\PsyPersonServer.Infrastructure.runtimeconfig.dev.json
 C:\Users\Shakhzad\Shakhzad\C#\AspNetCoreAngularMVC\DanilProject1\PsyPerson\PsyPersonServer.API\PsyPersonServer.Infrastructure\bin\Debug\netcoreapp3.1\PsyPersonServer.Infrastructure.dll
 C:\Users\Shakhzad\Shakhzad\C#\AspNetCoreAngularMVC\DanilProject1\PsyPerson\PsyPersonServer.API\PsyPersonServer.Infrastructure\bin\Debug\netcoreapp3.1\PsyPersonServer.Infrastructure.pdb
 C:\Users\Shakhzad\Shakhzad\C#\AspNetCoreAngularMVC\DanilProject1\PsyPerson\PsyPersonServer.API\PsyPersonServer.Infrastructure\bin\Debug\netcoreapp3.1\PsyPersonServer.Domain.dll
@@ -10,6 +12,4 @@ C:\Users\Shakhzad\Shakhzad\C#\AspNetCoreAngularMVC\DanilProject1\PsyPerson\PsyPe
 C:\Users\Shakhzad\Shakhzad\C#\AspNetCoreAngularMVC\DanilProject1\PsyPerson\PsyPersonServer.API\PsyPersonServer.Infrastructure\obj\Debug\netcoreapp3.1\PsyPersonServer.Infrastructure.csproj.CopyComplete
 C:\Users\Shakhzad\Shakhzad\C#\AspNetCoreAngularMVC\DanilProject1\PsyPerson\PsyPersonServer.API\PsyPersonServer.Infrastructure\obj\Debug\netcoreapp3.1\PsyPersonServer.Infrastructure.dll
 C:\Users\Shakhzad\Shakhzad\C#\AspNetCoreAngularMVC\DanilProject1\PsyPerson\PsyPersonServer.API\PsyPersonServer.Infrastructure\obj\Debug\netcoreapp3.1\PsyPersonServer.Infrastructure.pdb
-C:\Users\Shakhzad\Shakhzad\C#\AspNetCoreAngularMVC\DanilProject1\PsyPerson\PsyPersonServer.API\PsyPersonServer.Infrastructure\bin\Debug\netcoreapp3.1\PsyPersonServer.Infrastructure.runtimeconfig.json
-C:\Users\Shakhzad\Shakhzad\C#\AspNetCoreAngularMVC\DanilProject1\PsyPerson\PsyPersonServer.API\PsyPersonServer.Infrastructure\bin\Debug\netcoreapp3.1\PsyPersonServer.Infrastructure.runtimeconfig.dev.json
 C:\Users\Shakhzad\Shakhzad\C#\AspNetCoreAngularMVC\DanilProject1\PsyPerson\PsyPersonServer.API\PsyPersonServer.Infrastructure\obj\Debug\netcoreapp3.1\PsyPersonServer.Infrastructure.genruntimeconfig.cache
