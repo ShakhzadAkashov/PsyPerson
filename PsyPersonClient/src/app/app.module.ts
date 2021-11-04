@@ -13,6 +13,7 @@ import { LoginComponent } from './pages/user/login/login.component';
 import { RegistrationComponent } from './pages/user/registration/registration.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './pages/home/home.component';
+import { StatisticsComponent } from './pages/home/statistics/statistics.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { HomeComponent } from './pages/home/home.component';
     UserComponent,
     LoginComponent,
     RegistrationComponent,
-    HomeComponent
+    HomeComponent,
+    StatisticsComponent
   ],
   imports: [
     BrowserModule,
