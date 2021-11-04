@@ -1,0 +1,18 @@
+form{
+    margin: 0px 16px;
+}
+
+div.form-group input.invalid{
+    border: 1px solid #dc3545; 
+ }
+
+ button[type=submit].btn{
+    border-radius: 20px;
+    background-color: #5791FF;
+    color: #fff;
+}
+
+div.form-group label:not(.text-danger){
+    color: #545d6a;
+    font-weight: 500;
+}
