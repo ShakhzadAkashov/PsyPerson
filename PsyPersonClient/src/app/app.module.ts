@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { CommonModule } from '@angular/common';
+import { CommonModule, registerLocaleData } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ToastrModule } from 'ngx-toastr';
@@ -14,6 +14,14 @@ import { RegistrationComponent } from './pages/user/registration/registration.co
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './pages/home/home.component';
 import { StatisticsComponent } from './pages/home/statistics/statistics.component';
+import { NZ_I18N } from 'ng-zorro-antd/i18n';
+import { ru_RU } from 'ng-zorro-antd/i18n';
+import ru from '@angular/common/locales/ru';
+import { IconsProviderModule } from './pages/home/icons-provider.module';
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { NzMenuModule } from 'ng-zorro-antd/menu';
+
+registerLocaleData(ru);
 
 @NgModule({
   declarations: [
@@ -33,8 +41,11 @@ import { StatisticsComponent } from './pages/home/statistics/statistics.componen
     CommonModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    IconsProviderModule,
+    NzLayoutModule,
+    NzMenuModule,
   ],
-  providers: [],
+  providers: [{ provide: NZ_I18N, useValue: ru_RU }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
