@@ -59,6 +59,7 @@ namespace PsyPersonServer.API
                 options.Password.RequiredLength = 4;
             });
 
+            services.AddCors();
             services.AddMediatR(typeof(RegisterCh).Assembly);
         }
 
@@ -77,6 +78,11 @@ namespace PsyPersonServer.API
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "PsyPersonServer.API v1"));
             }
+
+            app.UseCors(build =>
+                build.WithOrigins(Configuration["ApplicationSettings:Client_URL"].ToString())
+                .AllowAnyHeader()
+                .AllowAnyMethod());
 
             app.UseHttpsRedirection();
 

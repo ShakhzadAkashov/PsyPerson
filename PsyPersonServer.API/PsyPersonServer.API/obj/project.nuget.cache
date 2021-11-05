@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "CEuHmAPRldF8zQ4JtEod09h/WVhGexT5n/g/xe9sofXyA+VIk2SsPTHLW2MhDTB/eXGZmrt9PjNi0SEpamtWZQ==",
+  "dgSpecHash": "ctf4w5q3KOEkWjIrslpYf0F7F+D7or99O97RMvPy/XlwocSzLwmZHtcTV+YtOObDKx4Pkjr8kMh+cP8J9Ppx9Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Shakhzad\\Shakhzad\\C#\\AspNetCoreAngularMVC\\DanilProject1\\PsyPerson\\PsyPersonServer.API\\PsyPersonServer.API\\PsyPersonServer.API.csproj",
+  "projectFilePath": "C:\\Users\\Shakhzad\\Shakhzad\\DanilProject1\\PsyPerson\\PsyPersonServer.API\\PsyPersonServer.API\\PsyPersonServer.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Shakhzad\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Shakhzad\\.nuget\\packages\\mediatr\\9.0.0\\mediatr.9.0.0.nupkg.sha512",

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-regitration',
@@ -29,9 +30,11 @@ export class RegistrationComponent implements OnInit {
     }
   }
 
-  constructor(private fb:FormBuilder) { }
+  constructor(private fb:FormBuilder, private router: Router,) { }
 
   ngOnInit(): void {
+    if(localStorage.getItem('token') != null)
+      this.router.navigateByUrl('/home/statistics');
   }
 
   onSubmit(){}

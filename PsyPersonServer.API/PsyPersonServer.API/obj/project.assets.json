@@ -6008,27 +6008,20 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Shakhzad\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\Shakhzad\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Shakhzad\\Shakhzad\\C#\\AspNetCoreAngularMVC\\DanilProject1\\PsyPerson\\PsyPersonServer.API\\PsyPersonServer.API\\PsyPersonServer.API.csproj",
+      "projectUniqueName": "C:\\Users\\Shakhzad\\Shakhzad\\DanilProject1\\PsyPerson\\PsyPersonServer.API\\PsyPersonServer.API\\PsyPersonServer.API.csproj",
       "projectName": "PsyPersonServer.API",
-      "projectPath": "C:\\Users\\Shakhzad\\Shakhzad\\C#\\AspNetCoreAngularMVC\\DanilProject1\\PsyPerson\\PsyPersonServer.API\\PsyPersonServer.API\\PsyPersonServer.API.csproj",
+      "projectPath": "C:\\Users\\Shakhzad\\Shakhzad\\DanilProject1\\PsyPerson\\PsyPersonServer.API\\PsyPersonServer.API\\PsyPersonServer.API.csproj",
       "packagesPath": "C:\\Users\\Shakhzad\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Shakhzad\\Shakhzad\\C#\\AspNetCoreAngularMVC\\DanilProject1\\PsyPerson\\PsyPersonServer.API\\PsyPersonServer.API\\obj\\",
+      "outputPath": "C:\\Users\\Shakhzad\\Shakhzad\\DanilProject1\\PsyPerson\\PsyPersonServer.API\\PsyPersonServer.API\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\",
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
         "C:\\Users\\Shakhzad\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
@@ -6041,11 +6034,11 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\Shakhzad\\Shakhzad\\C#\\AspNetCoreAngularMVC\\DanilProject1\\PsyPerson\\PsyPersonServer.API\\PsyPersonServer.Application\\PsyPersonServer.Application.csproj": {
-              "projectPath": "C:\\Users\\Shakhzad\\Shakhzad\\C#\\AspNetCoreAngularMVC\\DanilProject1\\PsyPerson\\PsyPersonServer.API\\PsyPersonServer.Application\\PsyPersonServer.Application.csproj"
+            "C:\\Users\\Shakhzad\\Shakhzad\\DanilProject1\\PsyPerson\\PsyPersonServer.API\\PsyPersonServer.Application\\PsyPersonServer.Application.csproj": {
+              "projectPath": "C:\\Users\\Shakhzad\\Shakhzad\\DanilProject1\\PsyPerson\\PsyPersonServer.API\\PsyPersonServer.Application\\PsyPersonServer.Application.csproj"
             },
-            "C:\\Users\\Shakhzad\\Shakhzad\\C#\\AspNetCoreAngularMVC\\DanilProject1\\PsyPerson\\PsyPersonServer.API\\PsyPersonServer.Infrastructure\\PsyPersonServer.Infrastructure.csproj": {
-              "projectPath": "C:\\Users\\Shakhzad\\Shakhzad\\C#\\AspNetCoreAngularMVC\\DanilProject1\\PsyPerson\\PsyPersonServer.API\\PsyPersonServer.Infrastructure\\PsyPersonServer.Infrastructure.csproj"
+            "C:\\Users\\Shakhzad\\Shakhzad\\DanilProject1\\PsyPerson\\PsyPersonServer.API\\PsyPersonServer.Infrastructure\\PsyPersonServer.Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\Shakhzad\\Shakhzad\\DanilProject1\\PsyPerson\\PsyPersonServer.API\\PsyPersonServer.Infrastructure\\PsyPersonServer.Infrastructure.csproj"
             }
           }
         }
@@ -6111,7 +6104,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
       }
     }
   }

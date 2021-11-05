@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "oUB26wGEmexyDbO458Bi6cG69EH63rXF4OQpdyiVI72Uax0KKddjW1lXwJI9JdE99smghLhRUD1VR2iEcKsxBA==",
+  "dgSpecHash": "gwOd2KYdDGdyKbOJ1qyZ7zVucOygPpQm1C+Nwzk1cEcS13KEgqF8QZr80r0cZe1vMag4+G2LNQABpQEn1Xa/MQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Shakhzad\\Shakhzad\\C#\\AspNetCoreAngularMVC\\DanilProject1\\PsyPerson\\PsyPersonServer.API\\PsyPersonServer.Application\\PsyPersonServer.Application.csproj",
+  "projectFilePath": "C:\\Users\\Shakhzad\\Shakhzad\\DanilProject1\\PsyPerson\\PsyPersonServer.API\\PsyPersonServer.Application\\PsyPersonServer.Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Shakhzad\\.nuget\\packages\\mediatr\\9.0.0\\mediatr.9.0.0.nupkg.sha512",
     "C:\\Users\\Shakhzad\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\5.0.10\\microsoft.aspnetcore.cryptography.internal.5.0.10.nupkg.sha512",

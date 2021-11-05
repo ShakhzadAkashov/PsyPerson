@@ -5,6 +5,7 @@ import { StatisticsComponent } from './pages/home/statistics/statistics.componen
 import { LoginComponent } from './pages/user/login/login.component';
 import { RegistrationComponent } from './pages/user/registration/registration.component';
 import { UserComponent } from './pages/user/user.component';
+import { AuthGuard } from './services/auth/auth.guard';
 
 const routes: Routes = [
   {path:'', redirectTo:'/user/login', pathMatch:'full'},
@@ -16,9 +17,9 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'home', component: HomeComponent,
+    path: 'home', component: HomeComponent,canActivate:[AuthGuard],
     children:[
-      {path: 'statistics', component: StatisticsComponent },
+      {path: 'statistics', component: StatisticsComponent,canActivate:[AuthGuard] },
     ]
   }
 ];

@@ -20,6 +20,7 @@ import ru from '@angular/common/locales/ru';
 import { IconsProviderModule } from './pages/home/icons-provider.module';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
+import { AuthInterceptor } from './services/auth/auth.interceptor';
 
 registerLocaleData(ru);
 
@@ -45,7 +46,14 @@ registerLocaleData(ru);
     NzLayoutModule,
     NzMenuModule,
   ],
-  providers: [{ provide: NZ_I18N, useValue: ru_RU }],
+  providers: [
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: AuthInterceptor,
+    //   multi: true
+    // },
+    { provide: NZ_I18N, useValue: ru_RU }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
