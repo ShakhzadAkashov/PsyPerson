@@ -47,11 +47,11 @@ registerLocaleData(ru);
     NzMenuModule,
   ],
   providers: [
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: AuthInterceptor,
-    //   multi: true
-    // },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
     { provide: NZ_I18N, useValue: ru_RU }
   ],
   bootstrap: [AppComponent]
