@@ -147,3 +147,6 @@ C:\Users\Shakhzad\Shakhzad\DanilProject1\PsyPerson\PsyPersonServer.API\PsyPerson
 C:\Users\Shakhzad\Shakhzad\DanilProject1\PsyPerson\PsyPersonServer.API\PsyPersonServer.API\obj\Debug\net5.0\ref\PsyPersonServer.API.dll
 C:\Users\Shakhzad\Shakhzad\DanilProject1\PsyPerson\PsyPersonServer.API\PsyPersonServer.API\obj\Debug\net5.0\PsyPersonServer.API.pdb
 C:\Users\Shakhzad\Shakhzad\DanilProject1\PsyPerson\PsyPersonServer.API\PsyPersonServer.API\obj\Debug\net5.0\PsyPersonServer.API.genruntimeconfig.cache
+C:\Users\Shakhzad\Shakhzad\DanilProject1\PsyPerson\PsyPersonServer.API\PsyPersonServer.API\bin\Debug\net5.0\AutoMapper.dll
+C:\Users\Shakhzad\Shakhzad\DanilProject1\PsyPerson\PsyPersonServer.API\PsyPersonServer.API\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\Shakhzad\Shakhzad\DanilProject1\PsyPerson\PsyPersonServer.API\PsyPersonServer.API\obj\Debug\net5.0\PsyPersonServer.API.csproj.CopyComplete
