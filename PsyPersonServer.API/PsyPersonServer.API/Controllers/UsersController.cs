@@ -23,7 +23,7 @@ namespace PsyPersonServer.API.Controllers
         private readonly IMediator _mediator;
         [HttpGet]
         [Route("GetAll")]
-        //Get : /api/GetAll
+        //Get : /api/Users/GetAll
         public async Task<IActionResult> GetAll([FromQuery] GetAllUsersQ query)
         {
             return Ok(await _mediator.Send(query));

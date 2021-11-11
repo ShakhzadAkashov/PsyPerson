@@ -21,6 +21,13 @@ import { IconsProviderModule } from './pages/home/icons-provider.module';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { AuthInterceptor } from './services/auth/auth.interceptor';
+import { StoreModule } from '@ngrx/store';
+import { appReducers, metaReducers } from './store/reducers/app.reducers';
+import { EffectsModule } from '@ngrx/effects';
+import { UserEffects } from './store/effects/user.effects';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { environment } from 'src/environments/environment';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 registerLocaleData(ru);
 
@@ -45,6 +52,10 @@ registerLocaleData(ru);
     IconsProviderModule,
     NzLayoutModule,
     NzMenuModule,
+    StoreModule.forRoot(appReducers,{metaReducers}),
+    EffectsModule.forRoot([UserEffects]),
+    // StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
   ],
   providers: [
     {

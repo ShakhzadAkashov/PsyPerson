@@ -1,1 +1,9 @@
 <p>statistics works!</p>
+<div>
+    <!-- <p *ngFor="let item of list.data; let i = index">
+        <span>{{item.id}}</span>
+    </p> -->
+    <p *ngFor="let item of (users$ | async)?.data; let i = index">
+        <span>{{item.id}}</span>
+    </p>
+</div>
