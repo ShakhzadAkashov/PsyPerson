@@ -20,8 +20,9 @@ const routes: Routes = [
     path: 'home', component: HomeComponent,canActivate:[AuthGuard],
     children:[
       {path: 'statistics', component: StatisticsComponent,canActivate:[AuthGuard] },
+      { path: 'admin', loadChildren: () => import('./pages/admin/admin.module').then(m => m.AdminModule) }
     ]
-  }
+  },
 ];
 
 @NgModule({

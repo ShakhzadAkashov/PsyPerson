@@ -7,6 +7,6 @@ export interface UserState{
 }
 
 export const initialUserState: UserState = {
-    users: { data:[], total:0 },
+    users: { data:[], total:0, loading: true },
     selectedUser: <UserDto>{}
 };

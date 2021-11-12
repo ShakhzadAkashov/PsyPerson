@@ -11,7 +11,11 @@ export const userReducers = (
         case EUserActions.GetUsersSuccess: {
             return {
                 ...state,
-                users: action.payload
+                users:{
+                    data : action.payload.data,
+                    total : action.payload.total,
+                    loading : action.payload.loading
+                }
             };
         }
         case EUserActions.GetUserSuccess: {

@@ -31,15 +31,16 @@ export class UserEffects{
     // getUsers$ = createEffect(() => 
     // this.actions$.pipe(
     //     ofType<GetUsers>(EUserActions.GetUsers),
-    //     switchMap((u) => this.service.getAll(u.payload)),
-    //     switchMap((u) => of(new GetUsersSuccess(u)))
+    //     switchMap((u) => this.service.getAll(u.payload).pipe(map(r => {r.loading = true; return r} ))),
+    //     switchMap((u) => of(new GetUsersSuccess(u))),catchError(() => EMPTY)
     // ));
     getUsers$ = createEffect(() => 
     this.actions$.pipe(
         ofType<GetUsers>(EUserActions.GetUsers),
         switchMap((u) => this.service.getAll(u.payload).pipe(
+            map(r => {r.loading = false; return r} ),
             map((users) => new GetUsersSuccess(users)),
-            catchError(() => EMPTY)
+            catchError((error) => {console.log('GetUsers | error ',error); throw error})
         ))
     ));
 }

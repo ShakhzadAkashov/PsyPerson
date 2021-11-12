@@ -28,6 +28,8 @@ import { UserEffects } from './store/effects/user.effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { environment } from 'src/environments/environment';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { TableModule } from 'primeng/table';
+import { SharedModule } from 'primeng/api';
 
 registerLocaleData(ru);
 
@@ -52,6 +54,8 @@ registerLocaleData(ru);
     IconsProviderModule,
     NzLayoutModule,
     NzMenuModule,
+    TableModule,
+    SharedModule,
     StoreModule.forRoot(appReducers,{metaReducers}),
     EffectsModule.forRoot([UserEffects]),
     // StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
