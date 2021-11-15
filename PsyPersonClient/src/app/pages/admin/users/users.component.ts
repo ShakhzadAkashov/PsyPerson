@@ -1,13 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { select, Store } from '@ngrx/store';
+import { ToastrService } from 'ngx-toastr';
 import { LazyLoadEvent } from 'primeng/api';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { PagedRequest, PagedResponse, TableFilter } from 'src/app/models/base';
 import { UserDto } from 'src/app/models/users.models';
+import { UserService } from 'src/app/services/api/user.service';
 import { GetUsers } from 'src/app/store/actions/user.actions';
 import { selectUserList } from 'src/app/store/selectors/user.selector';
 import { AppState } from 'src/app/store/state/app.state';
+import { CreateOrEditUserModalComponent } from './create-or-edit-user-modal/create-or-edit-user-modal.component';
+import { ViewUserModalComponent } from './view-user-modal/view-user-modal.component';
 
 @Component({
   selector: 'app-users',
@@ -16,12 +20,16 @@ import { AppState } from 'src/app/store/state/app.state';
 })
 export class UsersComponent implements OnInit {
 
+  @ViewChild('createOrEditUsersModal', { static: true })
+  createOrEditUsersModal: CreateOrEditUserModalComponent = new CreateOrEditUserModalComponent(this.store,this.toastr,this.service);
+  @ViewChild('viewUsersModal', { static: true }) viewUsersModal: ViewUserModalComponent = new ViewUserModalComponent(this.store); 
   users$: Observable<PagedResponse<UserDto> | any> = this.store.pipe(select(selectUserList));
   // loading: boolean = false;
   filterText='';
   tableFilter: TableFilter = new TableFilter();
 
-  constructor(private store: Store<AppState>) {
+  constructor(private store: Store<AppState>,private toastr: ToastrService, 
+    private service:UserService,) {
     // let request: PagedRequest = {
     //   page: 1,
     //   itemPerPage: 10
@@ -54,6 +62,10 @@ export class UsersComponent implements OnInit {
       this.store.dispatch(new GetUsers(request));
     }
     
+  }
+
+  create(){
+    this.createOrEditUsersModal.show();
   }
 
 }

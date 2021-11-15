@@ -30,6 +30,7 @@ import { environment } from 'src/environments/environment';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { TableModule } from 'primeng/table';
 import { SharedModule } from 'primeng/api';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 registerLocaleData(ru);
 
@@ -51,6 +52,7 @@ registerLocaleData(ru);
     CommonModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    ModalModule.forRoot(),
     IconsProviderModule,
     NzLayoutModule,
     NzMenuModule,

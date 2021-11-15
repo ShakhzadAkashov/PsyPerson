@@ -6,6 +6,9 @@ import { TableModule } from 'primeng/table';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { CreateOrEditUserModalComponent } from './users/create-or-edit-user-modal/create-or-edit-user-modal.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { ViewUserModalComponent } from './users/view-user-modal/view-user-modal.component';
 
 
 @NgModule({
@@ -13,10 +16,11 @@ import { SharedModule } from 'src/app/shared/shared.module';
       AdminRoutingModule, 
       SharedModule,
       CommonModule,
+      ModalModule.forRoot(),
     ],
   declarations: [
       AdminComponent, 
-      UsersComponent
+      UsersComponent, CreateOrEditUserModalComponent, ViewUserModalComponent
     ],
   exports: [AdminComponent]
 })

@@ -1,13 +1,13 @@
-export interface UserDto{
-    id: string;
-    userName: string;
-    email: string;
-    phoneNumber: string;
-    firstName: string;
-    lastName: string;
-    patronymic: string;
-    password: string;
-    isBlocked: boolean;
-    role: string;
-    dateBirthday: Date;
+export class UserDto{
+    id: string = '';
+    userName: string = '';
+    email: string = '';
+    phoneNumber: string = '';
+    firstName: string = '';
+    lastName: string = '';
+    patronymic: string = '';
+    password: string = '';
+    isBlocked: boolean = false;
+    role: string = '';
+    dateBirthday: Date = new Date;
 }

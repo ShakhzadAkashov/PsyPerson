@@ -20,4 +20,12 @@ export class UserService {
   getAll(request: PagedRequest | any){
     return this.http.get<PagedResponse<UserDto>>(this.BaseURI + '/Users/GetAll',{params: request});
   }
+
+  create(user:UserDto){
+    return this.http.post(this.BaseURI + '/Users/CreateUser',user);
+  }
+
+  update(user:UserDto){
+    return this.http.put(this.BaseURI + '/Users/UpdateUser',user);
+  }
 }

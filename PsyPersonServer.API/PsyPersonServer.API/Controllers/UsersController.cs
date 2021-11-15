@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using PsyPersonServer.Application.Users.Commands.CreateUser;
+using PsyPersonServer.Application.Users.Commands.UpdateUser;
 using PsyPersonServer.Application.Users.Queries;
 using System;
 using System.Collections.Generic;
@@ -27,6 +29,24 @@ namespace PsyPersonServer.API.Controllers
         public async Task<IActionResult> GetAll([FromQuery] GetAllUsersQ query)
         {
             return Ok(await _mediator.Send(query));
+        }
+
+        [HttpPut]
+        [Authorize]
+        [Route("UpdateUser")]
+        //PUT : /api/Users/UpdateUser
+        public async Task<IActionResult> UpdateUser([FromBody] UpdateUserC command)
+        {
+            return Ok(await _mediator.Send(command));
+        }
+
+        [HttpPost]
+        [Authorize]
+        [Route("CreateUser")]
+        //POST : /api/Users/UpdateUser
+        public async Task<IActionResult> CreateUser([FromBody] CreateUserC command)
+        {
+            return Ok(await _mediator.Send(command));
         }
     }
 }

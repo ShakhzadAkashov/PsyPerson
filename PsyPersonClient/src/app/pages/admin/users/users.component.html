@@ -4,7 +4,7 @@
             <div class="input-group">
                 <input style="box-shadow: none;" (keyup)="filterInput($event)" [(ngModel)]="filterText" name="filterText" class="form-control" placeholder="Поиск по всем параметрам" type="text">
                 <span class="input-group-btn">
-                    <button class="btn btn-primary" (click)="onLazyLoad()" type="submit"><i class="fa fa-search"></i></button>
+                    <button class="btn btn-primary bnt-md" (click)="onLazyLoad()" type="submit"><i class="fa fa-search"></i></button>
                 </span>
             </div>
         </div>
@@ -23,7 +23,7 @@
                     <button class="btn btn-md btn-outline-primary ml-3" ><i class="fa fa-refresh"></i> Обновить</button>
                 </span>
                 <span>
-                    <button class="btn btn-md btn-outline-primary float-right" ><i class="fa fa-plus"></i> Создать нового пользователя</button>
+                    <button class="btn btn-md btn-outline-primary float-right" (click)="create()"><i class="fa fa-plus"></i> Создать нового пользователя</button>
                 </span>
             </div>
         </div>
@@ -87,13 +87,13 @@
                         <div *ngIf="record.isBlocked" class="dropdown-divider"></div>
                         <li>
                             <a href="javascript:;" class="dropdown-item" style="font-size: small;"
-                            >Просмотр</a>
+                            (click)="viewUsersModal.show(record.id)">Просмотр</a>
                         </li>
                         <div class="dropdown-divider"></div>
                         <li>
                             <a href="javascript:;" 
                                 class="dropdown-item" style="font-size: small;"
-                                >Редактировать</a>
+                                (click)="createOrEditUsersModal.show(record)">Редактировать</a>
                         </li>
                         <div class="dropdown-divider"></div>
                         <li>
@@ -135,3 +135,5 @@
     </ng-template>
 </p-table>
 
+<app-create-or-edit-user-modal #createOrEditUsersModal (modalSave)="onLazyLoad()"></app-create-or-edit-user-modal>
+<app-view-user-modal #viewUsersModal></app-view-user-modal>
