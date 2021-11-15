@@ -31,6 +31,9 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { TableModule } from 'primeng/table';
 import { SharedModule } from 'primeng/api';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { RoleEffects } from './store/effects/role.effects';
+import { UserService } from './services/api/user.service';
+import { RoleService } from './services/api/role.service';
 
 registerLocaleData(ru);
 
@@ -59,11 +62,13 @@ registerLocaleData(ru);
     TableModule,
     SharedModule,
     StoreModule.forRoot(appReducers,{metaReducers}),
-    EffectsModule.forRoot([UserEffects]),
+    EffectsModule.forRoot([UserEffects,RoleEffects]),
     // StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
   ],
   providers: [
+    UserService,
+    RoleService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

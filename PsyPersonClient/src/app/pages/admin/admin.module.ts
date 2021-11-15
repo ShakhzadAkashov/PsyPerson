@@ -9,6 +9,9 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { CreateOrEditUserModalComponent } from './users/create-or-edit-user-modal/create-or-edit-user-modal.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ViewUserModalComponent } from './users/view-user-modal/view-user-modal.component';
+import { RolesComponent } from './roles/roles.component';
+import { CreateOrEditRoleModalComponent } from './roles/create-or-edit-role-modal/create-or-edit-role-modal.component';
+import { ViewRoleModalComponent } from './roles/view-role-modal/view-role-modal.component';
 
 
 @NgModule({
@@ -20,7 +23,12 @@ import { ViewUserModalComponent } from './users/view-user-modal/view-user-modal.
     ],
   declarations: [
       AdminComponent, 
-      UsersComponent, CreateOrEditUserModalComponent, ViewUserModalComponent
+      UsersComponent, 
+      CreateOrEditUserModalComponent, 
+      ViewUserModalComponent, 
+      RolesComponent, 
+      CreateOrEditRoleModalComponent, 
+      ViewRoleModalComponent
     ],
   exports: [AdminComponent]
 })

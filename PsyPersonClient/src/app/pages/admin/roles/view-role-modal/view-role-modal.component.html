@@ -1,0 +1,37 @@
+<div bsModal #viewModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="createOrEditModal" aria-hidden="true" [config]="{backdrop: 'static'}">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">
+                    <span>Просмотр роли</span>
+                </h4>
+                <button type="button" class="close" (click)="close()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="name" style="font-size: 1.1rem;">Название роли: </label>
+                    <input type="text" id="name" class="form-control mb-2" [(ngModel)]="role.name" name="name" readonly required />
+                </div>
+                <div class="form-group">
+                    <label for="description" style="font-size: 1.1rem;">Описание: </label>
+                    <input type="text" id="description" class="form-control mb-2" [(ngModel)]="role.description" name="description" readonly required />
+                </div>
+                <div class="form-group">
+                    <label for="normalizedName" style="font-size: 1.1rem;">Нормализованное название: </label>
+                    <input type="text" id="normalizedName" class="form-control mb-2" [(ngModel)]="role.normalizedName" name="normalizedName" readonly required />
+                </div>
+                <div class="form-group">
+                    <label for="createdDate" style="font-size: 1.1rem;">Дата создания: </label>
+                    <input type="text" id="createdDate" class="form-control mb-2" [ngModel]="role.createdDate | date: 'dd.MM.yyyy HH:mm:ss'" name="createdDate" readonly required />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button [disabled]="saving" type="button" class="btn btn-md btn-outline-primary blue" (click)="close()">Закрыть</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+

@@ -15,5 +15,6 @@ namespace PsyPersonServer.Infrastructure
         }
 
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        public DbSet<ApplicationRole> ApplicationRoles { get; set; }
     }
 }

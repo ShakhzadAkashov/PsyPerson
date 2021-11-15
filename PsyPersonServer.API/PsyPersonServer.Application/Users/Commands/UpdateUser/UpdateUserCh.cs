@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Logging;
 using PsyPersonServer.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -11,12 +12,14 @@ namespace PsyPersonServer.Application.Users.Commands.UpdateUser
 {
     class UpdateUserCh : IRequestHandler<UpdateUserC, IdentityResult>
     {
-        public UpdateUserCh(UserManager<ApplicationUser> userManager)
+        public UpdateUserCh(UserManager<ApplicationUser> userManager, ILogger<UpdateUserCh> logger)
         {
             _userManager = userManager;
+            _logger = logger;
         }
 
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly ILogger<UpdateUserCh> _logger;
         public async Task<IdentityResult> Handle(UpdateUserC request, CancellationToken cancellationToken)
         {
             var user = await _userManager.FindByIdAsync(request.Id);
@@ -39,6 +42,7 @@ namespace PsyPersonServer.Application.Users.Commands.UpdateUser
             }
             catch (Exception ex)
             {
+                _logger.LogError($"Update User: {user.UserName} failed {ex}", ex);
                 throw ex;
             }
         }

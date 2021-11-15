@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using PsyPersonServer.Application.ApplicationRoles.Dtos;
 using PsyPersonServer.Application.Users.Dtos;
 using PsyPersonServer.Domain.Entities;
 using System;
@@ -12,6 +13,7 @@ namespace PsyPersonServer.Infrastructure
         public MappingProfile()
         {
             CreateMap<ApplicationUser, UserDto>();
+            CreateMap<ApplicationRole, RoleDto>();
         }
     }
 }

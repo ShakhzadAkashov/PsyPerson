@@ -51,7 +51,7 @@ namespace PsyPersonServer.API
             options.UseSqlServer(Configuration.GetConnectionString("DbConnection")));
 
             services.AddIdentityCore<ApplicationUser>()
-                .AddRoles<IdentityRole>()
+                .AddRoles<ApplicationRole>()
                 .AddEntityFrameworkStores<DBContext>();
             //.AddDefaultTokenProviders();
 
