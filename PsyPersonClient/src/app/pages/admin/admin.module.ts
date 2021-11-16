@@ -12,6 +12,7 @@ import { ViewUserModalComponent } from './users/view-user-modal/view-user-modal.
 import { RolesComponent } from './roles/roles.component';
 import { CreateOrEditRoleModalComponent } from './roles/create-or-edit-role-modal/create-or-edit-role-modal.component';
 import { ViewRoleModalComponent } from './roles/view-role-modal/view-role-modal.component';
+import { UrerRolesComponent } from './roles/urer-roles/urer-roles.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { ViewRoleModalComponent } from './roles/view-role-modal/view-role-modal.
       ViewUserModalComponent, 
       RolesComponent, 
       CreateOrEditRoleModalComponent, 
-      ViewRoleModalComponent
+      ViewRoleModalComponent, 
+      UrerRolesComponent
     ],
   exports: [AdminComponent]
 })

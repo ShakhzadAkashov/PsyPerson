@@ -7,6 +7,7 @@ export interface PagedResponse<T>{
 export interface PagedRequest{
     page: number;
     itemPerPage: number;
+    [key: string]: any;
 }
 
 export class TableFilter{

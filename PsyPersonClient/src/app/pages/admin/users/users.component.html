@@ -103,6 +103,13 @@
                         </li>
                         <div class="dropdown-divider"></div>
                         <li>
+                            <a [routerLink]="['../userRoles']"
+                                [queryParams]="{userId: record.id, from: 'home/admin/users'}"
+                                class="dropdown-item" style="font-size: small;"
+                                >Роли пользователя</a>
+                        </li>
+                        <div class="dropdown-divider"></div>
+                        <li>
                             <a class="dropdown-item" href="javascript:;" style="font-size: small;"
                             >Удалить</a>
                         </li>

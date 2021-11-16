@@ -1,0 +1,106 @@
+<div class="row align-items-center">
+    <div class="col-xl-12">
+        <div class="form-group m-form__group align-items-center">
+            <div class="input-group">
+                <input style="box-shadow: none;" (keyup)="filterInput($event)" [(ngModel)]="filterText" name="filterText" class="form-control" placeholder="Поиск по всем параметрам" type="text">
+                <span class="input-group-btn">
+                    <button class="btn btn-primary bnt-md" (click)="onLazyLoad()" type="submit"><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<p-table #dt [value]="(userRoles$ | async).data "  dataKey="id" styleClass="p-datatable-customers" [rowHover]="true"
+     [showCurrentPageReport]="true" [rowsPerPageOptions]="[5,10,25,50]" [loading]="(userRoles$ | async).loading"
+    [paginator]="true" currentPageReportTemplate="Показаны записи с {first} по {last} из {totalRecords}"
+    [filterDelay]="0" [globalFilterFields]="['name','name','.name','name']"  [totalRecords]="(userRoles$ | async).total" 
+    [lazy]="true"  [(first)]="tableFilter.first"[(rows)]="tableFilter.itemPerPage" (onLazyLoad)="onLazyLoad($event)">
+    <ng-template pTemplate="caption">
+        <div class="table-header">
+            <div class="col-md-12">
+                <span *ngIf="from">
+                    <button class="btn btn-md btn-outline-primary mr-3" (click)="goBack()"><i class="pi pi-arrow-left"></i></button>
+                </span>
+                <span>ВЕСЬ СПИСОК РОЛЕЙ</span>
+                <span>
+                    <button class="btn btn-md btn-outline-primary ml-3" ><i class="fa fa-refresh"></i> Обновить</button>
+                </span>
+                <span>
+                    <button class="btn btn-md btn-outline-primary float-right" (click)="create()"><i class="fa fa-plus"></i> Прикрепить роль</button>
+                </span>
+            </div>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <th >
+                <div class="p-d-flex p-jc-between p-ai-center">
+                    Действия
+                </div>
+            </th>
+            <th pSortableColumn="name">
+                <div class="p-d-flex p-jc-between p-ai-center">
+                    Название
+                    <p-sortIcon field="name"></p-sortIcon>
+                    <p-columnFilter type="text" field="name" display="menu" class="p-ml-auto"></p-columnFilter>
+                </div>
+            </th>
+            <th pSortableColumn="createdDate">
+                <div class="p-d-flex p-jc-between p-ai-center">
+                    Дата создания
+                    <p-sortIcon field="createdDate"></p-sortIcon>
+                    <p-columnFilter type="text" field="createdDate" display="menu" class="p-ml-auto"></p-columnFilter>
+                </div>
+            </th>
+            <th pSortableColumn="description">
+                <div class="p-d-flex p-jc-between p-ai-center">
+                   Описание
+                    <p-sortIcon field="description"></p-sortIcon>
+                    <p-columnFilter type="text" field="description" display="menu" class="p-ml-auto"></p-columnFilter>
+                </div>
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-record>
+        <tr class="p-selectable-row">
+            <td style="max-width: 150px">
+                <span class="p-column-title">Действия</span>
+                <div class="btn-group dropdown">
+                    <button class="dropdown-toggle btn btn-sm btn-outline-primary" id="dropdownMenuButton"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                        <i class="fa fa-cog"></i><span class="caret"></span>
+                        Действия
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <!-- <li>
+                            <a href="javascript:;" class="dropdown-item" style="font-size: small;"
+                            (click)="viewRoleModal.show(record.id)">Просмотр</a>
+                        </li>
+                        <div class="dropdown-divider"></div> -->
+                        <li>
+                            <a class="dropdown-item" href="javascript:;" style="font-size: small;"
+                            >Удалить</a>
+                        </li>
+                    </ul>
+                </div>
+            </td>
+            <td>
+                <span class="p-column-title">Название</span>
+                {{record.name}}
+            </td>
+            <td>
+                <span class="p-column-title">Дата создания</span>
+                {{record.createdDate | date: 'dd.MM.yyyy HH:mm:ss'}} 
+            </td>
+            <td>
+                <span class="p-column-title">Описание</span>
+                {{record.description}}
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+        <tr>
+            <td colspan="4" class="text-center">Записей не найдено.</td>
+        </tr>
+    </ng-template>
+</p-table>
+

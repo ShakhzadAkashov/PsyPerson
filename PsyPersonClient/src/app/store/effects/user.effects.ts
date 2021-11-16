@@ -6,7 +6,7 @@ import { EMPTY, of } from "rxjs";
 import { catchError, map, switchMap, withLatestFrom } from "rxjs/operators";
 import { PagedRequest } from "src/app/models/base";
 import { UserService } from "src/app/services/api/user.service";
-import { EUserActions, GetUser, GetUsers, GetUsersSuccess, GetUserSuccess } from "../actions/user.actions";
+import { EUserActions, GetUser, GetUserRoles, GetUserRolesSuccess, GetUsers, GetUsersSuccess, GetUserSuccess } from "../actions/user.actions";
 import { selectUserList } from "../selectors/user.selector";
 import { AppState } from "../state/app.state";
 
@@ -41,6 +41,16 @@ export class UserEffects{
             map(r => {r.loading = false; return r} ),
             map((users) => new GetUsersSuccess(users)),
             catchError((error) => {console.log('GetUsers | error ',error); throw error})
+        ))
+    ));
+
+    getUserRoles$ = createEffect(() => 
+    this.actions$.pipe(
+        ofType<GetUserRoles>(EUserActions.GetUserRoles),
+        switchMap((u) => this.service.getUserRoles(u.payload).pipe(
+            map(r => {r.loading = false; return r} ),
+            map((userRoles) => new GetUserRolesSuccess(userRoles)),
+            catchError((error) => {console.log('GetUserRoles | error ',error); throw error})
         ))
     ));
 }

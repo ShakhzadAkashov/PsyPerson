@@ -1,5 +1,6 @@
 import { Action, createAction, props } from "@ngrx/store";
 import { PagedRequest, PagedResponse } from "src/app/models/base";
+import { RoleDto } from "src/app/models/roles.models";
 import { UserDto } from "src/app/models/users.models";
 
 export enum EUserActions{
@@ -7,6 +8,8 @@ export enum EUserActions{
     GetUsersSuccess = '[User] Get Users Success',
     GetUser = '[User] Get User',
     GetUserSuccess = '[User] Get User Success',
+    GetUserRoles = '[User] Get User Roles',
+    GetUserRolesSuccess = '[User] Get User Roles Success'
 }
 
 export class GetUsers implements Action{
@@ -29,4 +32,14 @@ export class GetUserSuccess implements Action{
     constructor(public payload: UserDto){}
 }
 
-export type UserActions = GetUsers | GetUsersSuccess | GetUser | GetUserSuccess;
+export class GetUserRoles implements Action{
+    public readonly type = EUserActions.GetUserRoles;
+    constructor(public payload: PagedRequest){}
+}
+
+export class GetUserRolesSuccess implements Action{
+    public readonly type = EUserActions.GetUserRolesSuccess;
+    constructor(public payload: PagedResponse<RoleDto>){}
+}
+
+export type UserActions = GetUsers | GetUsersSuccess | GetUser | GetUserSuccess | GetUserRoles | GetUserRolesSuccess;

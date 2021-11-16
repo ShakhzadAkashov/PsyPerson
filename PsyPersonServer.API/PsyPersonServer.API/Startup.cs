@@ -17,7 +17,9 @@ using PsyPersonServer.Application.ApplicationUsers.Commands.Register;
 using PsyPersonServer.Domain.Entities;
 using PsyPersonServer.Domain.Models.ApplicationSettings;
 using PsyPersonServer.Domain.Models.EmailMessage;
+using PsyPersonServer.Domain.Repositories;
 using PsyPersonServer.Infrastructure;
+using PsyPersonServer.Infrastructure.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,6 +55,9 @@ namespace PsyPersonServer.API
             services.AddIdentityCore<ApplicationUser>()
                 .AddRoles<ApplicationRole>()
                 .AddEntityFrameworkStores<DBContext>();
+
+            services.AddTransient<IUserRepository,UserRepository>();
+
             //.AddDefaultTokenProviders();
 
             services.Configure<IdentityOptions>(options => {

@@ -25,6 +25,17 @@ export const userReducers = (
             };
         }
 
+        case EUserActions.GetUserRolesSuccess: {
+            return {
+                ...state,
+                userRoles:{
+                    data : action.payload.data,
+                    total : action.payload.total,
+                    loading : action.payload.loading
+                }
+            };
+        }
+
         default:
             return state;
     }
