@@ -7,8 +7,10 @@ using System.Text;
 
 namespace PsyPersonServer.Application.Users.Commands.AssignRoleToUser
 {
-    public class AssignRoleToUserC : RoleDto, IRequest<IdentityResult>
+    public class AssignRoleToUserC : IRequest<IdentityResult>
     {
         public string UserId { get; set; }
+        public string RoleId { get; set; }
+        public string RoleName { get; set; }
     }
 }

@@ -13,6 +13,7 @@ import { RolesComponent } from './roles/roles.component';
 import { CreateOrEditRoleModalComponent } from './roles/create-or-edit-role-modal/create-or-edit-role-modal.component';
 import { ViewRoleModalComponent } from './roles/view-role-modal/view-role-modal.component';
 import { UrerRolesComponent } from './roles/urer-roles/urer-roles.component';
+import { RoleLookupTableModalComponent } from './common/role-lookup-table-modal/role-lookup-table-modal.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { UrerRolesComponent } from './roles/urer-roles/urer-roles.component';
       RolesComponent, 
       CreateOrEditRoleModalComponent, 
       ViewRoleModalComponent, 
-      UrerRolesComponent
+      UrerRolesComponent, 
+      RoleLookupTableModalComponent
     ],
   exports: [AdminComponent]
 })

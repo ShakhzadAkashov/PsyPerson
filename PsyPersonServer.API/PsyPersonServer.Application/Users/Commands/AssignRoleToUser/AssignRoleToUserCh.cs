@@ -27,7 +27,7 @@ namespace PsyPersonServer.Application.Users.Commands.AssignRoleToUser
                 var user = await _userManager.FindByIdAsync(request.UserId);
                 if (user != null)
                 {
-                    var result = await _userManager.AddToRoleAsync(user, request.Name);
+                    var result = await _userManager.AddToRoleAsync(user, request.RoleName);
                     return result;
                 }
                 else

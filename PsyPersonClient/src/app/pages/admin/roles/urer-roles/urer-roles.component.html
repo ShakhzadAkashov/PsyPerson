@@ -26,7 +26,7 @@
                     <button class="btn btn-md btn-outline-primary ml-3" ><i class="fa fa-refresh"></i> Обновить</button>
                 </span>
                 <span>
-                    <button class="btn btn-md btn-outline-primary float-right" (click)="create()"><i class="fa fa-plus"></i> Прикрепить роль</button>
+                    <button class="btn btn-md btn-outline-primary float-right" (click)="openSelectRoleModal()"><i class="fa fa-plus"></i> Прикрепить роль</button>
                 </span>
             </div>
         </div>
@@ -104,3 +104,4 @@
     </ng-template>
 </p-table>
 
+<app-role-lookup-table-modal #roleLookupTableModal (modalSave)="selectRole($event)"></app-role-lookup-table-modal>

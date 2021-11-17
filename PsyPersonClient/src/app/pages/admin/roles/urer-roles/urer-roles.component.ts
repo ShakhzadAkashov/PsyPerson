@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { ToastrService } from 'ngx-toastr';
@@ -6,10 +6,12 @@ import { LazyLoadEvent } from 'primeng/api';
 import { Observable } from 'rxjs';
 import { PagedRequest, PagedResponse, TableFilter } from 'src/app/models/base';
 import { RoleDto } from 'src/app/models/roles.models';
-import { RoleService } from 'src/app/services/api/role.service';
+import { AssignRoleToUserCommand } from 'src/app/models/users.models';
+import { UserService } from 'src/app/services/api/user.service';
 import { GetUserRoles } from 'src/app/store/actions/user.actions';
 import { selectUserRolesList } from 'src/app/store/selectors/user.selector';
 import { AppState } from 'src/app/store/state/app.state';
+import { RoleLookupTableModalComponent } from '../../common/role-lookup-table-modal/role-lookup-table-modal.component';
 
 @Component({
   selector: 'app-urer-roles',
@@ -18,6 +20,7 @@ import { AppState } from 'src/app/store/state/app.state';
 })
 export class UrerRolesComponent implements OnInit {
 
+  @ViewChild('roleLookupTableModal', { static: true }) roleLookupTableModal: RoleLookupTableModalComponent = new RoleLookupTableModalComponent(this.store);
   userRoles$: Observable<PagedResponse<RoleDto> | any> = this.store.pipe(select(selectUserRolesList));
   filterText='';
   tableFilter: TableFilter = new TableFilter();
@@ -27,7 +30,7 @@ export class UrerRolesComponent implements OnInit {
   constructor(
     private store: Store<AppState>,
     private toastr: ToastrService, 
-    private service:RoleService,
+    private service:UserService,
     public activatedRoute: ActivatedRoute,
     private router: Router
   ) { 
@@ -64,7 +67,43 @@ export class UrerRolesComponent implements OnInit {
     
   }
 
-  create(){
+  openSelectRoleModal(){
+    this.roleLookupTableModal.show();
+  }
+
+  selectRole(role:RoleDto){
+    let assignRole = new AssignRoleToUserCommand();
+    assignRole.userId = this.userId;
+    assignRole.roleId = role.id;
+    assignRole.roleName = role.name
+
+    this.service.assingRoleToUser(assignRole).toPromise().then(
+      (res: any) => {
+        if(res.succeeded){
+          this.toastr.success('New role Assigned!', 'Assigned successful.');
+          this.onLazyLoad();
+        }else{
+          res.errors.forEach((element:any) => {
+            switch(element.code)
+            {
+              case 'DuplicateRoleName':
+                this.toastr.error('Role is already taken','Assigned failed.');
+                break;
+              case 'UserAlreadyInRole':
+                this.toastr.error('User Already Assigned To Role','Assigned failed.');
+                break;
+              default:
+                this.toastr.error(element.description,'Assign failed.');
+                break;
+            }
+          });
+        }
+      },
+      err => {
+        this.toastr.error(err,'Assigned failed.');
+        console.log(err)
+      }
+    );
   }
 
   goBack(){

@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { PagedRequest, PagedResponse } from 'src/app/models/base';
 import { RoleDto } from 'src/app/models/roles.models';
-import { UserDto } from 'src/app/models/users.models';
+import { AssignRoleToUserCommand, UserDto } from 'src/app/models/users.models';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -32,5 +32,9 @@ export class UserService {
 
   getUserRoles(request: PagedRequest | any){
     return this.http.get<PagedResponse<RoleDto>>(this.BaseURI + '/Users/GetUserRoles',{params: request});
+  }
+
+  assingRoleToUser(command: AssignRoleToUserCommand){
+    return this.http.post(this.BaseURI + '/Users/AssingRole', command);
   }
 }

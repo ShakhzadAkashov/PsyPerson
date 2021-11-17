@@ -11,3 +11,9 @@ export class UserDto{
     role: string = '';
     dateBirthday: Date = new Date;
 }
+
+export class AssignRoleToUserCommand{
+    userId: string = '';
+    roleId: string = '';
+    roleName: string = '';
+}
