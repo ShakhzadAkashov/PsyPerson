@@ -25,4 +25,8 @@ export class RoleService{
     update(role:RoleDto){
         return this.http.put(this.BaseURI + '/ApplicationRoles/UpdateRole',role);
     }
+
+    removeRole(id:any){
+        return this.http.delete(this.BaseURI + '/ApplicationRoles/Remove',{body: {roleId:id}});
+    }
 }

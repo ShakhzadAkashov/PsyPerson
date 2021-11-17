@@ -11,6 +11,7 @@ import { selectRoleList } from 'src/app/store/selectors/role.selector';
 import { AppState } from 'src/app/store/state/app.state';
 import { CreateOrEditRoleModalComponent } from './create-or-edit-role-modal/create-or-edit-role-modal.component';
 import { ViewRoleModalComponent } from './view-role-modal/view-role-modal.component';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-roles',
@@ -61,5 +62,49 @@ export class RolesComponent implements OnInit {
 
   create(){
     this.createOrEditRoleModal.show();
+  }
+
+  remove(role:RoleDto)
+  {
+    Swal.fire({
+      title: 'Удаление пользователя',
+      text: 'Вы Уверены ?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Ок',
+      cancelButtonText: 'Отмена',
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#7367F0',
+    }).then((result) => {
+      if (result.value) {
+        this.service.removeRole(role.id).toPromise().then(
+          (res: any) => {
+            if(res.succeeded){
+              this.toastr.success(`Role ${role.name} Removed!`, 'Removed successful.');
+              this.onLazyLoad();
+            }else{
+              res.errors.forEach((element:any) => {
+                switch(element.code)
+                {
+                  // case 'DuplicateRoleName':
+                  //   this.toastr.error('Role is already taken','Assigned failed.');
+                  //   break;
+                  // case 'UserAlreadyInRole':
+                  //   this.toastr.error('User Already Assigned To Role','Assigned failed.');
+                  //   break;
+                  default:
+                    this.toastr.error(element.description,'Remove failed.');
+                    break;
+                }
+              });
+            }
+          },
+          err => {
+            this.toastr.error(err,'Remove failed.');
+            console.log(err)
+          }
+        );
+      } 
+    })
   }
 }

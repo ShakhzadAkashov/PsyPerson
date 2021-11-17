@@ -37,4 +37,12 @@ export class UserService {
   assingRoleToUser(command: AssignRoleToUserCommand){
     return this.http.post(this.BaseURI + '/Users/AssingRole', command);
   }
+
+  removeUser(id:any){
+    return this.http.delete(this.BaseURI + '/Users/Remove',{body: {userId:id}});
+  }
+
+  removeRoleFromUser(userId:any, roleId:any){
+    return this.http.delete(this.BaseURI + '/Users/RemoveRoleFromUser',{body: {userId:userId, roleId: roleId}});
+  }
 }

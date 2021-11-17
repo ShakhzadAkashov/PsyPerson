@@ -21,7 +21,7 @@
                 <span *ngIf="from">
                     <button class="btn btn-md btn-outline-primary mr-3" (click)="goBack()"><i class="pi pi-arrow-left"></i></button>
                 </span>
-                <span>ВЕСЬ СПИСОК РОЛЕЙ</span>
+                <span>СПИСОК РОЛЕЙ ПОЛЬЗОВАТЕЛЯ</span>
                 <span>
                     <button class="btn btn-md btn-outline-primary ml-3" ><i class="fa fa-refresh"></i> Обновить</button>
                 </span>
@@ -78,7 +78,7 @@
                         <div class="dropdown-divider"></div> -->
                         <li>
                             <a class="dropdown-item" href="javascript:;" style="font-size: small;"
-                            >Удалить</a>
+                            (click)="removeRoleFromUser(record)">Удалить</a>
                         </li>
                     </ul>
                 </div>

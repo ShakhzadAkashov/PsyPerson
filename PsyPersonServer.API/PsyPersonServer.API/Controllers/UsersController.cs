@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PsyPersonServer.Application.Users.Commands.AssignRoleToUser;
 using PsyPersonServer.Application.Users.Commands.CreateUser;
+using PsyPersonServer.Application.Users.Commands.RemoveRoleFromUser;
+using PsyPersonServer.Application.Users.Commands.RemoveUser;
 using PsyPersonServer.Application.Users.Commands.UpdateUser;
 using PsyPersonServer.Application.Users.Queries;
 using PsyPersonServer.Application.Users.Queries.GetAllUserRoles;
@@ -65,6 +67,24 @@ namespace PsyPersonServer.API.Controllers
         [Route("AssingRole")]
         //POST : /api/Users/AssingRole
         public async Task<IActionResult> AssingRole([FromBody] AssignRoleToUserC command)
+        {
+            return Ok(await _mediator.Send(command));
+        }
+
+        [HttpDelete]
+        [Authorize]
+        [Route("Remove")]
+        //Delete : /api/Users/Remove
+        public async Task<IActionResult> Remove([FromBody] RemoveUserC command)
+        {
+            return Ok(await _mediator.Send(command));
+        }
+
+        [HttpDelete]
+        [Authorize]
+        [Route("RemoveRoleFromUser")]
+        //Delete : /api/Users/RemoveRoleFromUser
+        public async Task<IActionResult> RemoveRoleFromUser([FromBody] RemoveRoleFromUserC command)
         {
             return Ok(await _mediator.Send(command));
         }

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PsyPersonServer.Application.ApplicationRoles.Commands.CreateRole;
+using PsyPersonServer.Application.ApplicationRoles.Commands.RemoveRole;
 using PsyPersonServer.Application.ApplicationRoles.Commands.UpdateRole;
 using PsyPersonServer.Application.ApplicationRoles.Queries.GetAllRoles;
 using System;
@@ -47,5 +48,15 @@ namespace PsyPersonServer.API.Controllers
         {
             return Ok(await _mediator.Send(command));
         }
+
+        [HttpDelete]
+        [Authorize]
+        [Route("Remove")]
+        //Delete : /api/Users/Remove
+        public async Task<IActionResult> Remove([FromBody] RemoveRoleC command)
+        {
+            return Ok(await _mediator.Send(command));
+        }
+
     }
 }

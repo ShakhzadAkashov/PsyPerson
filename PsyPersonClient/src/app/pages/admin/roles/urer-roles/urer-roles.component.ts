@@ -12,6 +12,7 @@ import { GetUserRoles } from 'src/app/store/actions/user.actions';
 import { selectUserRolesList } from 'src/app/store/selectors/user.selector';
 import { AppState } from 'src/app/store/state/app.state';
 import { RoleLookupTableModalComponent } from '../../common/role-lookup-table-modal/role-lookup-table-modal.component';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-urer-roles',
@@ -104,6 +105,43 @@ export class UrerRolesComponent implements OnInit {
         console.log(err)
       }
     );
+  }
+
+  removeRoleFromUser(role: RoleDto){
+    Swal.fire({
+      title: 'Удаление пользователя',
+      text: 'Вы Уверены ?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Ок',
+      cancelButtonText: 'Отмена',
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#7367F0',
+    }).then((result) => {
+      if (result.value) {
+        this.service.removeRoleFromUser(this.userId,role.id).toPromise().then(
+          (res: any) => {
+            if(res.succeeded){
+              this.toastr.success(`Role ${role.name} Removed from User!`, 'Removed successful.');
+              this.onLazyLoad();
+            }else{
+              res.errors.forEach((element:any) => {
+                switch(element.code)
+                {
+                  default:
+                    this.toastr.error(element.description,'Remove failed.');
+                    break;
+                }
+              });
+            }
+          },
+          err => {
+            this.toastr.error(err,'Remove failed.');
+            console.log(err)
+          }
+        );
+      } 
+    })
   }
 
   goBack(){
