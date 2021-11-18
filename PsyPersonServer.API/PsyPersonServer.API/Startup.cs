@@ -57,6 +57,7 @@ namespace PsyPersonServer.API
                 .AddEntityFrameworkStores<DBContext>();
 
             services.AddTransient<IUserRepository,UserRepository>();
+            services.AddTransient<ITestRepository,TestRepository>();
 
             //.AddDefaultTokenProviders();
 

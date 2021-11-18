@@ -34,6 +34,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { RoleEffects } from './store/effects/role.effects';
 import { UserService } from './services/api/user.service';
 import { RoleService } from './services/api/role.service';
+import { TestService } from './services/api/test.service';
+import { TestEffects } from './store/effects/test.effects';
 
 registerLocaleData(ru);
 
@@ -62,13 +64,14 @@ registerLocaleData(ru);
     TableModule,
     SharedModule,
     StoreModule.forRoot(appReducers,{metaReducers}),
-    EffectsModule.forRoot([UserEffects,RoleEffects]),
+    EffectsModule.forRoot([UserEffects,RoleEffects,TestEffects]),
     // StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
   ],
   providers: [
     UserService,
     RoleService,
+    TestService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

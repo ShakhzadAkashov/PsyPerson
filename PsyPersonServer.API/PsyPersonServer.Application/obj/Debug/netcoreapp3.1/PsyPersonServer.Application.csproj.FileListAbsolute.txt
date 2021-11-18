@@ -26,3 +26,4 @@ C:\Users\Shakhzad\Shakhzad\DanilProject1\PsyPerson\PsyPersonServer.API\PsyPerson
 C:\Users\Shakhzad\Shakhzad\DanilProject1\PsyPerson\PsyPersonServer.API\PsyPersonServer.Application\obj\Debug\netcoreapp3.1\PsyPersonServer.Application.csproj.CoreCompileInputs.cache
 C:\Users\Shakhzad\Shakhzad\DanilProject1\PsyPerson\PsyPersonServer.API\PsyPersonServer.Application\obj\Debug\netcoreapp3.1\PsyPersonServer.Application.dll
 C:\Users\Shakhzad\Shakhzad\DanilProject1\PsyPerson\PsyPersonServer.API\PsyPersonServer.Application\obj\Debug\netcoreapp3.1\PsyPersonServer.Application.pdb
+C:\Users\Shakhzad\Shakhzad\DanilProject1\PsyPerson\PsyPersonServer.API\PsyPersonServer.Application\obj\Debug\netcoreapp3.1\PsyPersonServer.Application.csproj.CopyComplete

@@ -29,8 +29,11 @@ export class UsersComponent implements OnInit {
   filterText='';
   tableFilter: TableFilter = new TableFilter();
 
-  constructor(private store: Store<AppState>,private toastr: ToastrService, 
-    private service:UserService,) {
+  constructor(
+    private store: Store<AppState>,
+    private toastr: ToastrService, 
+    private service:UserService,
+    ) {
     // let request: PagedRequest = {
     //   page: 1,
     //   itemPerPage: 10
