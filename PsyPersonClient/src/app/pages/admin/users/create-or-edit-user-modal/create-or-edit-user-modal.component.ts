@@ -56,7 +56,6 @@ export class CreateOrEditUserModalComponent implements OnInit {
           this.user.email = r.email;
           this.user.phoneNumber = r.phoneNumber;
           this.user.role = r.role;
-          console.log("user user user user " + this.user)
         });
 
         this.edit = true;

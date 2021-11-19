@@ -1,0 +1,9 @@
+<div class="row">
+    <div class="col-md-12">
+        <!-- <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;" multiple> -->
+        <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;">
+        <button type="button" pRipple class="btn btn-md btn-primary" (click)="file.click()"><i class="fa fa-upload"></i>
+            {{ ButtonName}}
+        </button>
+    </div>
+</div>

@@ -5,3 +5,9 @@ export class TestDto{
     imgPath: string = '';
     createdDate: Date = new Date;
 }
+
+export class CreateTestCRq{
+    name: string = '';
+    description: string = '';
+    imgPath: string = '';
+}

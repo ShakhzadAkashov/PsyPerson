@@ -22,7 +22,7 @@ namespace PsyPersonServer.API.Controllers
 
         private readonly IMediator _mediator;
 
-        [HttpPost]
+        [HttpPost, DisableRequestSizeLimit]
         [Authorize]
         [Route("Upload")]
         //POST : /api/AppFiles/Upload
@@ -30,6 +30,19 @@ namespace PsyPersonServer.API.Controllers
         {
             var file = Request.Form.Files[0];
             return Ok(await _mediator.Send(new UploadFileC { File = file}));
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("GetPhoto")]
+        //GET : /api/AppFiles/GetPhoto
+        public IActionResult GetPhoto(string filePath)
+        {
+            if (!System.IO.File.Exists(filePath))
+                return NotFound();
+
+            var image = System.IO.File.OpenRead(filePath);
+            return File(image, "image/*");
         }
     }
 }

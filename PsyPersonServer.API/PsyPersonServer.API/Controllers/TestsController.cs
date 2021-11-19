@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PsyPersonServer.Application.Tests.Commands.CreateTest;
+using PsyPersonServer.Application.Tests.Commands.UpdateTest;
 using PsyPersonServer.Application.Tests.Queries.GetTests;
 using System;
 using System.Collections.Generic;
@@ -37,6 +38,15 @@ namespace PsyPersonServer.API.Controllers
         [Route("CreateTest")]
         //POST : /api/Tests/CreateTest
         public async Task<IActionResult> CreateTest([FromBody] CreateTestC command)
+        {
+            return Ok(await _mediator.Send(command));
+        }
+
+        [HttpPut]
+        [Authorize]
+        [Route("UpdateTest")]
+        //POST : /api/Tests/UpdateTest
+        public async Task<IActionResult> UpdateTest([FromBody] UpdateTestC command)
         {
             return Ok(await _mediator.Send(command));
         }

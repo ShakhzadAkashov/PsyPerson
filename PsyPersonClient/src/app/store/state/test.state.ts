@@ -1,5 +1,5 @@
 import { PagedResponse } from "src/app/models/base";
-import { TestDto } from "src/app/models/tests.model";
+import { TestDto } from "src/app/models/tests.models";
 
 export interface TestState{
     tests: PagedResponse<TestDto>;

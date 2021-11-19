@@ -1,0 +1,47 @@
+<div bsModal #createOrEditModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="createOrEditModal" aria-hidden="true" [config]="{backdrop: 'static'}">
+    <div class="modal-dialog modal-mg">
+        <div class="modal-content">
+            <form *ngIf="active" #testForm="ngForm" novalidate (ngSubmit)="save()" autocomplete="off">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        <span *ngIf="test.id">Редактирование теста</span>
+                        <span *ngIf="!test.id">Создание теста</span>
+                    </h4>
+                    <button type="button" class="close" (click)="close()" aria-label="Close" [disabled]="saving">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p-fieldset legend="Картинка">
+                        <div class="row">
+                            <div class="item-img col-md-6">
+                                <img *ngIf="imageToShow" [src]="imageToShow" [alt]="" required/>
+                                <img *ngIf="!imageToShow" src="/assets/nologo.png" [alt]=" "/>
+                            </div>
+                            <div class="col-md-6 d-flex align-items-center justify-content-center">
+                                <app-file-upload  ButtonName="Загрузить картинку"  (onUploadFinished)="uploadFinished($event)"></app-file-upload>
+                            </div>
+                        </div>
+                    </p-fieldset>
+                    <div class="mb-3"></div>
+                    <p-fieldset legend="Основания информация" class="mb-1">
+                        <div class="form-group">
+                            <label for="name" style="font-size: 1.1rem;">Название: *</label>
+                            <input type="text" id="name" class="form-control mb-2" [(ngModel)]="test.name" name="name" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="description" style="font-size: 1.1rem;">Описание: *</label>
+                            <textarea type="text" id="description" class="form-control mb-2" [(ngModel)]="test.description" name="description" required></textarea>
+                        </div>
+                    </p-fieldset>
+                </div>
+                <div class="modal-footer">
+                    <button [disabled]="saving" type="button" class="btn btn-outline-danger" (click)="close()">Закрыть</button>
+                    <button type="submit" class="btn btn-outline-primary blue" [disabled]="!testForm.form.valid" ><i class="fa fa-save"></i> <span> Сохранить</span></button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+

@@ -45,5 +45,21 @@ namespace PsyPersonServer.Infrastructure.Repositories
             await _dbContext.SaveChangesAsync();
             return test;
         }
+
+        public async Task<bool> Update(Guid id, string name, string description, string imgPath)
+        {
+            var test = await _dbContext.Tests.FirstOrDefaultAsync(x => x.Id == id);
+
+            if (test != null)
+            {
+                test.Name = name;
+                test.Description = description;
+                test.ImgPath = imgPath;
+
+                await _dbContext.SaveChangesAsync();
+                return true;
+            }
+            return false;
+        }
     }
 }

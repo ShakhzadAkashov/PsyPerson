@@ -17,4 +17,8 @@
     <ProjectReference Include="..\PsyPersonServer.Infrastructure\PsyPersonServer.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="AppFiles\Queries\" />
+  </ItemGroup>
+
 </Project>

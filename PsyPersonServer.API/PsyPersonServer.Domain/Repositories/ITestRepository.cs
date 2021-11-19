@@ -11,5 +11,6 @@ namespace PsyPersonServer.Domain.Repositories
     {
         Task<PagedResponse<Test>> GetTests(int page, int itemPerPage);
         Task<Test> Create(string name, string description, string imgPath);
+        Task<bool> Update(Guid id, string name, string description, string imgPath);
     }
 }

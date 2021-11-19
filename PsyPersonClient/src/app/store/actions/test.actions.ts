@@ -1,6 +1,6 @@
 import { Action, createAction, props } from "@ngrx/store";
 import { PagedRequest, PagedResponse } from "src/app/models/base";
-import { TestDto } from "src/app/models/tests.model";
+import { TestDto } from "src/app/models/tests.models";
 
 export enum ETestActions{
     GetTests = '[Test] Get Tests',

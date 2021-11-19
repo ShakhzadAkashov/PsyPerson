@@ -36,6 +36,7 @@ import { UserService } from './services/api/user.service';
 import { RoleService } from './services/api/role.service';
 import { TestService } from './services/api/test.service';
 import { TestEffects } from './store/effects/test.effects';
+import { AppFilesService } from './services/api/appFiles.serive';
 
 registerLocaleData(ru);
 
@@ -46,7 +47,7 @@ registerLocaleData(ru);
     LoginComponent,
     RegistrationComponent,
     HomeComponent,
-    StatisticsComponent
+    StatisticsComponent,
   ],
   imports: [
     BrowserModule,
@@ -72,6 +73,7 @@ registerLocaleData(ru);
     UserService,
     RoleService,
     TestService,
+    AppFilesService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

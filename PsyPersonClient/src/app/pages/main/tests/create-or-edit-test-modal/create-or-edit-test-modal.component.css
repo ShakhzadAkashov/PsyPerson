@@ -1,0 +1,19 @@
+:host ::ng-deep .p-fieldset legend {
+    display: flex;
+    width: auto;
+    max-width: 100%; 
+    padding: 1rem 1.25rem;
+    margin-bottom: 0rem;
+    margin-left: 0.75rem;
+    font-size: 1rem;
+    line-height: inherit;
+    color: #212529; 
+    white-space: normal; 
+  }
+
+.item-img img {
+    width: 100%;
+    max-height: 9em;
+    min-height: 9em;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}

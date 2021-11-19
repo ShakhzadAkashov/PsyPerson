@@ -1,12 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { select, Store } from '@ngrx/store';
+import { ToastrService } from 'ngx-toastr';
 import { LazyLoadEvent } from 'primeng/api';
 import { Observable } from 'rxjs';
 import { PagedRequest, PagedResponse, TableFilter } from 'src/app/models/base';
-import { TestDto } from 'src/app/models/tests.model';
+import { TestDto } from 'src/app/models/tests.models';
+import { AppFilesService } from 'src/app/services/api/appFiles.serive';
+import { TestService } from 'src/app/services/api/test.service';
 import { GetTests } from 'src/app/store/actions/test.actions';
 import { selectTestList } from 'src/app/store/selectors/test.selector';
 import { AppState } from 'src/app/store/state/app.state';
+import { CreateOrEditTestModalComponent } from './create-or-edit-test-modal/create-or-edit-test-modal.component';
 
 @Component({
   selector: 'app-tests',
@@ -15,11 +19,16 @@ import { AppState } from 'src/app/store/state/app.state';
 })
 export class TestsComponent implements OnInit {
 
+  @ViewChild('createOrEditTestModal', { static: true })
+  createOrEditTestModal: CreateOrEditTestModalComponent = new CreateOrEditTestModalComponent(this.store,this.toastr,this.service, this.fileService);
   tests$: Observable<PagedResponse<TestDto> | any> = this.store.pipe(select(selectTestList));
   tableFilter: TableFilter = new TableFilter();
 
   constructor(
     private store: Store<AppState>,
+    private toastr: ToastrService,
+    private service: TestService,
+    private fileService: AppFilesService
   ) {
       this.tableFilter.itemPerPage = 8;
    }
@@ -49,5 +58,15 @@ export class TestsComponent implements OnInit {
     
   }
 
-  create(){}
+  create(){
+    this.createOrEditTestModal.show();
+  }
+
+  createImgPath(filePath: string){
+    if(filePath){
+      let image = this.fileService.getPhoto(filePath);
+      return image;
+    }
+    return '';
+  }
 }

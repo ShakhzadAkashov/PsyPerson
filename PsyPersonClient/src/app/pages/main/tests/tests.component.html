@@ -20,8 +20,8 @@
         <ng-template let-record pTemplate="listItem">
             <div class="p-col-12">
                 <div class="product-list-item">
-                    <img *ngIf="record.imgPath" src="{{record.imgPath}}" [alt]="record.name" />
-                    <img *ngIf="!record.imgPath" src="/assets/nologo.png" [alt]="record.name" />
+                    <img *ngIf="record.imgPath" [src]="createImgPath(record.imgPath)" [alt]="" />
+                        <img *ngIf="!record.imgPath" src="/assets/nologo.png" [alt]="" />
                     <div class="product-list-detail">
                         <div class="product-name">
                             <h5 style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"
@@ -46,8 +46,8 @@
                                 </li>
                                 <div class="dropdown-divider"></div>
                                 <li>
-                                    <a href="javascript:;" class="dropdown-item"
-                                        style="font-size: small;">Редактировать</a>
+                                    <a href="javascript:;" class="dropdown-item" style="font-size: small;"
+                                    (click)="createOrEditTestModal.show(record)">Редактировать</a>
                                 </li>
                                 <div class="dropdown-divider"></div>
                                 <li>
@@ -77,8 +77,8 @@
                         </div>
                     </div>
                     <div class="product-grid-item-content">
-                        <img *ngIf="record.imgPath" src="{{record.imgPath}}" [alt]="record.name" />
-                        <img *ngIf="!record.imgPath" src="/assets/nologo.png" [alt]="record.name" />
+                        <img *ngIf="record.imgPath" [src]="createImgPath(record.imgPath)" [alt]="" />
+                        <img *ngIf="!record.imgPath" src="/assets/nologo.png" [alt]="" />
                         <div class="product-description">{{record.description}}</div>
                     </div>
                     <div class="product-grid-item-bottom">
@@ -94,8 +94,8 @@
                                 </li>
                                 <div class="dropdown-divider"></div>
                                 <li>
-                                    <a href="javascript:;" class="dropdown-item"
-                                        style="font-size: small;">Редактировать</a>
+                                    <a href="javascript:;" class="dropdown-item" style="font-size: small;"
+                                    (click)="createOrEditTestModal.show(record)">Редактировать</a>
                                 </li>
                                 <div class="dropdown-divider"></div>
                                 <li>
@@ -119,3 +119,4 @@
         </ng-template>
     </p-dataView>
 </div>
+<app-create-or-edit-test-modal #createOrEditTestModal (modalSave)="onLazyLoad()"></app-create-or-edit-test-modal>
