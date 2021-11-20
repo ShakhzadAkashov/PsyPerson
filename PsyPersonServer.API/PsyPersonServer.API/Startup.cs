@@ -61,6 +61,7 @@ namespace PsyPersonServer.API
 
             services.AddTransient<IUserRepository,UserRepository>();
             services.AddTransient<ITestRepository,TestRepository>();
+            services.AddTransient<ITestQuestionRepository,TestQuestionRepository>();
 
             //.AddDefaultTokenProviders();
 

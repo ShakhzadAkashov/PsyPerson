@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using PsyPersonServer.Application.ApplicationRoles.Dtos;
+using PsyPersonServer.Application.TestQuestions.Dtos;
 using PsyPersonServer.Application.Tests.Dtos;
 using PsyPersonServer.Application.Users.Dtos;
 using PsyPersonServer.Domain.Entities;
@@ -16,6 +17,8 @@ namespace PsyPersonServer.Infrastructure
             CreateMap<ApplicationUser, UserDto>();
             CreateMap<ApplicationRole, RoleDto>();
             CreateMap<Test, TestDto>();
+            CreateMap<TestQuestion, TestQuestionDto>();
+            CreateMap<TestQuestionAnswer, TestQuestionAnswerDto>();
         }
     }
 }
