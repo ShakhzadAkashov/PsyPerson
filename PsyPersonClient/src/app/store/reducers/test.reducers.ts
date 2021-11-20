@@ -22,6 +22,22 @@ export const testReducers = (
                 selectedTest: action.payload
             };
         }
+        case ETestActions.GetTestQuestionsSuccess: {
+            return {
+                ...state,
+                testQuestions:{
+                    data : action.payload.data,
+                    total : action.payload.total,
+                    loading : action.payload.loading
+                }
+            };
+        }
+        case ETestActions.GetTestQuestionSuccess: {
+            return {
+                ...state,
+                selectedTestQuestion: action.payload
+            };
+        }
 
         default:
             return state;

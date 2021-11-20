@@ -26,7 +26,7 @@ namespace PsyPersonServer.Application.TestQuestions.Commands.CreateTestQuestion
         public async Task<TestQuestionDto> Handle(CreateTestQuestionC request, CancellationToken cancellationToken)
         {
             var answers = request.Answers.Select(x => _mapper.Map<TestQuestionAnswer>(x)).ToList();
-            var question = await _repository.Create(request.Name,request.questionType, request.TestId, answers);
+            var question = await _repository.Create(request.Name,request.QuestionType, request.TestId, answers);
 
             return _mapper.Map<TestQuestionDto>(question);
         }

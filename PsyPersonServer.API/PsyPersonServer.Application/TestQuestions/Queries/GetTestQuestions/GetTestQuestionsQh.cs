@@ -25,8 +25,15 @@ namespace PsyPersonServer.Application.TestQuestions.Queries.GetTestQuestions
 
         public async Task<PagedResponse<TestQuestionDto>> Handle(GetTestQuestionsQ request, CancellationToken cancellationToken)
         {
-            var testQuestions =  await _repository.GetAll(request.Page, request.ItemPerPage);
-            return new PagedResponse<TestQuestionDto>(testQuestions.Data.Select(x => _mapper.Map<TestQuestionDto>(x)),testQuestions.Total);
+            var testQuestions =  await _repository.GetAll(request.Page, request.ItemPerPage, request.TestId);
+            var testQuestionDtos = testQuestions.Data.Select(x => _mapper.Map<TestQuestionDto>(x)).ToList();
+
+            foreach (var i in testQuestionDtos) 
+            {
+                i.AmountCorrectAnswers = i.Answers.Count(x => x.IsCorrect == true);
+            }
+
+            return new PagedResponse<TestQuestionDto>(testQuestionDtos,testQuestions.Total);
         }
     }
 }

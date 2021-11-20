@@ -9,6 +9,7 @@ import { TestsComponent } from './tests/tests.component';
 import { FileUploadComponent } from './common/file-upload/file-upload.component';
 import { CreateOrEditTestModalComponent } from './tests/create-or-edit-test-modal/create-or-edit-test-modal.component';
 import {FieldsetModule} from 'primeng/fieldset';
+import { TestQuestionsComponent } from './tests/test-questions/test-questions.component';
 
 @NgModule({
   imports: [
@@ -23,6 +24,7 @@ import {FieldsetModule} from 'primeng/fieldset';
       TestsComponent,
       CreateOrEditTestModalComponent,
       FileUploadComponent,
+      TestQuestionsComponent,
     ],
   exports: [MainComponent]
 })

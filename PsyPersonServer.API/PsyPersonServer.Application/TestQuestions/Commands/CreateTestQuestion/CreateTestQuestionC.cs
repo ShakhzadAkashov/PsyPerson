@@ -10,7 +10,7 @@ namespace PsyPersonServer.Application.TestQuestions.Commands.CreateTestQuestion
     public class CreateTestQuestionC : IRequest<TestQuestionDto>
     {
         public string Name { get; set; }
-        public TestQuestionEnum questionType { get; set; }
+        public TestQuestionEnum QuestionType { get; set; }
         public Guid TestId { get; set; }
         public List<TestQuestionAnswerDto> Answers { get; set; }
     }

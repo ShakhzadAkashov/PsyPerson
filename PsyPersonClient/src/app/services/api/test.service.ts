@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { PagedRequest, PagedResponse } from "src/app/models/base";
-import { CreateTestCRq, TestDto } from "src/app/models/tests.models";
+import { CreateTestCRq, TestDto, TestQuestionDto } from "src/app/models/tests.models";
 import { environment } from "src/environments/environment";
 
 @Injectable({
@@ -23,5 +23,13 @@ import { environment } from "src/environments/environment";
 
     update(test:TestDto){
         return this.http.put(this.BaseURI + '/Tests/UpdateTest',test);
+    }
+
+    getTestQuestions(request: PagedRequest | any){
+        return this.http.get<PagedResponse<TestQuestionDto>>(this.BaseURI + '/TestQuestions/GetAll',{params: request});
+    }
+
+    createTestQuestion(question: TestQuestionDto){
+        return this.http.post(this.BaseURI + '/TestQuestions/Create', question);
     }
   }

@@ -14,3 +14,13 @@ export const selectselectedTest = createSelector(
     selectTests,
     (state: TestState) => state.selectedTest
 );
+
+export const selectTestQuestionList = createSelector(
+    selectTests,
+    (state: TestState) => state.testQuestions
+);
+
+export const selectTestQuestion = createSelector(
+    selectTests,
+    (state: TestState) => state.selectedTestQuestion
+);
