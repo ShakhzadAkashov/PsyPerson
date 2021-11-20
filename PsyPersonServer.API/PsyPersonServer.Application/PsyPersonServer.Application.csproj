@@ -19,7 +19,6 @@
 
   <ItemGroup>
     <Folder Include="AppFiles\Queries\" />
-    <Folder Include="TestQuestions\Commands\" />
   </ItemGroup>
 
 </Project>

@@ -18,7 +18,7 @@ namespace PsyPersonServer.Infrastructure
             CreateMap<ApplicationRole, RoleDto>();
             CreateMap<Test, TestDto>();
             CreateMap<TestQuestion, TestQuestionDto>();
-            CreateMap<TestQuestionAnswer, TestQuestionAnswerDto>();
+            CreateMap<TestQuestionAnswer, TestQuestionAnswerDto>().ReverseMap();
         }
     }
 }
