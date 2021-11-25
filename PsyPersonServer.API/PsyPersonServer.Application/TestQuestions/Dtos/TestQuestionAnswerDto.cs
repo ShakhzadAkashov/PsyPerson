@@ -10,5 +10,6 @@ namespace PsyPersonServer.Application.TestQuestions.Dtos
         public string Name { get; set; }
         public bool? IsCorrect { get; set; }
         public Guid TestQuestionId { get; set; }
+        public int IdForView { get; set; }
     }
 }

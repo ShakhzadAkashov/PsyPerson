@@ -15,7 +15,7 @@ export class CreateTestCRq{
 export class TestQuestionDto{
     id: string = '';
     name: string = '';
-    questionType = TestQuestionEnum;
+    questionType = TestQuestionTypeEnum;
     createdDate: Date = new Date;
     testId: string = '';
     answers: TestQuestionAnswerDto[] = [];
@@ -27,8 +27,15 @@ export class TestQuestionAnswerDto{
     name: string = '';
     isCorrect: boolean = false;
     testQuestionId: string = '';
+    idForView: number = 0;
 }
 
-export enum TestQuestionEnum{
+export enum TestQuestionTypeEnum{
     SimpleQuestion = 0
+}
+
+export class UpdateTestQuestionCRq{
+    id: string = '';
+    name: string = '';
+    answers: TestQuestionAnswerDto[] = [];
 }

@@ -66,11 +66,66 @@ namespace PsyPersonServer.Infrastructure.Repositories
                 Id = new Guid(),
                 Name = questionAnswer.Name,
                 IsCorrect = questionAnswer.IsCorrect,
+                IdForView = questionAnswer.IdForView,
                 TestQuestionId = id
             };
 
             await _dbContext.TestQuestionAnswers.AddAsync(qestionAnswer);
             await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task<bool> Update(Guid id, string name, List<TestQuestionAnswer> answers) 
+        {
+            var question = await _dbContext.TestQuestions.FirstOrDefaultAsync(x => x.Id == id);
+
+            if (question != null) 
+            {
+                question.Name = name;
+
+                var answerFromDbIds = _dbContext.TestQuestionAnswers.Where(x => x.TestQuestionId == id).Select(x => x.Id);
+                var answerIds = answers.Select(x => x.Id).ToList();
+
+                foreach (var i in answerFromDbIds)
+                {
+                    if (!answerIds.Contains(i))
+                    {
+                        var a = _dbContext.TestQuestionAnswers.FirstOrDefault(x => x.Id == i);
+                        _dbContext.TestQuestionAnswers.Remove(a);
+                    }
+                }
+
+                foreach (var i in answers)
+                {
+                    if (i.Id == Guid.Empty || i.Id == null)
+                    {
+                        await CreateQuestionAnswer(i, id);
+                    }
+                    else
+                    {
+                        await UpdateQuestionAnswer(i.Id, i.Name, i.IsCorrect, i.IdForView);
+                    }
+                }
+
+                await _dbContext.SaveChangesAsync();
+                return true;
+            }
+            return false;
+        }
+
+        private async Task<bool> UpdateQuestionAnswer(Guid id, string name, bool? isCorrect, int idForView)
+        {
+            var answer = await _dbContext.TestQuestionAnswers.FirstOrDefaultAsync(x => x.Id == id);
+
+            if (answer != null)
+            {
+                answer.Name = name;
+                answer.IsCorrect = isCorrect;
+                answer.IdForView = idForView;
+
+                await _dbContext.SaveChangesAsync();
+                return true;
+            }
+            return false;
         }
     }
 }

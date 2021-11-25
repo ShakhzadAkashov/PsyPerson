@@ -45,7 +45,7 @@ namespace PsyPersonServer.API.Controllers
         [HttpPut]
         [Authorize]
         [Route("UpdateTest")]
-        //POST : /api/Tests/UpdateTest
+        //PUT : /api/Tests/UpdateTest
         public async Task<IActionResult> UpdateTest([FromBody] UpdateTestC command)
         {
             return Ok(await _mediator.Send(command));

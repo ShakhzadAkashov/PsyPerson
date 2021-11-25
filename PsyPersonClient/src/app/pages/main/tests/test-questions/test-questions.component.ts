@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { ToastrService } from 'ngx-toastr';
@@ -10,6 +10,7 @@ import { TestService } from 'src/app/services/api/test.service';
 import { GetTestQuestions } from 'src/app/store/actions/test.actions';
 import { selectTestQuestionList } from 'src/app/store/selectors/test.selector';
 import { AppState } from 'src/app/store/state/app.state';
+import { CreateOrEditTestQuestionModalComponent } from './create-or-edit-test-question/create-or-edit-test-question.component';
 
 @Component({
   selector: 'app-test-questions',
@@ -18,6 +19,8 @@ import { AppState } from 'src/app/store/state/app.state';
 })
 export class TestQuestionsComponent implements OnInit {
 
+  @ViewChild('createOrEditTestQuestionModal', { static: true })
+  createOrEditTestQuestionModal: CreateOrEditTestQuestionModalComponent = new CreateOrEditTestQuestionModalComponent(this.store,this.toastr,this.service,this.activatedRoute);
   questions$: Observable<PagedResponse<TestQuestionDto> | any> = this.store.pipe(select(selectTestQuestionList));
   filterText='';
   tableFilter: TableFilter = new TableFilter();
@@ -61,6 +64,10 @@ export class TestQuestionsComponent implements OnInit {
       request.testId = this.testId ?? '';
       this.store.dispatch(new GetTestQuestions(request));
     }
+  }
+
+  create(){
+    this.createOrEditTestQuestionModal.show();
   }
 
   goBack(){

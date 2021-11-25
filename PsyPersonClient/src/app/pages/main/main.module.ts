@@ -10,6 +10,7 @@ import { FileUploadComponent } from './common/file-upload/file-upload.component'
 import { CreateOrEditTestModalComponent } from './tests/create-or-edit-test-modal/create-or-edit-test-modal.component';
 import {FieldsetModule} from 'primeng/fieldset';
 import { TestQuestionsComponent } from './tests/test-questions/test-questions.component';
+import { CreateOrEditTestQuestionModalComponent } from './tests/test-questions/create-or-edit-test-question/create-or-edit-test-question.component';
 
 @NgModule({
   imports: [
@@ -25,6 +26,7 @@ import { TestQuestionsComponent } from './tests/test-questions/test-questions.co
       CreateOrEditTestModalComponent,
       FileUploadComponent,
       TestQuestionsComponent,
+      CreateOrEditTestQuestionModalComponent,
     ],
   exports: [MainComponent]
 })

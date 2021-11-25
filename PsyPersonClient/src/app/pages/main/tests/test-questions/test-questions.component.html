@@ -26,7 +26,7 @@
                     <button class="btn btn-md btn-outline-primary ml-3" ><i class="fa fa-refresh"></i> Обновить</button>
                 </span>
                 <span>
-                    <button class="btn btn-md btn-outline-primary float-right" ><i class="fa fa-plus"></i> Создать вопрос</button>
+                    <button class="btn btn-md btn-outline-primary float-right" (click)="create()"><i class="fa fa-plus"></i> Создать вопрос</button>
                 </span>
             </div>
         </div>
@@ -86,7 +86,7 @@
                         <li>
                             <a href="javascript:;" 
                                 class="dropdown-item" style="font-size: small;"
-                                >Редактировать</a>
+                                (click)="createOrEditTestQuestionModal.show(record)">Редактировать</a>
                         </li>
                         <div class="dropdown-divider"></div>
                         <li>
@@ -120,3 +120,4 @@
         </tr>
     </ng-template>
 </p-table>
+<app-create-or-edit-test-question-modal #createOrEditTestQuestionModal (modalSave)="onLazyLoad()"></app-create-or-edit-test-question-modal>
