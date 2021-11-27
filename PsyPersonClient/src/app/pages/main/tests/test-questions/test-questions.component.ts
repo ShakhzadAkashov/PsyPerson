@@ -11,6 +11,7 @@ import { GetTestQuestions } from 'src/app/store/actions/test.actions';
 import { selectTestQuestionList } from 'src/app/store/selectors/test.selector';
 import { AppState } from 'src/app/store/state/app.state';
 import { CreateOrEditTestQuestionModalComponent } from './create-or-edit-test-question/create-or-edit-test-question.component';
+import { CreateTestQuestionsFromFileModalComponent } from './create-test-questions-from-file/create-test-questions-from-file.component';
 
 @Component({
   selector: 'app-test-questions',
@@ -21,6 +22,8 @@ export class TestQuestionsComponent implements OnInit {
 
   @ViewChild('createOrEditTestQuestionModal', { static: true })
   createOrEditTestQuestionModal: CreateOrEditTestQuestionModalComponent = new CreateOrEditTestQuestionModalComponent(this.store,this.toastr,this.service,this.activatedRoute);
+  @ViewChild('createTestQuestionsFromFileModal', { static: true })
+  createTestQuestionsFromFileModal: CreateTestQuestionsFromFileModalComponent = new CreateTestQuestionsFromFileModalComponent(this.toastr,this.service,this.activatedRoute);
   questions$: Observable<PagedResponse<TestQuestionDto> | any> = this.store.pipe(select(selectTestQuestionList));
   filterText='';
   tableFilter: TableFilter = new TableFilter();
@@ -66,8 +69,12 @@ export class TestQuestionsComponent implements OnInit {
     }
   }
 
-  create(){
+  createTestQuestion(){
     this.createOrEditTestQuestionModal.show();
+  }
+
+  createTestQuestionsFromFile(){
+    this.createTestQuestionsFromFileModal.show();
   }
 
   goBack(){

@@ -11,6 +11,7 @@ import { CreateOrEditTestModalComponent } from './tests/create-or-edit-test-moda
 import {FieldsetModule} from 'primeng/fieldset';
 import { TestQuestionsComponent } from './tests/test-questions/test-questions.component';
 import { CreateOrEditTestQuestionModalComponent } from './tests/test-questions/create-or-edit-test-question/create-or-edit-test-question.component';
+import { CreateTestQuestionsFromFileModalComponent } from './tests/test-questions/create-test-questions-from-file/create-test-questions-from-file.component';
 
 @NgModule({
   imports: [
@@ -27,6 +28,7 @@ import { CreateOrEditTestQuestionModalComponent } from './tests/test-questions/c
       FileUploadComponent,
       TestQuestionsComponent,
       CreateOrEditTestQuestionModalComponent,
+      CreateTestQuestionsFromFileModalComponent,
     ],
   exports: [MainComponent]
 })

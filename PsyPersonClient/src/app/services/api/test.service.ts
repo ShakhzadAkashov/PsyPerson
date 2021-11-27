@@ -36,4 +36,8 @@ import { environment } from "src/environments/environment";
     updateTestQuestion(question: UpdateTestQuestionCRq){
         return this.http.put(this.BaseURI + '/TestQuestions/Update',question);
     }
+
+    uploadTestQuestionsFromFile(formData: FormData){
+        return this.http.post(this.BaseURI + '/TestQuestions/UploadFromFile', formData);
+    }
   }

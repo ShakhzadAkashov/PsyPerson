@@ -10,7 +10,7 @@ namespace PsyPersonServer.Domain.Entities
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public TestQuestionEnum QuestionType { get; set; }
+        public TestQuestionTypeEnum QuestionType { get; set; }
         public DateTime CreatedDate { get; set; }
         public Guid TestId { get; set; }
 

@@ -37,7 +37,7 @@ namespace PsyPersonServer.Infrastructure.Repositories
                 .Take(itemPerPage),total);
         }
 
-        public async Task<TestQuestion> Create(string name, TestQuestionEnum questionType, Guid testId, List<TestQuestionAnswer> answers)
+        public async Task<TestQuestion> Create(string name, TestQuestionTypeEnum questionType, Guid testId, List<TestQuestionAnswer> answers)
         {
             var question = new TestQuestion
             {

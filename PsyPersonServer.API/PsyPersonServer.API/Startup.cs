@@ -19,6 +19,7 @@ using PsyPersonServer.Application.ApplicationUsers.Commands.Register;
 using PsyPersonServer.Domain.Entities;
 using PsyPersonServer.Domain.Models.ApplicationSettings;
 using PsyPersonServer.Domain.Models.EmailMessage;
+using PsyPersonServer.Domain.Models.Tests;
 using PsyPersonServer.Domain.Repositories;
 using PsyPersonServer.Infrastructure;
 using PsyPersonServer.Infrastructure.Repositories;
@@ -45,6 +46,7 @@ namespace PsyPersonServer.API
         {
             services.Configure<ApplicationSettings>(Configuration.GetSection("ApplicationSettings"));
             services.Configure<EmailMessageSettings>(Configuration.GetSection("EmailMessageSettings"));
+            services.Configure<UploadTestQuestionsFromFileSettings>(Configuration.GetSection("TestQuestionsFromFileSettings"));
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

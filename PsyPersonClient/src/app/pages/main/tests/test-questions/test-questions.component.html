@@ -26,7 +26,10 @@
                     <button class="btn btn-md btn-outline-primary ml-3" ><i class="fa fa-refresh"></i> Обновить</button>
                 </span>
                 <span>
-                    <button class="btn btn-md btn-outline-primary float-right" (click)="create()"><i class="fa fa-plus"></i> Создать вопрос</button>
+                    <button class="btn btn-md btn-outline-primary float-right" (click)="createTestQuestion()"><i class="fa fa-plus"></i> Создать вопрос</button>
+                </span>
+                <span>
+                    <button class="btn btn-md btn-outline-primary float-right mr-2" (click)="createTestQuestionsFromFile()"><i class="fa fa-file"></i> Загрузить вопросы</button>
                 </span>
             </div>
         </div>
@@ -121,3 +124,4 @@
     </ng-template>
 </p-table>
 <app-create-or-edit-test-question-modal #createOrEditTestQuestionModal (modalSave)="onLazyLoad()"></app-create-or-edit-test-question-modal>
+<app-create-test-questions-from-file-modal #createTestQuestionsFromFileModal (modalSave)="onLazyLoad()"></app-create-test-questions-from-file-modal>

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace PsyPersonServer.Domain.Models.Tests
 {
-    public enum TestQuestionEnum
+    public enum TestQuestionTypeEnum
     {
         SimpleQuestion = 0
     }

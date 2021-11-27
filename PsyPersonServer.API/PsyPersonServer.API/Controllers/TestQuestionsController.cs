@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PsyPersonServer.Application.TestQuestions.Commands.CreateTestQuestion;
+using PsyPersonServer.Application.TestQuestions.Commands.CreateTestQuestionFromFile;
 using PsyPersonServer.Application.TestQuestions.Commands.UpdateTestQuestion;
 using PsyPersonServer.Application.TestQuestions.Queries.GetTestQuestions;
 using System;
@@ -47,6 +48,15 @@ namespace PsyPersonServer.API.Controllers
         [Route("Update")]
         //PUT : /api/TestQuestions/Update
         public async Task<IActionResult> Update([FromBody] UpdateTestQuestionC command)
+        {
+            return Ok(await _mediator.Send(command));
+        }
+
+        [HttpPost, DisableRequestSizeLimit]
+        [Authorize]
+        [Route("UploadFromFile")]
+        //POST : /api/TestQuestions/UploadFromFile
+        public async Task<IActionResult> UploadFromFile([FromForm] CreateTestQuestionsFromFileC command)
         {
             return Ok(await _mediator.Send(command));
         }

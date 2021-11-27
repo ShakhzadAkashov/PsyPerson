@@ -4,8 +4,8 @@ using System.Text;
 
 namespace PsyPersonServer.Domain.Models.Tests
 {
-    public enum TestTypeEnum
+    public class CreateTestQuestionsFromFileResponseDto<T>
     {
-        SimpleTest = 0
-    } 
+        public List<T> List { get; set; }
+    }
 }

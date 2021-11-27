@@ -1,0 +1,44 @@
+<div bsModal #createOrEditModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="createOrEditModal" aria-hidden="true" [config]="{backdrop: 'static'}">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form *ngIf="active" #testQuestionsFromFileForm="ngForm" novalidate (ngSubmit)="save()" autocomplete="off">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        <span>Загрузка вопросов с файла</span>
+                    </h4>
+                    <button type="button" class="close" (click)="close()" aria-label="Close" [disabled]="saving">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p-fieldset legend="Интсрукция">
+                        <div>
+                            <label for="instruction" style="font-size: 1.1rem;">{{ instruction }}</label>
+                        </div>
+                    </p-fieldset>
+                    <div class="mb-3"></div>
+                    <p-fieldset legend="Загрузка файла" class="mb-1">
+                        <div class="form-group" *ngIf="fileToUpload">
+                            <label for="fileToUpload" style="font-size: 1.1rem;">Название загруженного файла: *</label>
+                            <input type="text" id="fileToUpload" class="form-control mb-2" [(ngModel)]="fileToUpload.name"
+                                name="fileToUpload" required readonly />
+                        </div>
+                        <div class="float-right mb-3">
+                            <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;" required>
+                            <button type="button" pRipple class="btn btn-md btn-primary" (click)="file.click()"><i
+                                    class="fa fa-upload"></i>
+                                {{ buttonName}}
+                            </button>
+                        </div>
+                    </p-fieldset>
+                </div>
+                <div class="modal-footer">
+                    <button [disabled]="saving" type="button" class="btn btn-outline-danger" (click)="close()">Закрыть</button>
+                    <button type="submit" class="btn btn-outline-primary blue" [disabled]="!testQuestionsFromFileForm.valid" ><i class="fa fa-save"></i> <span> Сохранить</span></button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
