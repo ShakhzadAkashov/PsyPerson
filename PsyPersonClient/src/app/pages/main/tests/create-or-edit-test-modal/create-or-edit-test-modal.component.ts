@@ -4,7 +4,7 @@ import { ModalDirective } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
-import { UploadFileResponse } from 'src/app/models/appFiles.models';
+import { UploadFileResponseDto } from 'src/app/models/appFiles.models';
 import { TestDto } from 'src/app/models/tests.models';
 import { AppFilesService } from 'src/app/services/api/appFiles.serive';
 import { TestService } from 'src/app/services/api/test.service';
@@ -28,7 +28,7 @@ export class CreateOrEditTestModalComponent implements OnInit {
   edit = false;
 
   test: TestDto = new TestDto();
-  uploadFileResponse : UploadFileResponse = new UploadFileResponse();
+  uploadFileResponse : UploadFileResponseDto = new UploadFileResponseDto();
   imageToShow:any;
 
   constructor(
@@ -43,7 +43,7 @@ export class CreateOrEditTestModalComponent implements OnInit {
 
   show(test?: TestDto): void { 
     this.edit = false;
-    this.uploadFileResponse = new UploadFileResponse();
+    this.uploadFileResponse = new UploadFileResponseDto();
     
     if (!test) {
         this.test = new TestDto();

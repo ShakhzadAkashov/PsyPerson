@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace PsyPersonServer.Application.AppFiles.Commands.UploadeFile
 {
-    public class UploadFileC : IRequest<UploadFileResponse>
+    public class UploadFileC : IRequest<UploadFileResponseDto>
     {
         public IFormFile File { get; set; }
     }

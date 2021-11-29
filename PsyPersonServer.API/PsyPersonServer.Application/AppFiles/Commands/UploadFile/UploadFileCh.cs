@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace PsyPersonServer.Application.AppFiles.Commands.UploadeFile
 {
-    public class UploadFileCh : IRequestHandler<UploadFileC, UploadFileResponse>
+    public class UploadFileCh : IRequestHandler<UploadFileC, UploadFileResponseDto>
     {
         public UploadFileCh(ILogger<UploadFileCh> logger)
         {
@@ -20,7 +20,7 @@ namespace PsyPersonServer.Application.AppFiles.Commands.UploadeFile
 
         private readonly ILogger<UploadFileCh> _logger;
 
-        public async Task<UploadFileResponse> Handle(UploadFileC request, CancellationToken cancellationToken)
+        public async Task<UploadFileResponseDto> Handle(UploadFileC request, CancellationToken cancellationToken)
         {
             try
             {
@@ -44,7 +44,7 @@ namespace PsyPersonServer.Application.AppFiles.Commands.UploadeFile
                         file.CopyTo(stream);
                     }
 
-                    return new UploadFileResponse { DbPath = dbPath };
+                    return new UploadFileResponseDto { DbPath = dbPath };
                 }
                 else
                 {

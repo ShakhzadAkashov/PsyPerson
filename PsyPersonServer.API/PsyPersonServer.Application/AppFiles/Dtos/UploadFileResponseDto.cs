@@ -4,7 +4,7 @@ using System.Text;
 
 namespace PsyPersonServer.Domain.Models.AppFiles
 {
-    public class UploadFileResponse
+    public class UploadFileResponseDto
     {
         public string DbPath { get; set; }
     }

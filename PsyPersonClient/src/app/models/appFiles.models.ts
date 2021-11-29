@@ -1,4 +1,4 @@
-export class UploadFileResponse{
+export class UploadFileResponseDto{
     dbPath: string = '';
 }
 
