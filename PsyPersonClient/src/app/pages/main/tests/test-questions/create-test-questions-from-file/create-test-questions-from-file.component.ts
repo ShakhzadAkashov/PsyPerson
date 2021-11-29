@@ -19,7 +19,7 @@ export class CreateTestQuestionsFromFileModalComponent implements OnInit {
   saving = false;
 
   buttonName: string = "Загрузить файл";
-  instruction: string = "Можно загружать файлы с такими расширениями: .txt, .doc, .docx; Шаблоны для загрузки файлов приведены ниже.";
+  instruction: string = "Можно загружать файлы с такими расширениями как: .txt, .doc, .docx; Шаблоны для загрузки файлов приведены ниже:";
   testId = '';
   fileToUpload: any;
 

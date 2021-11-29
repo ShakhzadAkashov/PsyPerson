@@ -1,0 +1,9 @@
+<button *ngIf="type == 'Button'" [disabled]="disabled" class="btn btn-md btn-outline-primary"
+    [ngClass]="{'disabled': disabled}" (click)="download()">
+    <i class="fa fa-download"></i>
+    {{ buttonName }}
+</button>
+
+<a *ngIf="type == 'Link'" style="color:#0078D7" [ngClass]="{'disabled': disabled}" (click)="download()">
+    {{ fileName }}
+</a>

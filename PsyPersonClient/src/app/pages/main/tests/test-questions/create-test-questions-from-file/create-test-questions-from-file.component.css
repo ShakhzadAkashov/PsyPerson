@@ -14,3 +14,7 @@
   input[readonly] {
     background-color: white;
 }
+
+app-file-download:hover{
+    text-decoration: underline;
+}

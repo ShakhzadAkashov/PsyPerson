@@ -12,9 +12,12 @@
                 </div>
                 <div class="modal-body">
                     <p-fieldset legend="Интсрукция">
-                        <div>
-                            <label for="instruction" style="font-size: 1.1rem;">{{ instruction }}</label>
-                        </div>
+                        <label for="instruction" style="font-size: 1.1rem;">
+                            {{ instruction }} <br>
+                            <span>.docx - </span> <app-file-download [fileName]="'TestQuestionsDOCX.docx'" [type]="'Link'"></app-file-download> <br>
+                            <span>.doc - </span> <app-file-download [fileName]="'TestQuestionsDOC.doc'" [type]="'Link'"></app-file-download> <br>
+                            <span>.txt - </span> <app-file-download [fileName]="'TestQuestionsTXT.txt'" [type]="'Link'"></app-file-download> <br>
+                        </label>
                     </p-fieldset>
                     <div class="mb-3"></div>
                     <p-fieldset legend="Загрузка файла" class="mb-1">
