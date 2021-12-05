@@ -42,6 +42,12 @@
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 <li>
+                                    <a [routerLink]="['../simpleTypeTesting']"
+                                    [queryParams]="{testId: record.id, from: 'home/main/tests'}"  
+                                    class="dropdown-item" style="font-size: small;">Пройти тестирование</a>
+                                </li>
+                                <div class="dropdown-divider"></div>
+                                <li>
                                     <a href="javascript:;" class="dropdown-item" style="font-size: small;">Просмотр</a>
                                 </li>
                                 <div class="dropdown-divider"></div>
@@ -91,6 +97,12 @@
                                 Действия
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <li>
+                                    <a [routerLink]="['../simpleTypeTesting']"
+                                    [queryParams]="{testId: record.id, from: 'home/main/tests'}"  
+                                    class="dropdown-item" style="font-size: small;">Пройти тестирование</a>
+                                </li>
+                                <div class="dropdown-divider"></div>
                                 <li>
                                     <a href="javascript:;" class="dropdown-item" style="font-size: small;">Просмотр</a>
                                 </li>

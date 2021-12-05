@@ -24,3 +24,8 @@ export const selectTestQuestion = createSelector(
     selectTests,
     (state: TestState) => state.selectedTestQuestion
 );
+
+export const selectTestForTesting = createSelector(
+    selectTests,
+    (state: TestState) => state.testForTesting
+);

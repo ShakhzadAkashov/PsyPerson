@@ -13,5 +13,6 @@ namespace PsyPersonServer.Domain.Repositories
         Task<PagedResponse<TestQuestion>> GetAll(int page, int itemPerPage, Guid? testId);
         Task<TestQuestion> Create(string name, TestQuestionTypeEnum questionType, Guid testId, List<TestQuestionAnswer> answers);
         Task<bool> Update(Guid id, string name, List<TestQuestionAnswer> answers);
+        Task<IEnumerable<TestQuestion>> GetAllForTestingById(Guid testId);
     }
 }

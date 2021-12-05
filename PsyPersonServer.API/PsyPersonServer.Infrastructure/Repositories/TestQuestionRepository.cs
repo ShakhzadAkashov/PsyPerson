@@ -37,6 +37,21 @@ namespace PsyPersonServer.Infrastructure.Repositories
                 .Take(itemPerPage),total);
         }
 
+        public async Task<IEnumerable<TestQuestion>> GetAllForTestingById(Guid testId)
+        {
+            var testQuestions = await _dbContext.TestQuestions.Include(x => x.Answers).Where(x => x.TestId == testId).ToListAsync();
+
+            foreach (var i in testQuestions)
+            {
+                foreach (var j in i.Answers)
+                {
+                    if (j.IsCorrect == true)
+                        j.IsCorrect = false;
+                }
+            }
+            return testQuestions;
+        }
+
         public async Task<TestQuestion> Create(string name, TestQuestionTypeEnum questionType, Guid testId, List<TestQuestionAnswer> answers)
         {
             var question = new TestQuestion

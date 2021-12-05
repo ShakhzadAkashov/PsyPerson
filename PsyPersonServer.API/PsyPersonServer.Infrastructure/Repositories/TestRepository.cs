@@ -30,6 +30,12 @@ namespace PsyPersonServer.Infrastructure.Repositories
                 .Take(itemPerPage), total);
         }
 
+        public async Task<Test> GetTestById(Guid id)
+        {
+            var test = await _dbContext.Tests.FirstOrDefaultAsync(x => x.Id == id);
+            return test;
+        }
+
         public async Task<Test> Create(string name, string description, string imgPath)
         {
             var test = new Test

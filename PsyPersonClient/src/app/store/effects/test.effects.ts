@@ -4,7 +4,7 @@ import { select, Store } from "@ngrx/store";
 import { EMPTY, of } from "rxjs";
 import { catchError, map, switchMap, withLatestFrom } from "rxjs/operators";
 import { TestService } from "src/app/services/api/test.service";
-import { ETestActions, GetTest, GetTestQuestion, GetTestQuestions, GetTestQuestionsSuccess, GetTestQuestionSuccess, GetTests, GetTestsSuccess, GetTestSuccess } from "../actions/test.actions";
+import { ETestActions, GetTest, GetTestForTesting, GetTestForTestingSuccess, GetTestQuestion, GetTestQuestions, GetTestQuestionsSuccess, GetTestQuestionSuccess, GetTests, GetTestsSuccess, GetTestSuccess } from "../actions/test.actions";
 import { selectRoleList } from "../selectors/role.selector";
 import { selectTestList, selectTestQuestionList } from "../selectors/test.selector";
 import { AppState } from "../state/app.state";
@@ -55,6 +55,15 @@ export class TestEffects{
             map(r => {r.loading = false; return r} ),
             map((questions) => new GetTestQuestionsSuccess(questions)),
             catchError((error) => {console.log('GetTestQuestions | error ',error); throw error})
+        ))
+    ));
+
+    getTestForTesting$ = createEffect(() => 
+    this.actions$.pipe(
+        ofType<GetTestForTesting>(ETestActions.GetTestForTesting),
+        switchMap((u) => this.service.getTestForTesting(u.payload).pipe(
+            map((questions) => new GetTestForTestingSuccess(questions)),
+            catchError((error) => {console.log('GetTestForTesting | error ',error); throw error})
         ))
     ));
 }

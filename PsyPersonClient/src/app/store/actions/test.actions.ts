@@ -1,6 +1,6 @@
 import { Action, createAction, props } from "@ngrx/store";
 import { PagedRequest, PagedResponse } from "src/app/models/base";
-import { TestDto, TestQuestionDto } from "src/app/models/tests.models";
+import { TestDto, TestForTestingDto, TestQuestionDto } from "src/app/models/tests.models";
 
 export enum ETestActions{
     GetTests = '[Test] Get Tests',
@@ -10,7 +10,9 @@ export enum ETestActions{
     GetTestQuestions = '[Test] Get Test Questions',
     GetTestQuestionsSuccess = '[Test] Get Test Questions Success',
     GetTestQuestion = '[Test] Get Test Question',
-    GetTestQuestionSuccess = '[Test] Get Test Question Success'
+    GetTestQuestionSuccess = '[Test] Get Test Question Success',
+    GetTestForTesting = '[Test] Get Test For Testing',
+    GetTestForTestingSuccess = '[Test] Get Test For Testing Success',
 }
 
 export class GetTests implements Action{
@@ -53,5 +55,16 @@ export class GetTestQuestionSuccess implements Action{
     constructor(public payload: TestQuestionDto){}
 }
 
+export class GetTestForTesting implements Action{
+    public readonly type = ETestActions.GetTestForTesting;
+    constructor(public payload: string){}
+}
+
+export class GetTestForTestingSuccess implements Action{
+    public readonly type = ETestActions.GetTestForTestingSuccess;
+    constructor(public payload: TestForTestingDto){}
+}
+
 export type TestActions = GetTests | GetTestsSuccess | GetTest | GetTestSuccess 
-                        | GetTestQuestions | GetTestQuestionsSuccess | GetTestQuestion | GetTestQuestionSuccess;
+                        | GetTestQuestions | GetTestQuestionsSuccess | GetTestQuestion | GetTestQuestionSuccess
+                        | GetTestForTesting | GetTestForTestingSuccess;

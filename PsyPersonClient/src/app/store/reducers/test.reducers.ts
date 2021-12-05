@@ -38,6 +38,12 @@ export const testReducers = (
                 selectedTestQuestion: action.payload
             };
         }
+        case ETestActions.GetTestForTestingSuccess: {
+            return {
+                ...state,
+                testForTesting: action.payload
+            };
+        }
 
         default:
             return state;

@@ -39,3 +39,8 @@ export class UpdateTestQuestionCRq{
     name: string = '';
     answers: TestQuestionAnswerDto[] = [];
 }
+
+export class TestForTestingDto{
+    test:TestDto = new TestDto();
+    testQuestionList: TestQuestionDto[] = [];
+}

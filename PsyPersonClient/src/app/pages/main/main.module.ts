@@ -13,6 +13,7 @@ import { TestQuestionsComponent } from './tests/test-questions/test-questions.co
 import { CreateOrEditTestQuestionModalComponent } from './tests/test-questions/create-or-edit-test-question/create-or-edit-test-question.component';
 import { CreateTestQuestionsFromFileModalComponent } from './tests/test-questions/create-test-questions-from-file/create-test-questions-from-file.component';
 import { FileDownloadComponent } from './common/file-download/file-download.component';
+import { SimpleTypeTestingComponent } from './tests/testing/simple-type-testing/simple-type-testing.component';
 
 @NgModule({
   imports: [
@@ -31,6 +32,7 @@ import { FileDownloadComponent } from './common/file-download/file-download.comp
       CreateOrEditTestQuestionModalComponent,
       CreateTestQuestionsFromFileModalComponent,
       FileDownloadComponent,
+      SimpleTypeTestingComponent,
     ],
   exports: [MainComponent]
 })
