@@ -32,8 +32,8 @@
                         <div class="product-description">{{record.description}}</div>
                     </div>
                     <div class="product-list-action">
-                        <p-tag styleClass="mb-2 float-right" [rounded]="true" value="34"
-                            pTooltip="Количество вопросов: 34" tooltipPosition="bottom" [showDelay]="200"></p-tag>
+                        <p-tag styleClass="mb-2 float-right" [rounded]="true" value="{{record.amountTestQuestions}}"
+                            pTooltip="Количество вопросов: {{record.amountTestQuestions}}" tooltipPosition="bottom" [showDelay]="200"></p-tag>
                         <div #dd class="btn-group dropdown">
                             <button class="dropdown-toggle btn btn-sm btn-outline-primary" id="dropdownMenuButton"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -123,7 +123,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <p-tag severity="info" value="Вопрос(ов): 34"></p-tag>
+                        <p-tag severity="info" value="Вопрос(ов): {{record.amountTestQuestions}}"></p-tag>
                     </div>
                 </div>
             </div>

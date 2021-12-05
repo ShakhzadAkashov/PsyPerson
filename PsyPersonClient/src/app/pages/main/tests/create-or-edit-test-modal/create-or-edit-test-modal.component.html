@@ -26,6 +26,11 @@
                     <div class="mb-3"></div>
                     <p-fieldset legend="Основания информация" class="mb-1">
                         <div class="form-group">
+                            <label for="testTypes" style="font-size: 1.1rem;">Тип теста: *</label>
+                            <p-dropdown [options]="testTypes" styleClass="form-control mb-2 p-0" optionLabel="key" 
+                                optionValue="value" name="testTypes"  [(ngModel)]="test.testType" [autoDisplayFirst]="false" [readonly]="edit"></p-dropdown>
+                        </div>
+                        <div class="form-group">
                             <label for="name" style="font-size: 1.1rem;">Название: *</label>
                             <input type="text" id="name" class="form-control mb-2" [(ngModel)]="test.name" name="name" required />
                         </div>

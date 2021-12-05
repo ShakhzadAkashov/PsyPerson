@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PsyPersonServer.Domain.Entities;
 using PsyPersonServer.Domain.Models.PagedResponse;
+using PsyPersonServer.Domain.Models.Tests;
 using PsyPersonServer.Domain.Repositories;
 using System;
 using System.Collections.Generic;
@@ -36,7 +37,13 @@ namespace PsyPersonServer.Infrastructure.Repositories
             return test;
         }
 
-        public async Task<Test> Create(string name, string description, string imgPath)
+        public async Task<int> GetAmountTestQuestionsById(Guid id)
+        {
+            var amount = await _dbContext.TestQuestions.CountAsync(x => x.TestId == id);
+            return amount;
+        }
+
+        public async Task<Test> Create(string name, string description, string imgPath, TestTypeEnum testType)
         {
             var test = new Test
             {
@@ -44,7 +51,8 @@ namespace PsyPersonServer.Infrastructure.Repositories
                 Name = name,
                 Description = description,
                 ImgPath = imgPath,
-                CreatedDate = DateTime.Now
+                CreatedDate = DateTime.Now,
+                TestType = testType
             };
 
             await _dbContext.Tests.AddAsync(test);

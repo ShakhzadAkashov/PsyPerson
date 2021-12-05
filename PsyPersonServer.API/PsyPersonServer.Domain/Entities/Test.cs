@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PsyPersonServer.Domain.Models.Tests;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -11,5 +12,6 @@ namespace PsyPersonServer.Domain.Entities
         public string Description { get; set; }
         public string ImgPath { get; set; }
         public DateTime CreatedDate { get; set; }
+        public TestTypeEnum TestType { get; set; }
     }
 }

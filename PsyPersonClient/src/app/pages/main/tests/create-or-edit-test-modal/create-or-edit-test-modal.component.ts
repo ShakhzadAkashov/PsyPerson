@@ -5,7 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { UploadFileResponseDto } from 'src/app/models/appFiles.models';
-import { TestDto } from 'src/app/models/tests.models';
+import { TestDto, TestTypeEnum } from 'src/app/models/tests.models';
 import { AppFilesService } from 'src/app/services/api/appFiles.serive';
 import { TestService } from 'src/app/services/api/test.service';
 import { GetTest } from 'src/app/store/actions/test.actions';
@@ -30,6 +30,13 @@ export class CreateOrEditTestModalComponent implements OnInit {
   test: TestDto = new TestDto();
   uploadFileResponse : UploadFileResponseDto = new UploadFileResponseDto();
   imageToShow:any;
+
+  testTypes :{key: any, value: TestTypeEnum}[] = [
+    {
+      key: 'Simple Test',
+      value: TestTypeEnum.SimpleTest
+    }
+  ]
 
   constructor(
     private store: Store<AppState>,
@@ -59,6 +66,7 @@ export class CreateOrEditTestModalComponent implements OnInit {
           this.test.name = r.name;
           this.test.description = r.description;
           this.test.imgPath = r.imgPath;
+          this.test.testType = r.testType;
           this.createImgPath(r.imgPath);
         });
 

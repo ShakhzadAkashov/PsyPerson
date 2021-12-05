@@ -23,7 +23,7 @@ namespace PsyPersonServer.Application.Tests.Commands.CreateTest
 
         public async Task<TestDto> Handle(CreateTestC request, CancellationToken cancellationToken)
         {
-            var test = await _repository.Create(request.Name, request.Description,request.ImgPath);
+            var test = await _repository.Create(request.Name, request.Description,request.ImgPath, request.TestType);
 
             return _mapper.Map<TestDto>(test);
         }

@@ -4,12 +4,15 @@ export class TestDto{
     description: string = '';
     imgPath: string = '';
     createdDate: Date = new Date;
+    testType = TestTypeEnum;
+    amountTestQuestions: number = 0;
 }
 
 export class CreateTestCRq{
     name: string = '';
     description: string = '';
     imgPath: string = '';
+    testType = TestTypeEnum;
 }
 
 export class TestQuestionDto{
@@ -43,4 +46,8 @@ export class UpdateTestQuestionCRq{
 export class TestForTestingDto{
     test:TestDto = new TestDto();
     testQuestionList: TestQuestionDto[] = [];
+}
+
+export enum TestTypeEnum{
+    SimpleTest = 0
 }
