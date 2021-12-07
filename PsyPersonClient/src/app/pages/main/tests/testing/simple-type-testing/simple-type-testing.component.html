@@ -20,7 +20,7 @@
                     <h5>{{i+1}}. {{record.name}}</h5>
                 </div>
                 <div *ngFor="let item of record.answers; let j = index" class="p-field-checkbox">
-                    <p-checkbox name="answers" value="record.answers[j]" [value]="record.answers[j]"  [(ngModel)]="record.answers[j].isCorrect" [inputId]="record.answers[j].id" ></p-checkbox>
+                    <p-checkbox name="answers" [(ngModel)]="record.answers[j].isCorrect" [binary]="true" [inputId]="record.answers[j].id" ></p-checkbox>
                     <label style="color:#262626;" [for]="record.answers[j].id">{{record.answers[j].name}}</label>
                 </div>
             </td>

@@ -51,3 +51,7 @@ export class TestForTestingDto{
 export enum TestTypeEnum{
     SimpleTest = 0
 }
+
+export class CheckSimpleTypeTestingCCRq{
+    testForTesting:TestForTestingDto = new TestForTestingDto();
+}

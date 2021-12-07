@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { PagedRequest, PagedResponse } from "src/app/models/base";
-import { CreateTestCRq, TestDto, TestForTestingDto, TestQuestionDto, UpdateTestQuestionCRq } from "src/app/models/tests.models";
+import { CheckSimpleTypeTestingCCRq, CreateTestCRq, TestDto, TestForTestingDto, TestQuestionDto, UpdateTestQuestionCRq } from "src/app/models/tests.models";
 import { environment } from "src/environments/environment";
 
 @Injectable({
@@ -43,5 +43,9 @@ import { environment } from "src/environments/environment";
 
     getTestForTesting(testId: string | any){
         return this.http.get<TestForTestingDto>(this.BaseURI + '/Testings/GetTestForTesting',{params: {testId: testId}});
+    }
+
+    checkSimpeTypeTesting(command:CheckSimpleTypeTestingCCRq){
+        return this.http.post(this.BaseURI + '/Testings/CheckSimpleTypeTest',command);
     }
   }
