@@ -13,5 +13,6 @@ namespace PsyPersonServer.Domain.Entities
         public string ImgPath { get; set; }
         public DateTime CreatedDate { get; set; }
         public TestTypeEnum TestType { get; set; }
+        public List<TestResult> TestResultList { get; set; }
     }
 }

@@ -30,6 +30,11 @@ namespace PsyPersonServer.Application.Tests.Queries.GetTests
 
             foreach (var i in testsDto)
             {
+                for(int j = 0; j< i.TestResultList.Count; j++)
+                {
+                    i.TestResultList[j].IdForView = j + 1;
+                }
+
                 i.AmountTestQuestions = await _repository.GetAmountTestQuestionsById(i.Id);
             }
 

@@ -8,7 +8,7 @@ namespace PsyPersonServer.Domain.Entities
     public class UserTestingHistory
     {
         public Guid Id { get; set; }
-        public decimal TestScore { get; set; }
+        public double TestScore { get; set; }
         public DateTime TestedDate { get; set; }
         public Guid UserTestId { get; set; }
         [ForeignKey("UserTestId")]

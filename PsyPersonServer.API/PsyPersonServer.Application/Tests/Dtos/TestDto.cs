@@ -14,5 +14,6 @@ namespace PsyPersonServer.Application.Tests.Dtos
         public DateTime CreatedDate { get; set; }
         public TestTypeEnum TestType { get; set; }
         public int AmountTestQuestions { get; set; }
+        public List<TestResultDto> TestResultList { get; set; }
     }
 }

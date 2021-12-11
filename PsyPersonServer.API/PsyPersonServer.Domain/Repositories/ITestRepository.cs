@@ -11,8 +11,8 @@ namespace PsyPersonServer.Domain.Repositories
     public interface ITestRepository
     {
         Task<PagedResponse<Test>> GetTests(int page, int itemPerPage);
-        Task<Test> Create(string name, string description, string imgPath,TestTypeEnum testType);
-        Task<bool> Update(Guid id, string name, string description, string imgPath);
+        Task<Test> Create(string name, string description, string imgPath,TestTypeEnum testType, List<TestResult> testResultList);
+        Task<bool> Update(Guid id, string name, string description, string imgPath, List<TestResult> testResultList);
         Task<Test> GetTestById(Guid id);
         Task<int> GetAmountTestQuestionsById(Guid id);
     }

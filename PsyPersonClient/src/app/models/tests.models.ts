@@ -6,6 +6,7 @@ export class TestDto{
     createdDate: Date = new Date;
     testType = TestTypeEnum;
     amountTestQuestions: number = 0;
+    testResultList: TestResultDto[] =[];
 }
 
 export class CreateTestCRq{
@@ -54,4 +55,21 @@ export enum TestTypeEnum{
 
 export class CheckSimpleTypeTestingCCRq{
     testForTesting:TestForTestingDto = new TestForTestingDto();
+}
+
+export class TestResultDto{
+    id: string = '';
+    name: string = '';
+    rangeFrom: number = 0.0;
+    rangeTo: number = 0.0;
+    status = TestResultStatusEnum;
+    testId: string = '';
+    idForView: number = 0;
+}
+
+export enum TestResultStatusEnum{
+    Low = 0,
+    Satisfactory = 1,
+    Good = 2,
+    Excelent = 3
 }

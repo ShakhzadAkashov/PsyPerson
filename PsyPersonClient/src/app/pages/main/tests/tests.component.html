@@ -32,7 +32,7 @@
                         <div class="product-description">{{record.description}}</div>
                     </div>
                     <div class="product-list-action">
-                        <p-tag styleClass="mb-2 float-right" [rounded]="true" value="{{record.amountTestQuestions}}"
+                        <p-tag *ngIf="{amount: record.amountTestQuestions > 10 ? record.amountTestQuestions : '0'+ record.amountTestQuestions} as a" styleClass="mb-2 float-right" [rounded]="true" value="{{a.amount}}"
                             pTooltip="Количество вопросов: {{record.amountTestQuestions}}" tooltipPosition="bottom" [showDelay]="200"></p-tag>
                         <div #dd class="btn-group dropdown">
                             <button class="dropdown-toggle btn btn-sm btn-outline-primary" id="dropdownMenuButton"

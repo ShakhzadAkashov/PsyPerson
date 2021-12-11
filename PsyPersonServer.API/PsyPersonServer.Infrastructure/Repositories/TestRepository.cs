@@ -21,7 +21,7 @@ namespace PsyPersonServer.Infrastructure.Repositories
 
         public async Task<PagedResponse<Test>> GetTests(int page, int itemPerPage)
         {
-            var tests = _dbContext.Tests.AsQueryable();
+            var tests = _dbContext.Tests.Include(x => x.TestResultList).AsQueryable();
 
             var total = await tests.CountAsync();
 
@@ -43,7 +43,7 @@ namespace PsyPersonServer.Infrastructure.Repositories
             return amount;
         }
 
-        public async Task<Test> Create(string name, string description, string imgPath, TestTypeEnum testType)
+        public async Task<Test> Create(string name, string description, string imgPath, TestTypeEnum testType, List<TestResult> testResultList)
         {
             var test = new Test
             {
@@ -57,10 +57,16 @@ namespace PsyPersonServer.Infrastructure.Repositories
 
             await _dbContext.Tests.AddAsync(test);
             await _dbContext.SaveChangesAsync();
+
+            foreach (var i in testResultList)
+            {
+                var result = await CreateTestResult(i, test.Id);
+                test.TestResultList.Add(result);
+            }
             return test;
         }
 
-        public async Task<bool> Update(Guid id, string name, string description, string imgPath)
+        public async Task<bool> Update(Guid id, string name, string description, string imgPath, List<TestResult> testResultList)
         {
             var test = await _dbContext.Tests.FirstOrDefaultAsync(x => x.Id == id);
 
@@ -69,6 +75,56 @@ namespace PsyPersonServer.Infrastructure.Repositories
                 test.Name = name;
                 test.Description = description;
                 test.ImgPath = imgPath;
+
+                var testResultFromDbIds = _dbContext.TestResults.Where(x => x.TestId == id).Select(x => x.Id);
+                var testResultIds = testResultList.Select(x => x.Id).ToList();
+
+                foreach (var i in testResultFromDbIds)
+                {
+                    if (!testResultIds.Contains(i))
+                    {
+                        var a = _dbContext.TestResults.FirstOrDefault(x => x.Id == i);
+                        _dbContext.TestResults.Remove(a);
+                    }
+                }
+
+                foreach (var i in testResultList)
+                {
+                    if (i.Id == Guid.Empty || i.Id == null)
+                    {
+                        await CreateTestResult(i, id);
+                    }
+                    else
+                    {
+                        await UpdateTestResult(i.Id, i.Name, i.RangeFrom, i.RangeTo, i.Status);
+                    }
+                }
+
+                await _dbContext.SaveChangesAsync();
+                return true;
+            }
+            return false;
+        }
+        private async Task<TestResult> CreateTestResult(TestResult testResult, Guid id)
+        {
+            testResult.TestId = id;
+
+            await _dbContext.TestResults.AddAsync(testResult);
+            await _dbContext.SaveChangesAsync();
+
+            return testResult;
+        }
+
+        private async Task<bool> UpdateTestResult(Guid id, string name, double rangeFrom, double rangeTo, TestResultStatusEnum status)
+        {
+            var result = await _dbContext.TestResults.FirstOrDefaultAsync(x => x.Id == id);
+
+            if (result != null)
+            {
+                result.Name = name;
+                result.RangeFrom = rangeFrom;
+                result.RangeTo = rangeTo;
+                result.Status = status;
 
                 await _dbContext.SaveChangesAsync();
                 return true;

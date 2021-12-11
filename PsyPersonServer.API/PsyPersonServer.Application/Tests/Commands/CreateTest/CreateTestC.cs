@@ -13,5 +13,6 @@ namespace PsyPersonServer.Application.Tests.Commands.CreateTest
         public string Description { get; set; }
         public string ImgPath { get; set; }
         public TestTypeEnum TestType { get; set; }
+        public List<TestResultDto> TestResultList { get; set; }
     }
 }

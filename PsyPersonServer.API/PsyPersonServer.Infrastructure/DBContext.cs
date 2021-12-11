@@ -22,6 +22,7 @@ namespace PsyPersonServer.Infrastructure
         public DbSet<UserTest> UserTests { get; set; }
         public DbSet<UserTestingHistory> UserTestingHistories { get; set; }
         public DbSet<TestingHistoryQuestionAnswer> TestingHistoryQuestionAnswers { get; set; }
+        public DbSet<TestResult> TestResults { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

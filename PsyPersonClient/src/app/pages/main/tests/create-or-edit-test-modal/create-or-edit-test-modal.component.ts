@@ -5,7 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { UploadFileResponseDto } from 'src/app/models/appFiles.models';
-import { TestDto, TestTypeEnum } from 'src/app/models/tests.models';
+import { TestDto, TestResultDto, TestResultStatusEnum, TestTypeEnum } from 'src/app/models/tests.models';
 import { AppFilesService } from 'src/app/services/api/appFiles.serive';
 import { TestService } from 'src/app/services/api/test.service';
 import { GetTest } from 'src/app/store/actions/test.actions';
@@ -38,6 +38,25 @@ export class CreateOrEditTestModalComponent implements OnInit {
     }
   ]
 
+  testResultStatuses :{key: any, value: TestResultStatusEnum}[] = [
+    {
+      key: 'Low',
+      value: TestResultStatusEnum.Low
+    },
+    {
+      key: 'Satisfactory',
+      value: TestResultStatusEnum.Satisfactory
+    },
+    {
+      key: 'Good',
+      value: TestResultStatusEnum.Good
+    },
+    {
+      key: 'Excelent',
+      value: TestResultStatusEnum.Excelent
+    }
+  ]
+
   constructor(
     private store: Store<AppState>,
     private toastr: ToastrService, 
@@ -67,6 +86,17 @@ export class CreateOrEditTestModalComponent implements OnInit {
           this.test.description = r.description;
           this.test.imgPath = r.imgPath;
           this.test.testType = r.testType;
+          this.test.testResultList = [];
+          r.testResultList.forEach(element =>{
+            let x = new TestResultDto();
+            x.id = element.id;
+            x.name = element.name;
+            x.rangeFrom = element.rangeFrom;
+            x.rangeTo = element.rangeTo;
+            x.status = element.status;
+            x.testId = element.testId;
+            this.test.testResultList.push(x);
+          });
           this.createImgPath(r.imgPath);
         });
 
@@ -79,7 +109,7 @@ export class CreateOrEditTestModalComponent implements OnInit {
   save(): void {
     this.saving = true;
 
-    if(this.uploadFileResponse !== null && this.uploadFileResponse !== undefined && this.uploadFileResponse.dbPath != null){
+    if(this.uploadFileResponse !== null && this.uploadFileResponse !== undefined && this.uploadFileResponse.dbPath != null && this.uploadFileResponse.dbPath !==""){
       this.test.imgPath = this.uploadFileResponse.dbPath
     }
 
@@ -135,5 +165,25 @@ export class CreateOrEditTestModalComponent implements OnInit {
   createImgPath(filePath: string){
     if(filePath)
       this.imageToShow = this.fileService.getPhoto(filePath);
+    else
+      this.imageToShow =  '';
+  }
+
+  addTestResult(){
+    var testResult = new TestResultDto();
+    let max = 0;
+    this.test.testResultList.forEach(obj => {
+      if(obj.idForView > max){
+        max = obj.idForView
+      }
+    });
+    testResult.idForView = max + 1;
+    testResult.id = '00000000-0000-0000-0000-000000000000';
+    testResult.testId = '00000000-0000-0000-0000-000000000000';
+    this.test.testResultList.push(testResult);
+  }
+
+  deleteTestResult(item: TestResultDto){
+    this.test.testResultList = this.test.testResultList.filter(obj => obj.idForView !== item.idForView);
   }
 }
