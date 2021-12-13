@@ -61,7 +61,7 @@
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <li>
                             <a href="javascript:;" class="dropdown-item" style="font-size: small;"
-                            >Назначить тест</a>
+                            (click)="openSelectTestModal(record.id)">Назначить тест</a>
                         </li>
                     </ul>
                 </div>
@@ -93,3 +93,4 @@
     </ng-template>
 </p-table>
 
+<app-test-lookup-table-modal #testLookupTableModal (modalSave)="selectTest($event)"></app-test-lookup-table-modal>

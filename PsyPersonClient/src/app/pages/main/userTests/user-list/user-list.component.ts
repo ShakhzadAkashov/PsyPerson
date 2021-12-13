@@ -1,14 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { ToastrService } from 'ngx-toastr';
 import { LazyLoadEvent } from 'primeng/api';
 import { Observable } from 'rxjs';
 import { PagedRequest, PagedResponse, TableFilter } from 'src/app/models/base';
+import { TestDto } from 'src/app/models/tests.models';
 import { UserTestDto, UserTestUserDto } from 'src/app/models/userTests.model';
 import { UserTestService } from 'src/app/services/api/userTest.service';
 import { GetUserTestUsers } from 'src/app/store/actions/userTest.actions';
 import { selectUserTestUsers } from 'src/app/store/selectors/userTest.selector';
 import { AppState } from 'src/app/store/state/app.state';
+import { TestLookupTableModalComponent } from '../../common/test-lookup-table-modal/test-lookup-table-modal.component';
 
 @Component({
   selector: 'app-user-list',
@@ -17,6 +19,7 @@ import { AppState } from 'src/app/store/state/app.state';
 })
 export class UserListComponent implements OnInit {
 
+  @ViewChild('testLookupTableModal', { static: true }) testLookupTableModal: TestLookupTableModalComponent = new TestLookupTableModalComponent(this.store);
   users$: Observable<PagedResponse<UserTestUserDto> | any> = this.store.pipe(select(selectUserTestUsers));
   filterText='';
   tableFilter: TableFilter = new TableFilter();
@@ -60,4 +63,11 @@ export class UserListComponent implements OnInit {
       return arr.filter(x => x.isTested === false).length;
   }
 
+  openSelectTestModal(userId: string){
+    this.testLookupTableModal.show(userId);
+  }
+
+  selectTest(role:TestDto){
+    
+  }
 }

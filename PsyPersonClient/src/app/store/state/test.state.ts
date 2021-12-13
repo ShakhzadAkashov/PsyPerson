@@ -7,6 +7,7 @@ export interface TestState{
     selectedTest: TestDto;
     selectedTestQuestion: TestQuestionDto;
     testForTesting: TestForTestingDto;
+    testsForLookupTable: PagedResponse<TestDto>;
 }
 
 export const initialTestState: TestState = {
@@ -14,5 +15,6 @@ export const initialTestState: TestState = {
     testQuestions: { data:[], total:0, loading: true },
     selectedTest: <TestDto>{},
     selectedTestQuestion: <TestQuestionDto>{},
-    testForTesting: <TestForTestingDto>{test:new TestDto, testQuestionList:[]}
+    testForTesting: <TestForTestingDto>{test:new TestDto, testQuestionList:[]},
+    testsForLookupTable: { data:[], total:0, loading: true },
 };

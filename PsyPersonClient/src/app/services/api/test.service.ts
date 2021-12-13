@@ -48,4 +48,8 @@ import { environment } from "src/environments/environment";
     checkSimpeTypeTesting(command:CheckSimpleTypeTestingCCRq){
         return this.http.post(this.BaseURI + '/Testings/CheckSimpleTypeTest',command);
     }
+
+    TestsForLookupTable(request: PagedRequest | any){
+        return this.http.get<PagedResponse<TestDto>>(this.BaseURI + '/Tests/TestsForLookupTable',{params: request});
+    }
   }

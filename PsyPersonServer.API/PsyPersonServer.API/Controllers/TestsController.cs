@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using PsyPersonServer.Application.Tests.Commands.CreateTest;
 using PsyPersonServer.Application.Tests.Commands.UpdateTest;
 using PsyPersonServer.Application.Tests.Queries.GetTests;
+using PsyPersonServer.Application.Tests.Queries.GetTestsByUserId;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +30,15 @@ namespace PsyPersonServer.API.Controllers
         [Route("GetTests")]
         //Get : /api/Tests/GetTests
         public async Task<IActionResult> GetTests([FromQuery] GetTestsQ query)
+        {
+            return Ok(await _mediator.Send(query));
+        }
+        
+        [HttpGet]
+        [Authorize]
+        [Route("TestsForLookupTable")]
+        //Get : /api/Tests/TestsForLookupTable
+        public async Task<IActionResult> TestsForLookupTable([FromQuery] GetTestsByUserIdForLookupTableQ query)
         {
             return Ok(await _mediator.Send(query));
         }

@@ -44,6 +44,16 @@ export const testReducers = (
                 testForTesting: action.payload
             };
         }
+        case ETestActions.GetTestsForLookupTableSuccess: {
+            return {
+                ...state,
+                testsForLookupTable:{
+                    data : action.payload.data,
+                    total : action.payload.total,
+                    loading : action.payload.loading
+                }
+            };
+        }
 
         default:
             return state;

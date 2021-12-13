@@ -1,0 +1,88 @@
+<div bsModal #lookupTableModal="bs-modal" class="modal fade" tabindex="-1" role="dialog"
+    aria-labelledby="lookupTableModal" aria-hidden="true" [config]="{backdrop: 'static'}">
+    <div class="modal-dialog modal-dialog-centered" *ngIf="active">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">
+                    <span>Выбрать тест</span>
+                </h4>
+                <button type="button" class="close" (click)="close()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="card card-custom gutter-b">
+                <div class="card-body">
+                    <form class="form" autocomplete="off">
+                        <div class="row align-items-center">
+                            <div class="col-xl-12">
+                                <div class="form-group m-form__group align-items-center">
+                                    <div class="input-group">
+                                        <input style="box-shadow: none;" (keyup)="filterInput($event)" [(ngModel)]="filterText" name="filterText" class="form-control" placeholder="Поиск по всем параметрам" type="text">
+                                        <span class="input-group-btn">
+                                            <button (click)="onLazyLoad()" class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="row align-items-center pl-1 pr-1">
+                        <p-table #dt [value]="(tests$ | async).data " dataKey="id" styleClass="p-datatable-customers" [rowHover]="true"
+                            [showCurrentPageReport]="true" [rowsPerPageOptions]="[5,10,25,50]" [loading]="(tests$ | async).loading"
+                            [paginator]="true" currentPageReportTemplate="Показаны записи с {first} по {last} из {totalRecords}"
+                            [filterDelay]="0" [globalFilterFields]="['name','name','.name','name']" [totalRecords]="(tests$ | async).total"
+                            [lazy]="true" [(first)]="tableFilter.first" [(rows)]="tableFilter.itemPerPage" (onLazyLoad)="onLazyLoad($event)">
+                            <ng-template pTemplate="header">
+                            <tr>
+                                <th style="width: 30%;">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        Действия
+                                    </div>
+                                </th>
+                                <th style="width: 70%;" pSortableColumn="name">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        Название
+                                        <p-sortIcon field="name"></p-sortIcon>
+                                        <p-columnFilter type="text" field="name" display="menu" class="p-ml-auto"></p-columnFilter>
+                                    </div>
+                                </th>
+                    
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-record>
+                            <tr class="p-selectable-row">
+                                <td style="width: 30px">
+                                    <div class="btn-group dropdown" normalizePosition>
+                                        <button class="btn btn-sm btn-outline-primary" type="button"
+                                            (click)="setAndSave(record)">
+                                            Выбрать
+                                        </button>
+                                    </div>
+                                </td>
+                                <td>
+                                    {{record.name}}
+                                </td>
+                    
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="emptymessage">
+                            <tr>
+                                <td colspan="2" class="text-center">Записей не найдено.</td>
+                            </tr>
+                        </ng-template>
+                    </p-table>        
+                    </div>
+                
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-primary"
+                    (click)="close()">Закрыть</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

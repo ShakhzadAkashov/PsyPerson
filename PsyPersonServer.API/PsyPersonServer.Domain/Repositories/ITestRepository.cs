@@ -15,5 +15,6 @@ namespace PsyPersonServer.Domain.Repositories
         Task<bool> Update(Guid id, string name, string description, string imgPath, List<TestResult> testResultList);
         Task<Test> GetTestById(Guid id);
         Task<int> GetAmountTestQuestionsById(Guid id);
+        Task<PagedResponse<Test>> GetTestsByUserId(int page, int itemPerPage, string userId);
     }
 }

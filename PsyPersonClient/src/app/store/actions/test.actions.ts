@@ -13,6 +13,8 @@ export enum ETestActions{
     GetTestQuestionSuccess = '[Test] Get Test Question Success',
     GetTestForTesting = '[Test] Get Test For Testing',
     GetTestForTestingSuccess = '[Test] Get Test For Testing Success',
+    GetTestsForLookupTable = '[Test] Get Tests For Lookup Table',
+    GetTestsForLookupTableSuccess = '[Test] Get Tests For Lookup Table Success',
 }
 
 export class GetTests implements Action{
@@ -65,6 +67,16 @@ export class GetTestForTestingSuccess implements Action{
     constructor(public payload: TestForTestingDto){}
 }
 
+export class GetTestsForLookupTable implements Action{
+    public readonly type = ETestActions.GetTestsForLookupTable;
+    constructor(public payload: PagedRequest){}
+}
+
+export class GetTestsForLookupTableSuccess implements Action{
+    public readonly type = ETestActions.GetTestsForLookupTableSuccess;
+    constructor(public payload: PagedResponse<TestDto>){}
+}
+
 export type TestActions = GetTests | GetTestsSuccess | GetTest | GetTestSuccess 
                         | GetTestQuestions | GetTestQuestionsSuccess | GetTestQuestion | GetTestQuestionSuccess
-                        | GetTestForTesting | GetTestForTestingSuccess;
+                        | GetTestForTesting | GetTestForTestingSuccess | GetTestsForLookupTable | GetTestsForLookupTableSuccess;

@@ -29,3 +29,8 @@ export const selectTestForTesting = createSelector(
     selectTests,
     (state: TestState) => state.testForTesting
 );
+
+export const selectTestsForLookupTable = createSelector(
+    selectTests,
+    (state: TestState) => state.testsForLookupTable
+);

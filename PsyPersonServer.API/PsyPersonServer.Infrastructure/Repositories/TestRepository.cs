@@ -37,6 +37,34 @@ namespace PsyPersonServer.Infrastructure.Repositories
             return test;
         }
 
+        public async Task<PagedResponse<Test>> GetTestsByUserId(int page, int itemPerPage, string userId)
+        {
+            var tests = _dbContext.Tests.AsQueryable();
+
+            if (!string.IsNullOrEmpty(userId))
+            {
+                var userTests = _dbContext.UserTests.Where(x => x.UserId == userId);
+
+                foreach (var i in userTests)
+                {
+                    foreach (var j in tests)
+                    {
+                        if (i.TestId == j.Id)
+                        {
+                            tests = tests.Where(x => x.Id != i.TestId);
+                        }
+                    }
+                }
+            }
+
+            var total = await tests.CountAsync();
+
+            return new PagedResponse<Test>(tests
+                .OrderByDescending(x => x.CreatedDate)
+                .Skip((page - 1) * itemPerPage)
+                .Take(itemPerPage), total);
+        }
+
         public async Task<int> GetAmountTestQuestionsById(Guid id)
         {
             var amount = await _dbContext.TestQuestions.CountAsync(x => x.TestId == id);
