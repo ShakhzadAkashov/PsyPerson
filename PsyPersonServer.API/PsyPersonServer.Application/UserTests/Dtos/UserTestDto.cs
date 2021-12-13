@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PsyPersonServer.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -12,6 +13,7 @@ namespace PsyPersonServer.Application.UserTests.Dtos
         public DateTime AssignedDate { get; set; }
         public string UserId { get; set; }
         public Guid TestId { get; set; }
+        public Test Test { get; set; }
         public List<UserTestingHistoryDto> UserTestingHistoryList { get; set; }
     }
 }

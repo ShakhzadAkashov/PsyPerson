@@ -1,3 +1,4 @@
+import { TestDto } from "./tests.models";
 import { UserDto } from "./users.models";
 
 export class UserTestingHistoryDto{
@@ -14,6 +15,7 @@ export class UserTestDto{
     assignedDate: Date = new Date();
     userId: string = '';
     testId: string = '';
+    test: TestDto = new TestDto();
     userTestingHistoryList: UserTestingHistoryDto[] = [];
 }
 

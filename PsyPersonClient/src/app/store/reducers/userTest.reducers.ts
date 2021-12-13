@@ -16,6 +16,16 @@ export const userTestReducers = (
                 }
             };
         }
+        case EUserTestActions.GetUserTestsSuccess: {
+            return {
+                ...state,
+                userTests:{
+                    data : action.payload.data,
+                    total : action.payload.total,
+                    loading : action.payload.loading
+                }
+            };
+        }
 
         default:
             return state;

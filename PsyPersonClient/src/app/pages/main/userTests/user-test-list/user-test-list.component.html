@@ -1,0 +1,95 @@
+<div class="card">
+    <p-dataView #dv [value]="(tests$ | async).data " [paginator]="true" layout="grid" [showCurrentPageReport]="true"
+        [rows]="tableFilter.itemPerPage" [rowsPerPageOptions]="[4,8,12,16]" [loading]="(tests$ | async).loading"
+        [totalRecords]="(tests$ | async).total" [lazy]="true" [first]="tableFilter.first"
+        (onLazyLoad)="onLazyLoad($event)"
+        currentPageReportTemplate="Показаны записи с {first} по {last} из {totalRecords}">
+        <ng-template pTemplate="header">
+            <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between">
+                <span>ВЕСЬ СПИСОК ТЕСТОВ</span>
+                <span class="float-right">
+                    <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+                </span>
+                <span class="float-right">
+                    <button class="btn btn-md btn-outline-primary ml-3" ><i class="fa fa-refresh"></i> Обновить</button>
+                </span>
+            </div>
+        </ng-template>
+        <ng-template let-record pTemplate="listItem">
+            <div class="p-col-12">
+                <div class="product-list-item">
+                    <img *ngIf="record.test.imgPath" [src]="createImgPath(record.test.imgPath)" [alt]="" />
+                        <img *ngIf="!record.test.imgPath" src="/assets/nologo.png" [alt]="" />
+                    <div class="product-list-detail">
+                        <div class="product-name">
+                            <h5 style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"
+                                pTooltip="{{record.test.name}}" tooltipPosition="bottom" [showDelay]="200">
+                                {{record.test.name}}
+                            </h5>
+                        </div>
+                        <div class="product-description">{{record.test.description}}</div>
+                    </div>
+                    <div class="product-list-action">
+                        <p-tag *ngIf="{amount: record.test.amountTestQuestions > 10 ? record.test.amountTestQuestions : '0'+ record.test.amountTestQuestions} as a" styleClass="mb-2 float-right" [rounded]="true" value="{{a.amount}}"
+                            pTooltip="Количество вопросов: {{record.amountTestQuestions}}" tooltipPosition="bottom" [showDelay]="200"></p-tag>
+                        <div #dd class="btn-group dropdown">
+                            <button class="dropdown-toggle btn btn-sm btn-outline-primary" id="dropdownMenuButton"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-cog"></i><span class="caret"></span>
+                                Действия
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <li>
+                                    <a [routerLink]="['../simpleTypeTesting']"
+                                    [queryParams]="{testId: record.test.id, from: 'home/main/tests'}"  
+                                    class="dropdown-item" style="font-size: small;">Пройти тестирование</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+        <ng-template let-record pTemplate="gridItem">
+            <div class="p-col-12 p-md-3">
+                <div class="product-grid-item card">
+                    <div class="product-grid-item-top">
+                        <div>
+                            <span class="product-category">
+                                <h5 style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"
+                                    pTooltip="{{record.test.name}}" tooltipPosition="bottom" [showDelay]="200">
+                                    {{record.test.test.name}}
+                                </h5>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="product-grid-item-content">
+                        <img *ngIf="record.test.imgPath" [src]="createImgPath(record.test.imgPath)" [alt]="" />
+                        <img *ngIf="!record.test.imgPath" src="/assets/nologo.png" [alt]="" />
+                        <div class="product-description">{{record.test.description}}</div>
+                    </div>
+                    <div class="product-grid-item-bottom">
+                        <div class="btn-group dropdown">
+                            <button class="dropdown-toggle btn btn-sm btn-outline-primary" id="dropdownMenuButton"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-cog"></i><span class="caret"></span>
+                                Действия
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <li>
+                                    <a [routerLink]="['../simpleTypeTesting']"
+                                    [queryParams]="{testId: record.test.id, from: 'home/main/tests'}"  
+                                    class="dropdown-item" style="font-size: small;">Пройти тестирование</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <p-tag severity="info" value="Вопрос(ов): {{record.test.amountTestQuestions}}"></p-tag>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="empty">
+            <span >Записей не найдено!</span>
+        </ng-template>
+    </p-dataView>
+</div>

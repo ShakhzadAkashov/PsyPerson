@@ -5,6 +5,7 @@ import { TestQuestionsComponent } from './tests/test-questions/test-questions.co
 import { SimpleTypeTestingComponent } from './tests/testing/simple-type-testing/simple-type-testing.component';
 import { TestsComponent } from './tests/tests.component';
 import { UserListComponent } from './userTests/user-list/user-list.component';
+import { UserTestListComponent } from './userTests/user-test-list/user-test-list.component';
 
 const routes: Routes = [
   { 
@@ -26,6 +27,10 @@ const routes: Routes = [
   { 
     path: 'userTestUsers', 
     component:UserListComponent
+  },
+  { 
+    path: 'userTests', 
+    component:UserTestListComponent
   },
   {
     path: '',

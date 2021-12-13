@@ -44,7 +44,7 @@
             </th>
             <th>
                 <div class="p-d-flex p-jc-between p-ai-center">
-                    Тесты
+                    Назначенные Тесты
                 </div>
             </th>
         </tr>
@@ -77,8 +77,8 @@
                 {{record.status}}
             </td>
             <td>
-                <span class="p-column-title">Тесты</span>
-                <a style="color:#0078D7;">
+                <span class="p-column-title">Назначенные Тесты</span>
+                <a style="color:#0078D7;" class="a-hover">
                     <span>Всего: <b>{{record.userTestList.length}}</b></span> <br>
                     <span>Пройдено: <b>{{filterArray(record.userTestList,true)}}</b></span> <br>
                     <span>Не пройдено: <b>{{filterArray(record.userTestList,false)}}</b></span>
