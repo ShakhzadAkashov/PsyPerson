@@ -5,12 +5,14 @@ import { AppState } from "../state/app.state";
 import { roleReducers } from "./role.reducers";
 import { testReducers } from "./test.reducers";
 import { userReducers} from "./user.reducers";
+import { userTestReducers } from "./userTest.reducers";
 
 export const appReducers: ActionReducerMap<AppState, any> = {
     router: routerReducer,
     users: userReducers,
     roles:roleReducers,
-    tests:testReducers
+    tests:testReducers,
+    userTests: userTestReducers
 };
 
 export function logger(reducer: ActionReducer<AppState>): ActionReducer<AppState> {

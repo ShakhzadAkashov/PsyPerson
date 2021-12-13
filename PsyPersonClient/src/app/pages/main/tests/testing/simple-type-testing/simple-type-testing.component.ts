@@ -119,6 +119,7 @@ export class SimpleTypeTestingComponent implements OnInit {
       cancelButtonText: 'Пройти тест заново',
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#7367F0',
+      allowOutsideClick: false
     }).then((result) => {
       if (result.value) {
         this.goBack();

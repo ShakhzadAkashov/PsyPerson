@@ -4,6 +4,7 @@ import { MainComponent } from './main.component';
 import { TestQuestionsComponent } from './tests/test-questions/test-questions.component';
 import { SimpleTypeTestingComponent } from './tests/testing/simple-type-testing/simple-type-testing.component';
 import { TestsComponent } from './tests/tests.component';
+import { UserListComponent } from './userTests/user-list/user-list.component';
 
 const routes: Routes = [
   { 
@@ -21,6 +22,10 @@ const routes: Routes = [
   { 
     path: 'simpleTypeTesting', 
     component:SimpleTypeTestingComponent
+  },
+  { 
+    path: 'userTestUsers', 
+    component:UserListComponent
   },
   {
     path: '',

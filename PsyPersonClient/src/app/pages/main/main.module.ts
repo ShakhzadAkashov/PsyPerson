@@ -14,6 +14,7 @@ import { CreateOrEditTestQuestionModalComponent } from './tests/test-questions/c
 import { CreateTestQuestionsFromFileModalComponent } from './tests/test-questions/create-test-questions-from-file/create-test-questions-from-file.component';
 import { FileDownloadComponent } from './common/file-download/file-download.component';
 import { SimpleTypeTestingComponent } from './tests/testing/simple-type-testing/simple-type-testing.component';
+import { UserListComponent } from '../main/userTests/user-list/user-list.component'
 
 @NgModule({
   imports: [
@@ -33,6 +34,7 @@ import { SimpleTypeTestingComponent } from './tests/testing/simple-type-testing/
       CreateTestQuestionsFromFileModalComponent,
       FileDownloadComponent,
       SimpleTypeTestingComponent,
+      UserListComponent,
     ],
   exports: [MainComponent]
 })

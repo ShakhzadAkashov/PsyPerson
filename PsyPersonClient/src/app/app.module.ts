@@ -37,6 +37,8 @@ import { RoleService } from './services/api/role.service';
 import { TestService } from './services/api/test.service';
 import { TestEffects } from './store/effects/test.effects';
 import { AppFilesService } from './services/api/appFiles.serive';
+import { UserTestService } from './services/api/userTest.service';
+import { UserTestEffects } from './store/effects/userTest.effects';
 
 registerLocaleData(ru);
 
@@ -65,7 +67,7 @@ registerLocaleData(ru);
     TableModule,
     SharedModule,
     StoreModule.forRoot(appReducers,{metaReducers}),
-    EffectsModule.forRoot([UserEffects,RoleEffects,TestEffects]),
+    EffectsModule.forRoot([UserEffects,RoleEffects,TestEffects,UserTestEffects]),
     // StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
   ],
@@ -74,6 +76,7 @@ registerLocaleData(ru);
     RoleService,
     TestService,
     AppFilesService,
+    UserTestService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
