@@ -19,8 +19,4 @@
     <ProjectReference Include="..\PsyPersonServer.Infrastructure\PsyPersonServer.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="UserTests\Commands\" />
-  </ItemGroup>
-
 </Project>

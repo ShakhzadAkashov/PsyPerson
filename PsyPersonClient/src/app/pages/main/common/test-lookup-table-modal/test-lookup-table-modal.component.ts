@@ -70,7 +70,8 @@ export class TestLookupTableModalComponent implements OnInit {
   setAndSave(test: TestDto) {
     this.active = false;
     this.modal.hide();
-    this.modalSave.emit(test);
+    var response = {testId: test.id, userId: this.userId};
+    this.modalSave.emit(response);
   }
 
   close(): void {

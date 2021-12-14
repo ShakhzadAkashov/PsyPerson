@@ -20,4 +20,8 @@ import { environment } from "src/environments/environment";
     getUserTests(request: PagedRequest | any){
         return this.http.get<PagedResponse<UserTestDto>>(this.BaseURI + '/UserTests/UserTests',{params: request});
     }
+
+    create(userId: string, testId: string) {
+        return this.http.post(this.BaseURI + '/UserTests/CreateUserTest', {userId: userId, testId: testId});
+    }
 }

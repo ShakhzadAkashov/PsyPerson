@@ -67,7 +67,22 @@ export class UserListComponent implements OnInit {
     this.testLookupTableModal.show(userId);
   }
 
-  selectTest(role:TestDto){
-    
+  selectTest(response: any){
+    this.service.create(response.userId, response.testId).toPromise().then(
+      (res: any) => {
+        if(res){
+          this.toastr.success('New Test Assigned to User!', 'Assigned successful.');
+          this.onLazyLoad();
+        }else{
+          res.errors.forEach((element:any) => {
+            this.toastr.error(element.description,'Assign failed.');
+          });
+        }
+      },
+      err => {
+        this.toastr.error(err,'Assigned failed.');
+        console.log(err)
+      }
+    );
   }
 }

@@ -38,5 +38,23 @@ namespace PsyPersonServer.Infrastructure.Repositories
                 .Skip((page - 1) * itemPerPage)
                 .Take(itemPerPage), total);
         }
+
+        public async Task<UserTest> Create(string userId, Guid testId)
+        {
+            var userTest = new UserTest
+            {
+                Id = new Guid(),
+                IsActive = true,
+                IsTested = false,
+                UserId = userId,
+                TestId = testId,
+                AssignedDate = DateTime.Now
+            };
+
+            await _dbContext.UserTests.AddAsync(userTest);
+            await _dbContext.SaveChangesAsync();
+
+            return userTest;
+        }
     }
 }

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using PsyPersonServer.Application.UserTests.Commands.CreateUserTest;
 using PsyPersonServer.Application.UserTests.Queries.GetAllUsers;
 using PsyPersonServer.Application.UserTests.Queries.GetUserTests;
 using System;
@@ -43,6 +44,14 @@ namespace PsyPersonServer.API.Controllers
                 ItemPerPage = query.ItemPerPage,
                 UserId = userId
             }));
+        }
+
+        [HttpPost]
+        [Route("CreateUserTest")]
+        //POST : /api/UserTests/CreateUserTest
+        public async Task<IActionResult> CreateUserTest([FromBody] CreateUserTestC command)
+        {
+            return Ok(await _mediator.Send(command));
         }
     }
 }
