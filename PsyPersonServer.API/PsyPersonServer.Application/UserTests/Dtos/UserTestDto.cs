@@ -15,5 +15,6 @@ namespace PsyPersonServer.Application.UserTests.Dtos
         public Guid TestId { get; set; }
         public Test Test { get; set; }
         public List<UserTestingHistoryDto> UserTestingHistoryList { get; set; }
+        public UserTestingHistoryDto LastUserTestingHistoryDto { get; set; }
     }
 }

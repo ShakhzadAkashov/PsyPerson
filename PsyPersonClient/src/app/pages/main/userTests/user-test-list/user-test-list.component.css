@@ -39,8 +39,8 @@
     width: 150px;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
     margin-right: 1rem;
-    max-height: 5em;
-    min-height: 5em;
+    max-height: 7em;
+    min-height: 7em;
 }
 :host ::ng-deep .product-list-item .product-list-detail {
     flex: 1 1 0;
@@ -58,6 +58,7 @@
 :host ::ng-deep .product-list-item .product-list-action {
     display: flex;
     flex-direction: column;
+    flex: 0.3 1 0;
 }
 :host ::ng-deep .product-list-item .button {
     margin-bottom: 0.5rem;
@@ -67,7 +68,7 @@
     border: 1px solid #dee2e6;
 }
 :host ::ng-deep .product-grid-item .product-grid-item-top, :host ::ng-deep .product-grid-item .product-grid-item-bottom {
-    display: flex;
+    /* display: flex; */
     align-items: center;
     justify-content: space-between;
 }
@@ -137,4 +138,16 @@
   :host ::ng-deep .p-dataview .p-dataview-emptymessage {
     padding: 1rem;
     text-align: center;
+}
+
+dt {
+    float: left;
+    width: 35%;
+}
+
+dd {
+    margin-left: 35%;
+}
+dl{
+    margin-bottom: 0 !important;
 }

@@ -1,9 +1,10 @@
-import { TestDto } from "./tests.models";
+import { TestDto, TestResultStatusEnum } from "./tests.models";
 import { UserDto } from "./users.models";
 
 export class UserTestingHistoryDto{
     id: string = '';
     testScore: number = 0;
+    resultStatus = TestResultStatusEnum;
     testedDate: Date = new Date();
     userTestId: string = '';
 }
@@ -17,6 +18,7 @@ export class UserTestDto{
     testId: string = '';
     test: TestDto = new TestDto();
     userTestingHistoryList: UserTestingHistoryDto[] = [];
+    lastUserTestingHistoryDto: UserTestingHistoryDto = new UserTestingHistoryDto();
 }
 
 export class UserTestUserDto extends UserDto{

@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { LazyLoadEvent } from 'primeng/api';
 import { Observable } from 'rxjs';
 import { PagedRequest, PagedResponse, TableFilter } from 'src/app/models/base';
+import { TestResultStatusEnum } from 'src/app/models/tests.models';
 import { UserTestDto } from 'src/app/models/userTests.model';
 import { AppFilesService } from 'src/app/services/api/appFiles.serive';
 import { TestService } from 'src/app/services/api/test.service';
@@ -20,6 +21,29 @@ export class UserTestListComponent implements OnInit {
   
   tests$: Observable<PagedResponse<UserTestDto> | any> = this.store.pipe(select(selectUserTests));
   tableFilter: TableFilter = new TableFilter();
+
+  resultStatuses :{ [key: string]: any } = {
+    Low: {
+      label: 'Low',
+      color: 'info'
+    },
+    Unknown: {
+      label: 'Unknown',
+      color: 'danger'
+    },
+    Excelent: {
+      label: 'Excelent',
+      color: 'success'
+    },
+    Satisfactory: {
+      label: 'Satisfactory',
+      color: 'warning'
+    },
+    Good: {
+      label: 'Good',
+      color: 'primary'
+    }
+  }
 
   constructor(
     private store: Store<AppState>,

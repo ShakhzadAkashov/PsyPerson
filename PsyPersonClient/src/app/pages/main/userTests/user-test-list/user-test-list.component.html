@@ -30,21 +30,45 @@
                         <div class="product-description">{{record.test.description}}</div>
                     </div>
                     <div class="product-list-action">
-                        <p-tag *ngIf="{amount: record.test.amountTestQuestions > 10 ? record.test.amountTestQuestions : '0'+ record.test.amountTestQuestions} as a" styleClass="mb-2 float-right" [rounded]="true" value="{{a.amount}}"
-                            pTooltip="Количество вопросов: {{record.amountTestQuestions}}" tooltipPosition="bottom" [showDelay]="200"></p-tag>
-                        <div #dd class="btn-group dropdown">
-                            <button class="dropdown-toggle btn btn-sm btn-outline-primary" id="dropdownMenuButton"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa fa-cog"></i><span class="caret"></span>
-                                Действия
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <li>
-                                    <a [routerLink]="['../simpleTypeTesting']"
-                                    [queryParams]="{testId: record.test.id, from: 'home/main/tests'}"  
-                                    class="dropdown-item" style="font-size: small;">Пройти тестирование</a>
-                                </li>
-                            </ul>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <dl>
+                                    <dt class="mr-2">
+                                        <b>Результат:  </b>
+                                    </dt>
+                                     <dd>
+                                         <div *ngIf="record.isTested">
+                                            <span>{{ record.lastUserTestingHistoryDto?.testScore | number: '1.0-1'}}% </span> 
+                                            <p-tag  severity="resultStatuses[record.lastUserTestingHistoryDto?.resultStatus].color" value="resultStatuses[record.lastUserTestingHistoryDto?.resultStatus].label"></p-tag>
+                                         </div>
+                                         <div *ngIf="!record.isTested">
+                                            <p-tag severity="warning" value="В ожидании"></p-tag>
+                                         </div>
+                                     </dd>
+                                  </dl>
+                            </div>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="col-md-12">
+                                <dl>
+                                    <dt class="mr-2">
+                                        <b>Статус:  </b>
+                                    </dt>
+                                     <dd>
+                                        <p-tag *ngIf="record.isTested" severity="success" value="Тест пройден"></p-tag>
+                                        <p-tag *ngIf="!record.isTested" severity="info" value="Тест не пройден"></p-tag>
+                                     </dd>
+                                  </dl>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-md-12">
+                                <button class="btn btn-md btn-primary" style="width:100%; border-radius: 1rem;"
+                                    [routerLink]="['../simpleTypeTesting']"
+                                    [queryParams]="{testId: record.testId, from: 'home/main/userTests'}" >
+                                    Пройти тест
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -69,21 +93,52 @@
                         <div class="product-description">{{record.test.description}}</div>
                     </div>
                     <div class="product-grid-item-bottom">
-                        <div class="btn-group dropdown">
-                            <button class="dropdown-toggle btn btn-sm btn-outline-primary" id="dropdownMenuButton"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa fa-cog"></i><span class="caret"></span>
-                                Действия
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <li>
-                                    <a [routerLink]="['../simpleTypeTesting']"
-                                    [queryParams]="{testId: record.test.id, from: 'home/main/tests'}"  
-                                    class="dropdown-item" style="font-size: small;">Пройти тестирование</a>
-                                </li>
-                            </ul>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <dl>
+                                    <dt>
+                                        <b>Результат:  </b>
+                                    </dt>
+                                     <dd>
+                                         <div *ngIf="record.isTested">
+                                            <span>{{ record.lastUserTestingHistoryDto?.testScore | number: '1.0-1'}}% </span> 
+                                            <p-tag  severity="resultStatuses[record.lastUserTestingHistoryDto?.resultStatus].color" value="resultStatuses[record.lastUserTestingHistoryDto?.resultStatus].label"></p-tag>
+                                         </div>
+                                         <div *ngIf="!record.isTested">
+                                            <p-tag severity="warning" value="В ожидании"></p-tag>
+                                         </div>
+                                     </dd>
+                                  </dl>
+                                <!-- <span>
+                                    <b>Результат:  </b><p-tag severity="info" value="Вопрос(ов): {{record.test.amountTestQuestions}}"></p-tag>
+                               </span> -->
+                            </div>
                         </div>
-                        <p-tag severity="info" value="Вопрос(ов): {{record.test.amountTestQuestions}}"></p-tag>
+                        <div class="row mb-1">
+                            <div class="col-md-12">
+                                <dl>
+                                    <dt>
+                                        <b>Статус:  </b>
+                                    </dt>
+                                     <dd>
+                                        <p-tag *ngIf="record.isTested" severity="success" value="Тест пройден"></p-tag>
+                                        <p-tag *ngIf="!record.isTested" severity="info" value="Тест не пройден"></p-tag>
+                                     </dd>
+                                  </dl>
+                                <!-- <span>
+                                    <b>Статус:  </b><p-tag severity="info" value="Вопрос(ов): {{record.test.amountTestQuestions}}"></p-tag>
+                               </span> -->
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-md-12">
+                                <button class="btn btn-md btn-primary" style="width:100%; border-radius: 1rem;"
+                                    [routerLink]="['../simpleTypeTesting']"
+                                    [queryParams]="{testId: record.testId, from: 'home/main/userTests'}" >
+                                    Пройти тест
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
