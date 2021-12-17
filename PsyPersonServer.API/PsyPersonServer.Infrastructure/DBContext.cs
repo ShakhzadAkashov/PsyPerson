@@ -26,10 +26,10 @@ namespace PsyPersonServer.Infrastructure
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<UserTestingHistory>()
-               .HasOne(t => t.UserTestFk)
-               .WithMany()
-               .OnDelete(DeleteBehavior.Restrict);
+            //modelBuilder.Entity<UserTestingHistory>()
+            //   .HasOne(t => t.UserTestFk)
+            //   .WithMany()
+            //   .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<TestingHistoryQuestionAnswer>()
                 .HasOne(t => t.UserTestingHistoryFk)

@@ -39,6 +39,14 @@ namespace PsyPersonServer.Infrastructure.Repositories
                 .Take(itemPerPage), total);
         }
 
+        public async Task<UserTest> GetUserTest(string userId, Guid testId)
+        {
+            var userTests = await _dbContext.UserTests.FirstOrDefaultAsync(x => x.UserId == userId && x.TestId == testId);
+            if(userTests != null)
+                return userTests;
+            return new UserTest();
+        }
+
         public async Task<UserTest> Create(string userId, Guid testId)
         {
             var userTest = new UserTest
@@ -55,6 +63,22 @@ namespace PsyPersonServer.Infrastructure.Repositories
             await _dbContext.SaveChangesAsync();
 
             return userTest;
+        }
+
+        public async Task<bool> Update(Guid id, bool isActive, bool isTested, DateTime assignedDate)
+        {
+            var userTest = await _dbContext.UserTests.FirstOrDefaultAsync(x => x.Id == id);
+
+            if (userTest != null)
+            {
+                userTest.IsActive = isActive;
+                userTest.IsTested = isTested;
+                userTest.AssignedDate = assignedDate;
+
+                await _dbContext.SaveChangesAsync();
+                return true;
+            }
+            return false;
         }
     }
 }

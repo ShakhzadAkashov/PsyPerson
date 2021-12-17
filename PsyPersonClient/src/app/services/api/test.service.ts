@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { PagedRequest, PagedResponse } from "src/app/models/base";
 import { CheckSimpleTypeTestingCCRq, CreateTestCRq, TestDto, TestForTestingDto, TestQuestionDto, UpdateTestQuestionCRq } from "src/app/models/tests.models";
+import { CheckTestingResponseDto } from "src/app/models/userTests.model";
 import { environment } from "src/environments/environment";
 
 @Injectable({
@@ -46,7 +47,7 @@ import { environment } from "src/environments/environment";
     }
 
     checkSimpeTypeTesting(command:CheckSimpleTypeTestingCCRq){
-        return this.http.post(this.BaseURI + '/Testings/CheckSimpleTypeTest',command);
+        return this.http.post<CheckTestingResponseDto>(this.BaseURI + '/Testings/CheckSimpleTypeTest',command);
     }
 
     TestsForLookupTable(request: PagedRequest | any){

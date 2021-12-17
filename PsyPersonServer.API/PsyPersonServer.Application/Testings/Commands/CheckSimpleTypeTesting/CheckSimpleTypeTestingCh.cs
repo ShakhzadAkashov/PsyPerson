@@ -1,6 +1,10 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.Extensions.Logging;
+using PsyPersonServer.Application.Testings.Commands.CreateTestingHistory;
+using PsyPersonServer.Application.Testings.Dtos;
 using PsyPersonServer.Application.TestQuestions.Dtos;
+using PsyPersonServer.Domain.Models.Tests;
 using PsyPersonServer.Domain.Repositories;
 using System;
 using System.Collections.Generic;
@@ -11,72 +15,128 @@ using System.Threading.Tasks;
 
 namespace PsyPersonServer.Application.Testings.Commands.CheckSimpleTypeTesting
 {
-    public class CheckSimpleTypeTestingCh : IRequestHandler<CheckSimpleTypeTestingC, double>
+    public class CheckSimpleTypeTestingCh : IRequestHandler<CheckSimpleTypeTestingC, CheckTestingResponseDto>
     {
-        public CheckSimpleTypeTestingCh(ITestRepository testRepository, ITestQuestionRepository testQuestionRepository, IMapper mapper)
+        public CheckSimpleTypeTestingCh(ITestRepository testRepository, ITestQuestionRepository testQuestionRepository, IUserTestRepository userTestRepository, IMapper mapper, IMediator mediator, ILogger<CheckSimpleTypeTestingCh> logger)
         {
             _testRepository = testRepository;
             _testQuestionRepository = testQuestionRepository;
+            _userTestRepository = userTestRepository;
             _mapper = mapper;
+            _mediator = mediator;
+            _logger = logger;
         }
 
         private readonly ITestRepository _testRepository;
         private readonly ITestQuestionRepository _testQuestionRepository;
+        private readonly IUserTestRepository _userTestRepository;
         private readonly IMapper _mapper;
+        private readonly IMediator _mediator;
+        private readonly ILogger<CheckSimpleTypeTestingCh> _logger;
 
-        public async Task<double> Handle(CheckSimpleTypeTestingC request, CancellationToken cancellationToken)
+        public async Task<CheckTestingResponseDto> Handle(CheckSimpleTypeTestingC request, CancellationToken cancellationToken)
         {
             var t = await _testQuestionRepository.GetAllWithOnlyTruAnswersByTestId(request.TestForTesting.Test.Id);
             var testquestionsBase = t.Select(x => _mapper.Map<TestQuestionDto>(x));
+            var test = await _testRepository.GetTestById(request.TestForTesting.Test.Id);
+            var userTest = await _userTestRepository.GetUserTest(request.UserId, request.TestForTesting.Test.Id);
 
-            //Check Simple Type Testing
-
-            double ball = 0;
-            double b1 = 100.0 / request.TestForTesting.TestQuestionList.Count();
-
-            foreach (var i in testquestionsBase)
+            try
             {
-                foreach (var j in request.TestForTesting.TestQuestionList)
-                {
-                    if (i.Name == j.Name)
-                    {
-                        double lenght = i.Answers.Count();
-                        double c = 1 / lenght;
-                        double b = 0.0;
+                //Check Simple Type Testing
 
-                        foreach (var ii in i.Answers)
+                double ball = 0;
+                double b1 = 100.0 / request.TestForTesting.TestQuestionList.Count();
+
+                foreach (var i in testquestionsBase)
+                {
+                    foreach (var j in request.TestForTesting.TestQuestionList)
+                    {
+                        if (i.Name == j.Name)
                         {
-                            foreach (var jj in j.Answers)
+                            double lenght = i.Answers.Count();
+                            double c = 1 / lenght;
+                            double b = 0.0;
+
+                            foreach (var ii in i.Answers)
                             {
-                                if (ii.Name == jj.Name)
+                                foreach (var jj in j.Answers)
                                 {
-                                    if (ii.IsCorrect == true && jj.IsCorrect == true)
+                                    if (ii.Name == jj.Name)
                                     {
-                                        b += 1;
+                                        if (ii.IsCorrect == true && jj.IsCorrect == true)
+                                        {
+                                            b += 1;
+                                        }
                                     }
-                                }
-                                else if (ii.Name != jj.Name)
-                                {
-                                    var trueVar = i.Answers.Any(j => jj.Name == j.Name);
-                                    if (trueVar == false && jj.IsCorrect == true)
+                                    else if (ii.Name != jj.Name)
                                     {
-                                        b = b - c;
+                                        var trueVar = i.Answers.Any(j => jj.Name == j.Name);
+                                        if (trueVar == false && jj.IsCorrect == true)
+                                        {
+                                            b = b - c;
+                                        }
                                     }
                                 }
                             }
+
+                            double count = 0.0;
+                            if (b > 0)
+                                count = b / lenght;
+
+                            ball += count;
                         }
-
-                        double count = 0.0;
-                        if (b > 0)
-                            count = b / lenght;
-
-                        ball += count;
                     }
                 }
-            }
-            ball = ball * b1;
+                ball = ball * b1;
 
-            return ball;
+                //Check Simple Type Testing
+
+                var result = new CheckTestingResponseDto();
+                double score = 0.0;
+                TestResultStatusEnum status = TestResultStatusEnum.Unknown;
+                string desc = "";
+
+                foreach (var i in test.TestResultList)
+                {
+                    if (i.RangeFrom >= ball && i.RangeTo <= ball)
+                    {
+                        score = ball;
+                        status = i.Status;
+                        desc = i.Name;
+                    }
+                }
+
+                if (score != ball || string.IsNullOrEmpty(desc) || status == TestResultStatusEnum.Unknown)
+                {
+                    result.Description = "Unknown desc!";
+                    result.Status = TestResultStatusEnum.Unknown;
+                    result.TestScore = ball;
+                }
+                else
+                {
+                    result.Description = desc;
+                    result.TestScore = score;
+                    result.Status = status;
+                }
+
+                await _userTestRepository.Update(userTest.Id, userTest.IsActive, true, userTest.AssignedDate);
+
+                await _mediator.Send(new CreateTestingHistoryC
+                {
+                    TestScore = ball,
+                    ResultStatus = status,
+                    UserTest = userTest,
+                    TestQuestionList = request.TestForTesting.TestQuestionList
+                });
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Check Simple Type Testing for test: {request.TestForTesting.Test.Id} and for User: {request.UserId} failed {ex}", ex);
+                throw ex;
+            }
         }
     }
 }

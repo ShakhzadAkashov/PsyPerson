@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
+import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
-import { CheckSimpleTypeTestingCCRq, TestDto, TestForTestingDto, TestQuestionAnswerDto, TestQuestionDto } from 'src/app/models/tests.models';
+import { CheckSimpleTypeTestingCCRq, TestDto, TestForTestingDto, TestQuestionAnswerDto, TestQuestionDto, TestResultStatusEnum } from 'src/app/models/tests.models';
+import { CheckTestingResponseDto } from 'src/app/models/userTests.model';
 import { TestService } from 'src/app/services/api/test.service';
+import { UserHelper } from 'src/app/shared/helpers/user.helper';
 import { GetTest, GetTestForTesting } from 'src/app/store/actions/test.actions';
 import { selectselectedTest, selectTestForTesting } from 'src/app/store/selectors/test.selector';
 import { AppState } from 'src/app/store/state/app.state';
@@ -27,7 +30,8 @@ export class SimpleTypeTestingComponent implements OnInit {
     private store: Store<AppState>,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private service: TestService
+    private service: TestService,
+    private toastr: ToastrService, 
     ) { 
     this.testId = this.activatedRoute.snapshot.queryParams['testId'];
     this.from = this.activatedRoute.snapshot.queryParams['from'];
@@ -74,46 +78,45 @@ export class SimpleTypeTestingComponent implements OnInit {
   
   finishTest(){
     this.bal = 0.0;
-    let testStatus = '';
     const command = new CheckSimpleTypeTestingCCRq();
     command.testForTesting = this.test;
-    this.service.checkSimpeTypeTesting(command).toPromise().then((res:number | any)=>{
-      this.bal = res;
-      
-      if(this.bal >=90){
-        testStatus = 'EXCELLENT';
-      }else if(this.bal >= 70){
-        testStatus = 'GOOD';
-      }else if(this.bal >= 50){
-        testStatus = 'SATISFACTORY';
-      }else{
-        testStatus = "BAD";
+    command.userId = UserHelper.getCurrentUserId();
+    this.service.checkSimpeTypeTesting(command).toPromise().then((res:CheckTestingResponseDto)=>{
+      if(res){
+        this.bal = res.testScore;
+        let status = res.status;
+        let desc = res.description;
+  
+        this.alertTest(this.bal,status,desc);
       }
-
-      this.alertTest(this.bal,testStatus);
+      else{
+        this.toastr.error("Check Testing Failed",'Check failed.');
+      } 
+    },
+    err => {
+      this.toastr.error(err.error,'Check failed.');
+      console.log(err)
     });
   }
 
-  alertTest(bal:number, testStatus: string){
-    let status: string = '';
-    let Icon: string = '';
-    if(testStatus == "EXCELLENT"){
-      status = 'Отлично - вы можете продолжать работу!';
+  alertTest(bal:number, testStatus:any, desc:string){
+    let Icon: string | any;
+    if(testStatus === TestResultStatusEnum.Excelent){
       Icon = 'success';
-    }else if(testStatus == "GOOD"){
-      status = 'Стабильно - приглашаем вас на чашечку чая или кофе!';
+    }else if(testStatus === TestResultStatusEnum.Good){
       Icon = 'success';
-    }else if(testStatus == "SATISFACTORY"){
-      status = 'Удовлетворительно - тут уже без печенек никуда!';
+    }else if(testStatus === TestResultStatusEnum.Satisfactory){
       Icon = 'info';
-    }else{
-      status = 'Необходим отдых!';
+    }else if(testStatus === TestResultStatusEnum.Low){
+      Icon = 'warning';
+    }
+    else{
       Icon = 'warning';
     }
     Swal.fire({
-      title: status,
+      title: desc,
       text: 'Тест был пройден на' + ' ' + bal.toFixed(1) +' %',
-      icon: 'info',
+      icon: Icon,
       showCancelButton: true,
       confirmButtonText: 'Ок',
       cancelButtonText: 'Пройти тест заново',

@@ -38,7 +38,7 @@ namespace PsyPersonServer.Application.UserTests.Queries.GetUserTests
                 }
             }
 
-            return new PagedResponse<UserTestDto>(userTests.Data.Select(x => _mapper.Map<UserTestDto>(x)), userTests.Total);
+            return new PagedResponse<UserTestDto>(userTestDtos, userTests.Total);
         }
     }
 }

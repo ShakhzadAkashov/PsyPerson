@@ -25,3 +25,9 @@ export class UserTestUserDto extends UserDto{
     userTestList: UserTestDto[] = [];
     status: string = '';
 }
+
+export class CheckTestingResponseDto{
+    testScore: number = 0.0;
+    status = TestResultStatusEnum;
+    description: string = '';
+}

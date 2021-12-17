@@ -7,8 +7,9 @@ using System.Text;
 
 namespace PsyPersonServer.Application.Testings.Commands.CheckSimpleTypeTesting
 {
-    public class CheckSimpleTypeTestingC : IRequest<double>
+    public class CheckSimpleTypeTestingC : IRequest<CheckTestingResponseDto>
     {
         public TestForTestingDto TestForTesting { get; set; }
+        public string UserId { get; set; }
     }
 }

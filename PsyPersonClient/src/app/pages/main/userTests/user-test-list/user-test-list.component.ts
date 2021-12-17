@@ -22,24 +22,24 @@ export class UserTestListComponent implements OnInit {
   tests$: Observable<PagedResponse<UserTestDto> | any> = this.store.pipe(select(selectUserTests));
   tableFilter: TableFilter = new TableFilter();
 
-  resultStatuses :{ [key: string]: any } = {
-    Low: {
+  resultStatuses :{ [key: number]: any } = {
+    0: {
       label: 'Low',
       color: 'info'
     },
-    Unknown: {
+    4: {
       label: 'Unknown',
       color: 'danger'
     },
-    Excelent: {
+    3: {
       label: 'Excelent',
       color: 'success'
     },
-    Satisfactory: {
+    1: {
       label: 'Satisfactory',
       color: 'warning'
     },
-    Good: {
+    2: {
       label: 'Good',
       color: 'primary'
     }

@@ -55,6 +55,7 @@ export enum TestTypeEnum{
 
 export class CheckSimpleTypeTestingCCRq{
     testForTesting:TestForTestingDto = new TestForTestingDto();
+    userId: string = '';
 }
 
 export class TestResultDto{

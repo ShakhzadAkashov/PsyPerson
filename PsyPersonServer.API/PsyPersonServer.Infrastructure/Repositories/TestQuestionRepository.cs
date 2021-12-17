@@ -55,7 +55,7 @@ namespace PsyPersonServer.Infrastructure.Repositories
         public async Task<IEnumerable<TestQuestion>> GetAllWithOnlyTruAnswersByTestId(Guid testId)
         {
             var testQuestions = await _dbContext.TestQuestions.Include(x => x.Answers)
-                .Where(x => x.TestId == testId).ToListAsync();
+                .Where(x => x.TestId == testId).AsNoTracking().ToListAsync();
 
             foreach (var i in testQuestions)
             {
