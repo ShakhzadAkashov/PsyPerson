@@ -13,3 +13,8 @@ export const selectUserTests = createSelector(
     selectUserTest,
     (state: UserTestState) => state.userTests
 );
+
+export const selectUserTestsDetails = createSelector(
+    selectUserTest,
+    (state: UserTestState) => state.userTestsDetails
+);

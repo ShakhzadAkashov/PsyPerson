@@ -26,6 +26,9 @@ namespace PsyPersonServer.Infrastructure
                 .ReverseMap();
             CreateMap<UserTestingHistory, UserTestingHistoryDto>().ReverseMap();
             CreateMap<ApplicationUser, UserTestUserDto>();
+            CreateMap<UserTest, UserTestDetailDto>()
+                .ForMember(dest => dest.Test, opt => opt.MapFrom(src => src.TestFk))
+                .ReverseMap();
         }
     }
 }

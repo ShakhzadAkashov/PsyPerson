@@ -78,7 +78,7 @@
             </td>
             <td>
                 <span class="p-column-title">Назначенные Тесты</span>
-                <a style="color:#0078D7;" class="a-hover">
+                <a style="color:#0078D7;" class="a-hover" (click)="userTestsDetailsModal.show(record.id)">
                     <span>Всего: <b>{{record.userTestList.length}}</b></span> <br>
                     <span>Пройдено: <b>{{filterArray(record.userTestList,true)}}</b></span> <br>
                     <span>Не пройдено: <b>{{filterArray(record.userTestList,false)}}</b></span>
@@ -94,3 +94,4 @@
 </p-table>
 
 <app-test-lookup-table-modal #testLookupTableModal (modalSave)="selectTest($event)"></app-test-lookup-table-modal>
+<app-user-tests-details-modal #userTestsDetailsModal></app-user-tests-details-modal>

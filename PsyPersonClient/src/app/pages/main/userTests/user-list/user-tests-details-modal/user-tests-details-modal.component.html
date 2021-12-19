@@ -1,0 +1,116 @@
+<div bsModal #userTestsDetailsModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="userTestsDetailsModal" aria-hidden="true" [config]="{backdrop: 'static'}">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">
+                    <span>Пользовательское тестирование</span>
+                </h4>
+                <button type="button" class="close" (click)="close()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p-table #dt [value]="(userTestsDetails$ | async).data " dataKey="id" styleClass="p-datatable-striped"
+                    [showCurrentPageReport]="true" [rowsPerPageOptions]="[5,10,25,50]" [loading]="(userTestsDetails$ | async).loading"
+                    [paginator]="true" currentPageReportTemplate="Показаны записи с {first} по {last} из {totalRecords}"
+                    [filterDelay]="0" [totalRecords]="(userTestsDetails$ | async).total"
+                    [lazy]="true" [(first)]="tableFilter.first" [(rows)]="tableFilter.itemPerPage" (onLazyLoad)="onLazyLoad($event)">
+                    <ng-template pTemplate="caption">
+                        <div class="table-header">
+                            <div class="col-md-12">
+                                <span>Список тестов</span>
+                            </div>
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th style="width: 20%">
+                                <div class="p-d-flex p-jc-between p-ai-center">
+                                    Действия
+                                </div>
+                            </th>
+                            <th style="width: 15%;">
+                                <div class="p-d-flex p-jc-between p-ai-center">
+                                    Название
+                                </div>
+                            </th>
+                            <th style="width: 15%;">
+                                <div class="p-d-flex p-jc-between p-ai-center">
+                                    Статус
+                                </div>
+                            </th>
+                            <th style="width:50%;">
+                                <div class="p-d-flex p-jc-between p-ai-center">
+                                    История прохождения
+                                </div>
+                            </th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-record>
+                        <tr class="p-selectable-row">
+                            <td >
+                                <span class="p-column-title">Действия</span>
+                                <div class="btn-group dropdown">
+                                    <button class="dropdown-toggle btn btn-sm btn-outline-primary" id="dropdownMenuButton"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fa fa-cog"></i><span class="caret"></span>
+                                        Действия
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <li>
+                                            <a href="javascript:;" class="dropdown-item" style="font-size: small;"
+                                                >Отменить</a>
+                                        </li>
+                                        <div class="dropdown-divider"></div>
+                                        <li>
+                                            <a href="javascript:;" class="dropdown-item" style="font-size: small;"
+                                                >Переназначить</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="p-column-title">Название</span>
+                                {{record.test?.name}}
+                            </td>
+                            <td>
+                                <span>
+                                    Активен: 
+                                    <p-tag *ngIf="record.isActive" severity="success" icon="pi pi-check" [rounded]="true"></p-tag>
+                                    <p-tag *ngIf="!record.isActive" severity="warning" icon="pi pi-minus" [rounded]="true"></p-tag>
+                                </span> <br>
+                                <span>
+                                    Пройден:
+                                    <p-tag *ngIf="record.isTested" severity="success" icon="pi pi-check" [rounded]="true"></p-tag>
+                                    <p-tag *ngIf="!record.isTested" severity="warning" icon="pi pi-minus" [rounded]="true"></p-tag>
+                                </span> <br>
+                                <span>Эмоциональное состояние: <b>{{record.status}}</b></span>
+                            </td>
+                            <td>
+                                <span class="p-column-title">История прохождения</span>
+                                <div *ngFor="let item of record.userTestingHistoryList; let i = index" >
+                                    <a style="color:#0078D7;" class="a-hover">
+                                        <span><b>{{i+1}}) {{item.testedDate | date: 'dd.MM.yyyy HH:mm:ss'}} - {{item.testScore | number: '1.0-1'}}% - {{resultStatuses[item.resultStatus].label}}</b></span>
+                                    </a>
+                                </div>
+                                <div *ngIf="record.userTestingHistoryList.length == 0">
+                                    <span>История отсутствует</span>
+                                </div><br>
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="emptymessage">
+                        <tr>
+                            <td colspan="6" class="text-center">Записей не найдено.</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-md btn-outline-primary blue" (click)="close()">Закрыть</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+

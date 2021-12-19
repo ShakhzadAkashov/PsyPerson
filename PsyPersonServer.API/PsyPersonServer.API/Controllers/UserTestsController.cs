@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using PsyPersonServer.Application.UserTests.Commands.CreateUserTest;
 using PsyPersonServer.Application.UserTests.Queries.GetAllUsers;
 using PsyPersonServer.Application.UserTests.Queries.GetUserTests;
+using PsyPersonServer.Application.UserTests.Queries.GetUserTestsDetails;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,6 +53,14 @@ namespace PsyPersonServer.API.Controllers
         public async Task<IActionResult> CreateUserTest([FromBody] CreateUserTestC command)
         {
             return Ok(await _mediator.Send(command));
+        }
+
+        [HttpGet]
+        [Route("UserTestsDetails")]
+        //Get : /api/UserTests/UserTestsDetails
+        public async Task<IActionResult> UserTestsDetails([FromQuery] GetUserTestsDetailsQ query)
+        {
+            return Ok(await _mediator.Send(query));
         }
     }
 }

@@ -16,7 +16,8 @@ import { FileDownloadComponent } from './common/file-download/file-download.comp
 import { SimpleTypeTestingComponent } from './tests/testing/simple-type-testing/simple-type-testing.component';
 import { UserListComponent } from '../main/userTests/user-list/user-list.component';
 import { UserTestListComponent } from './userTests/user-test-list/user-test-list.component';
-import { TestLookupTableModalComponent } from './common/test-lookup-table-modal/test-lookup-table-modal.component'
+import { TestLookupTableModalComponent } from './common/test-lookup-table-modal/test-lookup-table-modal.component';
+import { UserTestsDetailsModalComponent } from '../main/userTests/user-list/user-tests-details-modal/user-tests-details-modal.component'
 
 @NgModule({
   imports: [
@@ -39,6 +40,7 @@ import { TestLookupTableModalComponent } from './common/test-lookup-table-modal/
       UserListComponent,
       UserTestListComponent,
       TestLookupTableModalComponent,
+      UserTestsDetailsModalComponent,
     ],
   exports: [MainComponent]
 })

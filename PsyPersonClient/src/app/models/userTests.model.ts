@@ -31,3 +31,7 @@ export class CheckTestingResponseDto{
     status = TestResultStatusEnum;
     description: string = '';
 }
+
+export class UserTestDetailDto extends UserTestDto{
+    status: string = '';
+}

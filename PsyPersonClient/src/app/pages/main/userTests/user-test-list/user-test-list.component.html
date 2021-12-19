@@ -39,7 +39,7 @@
                                      <dd>
                                          <div *ngIf="record.isTested">
                                             <span>{{ record.lastUserTestingHistoryDto?.testScore | number: '1.0-1'}}% </span> 
-                                            <p-tag  severity="resultStatuses[record.lastUserTestingHistoryDto?.resultStatus].color" value="resultStatuses[record.lastUserTestingHistoryDto?.resultStatus].label"></p-tag>
+                                            <p-tag  [severity]="resultStatuses[record.lastUserTestingHistoryDto?.resultStatus].color" [value]="resultStatuses[record.lastUserTestingHistoryDto?.resultStatus].label"></p-tag>
                                          </div>
                                          <div *ngIf="!record.isTested">
                                             <p-tag severity="warning" value="В ожидании"></p-tag>
