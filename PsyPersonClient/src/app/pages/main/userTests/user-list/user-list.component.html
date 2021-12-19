@@ -79,9 +79,9 @@
             <td>
                 <span class="p-column-title">Назначенные Тесты</span>
                 <a style="color:#0078D7;" class="a-hover" (click)="userTestsDetailsModal.show(record.id)">
-                    <span>Всего: <b>{{record.userTestList.length}}</b></span> <br>
-                    <span>Пройдено: <b>{{filterArray(record.userTestList,true)}}</b></span> <br>
-                    <span>Не пройдено: <b>{{filterArray(record.userTestList,false)}}</b></span>
+                    <span>Всего: <b>{{record.amountAllUserTests}}</b></span> <br>
+                    <span>Пройдено: <b>{{record.amountTestedUserTests}}</b></span> <br>
+                    <span>Не пройдено: <b>{{record.amountPendingUserTests}}</b></span>
                 </a>
             </td>
         </tr>

@@ -55,14 +55,7 @@ export class UserListComponent implements OnInit {
       this.store.dispatch(new GetUserTestUsers(request));
     }
   }
-
-  filterArray(arr: UserTestDto[], isTested: boolean){
-    if(isTested)
-      return arr.filter(x => x.isTested === true).length;
-    else
-      return arr.filter(x => x.isTested === false).length;
-  }
-
+  
   openSelectTestModal(userId: string){
     this.testLookupTableModal.show(userId);
   }

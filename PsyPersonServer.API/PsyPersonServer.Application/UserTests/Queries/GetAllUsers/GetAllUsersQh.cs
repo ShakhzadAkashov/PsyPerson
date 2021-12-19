@@ -47,14 +47,12 @@ namespace PsyPersonServer.Application.UserTests.Queries.GetAllUsers
 
             foreach (var i in users)
             {
-                i.UserTestList = new List<UserTestDto>();
-                i.Status = "Not Found";
                 var userTests = _userTestRepository.GetUserTestsByUserId(i.Id).Result;
-                if (userTests.Count() > 0)
-                {
-                    var userTestsDto = userTests.Select(x => _mapper.Map<UserTestDto>(x));
-                    i.UserTestList.AddRange(userTestsDto);
-                }
+
+                i.Status = "Not Found";
+                i.AmountAllUserTests = userTests.Count();
+                i.AmountTestedUserTests = userTests.Where(x => x.IsTested == true).Count();
+                i.AmountPendingUserTests = userTests.Where(x => x.IsTested == false).Count();
             }
 
             return new PagedResponse<UserTestUserDto>(users,total);

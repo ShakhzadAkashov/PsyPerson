@@ -22,8 +22,10 @@ export class UserTestDto{
 }
 
 export class UserTestUserDto extends UserDto{
-    userTestList: UserTestDto[] = [];
     status: string = '';
+    amountAllUserTests: number = 0;
+    amountTestedUserTests: number = 0;
+    amountPendingUserTests: number = 0;
 }
 
 export class CheckTestingResponseDto{

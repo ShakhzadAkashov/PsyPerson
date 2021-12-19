@@ -7,7 +7,9 @@ namespace PsyPersonServer.Application.UserTests.Dtos
 {
     public class UserTestUserDto : UserDto
     {
-        public List<UserTestDto> UserTestList { get; set; }
         public string Status { get; set; }
+        public int AmountAllUserTests { get; set; }
+        public int AmountTestedUserTests { get; set; }
+        public int AmountPendingUserTests { get; set; }
     }
 }
