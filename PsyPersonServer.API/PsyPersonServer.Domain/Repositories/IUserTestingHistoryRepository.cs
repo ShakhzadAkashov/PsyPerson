@@ -11,5 +11,7 @@ namespace PsyPersonServer.Domain.Repositories
     {
         Task<UserTestingHistory> Create(double testScore, TestResultStatusEnum resultStatus, Guid userTestId);
         Task<TestingHistoryQuestionAnswer> CreateTestingHistoryQuestionAnswer(bool isMarked, Guid answerId, Guid userTestingHistoryId);
+        Task<UserTestingHistory> GetById(Guid id);
+        Task<IEnumerable<TestingHistoryQuestionAnswer>> GetAnswersById(Guid userTestingHistoryId);
     }
 }

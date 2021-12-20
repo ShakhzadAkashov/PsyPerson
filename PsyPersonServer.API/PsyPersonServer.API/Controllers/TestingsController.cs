@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PsyPersonServer.Application.Testings.Commands.CheckSimpleTypeTesting;
 using PsyPersonServer.Application.Testings.Queries.GetTestForTesting;
+using PsyPersonServer.Application.Testings.Queries.GetTestingHistory;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,6 +39,15 @@ namespace PsyPersonServer.API.Controllers
         [Route("CheckSimpleTypeTest")]
         //POST : /api/Testings/CheckSimpleTypeTest
         public async Task<IActionResult> CheckSimpleTypeTest([FromBody] CheckSimpleTypeTestingC query)
+        {
+            return Ok(await _mediator.Send(query));
+        }
+
+        [Authorize]
+        [HttpGet]
+        [Route("GetTestingHistory")]
+        //Get : /api/Testings/GetTestingHistory
+        public async Task<IActionResult> GetTestingHistory([FromQuery] GetTestingHistoryQ query)
         {
             return Ok(await _mediator.Send(query));
         }

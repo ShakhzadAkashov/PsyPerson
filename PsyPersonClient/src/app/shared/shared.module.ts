@@ -13,6 +13,7 @@ import { RippleModule } from 'primeng/ripple';
 import { TooltipModule } from 'primeng/tooltip';
 import { TagModule } from 'primeng/tag';
 import { CheckboxModule } from 'primeng/checkbox';
+import {ToolbarModule} from 'primeng/toolbar';
 
 @NgModule({
   imports: [
@@ -33,7 +34,8 @@ import { CheckboxModule } from 'primeng/checkbox';
     RippleModule,
     TooltipModule,
     TagModule,
-    CheckboxModule
+    CheckboxModule,
+    ToolbarModule
   ]
 })
 export class SharedModule { }

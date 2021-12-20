@@ -1,0 +1,57 @@
+<div class="row">
+    <div class="col-md-12">
+        <p-toolbar>
+            <div class="p-toolbar-group-left">
+                <span *ngIf="from">
+                    <button class="btn btn-md btn-outline-primary mr-3" (click)="goBack()"><i
+                            class="pi pi-arrow-left"></i></button>
+                </span>
+                <span>
+                    <span class="sq-green">- Правильно отмеченные пользователем</span> <br>
+                    <span class="sq-pink ">- Неправильно отмеченные пользователем</span>
+                </span>
+            </div>
+            
+            <div class="p-toolbar-group-right">
+                <span class="float-right">Результат тестирования: <b>{{(testingHistory$ | async).testScore | number: '1.0-1'}}%</b></span>
+            </div>
+        </p-toolbar>
+
+        <p-table #dt [value]="(testingHistory$ | async).data " dataKey="id"
+            styleClass="p-datatable-customers p-datatable-striped" [showCurrentPageReport]="true"
+            [rowsPerPageOptions]="[5,10,25,50]" [loading]="(testingHistory$ | async).loading" [paginator]="true"
+            currentPageReportTemplate="Показаны записи с {first} по {last} из {totalRecords}" [filterDelay]="0"
+            [globalFilterFields]="['name','name','.name','name']" [totalRecords]="(testingHistory$ | async).total"
+            [lazy]="true" [(first)]="tableFilter.first" [(rows)]="tableFilter.itemPerPage"
+            (onLazyLoad)="onLazyLoad($event)">
+            <ng-template pTemplate="caption">
+                <div class="table-header">
+                    <span>{{(testingHistory$ | async).testName}}</span>
+                </div>
+            </ng-template>
+            <ng-template pTemplate="body" let-record let-i="rowIndex">
+                <tr class="p-selectable-row">
+                    <td>
+                        <div style="margin-bottom: 0.5rem;">
+                            <h5>{{i+1}}. {{record.name}}</h5>
+                        </div>
+                        <div  
+                        [class.pink-background]="record.answers[j].isMarked && !record.answers[j].isCorrect"
+                        [class.green-background]="record.answers[j].isMarked && record.answers[j].isCorrect"
+                        *ngFor="let item of record.answers; let j = index" class="p-field-checkbox">
+                            <p-checkbox name="answers" [(ngModel)]="record.answers[j].isCorrect" [binary]="true"
+                                [inputId]="record.answers[j].id" [readonly]="true"></p-checkbox>
+                            <label style="color:#262626;" 
+                                [for]="record.answers[j].id">{{record.answers[j].name}}</label>
+                        </div>
+                    </td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage">
+                <tr>
+                    <td colspan="2" class="text-center">Тестовых вопросов не найдено.</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>

@@ -1,5 +1,6 @@
-import { TestDto, TestResultStatusEnum } from "./tests.models";
+import { TestDto, TestQuestionAnswerDto, TestResultStatusEnum } from "./tests.models";
 import { UserDto } from "./users.models";
+import { PagedResponse } from "./base";
 
 export class UserTestingHistoryDto{
     id: string = '';
@@ -36,4 +37,22 @@ export class CheckTestingResponseDto{
 
 export class UserTestDetailDto extends UserTestDto{
     status: string = '';
+}
+
+export class TestingHistoryQuestionAnswerDto extends TestQuestionAnswerDto{
+    isMarked: boolean = false;
+}
+
+export class TestingHistoryQuestionDto{
+    id: string = '';
+    name: string = '';
+    answers: TestingHistoryQuestionAnswerDto[] = [];
+}
+
+export class TestingHistoryDto implements PagedResponse<TestingHistoryQuestionDto>{
+    data = [];
+    total = 0;
+    loading = false;
+    testName: string = '';
+    testScore: number = 0;
 }

@@ -17,7 +17,8 @@ import { SimpleTypeTestingComponent } from './tests/testing/simple-type-testing/
 import { UserListComponent } from '../main/userTests/user-list/user-list.component';
 import { UserTestListComponent } from './userTests/user-test-list/user-test-list.component';
 import { TestLookupTableModalComponent } from './common/test-lookup-table-modal/test-lookup-table-modal.component';
-import { UserTestsDetailsModalComponent } from '../main/userTests/user-list/user-tests-details-modal/user-tests-details-modal.component'
+import { UserTestsDetailsModalComponent } from '../main/userTests/user-list/user-tests-details-modal/user-tests-details-modal.component';
+import { UserTestingHistoryComponent } from '../main/userTests/user-testing-history/user-testing-history.component';
 
 @NgModule({
   imports: [
@@ -41,6 +42,7 @@ import { UserTestsDetailsModalComponent } from '../main/userTests/user-list/user
       UserTestListComponent,
       TestLookupTableModalComponent,
       UserTestsDetailsModalComponent,
+      UserTestingHistoryComponent,
     ],
   exports: [MainComponent]
 })

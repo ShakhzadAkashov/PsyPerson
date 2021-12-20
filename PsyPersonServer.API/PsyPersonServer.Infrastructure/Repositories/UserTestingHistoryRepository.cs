@@ -1,8 +1,10 @@
-﻿using PsyPersonServer.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using PsyPersonServer.Domain.Entities;
 using PsyPersonServer.Domain.Models.Tests;
 using PsyPersonServer.Domain.Repositories;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -48,6 +50,22 @@ namespace PsyPersonServer.Infrastructure.Repositories
             await _dbContext.SaveChangesAsync();
 
             return testingHistoryQuestionAnswer;
+        }
+
+        public async Task<UserTestingHistory> GetById(Guid id)
+        {
+            var userTestingHistory = await _dbContext.UserTestingHistories
+                .Include(x => x.UserTestFk)
+                .ThenInclude(x => x.TestFk)
+                .Where(x => x.Id == id).FirstOrDefaultAsync();
+
+            return userTestingHistory;
+        }
+
+        public async Task<IEnumerable<TestingHistoryQuestionAnswer>> GetAnswersById(Guid userTestingHistoryId)
+        {
+            var list =  await _dbContext.TestingHistoryQuestionAnswers.Where(x => x.UserTestingHistoryId == userTestingHistoryId).AsNoTracking().ToListAsync();
+            return list;
         }
     }
 }

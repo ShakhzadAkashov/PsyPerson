@@ -36,6 +36,18 @@ export const userTestReducers = (
                 }
             };
         }
+        case EUserTestActions.GetTestingHistorySuccess: {
+            return {
+                ...state,
+                testingHistory:{
+                    data : action.payload.data,
+                    total : action.payload.total,
+                    loading : action.payload.loading,
+                    testName : action.payload.testName,
+                    testScore: action.payload.testScore
+                }
+            };
+        }
 
         default:
             return state;
