@@ -11,5 +11,6 @@ namespace PsyPersonServer.Application.TestQuestions.Dtos
         public bool? IsCorrect { get; set; }
         public Guid TestQuestionId { get; set; }
         public int IdForView { get; set; }
+        public double? Score { get; set; }
     }
 }

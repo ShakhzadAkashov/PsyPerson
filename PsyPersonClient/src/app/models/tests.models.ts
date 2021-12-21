@@ -32,6 +32,7 @@ export class TestQuestionAnswerDto{
     isCorrect: boolean = false;
     testQuestionId: string = '';
     idForView: number = 0;
+    score: number = 0;
 }
 
 export enum TestQuestionTypeEnum{
@@ -50,7 +51,8 @@ export class TestForTestingDto{
 }
 
 export enum TestTypeEnum{
-    SimpleTest = 0
+    SimpleTest = 0,
+    FirstLevelDifficultTest = 1
 }
 
 export class CheckSimpleTypeTestingCCRq{

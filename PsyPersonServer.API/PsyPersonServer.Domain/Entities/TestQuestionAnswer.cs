@@ -12,6 +12,7 @@ namespace PsyPersonServer.Domain.Entities
         public bool? IsCorrect { get; set; }
         public Guid TestQuestionId { get; set; }
         public int IdForView { get; set; }
+        public double? Score { get; set; }
 
         [ForeignKey("TestQuestionId")]
         public TestQuestion TestQuestionFk { get; set; }

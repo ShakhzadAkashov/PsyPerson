@@ -35,6 +35,10 @@ export class CreateOrEditTestModalComponent implements OnInit {
     {
       key: 'Simple Test',
       value: TestTypeEnum.SimpleTest
+    },
+    {
+      key: 'First Level Difficult Test',
+      value: TestTypeEnum.FirstLevelDifficultTest
     }
   ]
 
