@@ -10,7 +10,7 @@ import { TestService } from 'src/app/services/api/test.service';
 import { GetTestQuestions } from 'src/app/store/actions/test.actions';
 import { selectTestQuestionList } from 'src/app/store/selectors/test.selector';
 import { AppState } from 'src/app/store/state/app.state';
-import { CreateOrEditTestQuestionModalComponent } from './create-or-edit-test-question/create-or-edit-test-question.component';
+import { CreateOrEditSimpleTypeTestQuestionModalComponent } from './create-or-edit-simple-type-test-question-modal/create-or-edit-simple-type-test-question-modal.component';
 import { CreateTestQuestionsFromFileModalComponent } from './create-test-questions-from-file/create-test-questions-from-file.component';
 
 @Component({
@@ -20,8 +20,8 @@ import { CreateTestQuestionsFromFileModalComponent } from './create-test-questio
 })
 export class TestQuestionsComponent implements OnInit {
 
-  @ViewChild('createOrEditTestQuestionModal', { static: true })
-  createOrEditTestQuestionModal: CreateOrEditTestQuestionModalComponent = new CreateOrEditTestQuestionModalComponent(this.store,this.toastr,this.service,this.activatedRoute);
+  @ViewChild('createOrEditSimpleTypeTestQuestionModal', { static: true })
+  createOrEditSimpleTypeTestQuestionModal: CreateOrEditSimpleTypeTestQuestionModalComponent = new CreateOrEditSimpleTypeTestQuestionModalComponent(this.store,this.toastr,this.service,this.activatedRoute);
   @ViewChild('createTestQuestionsFromFileModal', { static: true })
   createTestQuestionsFromFileModal: CreateTestQuestionsFromFileModalComponent = new CreateTestQuestionsFromFileModalComponent(this.toastr,this.service,this.activatedRoute);
   questions$: Observable<PagedResponse<TestQuestionDto> | any> = this.store.pipe(select(selectTestQuestionList));
@@ -29,6 +29,7 @@ export class TestQuestionsComponent implements OnInit {
   tableFilter: TableFilter = new TableFilter();
   testId = '';
   from = '';
+  type: number;
 
   constructor(
     private store: Store<AppState>,
@@ -39,6 +40,7 @@ export class TestQuestionsComponent implements OnInit {
   ) { 
     this.testId = this.activatedRoute.snapshot.queryParams['testId'];
     this.from = this.activatedRoute.snapshot.queryParams['from'];
+    this.type = this.activatedRoute.snapshot.queryParams['type'];
   }
 
   ngOnInit(): void {
@@ -69,8 +71,12 @@ export class TestQuestionsComponent implements OnInit {
     }
   }
 
-  createTestQuestion(){
-    this.createOrEditTestQuestionModal.show();
+  createSimpleTypeTestQuestion(){
+    this.createOrEditSimpleTypeTestQuestionModal.show();
+  }
+
+  createF1DTypeTestQuestion(testQuestionId?: string){
+    this.router.navigate(['../home/main/createOrEditL1DTypeTestQuestion'], { queryParams: { testId: this.testId, testQuestionId: testQuestionId, from: 'home/main/testQuestions'} });
   }
 
   createTestQuestionsFromFile(){

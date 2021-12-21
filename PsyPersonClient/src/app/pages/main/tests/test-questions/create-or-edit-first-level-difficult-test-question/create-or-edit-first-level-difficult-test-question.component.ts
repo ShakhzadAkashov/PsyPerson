@@ -1,25 +1,23 @@
-import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
-import { ModalDirective } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { TestQuestionAnswerDto, TestQuestionDto, TestQuestionTypeEnum, UpdateTestQuestionCRq } from 'src/app/models/tests.models';
 import { TestService } from 'src/app/services/api/test.service';
+import { EditorHelper } from 'src/app/shared/helpers/editor.helpers';
 import { GetTestQuestion } from 'src/app/store/actions/test.actions';
 import { selectTestQuestion } from 'src/app/store/selectors/test.selector';
 import { AppState } from 'src/app/store/state/app.state';
 
 @Component({
-  selector: 'app-create-or-edit-test-question-modal',
-  templateUrl: './create-or-edit-test-question.component.html',
-  styleUrls: ['./create-or-edit-test-question.component.css']
+  selector: 'app-create-or-edit-first-level-difficult-test-question',
+  templateUrl: './create-or-edit-first-level-difficult-test-question.component.html',
+  styleUrls: ['./create-or-edit-first-level-difficult-test-question.component.css']
 })
-export class CreateOrEditTestQuestionModalComponent implements OnInit {
+export class CreateOrEditFirstLevelDifficultTestQuestionComponent implements OnInit {
 
-  @ViewChild('createOrEditModal', { static: true }) modal!: ModalDirective;
-  @Output() modalSave: EventEmitter<TestQuestionDto> = new EventEmitter<TestQuestionDto>();
   testQuestion$: Observable<TestQuestionDto> = this.store.pipe(select(selectTestQuestion));
 
   active = false;
@@ -28,6 +26,9 @@ export class CreateOrEditTestQuestionModalComponent implements OnInit {
 
   testQuestion: TestQuestionDto = new TestQuestionDto();
   testId = '';
+  testQuestionId = undefined;
+  from = '';
+  editorConfig:any;
 
   testQuestionTypes :{key: any, value: TestQuestionTypeEnum}[] = [
     {
@@ -41,24 +42,35 @@ export class CreateOrEditTestQuestionModalComponent implements OnInit {
     private toastr: ToastrService, 
     private service:TestService,
     public activatedRoute: ActivatedRoute,
+    private router: Router
   ) {
-    this.testId = this.activatedRoute.snapshot.queryParams['testId'];
+    const testId = this.activatedRoute.snapshot.queryParams['testId'];
+    if(testId) this.testId = testId;
+
+    const testQuestionId = this.activatedRoute.snapshot.queryParams['testQuestionId'];
+    if(testQuestionId) this.testQuestionId = testQuestionId;
+
+    const from = this.activatedRoute.snapshot.queryParams['from'];
+    if(from) this.from = from;
+
+    this.editorConfig = EditorHelper.EditorConfig();
   }
 
   ngOnInit(): void {
+    this.show(this.testQuestionId);
   }
 
-  show(testQuestion?: TestQuestionDto): void { 
+  show(testQuestionId?: string): void { 
     this.edit = false;
     
-    if (!testQuestion) {
+    if (!testQuestionId) {
         this.testQuestion = new TestQuestionDto();
         this.testQuestion.testId = this.testId;
+        this.testQuestion.questionType = TestQuestionTypeEnum;
 
         this.active = true;
-        this.modal.show();
     } else {
-        this.store.dispatch(new GetTestQuestion(testQuestion.id));
+        this.store.dispatch(new GetTestQuestion(testQuestionId));
         this.testQuestion$.subscribe(res => {
           let r = res; 
           this.testQuestion.id = r.id;
@@ -72,6 +84,7 @@ export class CreateOrEditTestQuestionModalComponent implements OnInit {
             a.idForView = element.idForView;
             a.isCorrect = element.isCorrect;
             a.name = element.name;
+            a.score = element.score;
             a.testQuestionId = element.testQuestionId;
             this.testQuestion.answers.push(a);
           });
@@ -79,7 +92,6 @@ export class CreateOrEditTestQuestionModalComponent implements OnInit {
 
         this.edit = true;
         this.active = true;
-        this.modal.show();
     }
   }
 
@@ -96,8 +108,7 @@ export class CreateOrEditTestQuestionModalComponent implements OnInit {
       .pipe(finalize(() => { this.saving = false;}))
       .toPromise().then(res =>{
         this.toastr.success('Saved!', 'Test Question Saved successful.');
-        this.close();
-        this.modalSave.emit(this.testQuestion);
+        this.goBack();
       });
     }else{
       this.service.createTestQuestion(this.testQuestion)
@@ -106,8 +117,7 @@ export class CreateOrEditTestQuestionModalComponent implements OnInit {
         (res: any) => {
           if(res){
             this.toastr.success('New Test Question created!', 'Created successful.');
-            this.close();
-            this.modalSave.emit(this.testQuestion);
+            this.goBack();
           }else{
             this.toastr.error("Create Test Question Failed",'Created failed.');
           }
@@ -120,9 +130,9 @@ export class CreateOrEditTestQuestionModalComponent implements OnInit {
     }
   }
 
-  close(): void {
-    this.active = false;
-    this.modal.hide();
+  goBack(){
+    const from = '../' + this.from;
+    this.router.navigate([from], { queryParams: { testId: this.testId, from: 'home/main/tests', type:1} });
   }
 
   addTestQuestuionAnswer(){
@@ -136,6 +146,7 @@ export class CreateOrEditTestQuestionModalComponent implements OnInit {
     testQuestionAnswer.idForView = max + 1;
     testQuestionAnswer.id = '00000000-0000-0000-0000-000000000000';
     testQuestionAnswer.testQuestionId = '00000000-0000-0000-0000-000000000000';
+    testQuestionAnswer.isCorrect = true;
     this.testQuestion.answers.push(testQuestionAnswer);
   }
 

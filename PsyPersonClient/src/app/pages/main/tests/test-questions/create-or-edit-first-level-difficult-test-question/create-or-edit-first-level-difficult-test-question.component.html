@@ -1,0 +1,76 @@
+<p-toolbar>
+    <div class="p-toolbar-group-left">
+        <span *ngIf="from">
+            <button class="btn btn-md btn-outline-primary mr-3" [disabled]="saving" (click)="goBack()"><i
+                    class="pi pi-arrow-left"></i></button>
+        </span>
+        <span>
+            <span *ngIf="testQuestionId">Редактирование Вопроса</span>
+            <span *ngIf="!testQuestionId">Создание вопроса</span>
+        </span>
+    </div>
+</p-toolbar>
+
+<form *ngIf="active" #testQuestionForm="ngForm" novalidate (ngSubmit)="save()" autocomplete="off" class="mb-3">
+    <p-panel header="Название вопроса:">
+        <angular-editor [placeholder]="'Enter text here...'" [(ngModel)]="testQuestion.name" [config]="editorConfig" [ngModelOptions]="{standalone: true}"></angular-editor>
+        <!-- <div class="form-group">
+            <input type="text" id="name" class="form-control mb-2" [(ngModel)]="testQuestion.name" name="name" required />
+        </div> -->
+        <div class="form-group">
+            <label for="questionType" style="font-size: 1.1rem;">Тип Вопроса: *</label>
+            <p-dropdown [options]="testQuestionTypes" styleClass="form-control mb-2 p-0" optionLabel="key" 
+                optionValue="value" name="questionType"  [(ngModel)]="testQuestion.questionType" [autoDisplayFirst]="false" [readonly]="edit"></p-dropdown>
+        </div>
+    </p-panel>
+    <p-panel header="Ответ(ы) на вопрос:">
+        <div>
+            <div *ngFor="let item of testQuestion.answers; let j = index">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="score"><b>Название {{j+1}} ответа на вопрос: *</b></label>
+                            <input class="form-control" [ngModelOptions]="{standalone: true}"
+                            [(ngModel)]="testQuestion.answers[j].name" placeholder="Название вопроса" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6" style="position:relative; padding-bottom:50px;">
+                        <div style="position:absolute; bottom:0.5rem;">
+                            <label style="text-align:right;">Определение балла для ответа необходимо для корректной оценки пользователя
+                                во время прохождеия теста!</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="Test_Name" style="font-size: 1rem;">Бал(%): *</label>
+                            <div class="input-group">
+                                <input class="form-control" [ngModelOptions]="{standalone: true}" type="number" min="1" max="100"
+                                    [(ngModel)]="testQuestion.answers[j].score" placeholder="Бал" required>
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-danger" type="button"
+                                        (click)="deleteTestQuestionAnswer(testQuestion.answers[j])">Удалить</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="dropdown-divider pb-2"></div>
+            </div>
+
+            <div class="row ">
+                <div class="col-md-12">
+                    <button type="button" class="btn btn-outline-primary float-right"
+                        (click)="addTestQuestuionAnswer()"> <i class="fa fa-plus"></i>Добавить ответ на вопрос</button>
+                </div>
+            </div>
+        </div>
+    </p-panel>
+    <p-divider></p-divider>
+    <div class="row paddingBtn">
+        <div class="col-md-12">
+            <button type="submit" class="btn btn-lg btn-primary float-right" [disabled]="!testQuestionForm.valid" > <span> Сохранить</span></button>
+        </div>
+    </div>
+</form>

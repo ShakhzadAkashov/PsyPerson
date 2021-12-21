@@ -14,6 +14,8 @@ import { TooltipModule } from 'primeng/tooltip';
 import { TagModule } from 'primeng/tag';
 import { CheckboxModule } from 'primeng/checkbox';
 import {ToolbarModule} from 'primeng/toolbar';
+import {DividerModule} from 'primeng/divider';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 @NgModule({
   imports: [
@@ -35,7 +37,9 @@ import {ToolbarModule} from 'primeng/toolbar';
     TooltipModule,
     TagModule,
     CheckboxModule,
-    ToolbarModule
+    ToolbarModule,
+    DividerModule,
+    AngularEditorModule
   ]
 })
 export class SharedModule { }

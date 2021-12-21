@@ -94,6 +94,7 @@ namespace PsyPersonServer.Infrastructure.Repositories
                 Name = questionAnswer.Name,
                 IsCorrect = questionAnswer.IsCorrect,
                 IdForView = questionAnswer.IdForView,
+                Score = questionAnswer.Score,
                 TestQuestionId = id
             };
 
@@ -129,7 +130,7 @@ namespace PsyPersonServer.Infrastructure.Repositories
                     }
                     else
                     {
-                        await UpdateQuestionAnswer(i.Id, i.Name, i.IsCorrect, i.IdForView);
+                        await UpdateQuestionAnswer(i.Id, i.Name, i.IsCorrect, i.IdForView, i.Score);
                     }
                 }
 
@@ -139,7 +140,7 @@ namespace PsyPersonServer.Infrastructure.Repositories
             return false;
         }
 
-        private async Task<bool> UpdateQuestionAnswer(Guid id, string name, bool? isCorrect, int idForView)
+        private async Task<bool> UpdateQuestionAnswer(Guid id, string name, bool? isCorrect, int idForView, double? score)
         {
             var answer = await _dbContext.TestQuestionAnswers.FirstOrDefaultAsync(x => x.Id == id);
 
@@ -148,6 +149,7 @@ namespace PsyPersonServer.Infrastructure.Repositories
                 answer.Name = name;
                 answer.IsCorrect = isCorrect;
                 answer.IdForView = idForView;
+                answer.Score = score;
 
                 await _dbContext.SaveChangesAsync();
                 return true;

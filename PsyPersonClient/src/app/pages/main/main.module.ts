@@ -10,7 +10,7 @@ import { FileUploadComponent } from './common/file-upload/file-upload.component'
 import { CreateOrEditTestModalComponent } from './tests/create-or-edit-test-modal/create-or-edit-test-modal.component';
 import {FieldsetModule} from 'primeng/fieldset';
 import { TestQuestionsComponent } from './tests/test-questions/test-questions.component';
-import { CreateOrEditTestQuestionModalComponent } from './tests/test-questions/create-or-edit-test-question/create-or-edit-test-question.component';
+import { CreateOrEditSimpleTypeTestQuestionModalComponent } from './tests/test-questions/create-or-edit-simple-type-test-question-modal/create-or-edit-simple-type-test-question-modal.component';
 import { CreateTestQuestionsFromFileModalComponent } from './tests/test-questions/create-test-questions-from-file/create-test-questions-from-file.component';
 import { FileDownloadComponent } from './common/file-download/file-download.component';
 import { SimpleTypeTestingComponent } from './tests/testing/simple-type-testing/simple-type-testing.component';
@@ -19,6 +19,7 @@ import { UserTestListComponent } from './userTests/user-test-list/user-test-list
 import { TestLookupTableModalComponent } from './common/test-lookup-table-modal/test-lookup-table-modal.component';
 import { UserTestsDetailsModalComponent } from '../main/userTests/user-list/user-tests-details-modal/user-tests-details-modal.component';
 import { UserTestingHistoryComponent } from '../main/userTests/user-testing-history/user-testing-history.component';
+import { CreateOrEditFirstLevelDifficultTestQuestionComponent } from './tests/test-questions/create-or-edit-first-level-difficult-test-question/create-or-edit-first-level-difficult-test-question.component';
 
 @NgModule({
   imports: [
@@ -34,7 +35,7 @@ import { UserTestingHistoryComponent } from '../main/userTests/user-testing-hist
       CreateOrEditTestModalComponent,
       FileUploadComponent,
       TestQuestionsComponent,
-      CreateOrEditTestQuestionModalComponent,
+      CreateOrEditSimpleTypeTestQuestionModalComponent,
       CreateTestQuestionsFromFileModalComponent,
       FileDownloadComponent,
       SimpleTypeTestingComponent,
@@ -43,6 +44,7 @@ import { UserTestingHistoryComponent } from '../main/userTests/user-testing-hist
       TestLookupTableModalComponent,
       UserTestsDetailsModalComponent,
       UserTestingHistoryComponent,
+      CreateOrEditFirstLevelDifficultTestQuestionComponent,
     ],
   exports: [MainComponent]
 })

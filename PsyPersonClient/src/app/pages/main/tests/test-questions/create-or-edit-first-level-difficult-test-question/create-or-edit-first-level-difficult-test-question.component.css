@@ -1,0 +1,11 @@
+:host ::ng-deep .p-toolbar{
+    margin-bottom: 0.5rem;
+}
+:host ::ng-deep .p-panel{
+    margin-bottom: 0.5rem;
+}
+
+.paddingBtn{
+    padding-bottom: 2rem;
+}
+
