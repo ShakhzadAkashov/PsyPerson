@@ -5,7 +5,7 @@ import { ModalDirective } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
-import { TestQuestionAnswerDto, TestQuestionDto, TestQuestionTypeEnum, UpdateTestQuestionCRq } from 'src/app/models/tests.models';
+import { TestQuestionAnswerDto, TestQuestionDto, UpdateTestQuestionCRq } from 'src/app/models/tests.models';
 import { TestService } from 'src/app/services/api/test.service';
 import { GetTestQuestion } from 'src/app/store/actions/test.actions';
 import { selectTestQuestion } from 'src/app/store/selectors/test.selector';
@@ -28,13 +28,6 @@ export class CreateOrEditSimpleTypeTestQuestionModalComponent implements OnInit 
 
   testQuestion: TestQuestionDto = new TestQuestionDto();
   testId = '';
-
-  testQuestionTypes :{key: any, value: TestQuestionTypeEnum}[] = [
-    {
-      key: 'Simple Question',
-      value: TestQuestionTypeEnum.SimpleQuestion
-    }
-  ]
 
   constructor(
     private store: Store<AppState>,
@@ -63,7 +56,6 @@ export class CreateOrEditSimpleTypeTestQuestionModalComponent implements OnInit 
           let r = res; 
           this.testQuestion.id = r.id;
           this.testQuestion.name = r.name;
-          this.testQuestion.questionType = r.questionType;
           this.testQuestion.testId = this.testId;
           this.testQuestion.answers = [];
           r.answers.forEach(element => {

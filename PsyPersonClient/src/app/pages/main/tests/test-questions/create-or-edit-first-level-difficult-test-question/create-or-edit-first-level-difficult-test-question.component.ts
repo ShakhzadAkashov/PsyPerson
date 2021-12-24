@@ -4,7 +4,7 @@ import { select, Store } from '@ngrx/store';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
-import { TestQuestionAnswerDto, TestQuestionDto, TestQuestionTypeEnum, UpdateTestQuestionCRq } from 'src/app/models/tests.models';
+import { TestQuestionAnswerDto, TestQuestionDto, UpdateTestQuestionCRq } from 'src/app/models/tests.models';
 import { TestService } from 'src/app/services/api/test.service';
 import { EditorHelper } from 'src/app/shared/helpers/editor.helpers';
 import { GetTestQuestion } from 'src/app/store/actions/test.actions';
@@ -29,13 +29,6 @@ export class CreateOrEditFirstLevelDifficultTestQuestionComponent implements OnI
   testQuestionId = undefined;
   from = '';
   editorConfig:any;
-
-  testQuestionTypes :{key: any, value: TestQuestionTypeEnum}[] = [
-    {
-      key: 'Simple Question',
-      value: TestQuestionTypeEnum.SimpleQuestion
-    }
-  ]
 
   constructor(
     private store: Store<AppState>,
@@ -66,7 +59,6 @@ export class CreateOrEditFirstLevelDifficultTestQuestionComponent implements OnI
     if (!testQuestionId) {
         this.testQuestion = new TestQuestionDto();
         this.testQuestion.testId = this.testId;
-        this.testQuestion.questionType = TestQuestionTypeEnum;
 
         this.active = true;
     } else {
@@ -75,7 +67,6 @@ export class CreateOrEditFirstLevelDifficultTestQuestionComponent implements OnI
           let r = res; 
           this.testQuestion.id = r.id;
           this.testQuestion.name = r.name;
-          this.testQuestion.questionType = r.questionType;
           this.testQuestion.testId = this.testId;
           this.testQuestion.answers = [];
           r?.answers?.forEach(element => {

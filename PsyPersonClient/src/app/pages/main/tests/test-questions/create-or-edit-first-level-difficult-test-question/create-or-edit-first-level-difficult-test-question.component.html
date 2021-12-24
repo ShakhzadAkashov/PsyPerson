@@ -14,14 +14,6 @@
 <form *ngIf="active" #testQuestionForm="ngForm" novalidate (ngSubmit)="save()" autocomplete="off" class="mb-3">
     <p-panel header="Название вопроса:">
         <angular-editor [placeholder]="'Enter text here...'" [(ngModel)]="testQuestion.name" [config]="editorConfig" [ngModelOptions]="{standalone: true}"></angular-editor>
-        <!-- <div class="form-group">
-            <input type="text" id="name" class="form-control mb-2" [(ngModel)]="testQuestion.name" name="name" required />
-        </div> -->
-        <div class="form-group">
-            <label for="questionType" style="font-size: 1.1rem;">Тип Вопроса: *</label>
-            <p-dropdown [options]="testQuestionTypes" styleClass="form-control mb-2 p-0" optionLabel="key" 
-                optionValue="value" name="questionType"  [(ngModel)]="testQuestion.questionType" [autoDisplayFirst]="false" [readonly]="edit"></p-dropdown>
-        </div>
     </p-panel>
     <p-panel header="Ответ(ы) на вопрос:">
         <div>

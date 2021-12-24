@@ -73,7 +73,6 @@ namespace PsyPersonServer.Application.TestQuestions.Commands.CreateTestQuestions
 
                     var b = questionList[i].SelectSingleNode(_uploadTQFFSettings.Name);
                     question.Name = b.InnerText.ToString();
-                    question.QuestionType = TestQuestionTypeEnum.SimpleQuestion;
                     question.TestId = request.TestId;
 
                     for (int j = 0; j < questionList[i].ChildNodes.Count; j++)
@@ -105,7 +104,7 @@ namespace PsyPersonServer.Application.TestQuestions.Commands.CreateTestQuestions
 
                 foreach (var i in lst)
                 {
-                    var res = await _repository.Create(i.Name, i.QuestionType, i.TestId, i.Answers);
+                    var res = await _repository.Create(i.Name, i.TestId, i.Answers);
                     resultList.Add(res);
                 }
 

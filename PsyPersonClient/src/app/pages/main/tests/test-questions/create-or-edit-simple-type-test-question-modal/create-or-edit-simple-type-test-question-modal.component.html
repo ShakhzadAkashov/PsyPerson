@@ -12,12 +12,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group">
-                        <label for="questionType" style="font-size: 1.1rem;">Тип Вопроса: *</label>
-                        <p-dropdown [options]="testQuestionTypes" styleClass="form-control mb-2 p-0" optionLabel="key" 
-                            optionValue="value" name="questionType"  [(ngModel)]="testQuestion.questionType" [autoDisplayFirst]="false" [readonly]="edit"></p-dropdown>
-                    </div>
-                    <div *ngIf="+testQuestion.questionType === 0">
+                    <div>
                         <div class="form-group">
                             <label for="name" style="font-size: 1.1rem;">Название вопроса: *</label>
                             <input type="text" id="name" class="form-control mb-2" [(ngModel)]="testQuestion.name" name="name" required />

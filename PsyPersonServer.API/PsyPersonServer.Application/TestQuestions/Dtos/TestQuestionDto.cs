@@ -10,7 +10,6 @@ namespace PsyPersonServer.Application.TestQuestions.Dtos
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public TestQuestionTypeEnum QuestionType { get; set; }
         public DateTime CreatedDate { get; set; }
         public Guid TestId { get; set; }
         public List<TestQuestionAnswerDto> Answers { get; set; }

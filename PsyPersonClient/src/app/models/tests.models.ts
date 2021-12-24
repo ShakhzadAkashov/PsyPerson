@@ -19,7 +19,6 @@ export class CreateTestCRq{
 export class TestQuestionDto{
     id: string = '';
     name: string = '';
-    questionType = TestQuestionTypeEnum;
     createdDate: Date = new Date;
     testId: string = '';
     answers: TestQuestionAnswerDto[] = [];
@@ -34,11 +33,6 @@ export class TestQuestionAnswerDto{
     idForView: number = 0;
     score: number = 0;
 }
-
-export enum TestQuestionTypeEnum{
-    SimpleQuestion = 0
-}
-
 export class UpdateTestQuestionCRq{
     id: string = '';
     name: string = '';

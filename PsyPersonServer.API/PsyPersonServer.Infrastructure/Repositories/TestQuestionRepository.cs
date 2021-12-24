@@ -73,13 +73,12 @@ namespace PsyPersonServer.Infrastructure.Repositories
             return testQuestions;
         }
 
-        public async Task<TestQuestion> Create(string name, TestQuestionTypeEnum questionType, Guid testId, List<TestQuestionAnswer> answers)
+        public async Task<TestQuestion> Create(string name, Guid testId, List<TestQuestionAnswer> answers)
         {
             var question = new TestQuestion
             {
                 Id = new Guid(),
                 Name = name,
-                QuestionType = questionType,
                 TestId = testId,
                 CreatedDate = DateTime.Now
             };

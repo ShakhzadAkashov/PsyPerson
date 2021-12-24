@@ -55,7 +55,6 @@ export class SimpleTypeTestingComponent implements OnInit {
         q.name = element.name;
         q.id = element.id;
         q.testId = element.testId;
-        q.questionType = element.questionType;
         element.answers.forEach(e =>{
           let a = new TestQuestionAnswerDto();
           a.id = e.id;
