@@ -6,9 +6,12 @@
                     <button class="btn btn-md btn-outline-primary mr-3" (click)="goBack()"><i
                             class="pi pi-arrow-left"></i></button>
                 </span>
-                <span>
+                <span *ngIf="testType == 0">
                     <span class="sq-green">- Правильно отмеченные пользователем</span> <br>
                     <span class="sq-pink ">- Неправильно отмеченные пользователем</span>
+                </span>
+                <span *ngIf="testType == 1">
+                    <span class="sq-green">- Ответы отмеченные пользователем</span> 
                 </span>
             </div>
             
@@ -31,7 +34,7 @@
             </ng-template>
             <ng-template pTemplate="body" let-record let-i="rowIndex">
                 <tr class="p-selectable-row">
-                    <td>
+                    <td *ngIf="testType == 0">
                         <div style="margin-bottom: 0.5rem;">
                             <h5>{{i+1}}. {{record.name}}</h5>
                         </div>
@@ -43,6 +46,21 @@
                                 [inputId]="record.answers[j].id" [readonly]="true"></p-checkbox>
                             <label style="color:#262626;" 
                                 [for]="record.answers[j].id">{{record.answers[j].name}}</label>
+                        </div>
+                    </td>
+
+                    <td *ngIf="testType == 1">
+                        <div style="margin-bottom: 0.5rem; ">
+                            <h5 style="text-decoration: underline;">Вопрос {{i+1}}</h5>
+                            <h5> <span [innerHtml]="record.name | noSanitize"></span></h5>
+                        </div>
+                        <div  
+                        [class.green-background]="record.answers[j].isMarked"
+                        *ngFor="let item of record.answers; let j = index" class="p-field-checkbox">
+                        <p-radioButton [inputId]="item.id" name="item" [value]="item" 
+                        [(ngModel)]="record.answers[j].isMarked" [disabled]="true"></p-radioButton>
+                        <label style="color:#262626; text-align: justify;" 
+                        [for]="item.id">{{record.answers[j].name}}</label>
                         </div>
                     </td>
                 </tr>

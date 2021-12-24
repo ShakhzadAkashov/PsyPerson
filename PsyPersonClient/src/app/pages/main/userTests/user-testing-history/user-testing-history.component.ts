@@ -19,6 +19,7 @@ export class UserTestingHistoryComponent implements OnInit {
   testingHistory$: Observable<TestingHistoryDto | any> = this.store.pipe(select(selectTestingHistory));
   userTestingHistoryId: string = '';
   from: string = '';
+  testType: number;
   tableFilter: TableFilter = new TableFilter();
 
   constructor(
@@ -28,6 +29,7 @@ export class UserTestingHistoryComponent implements OnInit {
   ) { 
     this.userTestingHistoryId = this.activatedRoute.snapshot.queryParams['userTestingHistoryId'];
     this.from = this.activatedRoute.snapshot.queryParams['from'];
+    this.testType = this.activatedRoute.snapshot.queryParams['testType'];
   }
 
   ngOnInit(): void {
