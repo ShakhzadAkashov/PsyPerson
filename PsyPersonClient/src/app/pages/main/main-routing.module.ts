@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { MainComponent } from './main.component';
 import { CreateOrEditFirstLevelDifficultTestQuestionComponent } from './tests/test-questions/create-or-edit-first-level-difficult-test-question/create-or-edit-first-level-difficult-test-question.component';
 import { TestQuestionsComponent } from './tests/test-questions/test-questions.component';
+import { FirstLevelDifficultTypeTestingComponent } from './tests/testing/first-level-difficult-type-testing/first-level-difficult-type-testing.component';
 import { SimpleTypeTestingComponent } from './tests/testing/simple-type-testing/simple-type-testing.component';
 import { TestsComponent } from './tests/tests.component';
 import { UserListComponent } from './userTests/user-list/user-list.component';
@@ -25,6 +26,10 @@ const routes: Routes = [
   { 
     path: 'simpleTypeTesting', 
     component:SimpleTypeTestingComponent
+  },
+  { 
+    path: 'L1DTypeTesting', 
+    component:FirstLevelDifficultTypeTestingComponent
   },
   { 
     path: 'userTestUsers', 

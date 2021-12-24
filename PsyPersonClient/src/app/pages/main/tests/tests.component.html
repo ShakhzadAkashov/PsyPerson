@@ -41,8 +41,13 @@
                                 Действия
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <li>
+                                <li *ngIf="record.testType == 0">
                                     <a [routerLink]="['../simpleTypeTesting']"
+                                    [queryParams]="{testId: record.id, from: 'home/main/tests'}"  
+                                    class="dropdown-item" style="font-size: small;">Пройти тестирование</a>
+                                </li>
+                                <li *ngIf="record.testType == 1">
+                                    <a [routerLink]="['../L1DTypeTesting']"
                                     [queryParams]="{testId: record.id, from: 'home/main/tests'}"  
                                     class="dropdown-item" style="font-size: small;">Пройти тестирование</a>
                                 </li>
@@ -97,8 +102,13 @@
                                 Действия
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <li>
+                                <li *ngIf="record.testType == 0">
                                     <a [routerLink]="['../simpleTypeTesting']"
+                                    [queryParams]="{testId: record.id, from: 'home/main/tests'}"  
+                                    class="dropdown-item" style="font-size: small;">Пройти тестирование</a>
+                                </li>
+                                <li *ngIf="record.testType == 1">
+                                    <a [routerLink]="['../L1DTypeTesting']"
                                     [queryParams]="{testId: record.id, from: 'home/main/tests'}"  
                                     class="dropdown-item" style="font-size: small;">Пройти тестирование</a>
                                 </li>

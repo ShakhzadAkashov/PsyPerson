@@ -46,7 +46,7 @@ export class EditorHelper {
             uploadUrl: 'v1/image',
             // upload: (file: File) => { ... }
             uploadWithCredentials: false,
-            sanitize: true,
+            sanitize: false,
             toolbarPosition: 'top',
             toolbarHiddenButtons: [
                 ['bold', 'italic'],

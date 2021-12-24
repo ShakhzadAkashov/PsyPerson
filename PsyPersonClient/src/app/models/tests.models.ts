@@ -23,6 +23,7 @@ export class TestQuestionDto{
     testId: string = '';
     answers: TestQuestionAnswerDto[] = [];
     amountCorrectAnswers: number = 0;
+    selectedAnswer: TestQuestionAnswerDto = new TestQuestionAnswerDto();
 }
 
 export class TestQuestionAnswerDto{

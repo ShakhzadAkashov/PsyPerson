@@ -20,6 +20,7 @@ import { TestLookupTableModalComponent } from './common/test-lookup-table-modal/
 import { UserTestsDetailsModalComponent } from '../main/userTests/user-list/user-tests-details-modal/user-tests-details-modal.component';
 import { UserTestingHistoryComponent } from '../main/userTests/user-testing-history/user-testing-history.component';
 import { CreateOrEditFirstLevelDifficultTestQuestionComponent } from './tests/test-questions/create-or-edit-first-level-difficult-test-question/create-or-edit-first-level-difficult-test-question.component';
+import { FirstLevelDifficultTypeTestingComponent } from './tests/testing/first-level-difficult-type-testing/first-level-difficult-type-testing.component';
 
 @NgModule({
   imports: [
@@ -45,6 +46,7 @@ import { CreateOrEditFirstLevelDifficultTestQuestionComponent } from './tests/te
       UserTestsDetailsModalComponent,
       UserTestingHistoryComponent,
       CreateOrEditFirstLevelDifficultTestQuestionComponent,
+      FirstLevelDifficultTypeTestingComponent,
     ],
   exports: [MainComponent]
 })

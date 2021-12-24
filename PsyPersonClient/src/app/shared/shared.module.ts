@@ -16,11 +16,13 @@ import { CheckboxModule } from 'primeng/checkbox';
 import {ToolbarModule} from 'primeng/toolbar';
 import {DividerModule} from 'primeng/divider';
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import {RadioButtonModule} from 'primeng/radiobutton';
+import { NoSanitizePipe } from './pipes/noSanitize.pipe';
 
 @NgModule({
   imports: [
   ],
-  declarations: [],
+  declarations: [NoSanitizePipe],
   exports: [
     TableModule,
     FormsModule,
@@ -39,7 +41,9 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     CheckboxModule,
     ToolbarModule,
     DividerModule,
-    AngularEditorModule
+    AngularEditorModule,
+    RadioButtonModule,
+    NoSanitizePipe
   ]
 })
 export class SharedModule { }
