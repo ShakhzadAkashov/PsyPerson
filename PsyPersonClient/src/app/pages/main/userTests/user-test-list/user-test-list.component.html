@@ -63,8 +63,13 @@
                         </div>
                         <div class="row mb-2">
                             <div class="col-md-12">
-                                <button class="btn btn-md btn-primary" style="width:100%; border-radius: 1rem;"
+                                <button *ngIf="record.test.testType == 0" class="btn btn-md btn-primary" style="width:100%; border-radius: 1rem;"
                                     [routerLink]="['../simpleTypeTesting']"
+                                    [queryParams]="{testId: record.testId, from: 'home/main/userTests'}" >
+                                    Пройти тест
+                                </button>
+                                <button *ngIf="record.test.testType == 1" class="btn btn-md btn-primary" style="width:100%; border-radius: 1rem;"
+                                    [routerLink]="['../L1DTypeTesting']"
                                     [queryParams]="{testId: record.testId, from: 'home/main/userTests'}" >
                                     Пройти тест
                                 </button>
@@ -132,11 +137,14 @@
                         </div>
                         <div class="row mb-2">
                             <div class="col-md-12">
-                                <button class="btn btn-md btn-primary" style="width:100%; border-radius: 1rem;"
+                                <button *ngIf="record.test.testType == 0" class="btn btn-md btn-primary" style="width:100%; border-radius: 1rem;"
                                     [routerLink]="['../simpleTypeTesting']"
-                                    [queryParams]="{testId: record.testId, from: 'home/main/userTests'}"
-                                    
-                                    >
+                                    [queryParams]="{testId: record.testId, from: 'home/main/userTests'}">
+                                    Пройти тест
+                                </button>
+                                <button *ngIf="record.test.testType == 1" class="btn btn-md btn-primary" style="width:100%; border-radius: 1rem;"
+                                    [routerLink]="['../L1DTypeTesting']"
+                                    [queryParams]="{testId: record.testId, from: 'home/main/userTests'}" >
                                     Пройти тест
                                 </button>
                             </div>

@@ -50,7 +50,7 @@ export enum TestTypeEnum{
     FirstLevelDifficultTest = 1
 }
 
-export class CheckSimpleTypeTestingCCRq{
+export class CheckTestingCCRq{
     testForTesting:TestForTestingDto = new TestForTestingDto();
     userId: string = '';
 }

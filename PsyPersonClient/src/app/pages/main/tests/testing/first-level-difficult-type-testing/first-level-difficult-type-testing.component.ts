@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
-import { CheckSimpleTypeTestingCCRq, TestForTestingDto, TestQuestionAnswerDto, TestQuestionDto, TestResultStatusEnum } from 'src/app/models/tests.models';
+import { CheckTestingCCRq, TestForTestingDto, TestQuestionAnswerDto, TestQuestionDto, TestResultStatusEnum } from 'src/app/models/tests.models';
 import { CheckTestingResponseDto } from 'src/app/models/userTests.model';
 import { TestService } from 'src/app/services/api/test.service';
 import { UserHelper } from 'src/app/shared/helpers/user.helper';
@@ -61,7 +61,8 @@ export class FirstLevelDifficultTypeTestingComponent implements OnInit {
           a.idForView = e.idForView;
           a.isCorrect = e.isCorrect;
           a.name = e.name;
-          a.testQuestionId = e.testQuestionId
+          a.testQuestionId = e.testQuestionId;
+          a.score = e.score;
           q.answers.push(a);
         });
         this.test.testQuestionList.push(q);
@@ -77,10 +78,10 @@ export class FirstLevelDifficultTypeTestingComponent implements OnInit {
   
   finishTest(){
     this.bal = 0.0;
-    const command = new CheckSimpleTypeTestingCCRq();
+    const command = new CheckTestingCCRq();
     command.testForTesting = this.test;
     command.userId = UserHelper.getCurrentUserId();
-    this.service.checkSimpeTypeTesting(command).toPromise().then((res:CheckTestingResponseDto)=>{
+    this.service.checkFirstLevelDifficultTypeTesting(command).toPromise().then((res:CheckTestingResponseDto)=>{
       if(res){
         this.bal = res.testScore;
         let status = res.status;

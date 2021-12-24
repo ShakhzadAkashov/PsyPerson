@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { PagedRequest, PagedResponse } from "src/app/models/base";
-import { CheckSimpleTypeTestingCCRq, CreateTestCRq, TestDto, TestForTestingDto, TestQuestionDto, UpdateTestQuestionCRq } from "src/app/models/tests.models";
+import { CheckTestingCCRq, CreateTestCRq, TestDto, TestForTestingDto, TestQuestionDto, UpdateTestQuestionCRq } from "src/app/models/tests.models";
 import { CheckTestingResponseDto } from "src/app/models/userTests.model";
 import { environment } from "src/environments/environment";
 
@@ -46,7 +46,7 @@ import { environment } from "src/environments/environment";
         return this.http.get<TestForTestingDto>(this.BaseURI + '/Testings/GetTestForTesting',{params: {testId: testId}});
     }
 
-    checkSimpeTypeTesting(command:CheckSimpleTypeTestingCCRq){
+    checkSimpeTypeTesting(command:CheckTestingCCRq){
         return this.http.post<CheckTestingResponseDto>(this.BaseURI + '/Testings/CheckSimpleTypeTest',command);
     }
 
@@ -56,5 +56,9 @@ import { environment } from "src/environments/environment";
 
     getById(id: string){
         return this.http.get<TestQuestionDto>(this.BaseURI + '/TestQuestions/GetById',{params: {id: id}});
-      }
+    }
+    
+    checkFirstLevelDifficultTypeTesting(command:CheckTestingCCRq){
+        return this.http.post<CheckTestingResponseDto>(this.BaseURI + '/Testings/CheckFirstLevelDifficultTypeTesting',command);
+    }
   }

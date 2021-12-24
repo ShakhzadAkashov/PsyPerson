@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using PsyPersonServer.Application.Testings.Commands.CheckFirstLevelDifficultTypeTesting;
 using PsyPersonServer.Application.Testings.Commands.CheckSimpleTypeTesting;
 using PsyPersonServer.Application.Testings.Queries.GetTestForTesting;
 using PsyPersonServer.Application.Testings.Queries.GetTestingHistory;
@@ -39,6 +40,15 @@ namespace PsyPersonServer.API.Controllers
         [Route("CheckSimpleTypeTest")]
         //POST : /api/Testings/CheckSimpleTypeTest
         public async Task<IActionResult> CheckSimpleTypeTest([FromBody] CheckSimpleTypeTestingC query)
+        {
+            return Ok(await _mediator.Send(query));
+        }
+
+        [Authorize]
+        [HttpPost]
+        [Route("CheckFirstLevelDifficultTypeTesting")]
+        //POST : /api/Testings/CheckFirstLevelDifficultTypeTesting
+        public async Task<IActionResult> CheckFirstLevelDifficultTypeTesting([FromBody] CheckFirstLevelDifficultTypeTestingC query)
         {
             return Ok(await _mediator.Send(query));
         }
