@@ -52,6 +52,15 @@ namespace PsyPersonServer.Infrastructure.Repositories
             return testQuestions;
         }
 
+        public async Task<TestQuestion> GetById(Guid id)
+        {
+            var testQuestion = await _dbContext.TestQuestions.Include(x => x.Answers).FirstOrDefaultAsync(x => x.Id == id);
+            if (testQuestion == null)
+                return new TestQuestion();
+
+            return testQuestion;
+        }
+
         public async Task<IEnumerable<TestQuestion>> GetAllWithOnlyTruAnswersByTestId(Guid testId)
         {
             var testQuestions = await _dbContext.TestQuestions.Include(x => x.Answers)

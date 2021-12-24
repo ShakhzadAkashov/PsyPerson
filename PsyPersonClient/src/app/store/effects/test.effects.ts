@@ -1,12 +1,13 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { select, Store } from "@ngrx/store";
-import { EMPTY, of } from "rxjs";
+import { EMPTY, from, of } from "rxjs";
 import { catchError, map, switchMap, withLatestFrom } from "rxjs/operators";
+import { TestQuestionDto } from "src/app/models/tests.models";
 import { TestService } from "src/app/services/api/test.service";
 import { ETestActions, GetTest, GetTestForTesting, GetTestForTestingSuccess, GetTestQuestion, GetTestQuestions, GetTestQuestionsSuccess, GetTestQuestionSuccess, GetTests, GetTestsForLookupTable, GetTestsForLookupTableSuccess, GetTestsSuccess, GetTestSuccess } from "../actions/test.actions";
 import { selectRoleList } from "../selectors/role.selector";
-import { selectTestList, selectTestQuestionList } from "../selectors/test.selector";
+import { selectTestList, selectTestQuestion, selectTestQuestionList } from "../selectors/test.selector";
 import { AppState } from "../state/app.state";
 
 @Injectable()
@@ -42,9 +43,17 @@ export class TestEffects{
         ofType<GetTestQuestion>(ETestActions.GetTestQuestion),
         map(action => action.payload),
         withLatestFrom(this.store.pipe(select(selectTestQuestionList))),
-        switchMap(([id, question]) => {
-        const selectedQuestion = question.data.filter(q => q.id === id)[0];
-        return of(new GetTestQuestionSuccess(selectedQuestion));
+        switchMap(async ([id, question]) => {
+        let selectedQuestion = new TestQuestionDto();
+        selectedQuestion.answers = [];
+        if(question.data.length === 0){
+            let a = await this.service.getById(id).toPromise().then(async r => {return r});
+            selectedQuestion = a;
+        }
+        else
+            selectedQuestion = question.data.filter(q => q.id === id)[0];
+            
+        return new GetTestQuestionSuccess(selectedQuestion);
         })  
     ));
 

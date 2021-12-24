@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using PsyPersonServer.Application.TestQuestions.Commands.CreateTestQuestion;
 using PsyPersonServer.Application.TestQuestions.Commands.CreateTestQuestionFromFile;
 using PsyPersonServer.Application.TestQuestions.Commands.UpdateTestQuestion;
+using PsyPersonServer.Application.TestQuestions.Queries.GetTestQuestionById;
 using PsyPersonServer.Application.TestQuestions.Queries.GetTestQuestions;
 using System;
 using System.Collections.Generic;
@@ -30,6 +31,15 @@ namespace PsyPersonServer.API.Controllers
         [Route("GetAll")]
         //Get : /api/TestQuestions/GetAll
         public async Task<IActionResult> GetTests([FromQuery] GetTestQuestionsQ query)
+        {
+            return Ok(await _mediator.Send(query));
+        }
+
+        [HttpGet]
+        [Authorize]
+        [Route("GetById")]
+        //Get : /api/TestQuestions/GetById
+        public async Task<IActionResult> GetById([FromQuery] GetTestQuestionByIdQ query)
         {
             return Ok(await _mediator.Send(query));
         }

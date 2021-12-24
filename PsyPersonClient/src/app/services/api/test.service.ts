@@ -53,4 +53,8 @@ import { environment } from "src/environments/environment";
     TestsForLookupTable(request: PagedRequest | any){
         return this.http.get<PagedResponse<TestDto>>(this.BaseURI + '/Tests/TestsForLookupTable',{params: request});
     }
+
+    getById(id: string){
+        return this.http.get<TestQuestionDto>(this.BaseURI + '/TestQuestions/GetById',{params: {id: id}});
+      }
   }

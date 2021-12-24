@@ -71,14 +71,14 @@ export class CreateOrEditFirstLevelDifficultTestQuestionComponent implements OnI
         this.active = true;
     } else {
         this.store.dispatch(new GetTestQuestion(testQuestionId));
-        this.testQuestion$.subscribe(res => {
+        this.testQuestion$.subscribe(async res => {
           let r = res; 
           this.testQuestion.id = r.id;
           this.testQuestion.name = r.name;
           this.testQuestion.questionType = r.questionType;
           this.testQuestion.testId = this.testId;
           this.testQuestion.answers = [];
-          r.answers.forEach(element => {
+          r?.answers?.forEach(element => {
             let a = new TestQuestionAnswerDto();
             a.id = element.id;
             a.idForView = element.idForView;
