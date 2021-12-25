@@ -1,9 +1,12 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
+using PsyPersonServer.Application.EmailMessage.Commands.SendEmailMessage;
 using PsyPersonServer.Application.Testings.Commands.CreateTestingHistory;
 using PsyPersonServer.Application.Testings.Dtos;
 using PsyPersonServer.Application.TestQuestions.Dtos;
+using PsyPersonServer.Domain.Entities;
 using PsyPersonServer.Domain.Models.Tests;
 using PsyPersonServer.Domain.Repositories;
 using System;
@@ -17,7 +20,7 @@ namespace PsyPersonServer.Application.Testings.Commands.CheckSimpleTypeTesting
 {
     public class CheckSimpleTypeTestingCh : IRequestHandler<CheckSimpleTypeTestingC, CheckTestingResponseDto>
     {
-        public CheckSimpleTypeTestingCh(ITestRepository testRepository, ITestQuestionRepository testQuestionRepository, IUserTestRepository userTestRepository, IMapper mapper, IMediator mediator, ILogger<CheckSimpleTypeTestingCh> logger)
+        public CheckSimpleTypeTestingCh(ITestRepository testRepository, ITestQuestionRepository testQuestionRepository, IUserTestRepository userTestRepository, IMapper mapper, IMediator mediator, ILogger<CheckSimpleTypeTestingCh> logger, UserManager<ApplicationUser> userManager)
         {
             _testRepository = testRepository;
             _testQuestionRepository = testQuestionRepository;
@@ -25,6 +28,7 @@ namespace PsyPersonServer.Application.Testings.Commands.CheckSimpleTypeTesting
             _mapper = mapper;
             _mediator = mediator;
             _logger = logger;
+            _userManager = userManager;
         }
 
         private readonly ITestRepository _testRepository;
@@ -33,6 +37,7 @@ namespace PsyPersonServer.Application.Testings.Commands.CheckSimpleTypeTesting
         private readonly IMapper _mapper;
         private readonly IMediator _mediator;
         private readonly ILogger<CheckSimpleTypeTestingCh> _logger;
+        private readonly UserManager<ApplicationUser> _userManager;
 
         public async Task<CheckTestingResponseDto> Handle(CheckSimpleTypeTestingC request, CancellationToken cancellationToken)
         {
@@ -40,6 +45,7 @@ namespace PsyPersonServer.Application.Testings.Commands.CheckSimpleTypeTesting
             var testquestionsBase = t.Select(x => _mapper.Map<TestQuestionDto>(x));
             var test = await _testRepository.GetTestById(request.TestForTesting.Test.Id);
             var userTest = await _userTestRepository.GetUserTest(request.UserId, request.TestForTesting.Test.Id);
+            var user = await _userManager.FindByIdAsync(request.UserId);
 
             try
             {
@@ -129,6 +135,26 @@ namespace PsyPersonServer.Application.Testings.Commands.CheckSimpleTypeTesting
                     UserTest = userTest,
                     TestQuestionList = request.TestForTesting.TestQuestionList
                 });
+
+                //Send Message to email
+
+                string message = $"Тест был перепройден на {ball.ToString("0.0")}%";
+                string firstName = user.FirstName ?? "";
+                string lastName = user.LastName ?? "";
+                string patronymic = user.Patronymic ?? "";
+                string fullName = firstName + " " + lastName + " " + patronymic;
+                string letterHeader = $"Перепрохождение теста: {test.Name}";
+
+                await _mediator.Send(new SendEmailMessageC
+                {
+                    ReceiverMailAddress = user.Email,
+                    EmailMessage = message,
+                    ReceiverFullName = fullName,
+                    LetterHeader = letterHeader,
+                    IsHTML = false
+                });
+
+                //Send Message to email
 
                 return result;
             }

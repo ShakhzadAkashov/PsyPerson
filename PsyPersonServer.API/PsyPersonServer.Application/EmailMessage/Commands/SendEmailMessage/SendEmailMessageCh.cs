@@ -25,7 +25,7 @@ namespace PsyPersonServer.Application.EmailMessage.Commands.SendEmailMessage
         {
             try
             {
-                SmtpClient mySmtpClient = new SmtpClient(_emailMessageSettings.SenderAddress, 25);
+                SmtpClient mySmtpClient = new SmtpClient(_emailMessageSettings.HostName, 25);
 
                 mySmtpClient.UseDefaultCredentials = false;
                 mySmtpClient.EnableSsl = true;

@@ -1,7 +1,10 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
+using PsyPersonServer.Application.EmailMessage.Commands.SendEmailMessage;
 using PsyPersonServer.Application.Testings.Commands.CreateTestingHistory;
 using PsyPersonServer.Application.Testings.Dtos;
+using PsyPersonServer.Domain.Entities;
 using PsyPersonServer.Domain.Models.Tests;
 using PsyPersonServer.Domain.Repositories;
 using System;
@@ -15,26 +18,31 @@ namespace PsyPersonServer.Application.Testings.Commands.CheckFirstLevelDifficult
 {
     public class CheckFirstLevelDifficultTypeTestingCh : IRequestHandler<CheckFirstLevelDifficultTypeTestingC, CheckTestingResponseDto>
     {
-        public CheckFirstLevelDifficultTypeTestingCh(ILogger<CheckFirstLevelDifficultTypeTestingCh> logger, IMediator mediator, ITestRepository testRepository, IUserTestRepository userTestRepository)
+        public CheckFirstLevelDifficultTypeTestingCh(ILogger<CheckFirstLevelDifficultTypeTestingCh> logger, IMediator mediator, ITestRepository testRepository, IUserTestRepository userTestRepository, UserManager<ApplicationUser> userManager)
         {
             _logger = logger;
             _mediator = mediator;
             _testRepository = testRepository;
             _userTestRepository = userTestRepository;
+            _userManager = userManager;
         }
 
         private ILogger<CheckFirstLevelDifficultTypeTestingCh> _logger;
         private readonly IMediator _mediator;
         private readonly ITestRepository _testRepository;
         private readonly IUserTestRepository _userTestRepository;
+        private readonly UserManager<ApplicationUser> _userManager;
 
         public async Task<CheckTestingResponseDto> Handle(CheckFirstLevelDifficultTypeTestingC request, CancellationToken cancellationToken)
         {
             var test = await _testRepository.GetTestById(request.TestForTesting.Test.Id);
             var userTest = await _userTestRepository.GetUserTest(request.UserId, request.TestForTesting.Test.Id);
+            var user = await _userManager.FindByIdAsync(request.UserId);
 
             try
             {
+                //Check 1LD Type Testing
+
                 double ball = 0;
 
                 foreach (var i in request.TestForTesting.TestQuestionList)
@@ -51,6 +59,8 @@ namespace PsyPersonServer.Application.Testings.Commands.CheckFirstLevelDifficult
                 }
 
                 ball /= request.TestForTesting.TestQuestionList.Count();
+
+                //Check 1LD Type Testing
 
                 var result = new CheckTestingResponseDto();
                 double score = 0.0;
@@ -89,6 +99,26 @@ namespace PsyPersonServer.Application.Testings.Commands.CheckFirstLevelDifficult
                     UserTest = userTest,
                     TestQuestionList = request.TestForTesting.TestQuestionList
                 });
+
+                //Send Message to email
+
+                string message = $"Тест был перепройден на {ball:0.0}%";
+                string firstName = user.FirstName ?? "";
+                string lastName = user.LastName ?? "";
+                string patronymic = user.Patronymic ?? "";
+                string fullName = firstName + " " + lastName + " " + patronymic;
+                string letterHeader = $"Перепрохождение теста: {test.Name}";
+
+                await _mediator.Send(new SendEmailMessageC
+                {
+                    ReceiverMailAddress = user.Email,
+                    EmailMessage = message,
+                    ReceiverFullName = fullName,
+                    LetterHeader = letterHeader,
+                    IsHTML = false
+                });
+
+                //Send Message to email
 
                 return result;
 
