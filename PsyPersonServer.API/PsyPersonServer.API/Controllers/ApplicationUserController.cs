@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -27,6 +28,7 @@ namespace PsyPersonServer.API.Controllers
 
         [HttpPost]
         [Route("Register")]
+        [AllowAnonymous]
         //POST : /api/ApplicationUser/Register
         public async Task<IActionResult> PostApplicationUser(RegisterC command)
         {
@@ -35,6 +37,7 @@ namespace PsyPersonServer.API.Controllers
 
         [HttpPost]
         [Route("Login")]
+        [AllowAnonymous]
         //POST : /api/ApplicationUser/Login
         public async Task<IActionResult> Login(LoginC command)
         {
@@ -51,6 +54,7 @@ namespace PsyPersonServer.API.Controllers
 
         [HttpPost]
         [Route("ForgotPassword")]
+        [AllowAnonymous]
         //POST : /api/ApplicationUser/ForgotPassword
         public async Task<IActionResult> ForgotPassword(ForgotPasswordC command)
         {

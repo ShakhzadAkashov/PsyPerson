@@ -4,7 +4,7 @@ import { select, Store } from "@ngrx/store";
 import { EMPTY, of } from "rxjs";
 import { catchError, map, switchMap, withLatestFrom } from "rxjs/operators";
 import { RoleService } from "src/app/services/api/role.service";
-import { ERoleActions, GetRole, GetRoles, GetRolesSuccess, GetRoleSuccess } from "../actions/role.actions";
+import { ERoleActions, GetRole, GetRolePermissions, GetRolePermissionsSuccess, GetRoles, GetRolesSuccess, GetRoleSuccess } from "../actions/role.actions";
 import { selectRoleList } from "../selectors/role.selector";
 import { AppState } from "../state/app.state";
 
@@ -33,6 +33,15 @@ export class RoleEffects{
             map(r => {r.loading = false; return r} ),
             map((users) => new GetRolesSuccess(users)),
             catchError((error) => {console.log('GetRoles | error ',error); throw error})
+        ))
+    ));
+
+    getRolePermissions$ = createEffect(() => 
+    this.actions$.pipe(
+        ofType<GetRolePermissions>(ERoleActions.GetRolePermissions),
+        switchMap((u) => this.service.getRolePermissions(u.payload).pipe(
+            map((permissions) => new GetRolePermissionsSuccess(permissions)),
+            catchError((error) => {console.log('GetRolePermissions | error ',error); throw error})
         ))
     ));
 }

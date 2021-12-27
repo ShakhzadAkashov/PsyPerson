@@ -22,6 +22,12 @@ export const roleReducers = (
                 selectedRole: action.payload
             };
         }
+        case ERoleActions.GetRolePermissionsSuccess: {
+            return {
+                ...state,
+                rolePermissions: action.payload
+            };
+        }
 
         default:
             return state;

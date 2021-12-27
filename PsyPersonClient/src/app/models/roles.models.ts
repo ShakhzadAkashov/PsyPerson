@@ -5,3 +5,14 @@ export class RoleDto{
     description: string = '';
     normalizedName: string = '';
 }
+
+export class RolePermissionsDto{
+    roleId: string = '';
+    roleName: string = '';
+    roleClaims: CheckBoxDto[] = [];
+}
+
+export class CheckBoxDto{
+    displayValue: string = '';
+    isSelected: boolean = false;
+}

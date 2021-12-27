@@ -86,6 +86,13 @@
                         </li>
                         <div class="dropdown-divider"></div>
                         <li>
+                            <a [routerLink]="['../rolePermissions']"
+                                [queryParams]="{roleId: record.id, from: 'home/admin/roles'}" 
+                                class="dropdown-item" style="font-size: small;"
+                                >Привелегии</a>
+                        </li>
+                        <div class="dropdown-divider"></div>
+                        <li>
                             <a class="dropdown-item" href="javascript:;" style="font-size: small;"
                             (click)="remove(record)">Удалить</a>
                         </li>

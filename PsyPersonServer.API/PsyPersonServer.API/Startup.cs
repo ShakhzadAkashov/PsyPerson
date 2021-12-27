@@ -1,5 +1,6 @@
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -16,6 +17,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using PsyPersonServer.Application.ApplicationUsers.Commands.Register;
+using PsyPersonServer.Application.Permissions.Filters;
 using PsyPersonServer.Domain.Entities;
 using PsyPersonServer.Domain.Models.ApplicationSettings;
 using PsyPersonServer.Domain.Models.EmailMessage;
@@ -44,6 +46,11 @@ namespace PsyPersonServer.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //Custom Auth Policy and Handler
+            services.AddSingleton<IAuthorizationPolicyProvider, PermissionPolicyProvider>();
+            services.AddScoped<IAuthorizationHandler, PermissionAuthorizationHandler>();
+            //Custom Auth Policy and Handler
+
             services.Configure<ApplicationSettings>(Configuration.GetSection("ApplicationSettings"));
             services.Configure<EmailMessageSettings>(Configuration.GetSection("EmailMessageSettings"));
             services.Configure<UploadTestQuestionsFromFileSettings>(Configuration.GetSection("TestQuestionsFromFileSettings"));

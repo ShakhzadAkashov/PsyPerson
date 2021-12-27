@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { PagedRequest, PagedResponse } from "src/app/models/base";
-import { RoleDto } from "src/app/models/roles.models";
+import { RoleDto, RolePermissionsDto } from "src/app/models/roles.models";
 import { environment } from "src/environments/environment";
 
 @Injectable({
@@ -28,5 +28,13 @@ export class RoleService{
 
     removeRole(id:any){
         return this.http.delete(this.BaseURI + '/ApplicationRoles/Remove',{body: {roleId:id}});
+    }
+
+    getRolePermissions(roleId:string){
+        return this.http.get<RolePermissionsDto>(this.BaseURI + '/ApplicationRoles/GetPermissions',{params: {roleId: roleId}});
+    }
+
+    assignPermissionsToRole(rolePermissions: RolePermissionsDto){
+        return this.http.post(this.BaseURI + '/ApplicationRoles/AssignPermissionsToRole',rolePermissions);
     }
 }

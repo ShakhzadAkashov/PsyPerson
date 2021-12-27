@@ -1,0 +1,71 @@
+<div class="row align-items-center">
+    <div class="col-xl-12">
+        <div class="form-group m-form__group align-items-center">
+            <div class="input-group">
+                <input style="box-shadow: none;" (keyup)="filterInput($event)" [(ngModel)]="filterText" name="filterText" class="form-control" placeholder="Поиск по всем параметрам" type="text">
+                <span class="input-group-btn">
+                    <button class="btn btn-primary bnt-md" (click)="getRolePermissions(roleId)" type="submit"><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<p-table #dt [value]="rolePermissions.roleClaims"  dataKey="id" styleClass="p-datatable-customers p-datatable-striped" [rowHover]="true"
+     [showCurrentPageReport]="true" [rowsPerPageOptions]="[5,10,25,50]" [loading]="loading"
+    [paginator]="true" currentPageReportTemplate="Показаны записи с {first} по {last} из {totalRecords}"
+    [filterDelay]="0" [globalFilterFields]="['name','name','.name','name']"  [totalRecords]="rolePermissions.roleClaims.length" 
+    [rows]="10">
+    <ng-template pTemplate="caption">
+        <div class="table-header">
+            <div >
+                <span *ngIf="from">
+                    <button class="btn btn-md btn-outline-primary mr-3" (click)="goBack()"><i class="pi pi-arrow-left"></i></button>
+                </span>
+                <span>Привелегии Роли: {{rolePermissions.roleName}}</span>
+                <span>
+                    <button [disabled]="saving" class="btn btn-md btn-outline-primary float-right" (click)="assignPermissions()"><i class="pi pi-spin pi-spinner" *ngIf="saving"></i> Назначить привелегии</button>
+                </span>
+            </div>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <th>
+                <div class="p-d-flex p-jc-between p-ai-center">
+                    Действие
+                </div>
+            </th>
+            <th>
+                <div class="p-d-flex p-jc-between p-ai-center">
+                    Название модуля
+                </div>
+            </th>
+            <th>
+                <div class="p-d-flex p-jc-between p-ai-center">
+                    Привелегия
+                </div>
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-record>
+        <tr class="p-selectable-row">
+            <td>
+                <span class="p-column-title">Действия</span>
+                <p-checkbox name="isSelected" [(ngModel)]="record.isSelected" [binary]="true"></p-checkbox>
+            </td>
+            <td>
+                <span class="p-column-title">Название модуля</span>
+                {{record.displayValue.split('.')[1]}}
+            </td>
+            <td>
+                <span class="p-column-title">Привелегия</span>
+                {{record.displayValue.split('.')[2]}} 
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+        <tr>
+            <td colspan="3" class="text-center">Записей не найдено.</td>
+        </tr>
+    </ng-template>
+</p-table>

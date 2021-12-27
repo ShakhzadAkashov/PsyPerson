@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using PsyPersonServer.Domain.Models.Permission;
 
 namespace PsyPersonServer.API.Controllers
 {
@@ -26,7 +27,7 @@ namespace PsyPersonServer.API.Controllers
         private readonly IMediator _mediator;
 
         [HttpGet]
-        [Authorize]
+        [Authorize(Permissions.Tests_View)]
         [Route("GetTests")]
         //Get : /api/Tests/GetTests
         public async Task<IActionResult> GetTests([FromQuery] GetTestsQ query)

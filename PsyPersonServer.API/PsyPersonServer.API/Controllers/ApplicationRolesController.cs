@@ -6,6 +6,8 @@ using PsyPersonServer.Application.ApplicationRoles.Commands.CreateRole;
 using PsyPersonServer.Application.ApplicationRoles.Commands.RemoveRole;
 using PsyPersonServer.Application.ApplicationRoles.Commands.UpdateRole;
 using PsyPersonServer.Application.ApplicationRoles.Queries.GetAllRoles;
+using PsyPersonServer.Application.Permissions.Commands.AssignPermissionsToRole;
+using PsyPersonServer.Application.Permissions.Queries.GetRolePermissions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -58,5 +60,20 @@ namespace PsyPersonServer.API.Controllers
             return Ok(await _mediator.Send(command));
         }
 
+        [HttpGet]
+        [Route("GetPermissions")]
+        //Get : /api/ApplicationRoles/GetPermissions
+        public async Task<IActionResult> GetPermissions([FromQuery] GetRolePermissionsQ query)
+        {
+            return Ok(await _mediator.Send(query));
+        }
+
+        [HttpPost]
+        [Route("AssignPermissionsToRole")]
+        //Get : /api/ApplicationRoles/AssignPermissionsToRole
+        public async Task<IActionResult> AssignPermissionsToRole([FromBody] AssignPermissionsToRoleC command)
+        {
+            return Ok(await _mediator.Send(command));
+        }
     }
 }

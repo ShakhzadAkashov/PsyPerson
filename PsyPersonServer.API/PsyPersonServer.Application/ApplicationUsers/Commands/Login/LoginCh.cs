@@ -19,11 +19,13 @@ namespace PsyPersonServer.Application.ApplicationUsers.Commands.Login
     public class LoginCh : IRequestHandler<LoginC, object>
     {
         private UserManager<ApplicationUser> _userManager;
+        private RoleManager<ApplicationRole> _roleManager;
         private readonly ApplicationSettings _appSettings;
         private readonly ILogger<LoginCh> _logger;
-        public LoginCh(UserManager<ApplicationUser> userManager, IOptions<ApplicationSettings> appSettings, ILogger<LoginCh> logger)
+        public LoginCh(UserManager<ApplicationUser> userManager, IOptions<ApplicationSettings> appSettings, ILogger<LoginCh> logger, RoleManager<ApplicationRole> roleManager)
         {
             _userManager = userManager;
+            _roleManager = roleManager;
             _appSettings = appSettings.Value;
             _logger = logger;
         }
@@ -34,16 +36,31 @@ namespace PsyPersonServer.Application.ApplicationUsers.Commands.Login
             if (user != null && await _userManager.CheckPasswordAsync(user, request.Password))
             {
                 //Get roles assigned to user
-                var role = await _userManager.GetRolesAsync(user);
+                var roles = await _userManager.GetRolesAsync(user);
                 IdentityOptions _options = new IdentityOptions();
 
+                var claims = new List<Claim>();
+
+                claims.Add(new Claim("UserID", user.Id.ToString()));
+                foreach (var userRole in roles)
+                {
+                    claims.Add(new Claim(_options.ClaimsIdentity.RoleClaimType, userRole));
+
+                    var role = await _roleManager.FindByNameAsync(userRole);
+                    if (role != null)
+                    {
+                        var permissions = await _roleManager.GetClaimsAsync(role);
+                        foreach (Claim permission in permissions)
+                        {
+                            if(!claims.Any(x => x.Type == permission.Type && x.Value == permission.Value))
+                                claims.Add(permission);
+                        }
+                    }
+                }
+                
                 var tokenDescriptor = new SecurityTokenDescriptor
                 {
-                    Subject = new ClaimsIdentity(new Claim[]
-                    {
-                        new Claim("UserID",user.Id.ToString()),
-                        //new Claim(_options.ClaimsIdentity.RoleClaimType,role.FirstOrDefault())
-                    }),
+                    Subject = new ClaimsIdentity(claims),
                     Expires = DateTime.UtcNow.AddMinutes(600),
                     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_appSettings.JWT_Secret)), SecurityAlgorithms.HmacSha256Signature)
                 };

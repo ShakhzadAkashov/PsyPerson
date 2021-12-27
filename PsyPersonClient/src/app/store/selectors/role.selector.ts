@@ -13,3 +13,8 @@ export const selectselectedRole = createSelector(
     selectRoles,
     (state: RoleState) => state.selectedRole
 );
+
+export const selectRolePermissions = createSelector(
+    selectRoles,
+    (state: RoleState) => state.rolePermissions
+);
