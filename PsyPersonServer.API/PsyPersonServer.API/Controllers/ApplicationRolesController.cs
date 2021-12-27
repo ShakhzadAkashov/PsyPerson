@@ -8,6 +8,7 @@ using PsyPersonServer.Application.ApplicationRoles.Commands.UpdateRole;
 using PsyPersonServer.Application.ApplicationRoles.Queries.GetAllRoles;
 using PsyPersonServer.Application.Permissions.Commands.AssignPermissionsToRole;
 using PsyPersonServer.Application.Permissions.Queries.GetRolePermissions;
+using PsyPersonServer.Domain.Models.Permission;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,7 @@ namespace PsyPersonServer.API.Controllers
 
         private readonly IMediator _mediator;
 
+        [Authorize(Permissions.Roles_View)]
         [HttpGet]
         [Route("GetAll")]
         //Get : /api/ApplicationRoles/GetAll
@@ -35,6 +37,7 @@ namespace PsyPersonServer.API.Controllers
             return Ok(await _mediator.Send(query));
         }
 
+        [Authorize(Permissions.Roles_Create)]
         [HttpPost]
         [Route("CreateRole")]
         //POST : /api/ApplicationRoles/CreateRole
@@ -43,6 +46,7 @@ namespace PsyPersonServer.API.Controllers
             return Ok(await _mediator.Send(command));
         }
 
+        [Authorize(Permissions.Roles_Edit)]
         [HttpPut]
         [Route("UpdateRole")]
         //PUT : /api/ApplicationRoles/UpdateRole
@@ -51,8 +55,8 @@ namespace PsyPersonServer.API.Controllers
             return Ok(await _mediator.Send(command));
         }
 
+        [Authorize(Permissions.Roles_Delete)]
         [HttpDelete]
-        [Authorize]
         [Route("Remove")]
         //Delete : /api/Users/Remove
         public async Task<IActionResult> Remove([FromBody] RemoveRoleC command)
@@ -60,6 +64,7 @@ namespace PsyPersonServer.API.Controllers
             return Ok(await _mediator.Send(command));
         }
 
+        [Authorize(Permissions.Permission_View)]
         [HttpGet]
         [Route("GetPermissions")]
         //Get : /api/ApplicationRoles/GetPermissions
@@ -68,6 +73,7 @@ namespace PsyPersonServer.API.Controllers
             return Ok(await _mediator.Send(query));
         }
 
+        [Authorize(Permissions.Permission_Create)]
         [HttpPost]
         [Route("AssignPermissionsToRole")]
         //Get : /api/ApplicationRoles/AssignPermissionsToRole

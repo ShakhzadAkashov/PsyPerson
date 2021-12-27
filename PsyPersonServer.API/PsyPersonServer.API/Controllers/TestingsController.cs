@@ -6,6 +6,7 @@ using PsyPersonServer.Application.Testings.Commands.CheckFirstLevelDifficultType
 using PsyPersonServer.Application.Testings.Commands.CheckSimpleTypeTesting;
 using PsyPersonServer.Application.Testings.Queries.GetTestForTesting;
 using PsyPersonServer.Application.Testings.Queries.GetTestingHistory;
+using PsyPersonServer.Domain.Models.Permission;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,7 @@ namespace PsyPersonServer.API.Controllers
 
         private readonly IMediator _mediator;
 
-        [Authorize]
+        [Authorize(Permissions.Testings_View)]
         [HttpGet]
         [Route("GetTestForTesting")]
         //Get : /api/Testings/GetTestForTesting
@@ -34,8 +35,7 @@ namespace PsyPersonServer.API.Controllers
             return Ok(await _mediator.Send(query));
         }
 
-
-        [Authorize]
+        [Authorize(Permissions.Testings_Create)]
         [HttpPost]
         [Route("CheckSimpleTypeTest")]
         //POST : /api/Testings/CheckSimpleTypeTest
@@ -44,7 +44,7 @@ namespace PsyPersonServer.API.Controllers
             return Ok(await _mediator.Send(query));
         }
 
-        [Authorize]
+        [Authorize(Permissions.Testings_Create)]
         [HttpPost]
         [Route("CheckFirstLevelDifficultTypeTesting")]
         //POST : /api/Testings/CheckFirstLevelDifficultTypeTesting
@@ -53,7 +53,7 @@ namespace PsyPersonServer.API.Controllers
             return Ok(await _mediator.Send(query));
         }
 
-        [Authorize]
+        [Authorize(Permissions.Testings_ViewHistory)]
         [HttpGet]
         [Route("GetTestingHistory")]
         //Get : /api/Testings/GetTestingHistory

@@ -14,37 +14,36 @@
       <ul nz-menu nzTheme="light" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
         <li nz-submenu nzOpen nzTitle="Admin" nzIcon="dashboard">
           <ul>
-            <!-- <li nz-menu-item nzMatchRouter>
-              <a routerLink="/home/statistics">Statistics</a>
-            </li> -->
-            <li nz-menu-item nzMatchRouter>
+            <li *ngIf="UserHelper.UserHasPermission('Permissions.Users.Pages')"  
+                nz-menu-item nzMatchRouter>
               <a routerLink="/home/admin/users">Users</a>
             </li>
-            <li nz-menu-item nzMatchRouter>
+            <li *ngIf="UserHelper.UserHasPermission('Permissions.Roles.Pages')" 
+                nz-menu-item nzMatchRouter>
               <a routerLink="/home/admin/roles">Roles</a>
             </li>
           </ul>
         </li>
         <li nz-submenu nzOpen nzTitle="Main" nzIcon="form">
           <ul>
-            <li nz-menu-item nzMatchRouter>
+            <li *ngIf="UserHelper.UserHasPermission('Permissions.Tests.Pages')"
+                nz-menu-item nzMatchRouter>
               <a routerLink="/home/main/tests">Tests</a>
             </li>
-            <!-- <li nz-menu-item nzMatchRouter>
-              <a routerLink="/home/main/testQuestions">Test Questions</a>
-            </li> -->
           </ul>
         </li>
         <li nz-submenu nzOpen nzTitle="HR/Managers" nzIcon="form">
           <ul>
-            <li nz-menu-item nzMatchRouter>
+            <li *ngIf="UserHelper.UserHasPermission('Permissions.UserTestUsers.Pages')" 
+                nz-menu-item nzMatchRouter>
               <a routerLink="/home/main/userTestUsers">Users</a>
             </li>
           </ul>
         </li>
         <li nz-submenu nzOpen nzTitle="Employees" nzIcon="form">
           <ul>
-            <li nz-menu-item nzMatchRouter>
+            <li  *ngIf="UserHelper.UserHasPermission('Permissions.UserTests.Pages')"
+                nz-menu-item nzMatchRouter>
               <a routerLink="/home/main/userTests">Tests</a>
             </li>
           </ul>
@@ -61,7 +60,9 @@
               ></i>
           </span>
           <div class="float-right mr-4">
-            <button class="btn btn-md btn-outline-secondary" (click)="onLogout()"><i class="fa fa-sign-out"></i> Выход</button>
+            <button class="btn btn-md btn-outline-secondary" (click)="onLogout()">
+              <i class="fa fa-sign-out"></i> Выход
+            </button>
           </div>
         </div>
       </nz-header>

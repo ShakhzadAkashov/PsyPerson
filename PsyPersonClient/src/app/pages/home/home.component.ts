@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserHelper } from 'src/app/shared/helpers/user.helper';
 
 @Component({
   selector: 'app-home',
@@ -9,8 +10,11 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
 
   isCollapsed = false;
+  UserHelper: any;
   
-  constructor(private router: Router) { }
+  constructor(private router: Router) { 
+    this.UserHelper = UserHelper;
+  }
 
   ngOnInit(): void {
   }

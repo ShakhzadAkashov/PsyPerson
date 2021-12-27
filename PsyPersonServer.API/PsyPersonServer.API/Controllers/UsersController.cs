@@ -9,6 +9,7 @@ using PsyPersonServer.Application.Users.Commands.RemoveUser;
 using PsyPersonServer.Application.Users.Commands.UpdateUser;
 using PsyPersonServer.Application.Users.Queries;
 using PsyPersonServer.Application.Users.Queries.GetAllUserRoles;
+using PsyPersonServer.Domain.Models.Permission;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +28,8 @@ namespace PsyPersonServer.API.Controllers
         }
 
         private readonly IMediator _mediator;
-        
+
+        [Authorize(Permissions.Users_View)]
         [HttpGet]
         [Route("GetAll")]
         //Get : /api/Users/GetAll
@@ -36,8 +38,8 @@ namespace PsyPersonServer.API.Controllers
             return Ok(await _mediator.Send(query));
         }
 
+        [Authorize(Permissions.Users_Edit)]
         [HttpPut]
-        [Authorize]
         [Route("UpdateUser")]
         //PUT : /api/Users/UpdateUser
         public async Task<IActionResult> UpdateUser([FromBody] UpdateUserC command)
@@ -45,8 +47,8 @@ namespace PsyPersonServer.API.Controllers
             return Ok(await _mediator.Send(command));
         }
 
+        [Authorize(Permissions.Users_Create)]
         [HttpPost]
-        [Authorize]
         [Route("CreateUser")]
         //POST : /api/Users/UpdateUser
         public async Task<IActionResult> CreateUser([FromBody] CreateUserC command)
@@ -54,6 +56,7 @@ namespace PsyPersonServer.API.Controllers
             return Ok(await _mediator.Send(command));
         }
 
+        [Authorize(Permissions.UserRoles_View)]
         [HttpGet]
         [Route("GetUserRoles")]
         //Get : /api/Users/GetUserRoles
@@ -62,8 +65,8 @@ namespace PsyPersonServer.API.Controllers
             return Ok(await _mediator.Send(query));
         }
 
+        [Authorize(Permissions.UserRoles_Create)]
         [HttpPost]
-        [Authorize]
         [Route("AssingRole")]
         //POST : /api/Users/AssingRole
         public async Task<IActionResult> AssingRole([FromBody] AssignRoleToUserC command)
@@ -71,8 +74,8 @@ namespace PsyPersonServer.API.Controllers
             return Ok(await _mediator.Send(command));
         }
 
+        [Authorize(Permissions.Users_Delete)]
         [HttpDelete]
-        [Authorize]
         [Route("Remove")]
         //Delete : /api/Users/Remove
         public async Task<IActionResult> Remove([FromBody] RemoveUserC command)
@@ -80,8 +83,8 @@ namespace PsyPersonServer.API.Controllers
             return Ok(await _mediator.Send(command));
         }
 
+        [Authorize(Permissions.UserRoles_Delete)]
         [HttpDelete]
-        [Authorize]
         [Route("RemoveRoleFromUser")]
         //Delete : /api/Users/RemoveRoleFromUser
         public async Task<IActionResult> RemoveRoleFromUser([FromBody] RemoveRoleFromUserC command)

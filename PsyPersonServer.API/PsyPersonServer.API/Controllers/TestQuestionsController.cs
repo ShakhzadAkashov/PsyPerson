@@ -7,6 +7,7 @@ using PsyPersonServer.Application.TestQuestions.Commands.CreateTestQuestionFromF
 using PsyPersonServer.Application.TestQuestions.Commands.UpdateTestQuestion;
 using PsyPersonServer.Application.TestQuestions.Queries.GetTestQuestionById;
 using PsyPersonServer.Application.TestQuestions.Queries.GetTestQuestions;
+using PsyPersonServer.Domain.Models.Permission;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,8 +27,9 @@ namespace PsyPersonServer.API.Controllers
 
         private readonly IMediator _mediator;
 
+
+        [Authorize(Permissions.TestQuestions_View)]
         [HttpGet]
-        [Authorize]
         [Route("GetAll")]
         //Get : /api/TestQuestions/GetAll
         public async Task<IActionResult> GetTests([FromQuery] GetTestQuestionsQ query)
@@ -35,8 +37,8 @@ namespace PsyPersonServer.API.Controllers
             return Ok(await _mediator.Send(query));
         }
 
+        [Authorize(Permissions.TestQuestions_View)]
         [HttpGet]
-        [Authorize]
         [Route("GetById")]
         //Get : /api/TestQuestions/GetById
         public async Task<IActionResult> GetById([FromQuery] GetTestQuestionByIdQ query)
@@ -44,8 +46,8 @@ namespace PsyPersonServer.API.Controllers
             return Ok(await _mediator.Send(query));
         }
 
+        [Authorize(Permissions.TestQuestions_Create)]
         [HttpPost]
-        [Authorize]
         [Route("Create")]
         //POST : /api/TestQuestions/Create
         public async Task<IActionResult> Create([FromBody] CreateTestQuestionC command)
@@ -53,8 +55,8 @@ namespace PsyPersonServer.API.Controllers
             return Ok(await _mediator.Send(command));
         }
 
+        [Authorize(Permissions.TestQuestions_Edit)]
         [HttpPut]
-        [Authorize]
         [Route("Update")]
         //PUT : /api/TestQuestions/Update
         public async Task<IActionResult> Update([FromBody] UpdateTestQuestionC command)
@@ -62,8 +64,8 @@ namespace PsyPersonServer.API.Controllers
             return Ok(await _mediator.Send(command));
         }
 
+        [Authorize(Permissions.TestQuestions_Upload)]
         [HttpPost, DisableRequestSizeLimit]
-        [Authorize]
         [Route("UploadFromFile")]
         //POST : /api/TestQuestions/UploadFromFile
         public async Task<IActionResult> UploadFromFile([FromForm] CreateTestQuestionsFromFileC command)

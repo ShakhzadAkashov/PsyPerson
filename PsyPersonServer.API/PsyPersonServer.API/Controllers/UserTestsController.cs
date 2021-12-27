@@ -6,6 +6,7 @@ using PsyPersonServer.Application.UserTests.Commands.CreateUserTest;
 using PsyPersonServer.Application.UserTests.Queries.GetAllUsers;
 using PsyPersonServer.Application.UserTests.Queries.GetUserTests;
 using PsyPersonServer.Application.UserTests.Queries.GetUserTestsDetails;
+using PsyPersonServer.Domain.Models.Permission;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,7 @@ namespace PsyPersonServer.API.Controllers
 
         private readonly IMediator _mediator;
 
+        [Authorize(Permissions.UserTests_ViewUsers)]
         [HttpGet]
         [Route("Users")]
         //Get : /api/UserTests/Users
@@ -33,6 +35,7 @@ namespace PsyPersonServer.API.Controllers
             return Ok(await _mediator.Send(query));
         }
 
+        [Authorize(Permissions.UserTests_View)]
         [HttpGet]
         [Route("UserTests")]
         //Get : /api/UserTests/UserTests
@@ -47,6 +50,7 @@ namespace PsyPersonServer.API.Controllers
             }));
         }
 
+        [Authorize(Permissions.UserTests_Create)]
         [HttpPost]
         [Route("CreateUserTest")]
         //POST : /api/UserTests/CreateUserTest
@@ -55,6 +59,7 @@ namespace PsyPersonServer.API.Controllers
             return Ok(await _mediator.Send(command));
         }
 
+        [Authorize(Permissions.UserTests_ViewDetails)]
         [HttpGet]
         [Route("UserTestsDetails")]
         //Get : /api/UserTests/UserTestsDetails

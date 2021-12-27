@@ -26,17 +26,17 @@ namespace PsyPersonServer.API.Controllers
 
         private readonly IMediator _mediator;
 
-        [HttpGet]
         [Authorize(Permissions.Tests_View)]
+        [HttpGet]
         [Route("GetTests")]
         //Get : /api/Tests/GetTests
         public async Task<IActionResult> GetTests([FromQuery] GetTestsQ query)
         {
             return Ok(await _mediator.Send(query));
         }
-        
+
+        [Authorize(Permissions.Tests_View)]
         [HttpGet]
-        [Authorize]
         [Route("TestsForLookupTable")]
         //Get : /api/Tests/TestsForLookupTable
         public async Task<IActionResult> TestsForLookupTable([FromQuery] GetTestsByUserIdForLookupTableQ query)
@@ -44,8 +44,8 @@ namespace PsyPersonServer.API.Controllers
             return Ok(await _mediator.Send(query));
         }
 
+        [Authorize(Permissions.Tests_Create)]
         [HttpPost]
-        [Authorize]
         [Route("CreateTest")]
         //POST : /api/Tests/CreateTest
         public async Task<IActionResult> CreateTest([FromBody] CreateTestC command)
@@ -53,8 +53,9 @@ namespace PsyPersonServer.API.Controllers
             return Ok(await _mediator.Send(command));
         }
 
+
+        [Authorize(Permissions.Tests_Edit)]
         [HttpPut]
-        [Authorize]
         [Route("UpdateTest")]
         //PUT : /api/Tests/UpdateTest
         public async Task<IActionResult> UpdateTest([FromBody] UpdateTestC command)

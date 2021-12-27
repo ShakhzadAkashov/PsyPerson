@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PsyPersonServer.Application.AppFiles.Commands.UploadeFile;
 using PsyPersonServer.Application.AppFiles.Queries.GetContentType;
+using PsyPersonServer.Domain.Models.Permission;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -24,8 +25,8 @@ namespace PsyPersonServer.API.Controllers
 
         private readonly IMediator _mediator;
 
+        [Authorize(Permissions.AppFiles_Upload)]
         [HttpPost, DisableRequestSizeLimit]
-        [Authorize]
         [Route("Upload")]
         //POST : /api/AppFiles/Upload
         public async Task<IActionResult> Upload()
@@ -34,8 +35,8 @@ namespace PsyPersonServer.API.Controllers
             return Ok(await _mediator.Send(new UploadFileC { File = file}));
         }
 
-        [HttpGet]
         [AllowAnonymous]
+        [HttpGet]
         [Route("GetPhoto")]
         //GET : /api/AppFiles/GetPhoto
         public IActionResult GetPhoto(string filePath)
@@ -47,8 +48,8 @@ namespace PsyPersonServer.API.Controllers
             return File(image, "image/*");
         }
 
+        [Authorize(Permissions.AppFiles_Download)]
         [HttpGet]
-        [Authorize]
         [Route("Download")]
         //GET : /api/AppFiles/Download
         public async Task<IActionResult> Download([FromQuery] string fileName)

@@ -10,4 +10,28 @@ export class UserHelper {
         var userId = payLoad.UserID;
         return userId;
     }
+
+    static getUserRoles(){
+        var payLoad = JSON.parse(window.atob(localStorage.getItem('token')!.split('.')[1]));
+        var userRoles = payLoad.role;
+        return userRoles;
+    }
+
+    static getUserPermissions(){
+        var payLoad = JSON.parse(window.atob(localStorage.getItem('token')!.split('.')[1]));
+        var permissions = payLoad.Permission;
+        return permissions;
+    }
+
+    static UserHasPermission(permissionName: string): boolean{
+        var payLoad = JSON.parse(window.atob(localStorage.getItem('token')!.split('.')[1]));
+        var permissions = payLoad.Permission;
+
+        for (let i = 0; i < permissions.length; i++) {
+            if(permissions[i] === permissionName)
+                return true;
+        }
+
+        return false;
+    }
 }
