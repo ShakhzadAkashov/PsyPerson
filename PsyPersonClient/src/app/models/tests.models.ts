@@ -47,7 +47,8 @@ export class TestForTestingDto{
 
 export enum TestTypeEnum{
     SimpleTest = 0,
-    FirstLevelDifficultTest = 1
+    FirstLevelDifficultTest = 1,
+    SecondLevelDifficultTest = 2
 }
 
 export class CheckTestingCCRq{
