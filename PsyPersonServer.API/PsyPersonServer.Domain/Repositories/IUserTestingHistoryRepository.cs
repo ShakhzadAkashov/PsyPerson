@@ -9,7 +9,7 @@ namespace PsyPersonServer.Domain.Repositories
 {
     public interface IUserTestingHistoryRepository
     {
-        Task<UserTestingHistory> Create(double testScore, TestResultStatusEnum resultStatus, Guid userTestId);
+        Task<UserTestingHistory> Create(double testScore, TestResultStatusEnum resultStatus, Guid userTestId, bool? isChecked);
         Task<TestingHistoryQuestionAnswer> CreateTestingHistoryQuestionAnswer(bool isMarked, Guid answerId, Guid userTestingHistoryId);
         Task<UserTestingHistory> GetById(Guid id);
         Task<IEnumerable<TestingHistoryQuestionAnswer>> GetAnswersById(Guid userTestingHistoryId);

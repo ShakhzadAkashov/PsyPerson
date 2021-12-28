@@ -14,5 +14,6 @@ namespace PsyPersonServer.Application.Testings.Commands.CreateTestingHistory
         public TestResultStatusEnum ResultStatus { get; set; }
         public UserTest UserTest { get; set; }
         public IEnumerable<TestQuestionDto> TestQuestionList { get; set; }
+        public bool? IsChecked { get; set; }
     }
 }

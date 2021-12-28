@@ -133,7 +133,8 @@ namespace PsyPersonServer.Application.Testings.Commands.CheckSimpleTypeTesting
                     TestScore = ball,
                     ResultStatus = status,
                     UserTest = userTest,
-                    TestQuestionList = request.TestForTesting.TestQuestionList
+                    TestQuestionList = request.TestForTesting.TestQuestionList,
+                    IsChecked = true
                 });
 
                 //Send Message to email

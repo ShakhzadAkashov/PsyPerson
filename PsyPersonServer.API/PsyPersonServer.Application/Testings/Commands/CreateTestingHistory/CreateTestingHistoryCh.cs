@@ -24,7 +24,7 @@ namespace PsyPersonServer.Application.Testings.Commands.CreateTestingHistory
         {
             try
             {
-                var userTestingHistory = await _userTestingHistoryRepository.Create(request.TestScore, request.ResultStatus, request.UserTest.Id);
+                var userTestingHistory = await _userTestingHistoryRepository.Create(request.TestScore, request.ResultStatus, request.UserTest.Id, request.IsChecked);
 
                 foreach (var i in request.TestQuestionList)
                 {

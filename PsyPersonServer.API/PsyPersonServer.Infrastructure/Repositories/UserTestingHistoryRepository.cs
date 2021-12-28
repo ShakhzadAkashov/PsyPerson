@@ -19,7 +19,7 @@ namespace PsyPersonServer.Infrastructure.Repositories
 
         private readonly DBContext _dbContext;
 
-        public async Task<UserTestingHistory> Create(double testScore, TestResultStatusEnum resultStatus, Guid userTestId)
+        public async Task<UserTestingHistory> Create(double testScore, TestResultStatusEnum resultStatus, Guid userTestId, bool? isChecked)
         {
             var userTestingHistory = new UserTestingHistory
             {
@@ -27,7 +27,8 @@ namespace PsyPersonServer.Infrastructure.Repositories
                 TestScore = testScore,
                 TestedDate = DateTime.Now,
                 ResultStatus = resultStatus,
-                UserTestId = userTestId
+                UserTestId = userTestId,
+                IsChecked = isChecked
             };
 
             await _dbContext.UserTestingHistories.AddAsync(userTestingHistory);

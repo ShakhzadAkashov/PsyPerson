@@ -15,5 +15,6 @@ namespace PsyPersonServer.Domain.Entities
         public Guid UserTestId { get; set; }
         [ForeignKey("UserTestId")]
         public UserTest UserTestFk { get; set; }
+        public bool? IsChecked { get; set; }
     }
 }
