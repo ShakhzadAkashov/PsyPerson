@@ -56,6 +56,7 @@ export enum TestTypeEnum{
 export class CheckTestingCRq{
     testForTesting:TestForTestingDto = new TestForTestingDto();
     userId: string = '';
+    isChecked?: boolean;
 }
 
 export class TestResultDto{

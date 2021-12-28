@@ -3,8 +3,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
-import { TestForTestingDto, TestQuestionDto, TestResultStatusEnum } from 'src/app/models/tests.models';
+import { CheckTestingCRq, TestForTestingDto, TestQuestionDto, TestResultStatusEnum } from 'src/app/models/tests.models';
+import { CheckTestingResponseDto } from 'src/app/models/userTests.model';
 import { TestService } from 'src/app/services/api/test.service';
+import { UserHelper } from 'src/app/shared/helpers/user.helper';
 import { GetTestForTesting } from 'src/app/store/actions/test.actions';
 import { selectTestForTesting } from 'src/app/store/selectors/test.selector';
 import { AppState } from 'src/app/store/state/app.state';
@@ -64,25 +66,58 @@ export class SecondLevelDifficultTypeTestingComponent implements OnInit {
     this.router.navigate([from]);
   }
 
-  finishTest(){}
+  finishTest(){
+    this.bal = 0.0;
+    const command = new CheckTestingCRq();
+    command.testForTesting = this.test;
+    command.isChecked = false;
+    command.userId = UserHelper.getCurrentUserId();
+    this.service.checkSecondLevelDifficultTypeTesting(command).toPromise().then((res:CheckTestingResponseDto)=>{
+      if(res){
+        this.bal = res.testScore;
+        let status = res.status;
+        let desc = res.description;
+  
+        this.alertTest(this.bal,status,desc,command.isChecked);
+      }
+      else{
+        this.toastr.error("Check Testing Failed",'Check failed.');
+      } 
+    },
+    err => {
+      this.toastr.error(err.error,'Check failed.');
+      console.log(err)
+    });
+  }
 
-  alertTest(bal:number, testStatus:any, desc:string){
+  alertTest(bal:number, testStatus:any, desc:string, isChecked?: boolean){
     let Icon: string | any;
-    if(testStatus === TestResultStatusEnum.Excelent){
-      Icon = 'success';
-    }else if(testStatus === TestResultStatusEnum.Good){
-      Icon = 'success';
-    }else if(testStatus === TestResultStatusEnum.Satisfactory){
-      Icon = 'info';
-    }else if(testStatus === TestResultStatusEnum.Low){
-      Icon = 'warning';
+    let text: string = '';
+    
+    if(isChecked){
+      text = 'Тест был пройден на' + ' ' + bal.toFixed(1) +' %';
+
+      if(testStatus === TestResultStatusEnum.Excelent){
+        Icon = 'success';
+      }else if(testStatus === TestResultStatusEnum.Good){
+        Icon = 'success';
+      }else if(testStatus === TestResultStatusEnum.Satisfactory){
+        Icon = 'info';
+      }else if(testStatus === TestResultStatusEnum.Low){
+        Icon = 'warning';
+      }
+      else{
+        Icon = 'warning';
+      }
     }
     else{
-      Icon = 'warning';
+      text = 'Проверка';
+      Icon = 'info';
     }
+
     Swal.fire({
       title: desc,
-      text: 'Тест был пройден на' + ' ' + bal.toFixed(1) +' %',
+      text: text,
       icon: Icon,
       showCancelButton: true,
       confirmButtonText: 'Ок',

@@ -53,6 +53,23 @@ namespace PsyPersonServer.Infrastructure.Repositories
             return testingHistoryQuestionAnswer;
         }
 
+        public async Task<TestingHistoryCustomQuestionAnswer> CreateTestingHistoryCustomQuestionAnswer(Guid userTestingHistoryId, string name)
+        {
+            var testingHistoryCustomQuestionAnswer = new TestingHistoryCustomQuestionAnswer
+            {
+                Id = new Guid(),
+                Name = name,
+                AnswerScore = 0,
+                AnswerStatus = AnswerResultStatusEnum.Unknown,
+                UserTestingHistoryId = userTestingHistoryId
+            };
+
+            await _dbContext.TestingHistoryCustomQuestionAnswers.AddAsync(testingHistoryCustomQuestionAnswer);
+            await _dbContext.SaveChangesAsync();
+
+            return testingHistoryCustomQuestionAnswer;
+        }
+
         public async Task<UserTestingHistory> GetById(Guid id)
         {
             var userTestingHistory = await _dbContext.UserTestingHistories

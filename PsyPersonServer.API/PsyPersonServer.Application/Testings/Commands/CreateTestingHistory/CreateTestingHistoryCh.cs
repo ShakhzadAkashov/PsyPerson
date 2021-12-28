@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
+using PsyPersonServer.Domain.Models.Tests;
 using PsyPersonServer.Domain.Repositories;
 using System;
 using System.Collections.Generic;
@@ -28,10 +29,17 @@ namespace PsyPersonServer.Application.Testings.Commands.CreateTestingHistory
 
                 foreach (var i in request.TestQuestionList)
                 {
-                    foreach (var j in i.Answers)
+                    if (request.TestType == TestTypeEnum.SimpleTest || request.TestType == TestTypeEnum.FirstLevelDifficultTest)
                     {
-                        var isMarked = j.IsCorrect ?? false;
-                        await _userTestingHistoryRepository.CreateTestingHistoryQuestionAnswer(isMarked, j.Id, userTestingHistory.Id);
+                        foreach (var j in i.Answers)
+                        {
+                            var isMarked = j.IsCorrect ?? false;
+                            await _userTestingHistoryRepository.CreateTestingHistoryQuestionAnswer(isMarked, j.Id, userTestingHistory.Id);
+                        }
+                    }
+                    else if (request.TestType == TestTypeEnum.SecondLevelDifficultTest)
+                    {
+                        await _userTestingHistoryRepository.CreateTestingHistoryCustomQuestionAnswer(userTestingHistory.Id, i.CustomAnswer);
                     }
                 }
 

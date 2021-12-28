@@ -10,5 +10,6 @@ namespace PsyPersonServer.Domain.Models.Tests
         Satisfactory = 50,
         Good = 75,
         Excelent = 100,
+        Unknown = 0,
     }
 }

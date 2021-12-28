@@ -65,4 +65,8 @@ import { environment } from "src/environments/environment";
     checkFirstLevelDifficultTypeTesting(command:CheckTestingCRq){
         return this.http.post<CheckTestingResponseDto>(this.BaseURI + '/Testings/CheckFirstLevelDifficultTypeTesting',command);
     }
+
+    checkSecondLevelDifficultTypeTesting(command:CheckTestingCRq){
+        return this.http.post<CheckTestingResponseDto>(this.BaseURI + '/Testings/CheckSecondLevelDifficultTypeTesting',command);
+    }
   }

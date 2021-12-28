@@ -98,7 +98,8 @@ namespace PsyPersonServer.Application.Testings.Commands.CheckFirstLevelDifficult
                     ResultStatus = status,
                     UserTest = userTest,
                     TestQuestionList = request.TestForTesting.TestQuestionList,
-                    IsChecked = true
+                    IsChecked = true,
+                    TestType = request.TestForTesting.Test.TestType
                 });
 
                 //Send Message to email
