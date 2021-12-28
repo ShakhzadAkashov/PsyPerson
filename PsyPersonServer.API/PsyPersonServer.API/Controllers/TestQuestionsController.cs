@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PsyPersonServer.Application.TestQuestions.Commands.CreateTestQuestion;
 using PsyPersonServer.Application.TestQuestions.Commands.CreateTestQuestionFromFile;
+using PsyPersonServer.Application.TestQuestions.Commands.CreateTestQuestions;
 using PsyPersonServer.Application.TestQuestions.Commands.UpdateTestQuestion;
 using PsyPersonServer.Application.TestQuestions.Queries.GetTestQuestionById;
 using PsyPersonServer.Application.TestQuestions.Queries.GetTestQuestions;
@@ -51,6 +52,15 @@ namespace PsyPersonServer.API.Controllers
         [Route("Create")]
         //POST : /api/TestQuestions/Create
         public async Task<IActionResult> Create([FromBody] CreateTestQuestionC command)
+        {
+            return Ok(await _mediator.Send(command));
+        }
+
+        [Authorize(Permissions.TestQuestions_Create)]
+        [HttpPost]
+        [Route("CreateQuestions")]
+        //POST : /api/TestQuestions/CreateQuestions
+        public async Task<IActionResult> CreateQuestions([FromBody] CreateTestQuestionsC command)
         {
             return Ok(await _mediator.Send(command));
         }

@@ -21,6 +21,7 @@ import { UserTestsDetailsModalComponent } from '../main/userTests/user-list/user
 import { UserTestingHistoryComponent } from '../main/userTests/user-testing-history/user-testing-history.component';
 import { CreateOrEditFirstLevelDifficultTestQuestionComponent } from './tests/test-questions/create-or-edit-first-level-difficult-test-question/create-or-edit-first-level-difficult-test-question.component';
 import { FirstLevelDifficultTypeTestingComponent } from './tests/testing/first-level-difficult-type-testing/first-level-difficult-type-testing.component';
+import { CreateOrEditSecondLevelDifficultTestQuestionComponent } from './tests/test-questions/create-or-edit-second-level-difficult-test-question/create-or-edit-second-level-difficult-test-question.component';
 
 @NgModule({
   imports: [
@@ -47,6 +48,7 @@ import { FirstLevelDifficultTypeTestingComponent } from './tests/testing/first-l
       UserTestingHistoryComponent,
       CreateOrEditFirstLevelDifficultTestQuestionComponent,
       FirstLevelDifficultTypeTestingComponent,
+      CreateOrEditSecondLevelDifficultTestQuestionComponent,
     ],
   exports: [MainComponent]
 })

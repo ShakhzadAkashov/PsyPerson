@@ -1,0 +1,51 @@
+
+<p-toolbar>
+    <div class="p-toolbar-group-left">
+        <span *ngIf="from">
+            <button class="btn btn-md btn-outline-primary mr-3" [disabled]="saving" (click)="goBack()"><i
+                    class="pi pi-arrow-left"></i></button>
+        </span>
+        <span>
+            <span *ngIf="testQuestionId">Редактирование Вопроса</span>
+            <span *ngIf="!testQuestionId">Создание вопроса(ов)</span>
+        </span>
+    </div>
+</p-toolbar>
+
+<form *ngIf="active" #testQuestionForm="ngForm" novalidate (ngSubmit)="save()" autocomplete="off" class="mb-3">
+    <div *ngIf="!edit">
+        <div *ngFor="let item of testQuestions; let j = index">
+            <p-panel header="Название вопроса {{j+1}}:" class="pp">
+                <ng-template pTemplate="icons">
+                    <button class="btn btn-outline-danger" type="button"
+                        (click)="deleteTestQuestion(testQuestions[j])">Удалить
+                    </button>
+                </ng-template>
+                <angular-editor [placeholder]="'Enter text here...'" [(ngModel)]="testQuestions[j].name" [config]="editorConfig" [ngModelOptions]="{standalone: true}"></angular-editor>
+            </p-panel>
+            <div class="dropdown-divider pb-2"></div>
+        </div>
+
+        <div class="row ">
+            <div class="col-md-12">
+                <button type="button" class="btn btn-outline-primary float-right" (click)="addTestQuestuion()"> 
+                    <i class="fa fa-plus"></i> Добавить вопрос
+                </button>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="edit">
+        <p-panel header="Название вопроса">
+            <angular-editor [placeholder]="'Enter text here...'" [(ngModel)]="testQuestion.name" [config]="editorConfig" [ngModelOptions]="{standalone: true}"></angular-editor>
+        </p-panel>
+    </div>
+    <p-divider></p-divider>
+    <div class="row paddingBtn">
+        <div class="col-md-12">
+            <button type="submit" class="btn btn-lg btn-primary float-right" [disabled]="!testQuestionForm.valid">
+                <span> Сохранить</span>
+            </button>
+        </div>
+    </div>
+</form>
+

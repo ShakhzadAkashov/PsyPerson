@@ -31,6 +31,9 @@
                 <span *ngIf="type==1">
                     <button class="btn btn-md btn-outline-primary float-right" (click)="createF1DTypeTestQuestion()"><i class="fa fa-plus"></i> Создать вопрос</button>
                 </span>
+                <span *ngIf="type==2">
+                    <button class="btn btn-md btn-outline-primary float-right" (click)="createF2DTypeTestQuestion()"><i class="fa fa-plus"></i> Создать вопросы</button>
+                </span>
                 <span>
                     <button class="btn btn-md btn-outline-primary float-right mr-2" (click)="createTestQuestionsFromFile()"><i class="fa fa-file"></i> Загрузить вопросы</button>
                 </span>
@@ -98,6 +101,11 @@
                             <a href="javascript:;" 
                                 class="dropdown-item" style="font-size: small;"
                                 (click)="createF1DTypeTestQuestion(record.id)">Редактировать</a>
+                        </li>
+                        <li *ngIf="type==2">
+                            <a href="javascript:;" 
+                                class="dropdown-item" style="font-size: small;"
+                                (click)="createF2DTypeTestQuestion(record.id)">Редактировать</a>
                         </li>
                         <div class="dropdown-divider"></div>
                         <li>

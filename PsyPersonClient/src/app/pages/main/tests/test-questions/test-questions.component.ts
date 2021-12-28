@@ -79,6 +79,10 @@ export class TestQuestionsComponent implements OnInit {
     this.router.navigate(['../home/main/createOrEditL1DTypeTestQuestion'], { queryParams: { testId: this.testId, testQuestionId: testQuestionId, from: 'home/main/testQuestions'} });
   }
 
+  createF2DTypeTestQuestion(testQuestionId?: string){
+    this.router.navigate(['../home/main/createOrEditL2DTypeTestQuestion'], { queryParams: { testId: this.testId, testQuestionId: testQuestionId, from: 'home/main/testQuestions'} });
+  }
+
   createTestQuestionsFromFile(){
     this.createTestQuestionsFromFileModal.show();
   }

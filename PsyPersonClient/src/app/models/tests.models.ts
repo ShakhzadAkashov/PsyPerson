@@ -24,6 +24,7 @@ export class TestQuestionDto{
     answers: TestQuestionAnswerDto[] = [];
     amountCorrectAnswers: number = 0;
     selectedAnswer?: TestQuestionAnswerDto;
+    idForView: number = 0;
 }
 
 export class TestQuestionAnswerDto{

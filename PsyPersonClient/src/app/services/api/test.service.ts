@@ -34,6 +34,10 @@ import { environment } from "src/environments/environment";
         return this.http.post(this.BaseURI + '/TestQuestions/Create', question);
     }
 
+    createTestQuestions(question: TestQuestionDto[]){
+        return this.http.post(this.BaseURI + '/TestQuestions/CreateQuestions', { testQuestions: question });
+    }
+
     updateTestQuestion(question: UpdateTestQuestionCRq){
         return this.http.put(this.BaseURI + '/TestQuestions/Update',question);
     }
