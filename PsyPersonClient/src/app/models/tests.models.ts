@@ -24,6 +24,7 @@ export class TestQuestionDto{
     answers: TestQuestionAnswerDto[] = [];
     amountCorrectAnswers: number = 0;
     selectedAnswer?: TestQuestionAnswerDto;
+    customAnswer: string = '';
     idForView: number = 0;
 }
 
@@ -52,7 +53,7 @@ export enum TestTypeEnum{
     SecondLevelDifficultTest = 2
 }
 
-export class CheckTestingCCRq{
+export class CheckTestingCRq{
     testForTesting:TestForTestingDto = new TestForTestingDto();
     userId: string = '';
 }

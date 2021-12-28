@@ -5,6 +5,7 @@ import { CreateOrEditFirstLevelDifficultTestQuestionComponent } from './tests/te
 import { CreateOrEditSecondLevelDifficultTestQuestionComponent } from './tests/test-questions/create-or-edit-second-level-difficult-test-question/create-or-edit-second-level-difficult-test-question.component';
 import { TestQuestionsComponent } from './tests/test-questions/test-questions.component';
 import { FirstLevelDifficultTypeTestingComponent } from './tests/testing/first-level-difficult-type-testing/first-level-difficult-type-testing.component';
+import { SecondLevelDifficultTypeTestingComponent } from './tests/testing/second-level-difficult-type-testing/second-level-difficult-type-testing.component';
 import { SimpleTypeTestingComponent } from './tests/testing/simple-type-testing/simple-type-testing.component';
 import { TestsComponent } from './tests/tests.component';
 import { UserListComponent } from './userTests/user-list/user-list.component';
@@ -31,6 +32,10 @@ const routes: Routes = [
   { 
     path: 'L1DTypeTesting', 
     component:FirstLevelDifficultTypeTestingComponent
+  },
+  { 
+    path: 'l2DTypeTesting', 
+    component:SecondLevelDifficultTypeTestingComponent
   },
   { 
     path: 'userTestUsers', 

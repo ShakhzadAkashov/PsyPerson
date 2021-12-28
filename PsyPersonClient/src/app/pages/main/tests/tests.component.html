@@ -51,6 +51,11 @@
                                     [queryParams]="{testId: record.id, from: 'home/main/tests'}"  
                                     class="dropdown-item" style="font-size: small;">Пройти тестирование</a>
                                 </li>
+                                <li *ngIf="record.testType == 2">
+                                    <a [routerLink]="['../l2DTypeTesting']"
+                                    [queryParams]="{testId: record.id, from: 'home/main/tests'}"  
+                                    class="dropdown-item" style="font-size: small;">Пройти тестирование</a>
+                                </li>
                                 <div class="dropdown-divider"></div>
                                 <li>
                                     <a href="javascript:;" class="dropdown-item" style="font-size: small;">Просмотр</a>
@@ -109,6 +114,11 @@
                                 </li>
                                 <li *ngIf="record.testType == 1">
                                     <a [routerLink]="['../L1DTypeTesting']"
+                                    [queryParams]="{testId: record.id, from: 'home/main/tests'}"  
+                                    class="dropdown-item" style="font-size: small;">Пройти тестирование</a>
+                                </li>
+                                <li *ngIf="record.testType == 2">
+                                    <a [routerLink]="['../l2DTypeTesting']"
                                     [queryParams]="{testId: record.id, from: 'home/main/tests'}"  
                                     class="dropdown-item" style="font-size: small;">Пройти тестирование</a>
                                 </li>

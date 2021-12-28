@@ -73,6 +73,11 @@
                                     [queryParams]="{testId: record.testId, from: 'home/main/userTests'}" >
                                     Пройти тест
                                 </button>
+                                <button *ngIf="record.test.testType == 2" class="btn btn-md btn-primary" style="width:100%; border-radius: 1rem;"
+                                    [routerLink]="['../l2DTypeTesting']"
+                                    [queryParams]="{testId: record.testId, from: 'home/main/userTests'}" >
+                                    Пройти тест
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -144,6 +149,11 @@
                                 </button>
                                 <button *ngIf="record.test.testType == 1" class="btn btn-md btn-primary" style="width:100%; border-radius: 1rem;"
                                     [routerLink]="['../L1DTypeTesting']"
+                                    [queryParams]="{testId: record.testId, from: 'home/main/userTests'}" >
+                                    Пройти тест
+                                </button>
+                                <button *ngIf="record.test.testType == 2" class="btn btn-md btn-primary" style="width:100%; border-radius: 1rem;"
+                                    [routerLink]="['../l2DTypeTesting']"
                                     [queryParams]="{testId: record.testId, from: 'home/main/userTests'}" >
                                     Пройти тест
                                 </button>

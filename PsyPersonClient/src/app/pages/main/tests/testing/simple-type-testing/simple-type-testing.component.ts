@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
-import { CheckTestingCCRq, TestDto, TestForTestingDto, TestQuestionAnswerDto, TestQuestionDto, TestResultStatusEnum } from 'src/app/models/tests.models';
+import { CheckTestingCRq, TestDto, TestForTestingDto, TestQuestionAnswerDto, TestQuestionDto, TestResultStatusEnum } from 'src/app/models/tests.models';
 import { CheckTestingResponseDto } from 'src/app/models/userTests.model';
 import { TestService } from 'src/app/services/api/test.service';
 import { UserHelper } from 'src/app/shared/helpers/user.helper';
@@ -77,7 +77,7 @@ export class SimpleTypeTestingComponent implements OnInit {
   
   finishTest(){
     this.bal = 0.0;
-    const command = new CheckTestingCCRq();
+    const command = new CheckTestingCRq();
     command.testForTesting = this.test;
     command.userId = UserHelper.getCurrentUserId();
     this.service.checkSimpeTypeTesting(command).toPromise().then((res:CheckTestingResponseDto)=>{
