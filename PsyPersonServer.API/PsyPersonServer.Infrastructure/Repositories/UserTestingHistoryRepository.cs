@@ -54,7 +54,7 @@ namespace PsyPersonServer.Infrastructure.Repositories
             return testingHistoryQuestionAnswer;
         }
 
-        public async Task<TestingHistoryCustomQuestionAnswer> CreateTestingHistoryCustomQuestionAnswer(Guid userTestingHistoryId, string name)
+        public async Task<TestingHistoryCustomQuestionAnswer> CreateTestingHistoryCustomQuestionAnswer(Guid userTestingHistoryId, string name, Guid testQuestionId)
         {
             var testingHistoryCustomQuestionAnswer = new TestingHistoryCustomQuestionAnswer
             {
@@ -62,7 +62,8 @@ namespace PsyPersonServer.Infrastructure.Repositories
                 Name = name,
                 AnswerScore = 0,
                 AnswerStatus = AnswerResultStatusEnum.Unknown,
-                UserTestingHistoryId = userTestingHistoryId
+                UserTestingHistoryId = userTestingHistoryId,
+                TestQuestionId = testQuestionId
             };
 
             await _dbContext.TestingHistoryCustomQuestionAnswers.AddAsync(testingHistoryCustomQuestionAnswer);
@@ -109,6 +110,12 @@ namespace PsyPersonServer.Infrastructure.Repositories
         public async Task<IEnumerable<TestingHistoryQuestionAnswer>> GetAnswersById(Guid userTestingHistoryId)
         {
             var list =  await _dbContext.TestingHistoryQuestionAnswers.Where(x => x.UserTestingHistoryId == userTestingHistoryId).AsNoTracking().ToListAsync();
+            return list;
+        }
+
+        public async Task<IEnumerable<TestingHistoryCustomQuestionAnswer>> GetCustomAnswersById(Guid userTestingHistoryId)
+        {
+            var list = await _dbContext.TestingHistoryCustomQuestionAnswers.Where(x => x.UserTestingHistoryId == userTestingHistoryId).AsNoTracking().ToListAsync();
             return list;
         }
     }

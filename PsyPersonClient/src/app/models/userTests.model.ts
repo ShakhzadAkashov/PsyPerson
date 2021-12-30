@@ -50,6 +50,7 @@ export class TestingHistoryQuestionDto{
     id: string = '';
     name: string = '';
     answers: TestingHistoryQuestionAnswerDto[] = [];
+    customAnswer: TestingHistoryCustomQuestionAnswerDto = new TestingHistoryCustomQuestionAnswerDto();
 }
 
 export class TestingHistoryDto implements PagedResponse<TestingHistoryQuestionDto>{
@@ -58,4 +59,21 @@ export class TestingHistoryDto implements PagedResponse<TestingHistoryQuestionDt
     loading = false;
     testName: string = '';
     testScore: number = 0;
+}
+
+export class TestingHistoryCustomQuestionAnswerDto{
+    id: string = '';
+    name: string = '';
+    answerScore: number = 0.0;
+    answerStatus = AnswerResultStatusEnum;
+    userTestingHistoryId: string = '';
+    testQuestionId: string = '';
+}
+
+export enum AnswerResultStatusEnum{
+    Low = 25,
+    Satisfactory = 50,
+    Good = 75,
+    Excelent = 100,
+    Unknown = 0,
 }

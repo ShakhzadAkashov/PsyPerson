@@ -15,5 +15,8 @@ namespace PsyPersonServer.Domain.Entities
         public Guid UserTestingHistoryId { get; set; }
         [ForeignKey("UserTestingHistoryId")]
         public UserTestingHistory UserTestingHistoryFk { get; set; }
+        public Guid TestQuestionId { get; set; }
+        [ForeignKey("TestQuestionId")]
+        public TestQuestion TestQuestionFk { get; set; }
     }
 }

@@ -63,6 +63,20 @@
                         [for]="item.id">{{record.answers[j].name}}</label>
                         </div>
                     </td>
+
+                    <td *ngIf="testType == 2">
+                        <div style="margin-bottom: 0.5rem; ">
+                            <h5 style="text-decoration: underline;">Вопрос {{i+1}}</h5>
+                            <h5> <span [innerHtml]="record.name | noSanitize"></span></h5>
+                        </div>
+                        <p-divider></p-divider>
+                        <div class="form-group">
+                            <label for="customeAnswer" style="font-size: 1.1rem;"><b>Ответ на вопрос: *</b></label>
+                            <textarea type="text" id="customeAnswer" class="form-control mb-2" style="max-height: 300px;"
+                                [(ngModel)]="record.customAnswer.name" name="customeAnswer" readonly>
+                            </textarea>
+                        </div>
+                    </td>
                 </tr>
             </ng-template>
             <ng-template pTemplate="emptymessage">

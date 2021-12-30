@@ -24,6 +24,7 @@ namespace PsyPersonServer.Application.Testings.Queries.GetTestingHistory
             var userTestingHistory = await _userTestingHistoryRepository.GetById(request.UserTestingHistoryId);
             var testQuestions = await _testQuestionRepository.GetAll(request.Page, request.ItemPerPage, userTestingHistory.UserTestFk.TestId);
             var answers = await _userTestingHistoryRepository.GetAnswersById(request.UserTestingHistoryId);
+            var customAnswers = await _userTestingHistoryRepository.GetCustomAnswersById(request.UserTestingHistoryId);
 
             var testQuestionDtos = new List<TestingHistoryQuestionDto>();
 
@@ -33,7 +34,8 @@ namespace PsyPersonServer.Application.Testings.Queries.GetTestingHistory
                 {
                     Id = i.Id,
                     Name = i.Name,
-                    Answers = new List<TestingHistoryQuestionAnswerDto>()
+                    Answers = new List<TestingHistoryQuestionAnswerDto>(),
+                    CustomAnswer = new TestingHistoryCustomQuestionAnswerDto()
                 };
 
                 foreach (var j in i.Answers)
@@ -57,6 +59,24 @@ namespace PsyPersonServer.Application.Testings.Queries.GetTestingHistory
                     }
 
                     question.Answers.Add(answer);
+                }
+
+                foreach (var k in customAnswers)
+                {
+                    if (k.TestQuestionId == i.Id)
+                    {
+                        var customAnswer = new TestingHistoryCustomQuestionAnswerDto
+                        {
+                            Id = k.Id,
+                            Name = k.Name,
+                            TestQuestionId = k.TestQuestionId,
+                            AnswerScore = k.AnswerScore,
+                            AnswerStatus = k.AnswerStatus,
+                            UserTestingHistoryId = k.UserTestingHistoryId
+                        };
+
+                        question.CustomAnswer = customAnswer;
+                    }
                 }
 
                 testQuestionDtos.Add(question);

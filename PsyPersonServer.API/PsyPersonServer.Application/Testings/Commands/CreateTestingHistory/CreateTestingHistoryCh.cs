@@ -39,7 +39,7 @@ namespace PsyPersonServer.Application.Testings.Commands.CreateTestingHistory
                     }
                     else if (request.TestType == TestTypeEnum.SecondLevelDifficultTest)
                     {
-                        await _userTestingHistoryRepository.CreateTestingHistoryCustomQuestionAnswer(userTestingHistory.Id, i.CustomAnswer);
+                        await _userTestingHistoryRepository.CreateTestingHistoryCustomQuestionAnswer(userTestingHistory.Id, i.CustomAnswer, i.Id);
                     }
                 }
 
