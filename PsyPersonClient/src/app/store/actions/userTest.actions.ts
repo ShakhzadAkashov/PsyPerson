@@ -1,6 +1,6 @@
 import { Action } from "@ngrx/store";
 import { PagedRequest, PagedResponse } from "src/app/models/base";
-import { TestingHistoryDto, UserTestDetailDto, UserTestDto, UserTestUserDto } from "src/app/models/userTests.model";
+import { TestingHistoryDto, UserTestDetailDto, UserTestDto, UserTestingHistoryDto, UserTestUserDto } from "src/app/models/userTests.model";
 
 export enum EUserTestActions{
     GetUserTestUsers = '[User Test] Get User Test Users',
@@ -11,6 +11,8 @@ export enum EUserTestActions{
     GetUserTestsDetailsSuccess = '[User Test] Get User Tests Details Success',
     GetTestingHistory = '[User Test] Get Get Testing History',
     GetTestingHistorySuccess = '[User Test] Get Get Testing History Success',
+    GetUserTestingListForCheck = '[User Test] Get User Testing List For Check',
+    GetUserTestingListForCheckSuccess = '[User Test] Get User Testing List For Check Success',
 }
 
 export class GetUserTestUsers implements Action{
@@ -53,5 +55,16 @@ export class GetTestingHistorySuccess implements Action{
     constructor(public payload: TestingHistoryDto){}
 }
 
+export class GetUserTestingListForCheck implements Action{
+    public readonly type = EUserTestActions.GetUserTestingListForCheck;
+    constructor(public payload: PagedRequest){}
+}
+
+export class GetUserTestingListForCheckSuccess implements Action{
+    public readonly type = EUserTestActions.GetUserTestingListForCheckSuccess;
+    constructor(public payload: PagedResponse<UserTestingHistoryDto>){}
+}
+
 export type UserTestActions = GetUserTestUsers | GetUserTestUsersSuccess | GetUserTests | GetUserTestsSuccess
-                            | GetUserTestsDetails | GetUserTestsDetailsSuccess | GetTestingHistory | GetTestingHistorySuccess;
+                            | GetUserTestsDetails | GetUserTestsDetailsSuccess | GetTestingHistory | GetTestingHistorySuccess
+                            | GetUserTestingListForCheck | GetUserTestingListForCheckSuccess;

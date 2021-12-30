@@ -27,11 +27,13 @@ export class UserHelper {
         var payLoad = JSON.parse(window.atob(localStorage.getItem('token')!.split('.')[1]));
         var permissions = payLoad.Permission;
 
-        for (let i = 0; i < permissions.length; i++) {
-            if(permissions[i] === permissionName)
-                return true;
+        if(permissions){
+            for (let i = 0; i < permissions.length; i++) {
+                if(permissions[i] === permissionName)
+                    return true;
+            }
         }
-
+        
         return false;
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PsyPersonServer.Domain.Entities;
+using PsyPersonServer.Domain.Models.PagedResponse;
 using PsyPersonServer.Domain.Models.Tests;
 using PsyPersonServer.Domain.Repositories;
 using System;
@@ -78,6 +79,31 @@ namespace PsyPersonServer.Infrastructure.Repositories
                 .Where(x => x.Id == id).FirstOrDefaultAsync();
 
             return userTestingHistory;
+        }
+
+        public async Task<PagedResponse<UserTestingHistory>> GetUserTestingHistoryForCheck(int page, int itemPerPage, bool isChecked)
+        {
+            var userTestingHistoryList = _dbContext.UserTestingHistories
+                .Include(x => x.UserTestFk).ThenInclude(x => x.TestFk)
+                .Include(x => x.UserTestFk).ThenInclude(x => x.UserFk)
+                .AsQueryable();
+
+            if (isChecked == false)
+            {
+                userTestingHistoryList = userTestingHistoryList.Where(x => x.IsChecked == isChecked);
+            }
+
+            var total = await userTestingHistoryList.CountAsync();
+
+            foreach (var i in userTestingHistoryList)
+            {
+                i.UserTestFk.UserTestingHistoryList = null;
+            }
+
+            return new PagedResponse<UserTestingHistory>(userTestingHistoryList
+                .OrderBy(x => x.TestedDate)
+                .Skip((page - 1) * itemPerPage)
+                .Take(itemPerPage), total);
         }
 
         public async Task<IEnumerable<TestingHistoryQuestionAnswer>> GetAnswersById(Guid userTestingHistoryId)

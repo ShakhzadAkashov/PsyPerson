@@ -6,6 +6,7 @@ using PsyPersonServer.Application.Testings.Commands;
 using PsyPersonServer.Application.Testings.Commands.CheckFirstLevelDifficultTypeTesting;
 using PsyPersonServer.Application.Testings.Commands.CheckSimpleTypeTesting;
 using PsyPersonServer.Application.Testings.Queries.GetTestForTesting;
+using PsyPersonServer.Application.Testings.Queries.GetTestingForCheck;
 using PsyPersonServer.Application.Testings.Queries.GetTestingHistory;
 using PsyPersonServer.Domain.Models.Permission;
 using System;
@@ -68,6 +69,15 @@ namespace PsyPersonServer.API.Controllers
         [Route("GetTestingHistory")]
         //Get : /api/Testings/GetTestingHistory
         public async Task<IActionResult> GetTestingHistory([FromQuery] GetTestingHistoryQ query)
+        {
+            return Ok(await _mediator.Send(query));
+        }
+
+        [Authorize(Permissions.Testings_ForCheck)]
+        [HttpGet]
+        [Route("GetUserTestingForCheck")]
+        //Get : /api/Testings/GetUserTestingForCheck
+        public async Task<IActionResult> GetUserTestingForCheck([FromQuery] GetTestingForCheckQ query)
         {
             return Ok(await _mediator.Send(query));
         }

@@ -12,6 +12,7 @@ namespace PsyPersonServer.Application.UserTests.Dtos
         public TestResultStatusEnum ResultStatus { get; set; }
         public DateTime TestedDate { get; set; }
         public Guid UserTestId { get; set; }
+        public UserTestDto UserTest { get; set; }
         public bool? IsChecked { get; set; }
     }
 }

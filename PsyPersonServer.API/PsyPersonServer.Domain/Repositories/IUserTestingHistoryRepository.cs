@@ -1,4 +1,5 @@
 ﻿using PsyPersonServer.Domain.Entities;
+using PsyPersonServer.Domain.Models.PagedResponse;
 using PsyPersonServer.Domain.Models.Tests;
 using System;
 using System.Collections.Generic;
@@ -14,5 +15,6 @@ namespace PsyPersonServer.Domain.Repositories
         Task<UserTestingHistory> GetById(Guid id);
         Task<IEnumerable<TestingHistoryQuestionAnswer>> GetAnswersById(Guid userTestingHistoryId);
         Task<TestingHistoryCustomQuestionAnswer> CreateTestingHistoryCustomQuestionAnswer(Guid userTestingHistoryId, string name);
+        Task<PagedResponse<UserTestingHistory>> GetUserTestingHistoryForCheck(int page, int itemPerPage, bool isChecked);
     }
 }

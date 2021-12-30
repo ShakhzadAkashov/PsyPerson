@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { PagedRequest, PagedResponse } from "src/app/models/base";
-import { TestingHistoryDto, UserTestDetailDto, UserTestDto, UserTestUserDto } from "src/app/models/userTests.model";
+import { TestingHistoryDto, UserTestDetailDto, UserTestDto, UserTestingHistoryDto, UserTestUserDto } from "src/app/models/userTests.model";
 import { environment } from "src/environments/environment";
 
 @Injectable({
@@ -31,5 +31,9 @@ import { environment } from "src/environments/environment";
 
     getTestingHistory(request: PagedRequest | any){
         return this.http.get<TestingHistoryDto>(this.BaseURI + '/Testings/GetTestingHistory',{params: request});
+    }
+
+    getUserTestingsForCheck(request: PagedRequest | any){
+        return this.http.get<PagedResponse<UserTestingHistoryDto>>(this.BaseURI + '/Testings/GetUserTestingForCheck',{params: request});
     }
 }

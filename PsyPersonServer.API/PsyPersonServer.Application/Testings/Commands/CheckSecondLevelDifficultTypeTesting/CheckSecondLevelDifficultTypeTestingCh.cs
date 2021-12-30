@@ -49,7 +49,7 @@ namespace PsyPersonServer.Application.Testings.Commands.CheckSecondLevelDifficul
                         ResultStatus = TestResultStatusEnum.Unknown,
                         UserTest = userTest,
                         TestQuestionList = request.TestForTesting.TestQuestionList,
-                        IsChecked = true,
+                        IsChecked = false,
                         TestType = request.TestForTesting.Test.TestType
                     });
 

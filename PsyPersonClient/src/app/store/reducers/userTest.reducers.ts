@@ -48,6 +48,16 @@ export const userTestReducers = (
                 }
             };
         }
+        case EUserTestActions.GetUserTestingListForCheckSuccess: {
+            return {
+                ...state,
+                userTestingListForCheck:{
+                    data : action.payload.data,
+                    total : action.payload.total,
+                    loading : action.payload.loading
+                }
+            };
+        }
 
         default:
             return state;

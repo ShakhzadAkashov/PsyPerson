@@ -11,6 +11,7 @@ import { TestsComponent } from './tests/tests.component';
 import { UserListComponent } from './userTests/user-list/user-list.component';
 import { UserTestListComponent } from './userTests/user-test-list/user-test-list.component';
 import { UserTestingHistoryComponent } from './userTests/user-testing-history/user-testing-history.component';
+import { UserTestingListForCheckComponent } from './userTests/user-testing-list-for-check/user-testing-list-for-check.component';
 
 const routes: Routes = [
   { 
@@ -52,6 +53,10 @@ const routes: Routes = [
   { 
     path: 'userTests', 
     component:UserTestListComponent
+  },
+  { 
+    path: 'userTestingListForCheck', 
+    component:UserTestingListForCheckComponent
   },
   { 
     path: 'TestingHistory', 

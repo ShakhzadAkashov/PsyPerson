@@ -23,3 +23,8 @@ export const selectTestingHistory = createSelector(
     selectUserTest,
     (state: UserTestState) => state.testingHistory
 );
+
+export const selectUserTestingListForCheck = createSelector(
+    selectUserTest,
+    (state: UserTestState) => state.userTestingListForCheck
+);

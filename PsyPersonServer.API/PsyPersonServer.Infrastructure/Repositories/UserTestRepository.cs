@@ -27,16 +27,40 @@ namespace PsyPersonServer.Infrastructure.Repositories
 
         public async Task<PagedResponse<UserTest>> GetUserTests(int page, int itemPerPage, string userId)
         {
-            var userTests = _dbContext.UserTests
-                .Include(x => x.TestFk)
-                .Include(x => x.UserTestingHistoryList).Where(x => x.UserId == userId).AsQueryable();
+            var userTests1 = _dbContext.UserTests
+                .Include(x => x.TestFk).Where(x => x.UserId == userId);
 
-            var total = await userTests.CountAsync();
+            var total = await userTests1.CountAsync();
 
-            return new PagedResponse<UserTest>(userTests
+            var u = userTests1
                 .OrderByDescending(x => x.AssignedDate)
                 .Skip((page - 1) * itemPerPage)
-                .Take(itemPerPage), total);
+                .Take(itemPerPage);
+
+            var userTests = await u.ToListAsync();
+
+            foreach (var i in userTests)
+            {
+                var list = await _dbContext.UserTestingHistories.Where(x => x.UserTestId == i.Id).ToListAsync();
+                i.UserTestingHistoryList = new List<UserTestingHistory>();
+
+                foreach (var j in list)
+                {
+                    var h = new UserTestingHistory
+                    {
+                        Id = j.Id,
+                        TestScore = j.TestScore,
+                        TestedDate = j.TestedDate,
+                        ResultStatus = j.ResultStatus,
+                        UserTestId = j.UserTestId,
+                        IsChecked = j.IsChecked
+                    };
+
+                    i.UserTestingHistoryList.Add(h);
+                }
+            }
+
+            return new PagedResponse<UserTest>(userTests, total);
         }
 
         public async Task<UserTest> GetUserTest(string userId, Guid testId)

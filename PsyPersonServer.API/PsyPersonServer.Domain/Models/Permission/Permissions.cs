@@ -51,6 +51,7 @@ namespace PsyPersonServer.Domain.Models.Permission
         public const string Testings_View = "Permissions.Testings.View";
         public const string Testings_ViewHistory = "Permissions.Testings.ViewHistory";
         public const string Testings_Create = "Permissions.Testings.Create";
+        public const string Testings_ForCheck = "Permissions.Testings.ForCheck";
 
         // UserTests
         public const string UserTests = "Permissions.UserTests.Pages";

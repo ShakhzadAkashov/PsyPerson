@@ -38,6 +38,10 @@
                 nz-menu-item nzMatchRouter>
               <a routerLink="/home/main/userTestUsers">Users</a>
             </li>
+            <li *ngIf="UserHelper.UserHasPermission('Permissions.Testings.ForCheck')" 
+                nz-menu-item nzMatchRouter>
+              <a routerLink="/home/main/userTestingListForCheck">User Testings</a>
+            </li>
           </ul>
         </li>
         <li nz-submenu nzOpen nzTitle="Employees" nzIcon="form">

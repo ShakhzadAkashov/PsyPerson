@@ -8,6 +8,7 @@ export class UserTestingHistoryDto{
     resultStatus = TestResultStatusEnum;
     testedDate: Date = new Date();
     userTestId: string = '';
+    userTest: UserTestDto = new UserTestDto();
     isChecked?: boolean;
 }
 
@@ -19,6 +20,7 @@ export class UserTestDto{
     userId: string = '';
     testId: string = '';
     test: TestDto = new TestDto();
+    user: UserDto = new UserDto();
     userTestingHistoryList: UserTestingHistoryDto[] = [];
     lastUserTestingHistoryDto: UserTestingHistoryDto = new UserTestingHistoryDto();
 }
