@@ -44,7 +44,8 @@ export const userTestReducers = (
                     total : action.payload.total,
                     loading : action.payload.loading,
                     testName : action.payload.testName,
-                    testScore: action.payload.testScore
+                    testScore: action.payload.testScore,
+                    testId: action.payload.testId
                 }
             };
         }

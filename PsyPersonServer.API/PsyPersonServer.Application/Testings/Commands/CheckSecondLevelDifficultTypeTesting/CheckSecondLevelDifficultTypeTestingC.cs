@@ -11,5 +11,6 @@ namespace PsyPersonServer.Application.Testings.Commands
         public TestForTestingDto TestForTesting { get; set; }
         public string UserId { get; set; }
         public bool? IsChecked { get; set; }
+        public Guid UserTestingHistoryId { get; set; }
     }
 }

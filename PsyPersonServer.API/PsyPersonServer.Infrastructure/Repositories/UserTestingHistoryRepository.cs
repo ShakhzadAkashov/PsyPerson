@@ -38,6 +38,22 @@ namespace PsyPersonServer.Infrastructure.Repositories
             return userTestingHistory;
         }
 
+        public async Task<bool> Update(Guid id,double testScore, TestResultStatusEnum resultStatus, bool isChecked)
+        {
+            var userTestingHistory = await _dbContext.UserTestingHistories.FirstOrDefaultAsync(x => x.Id == id);
+            if (userTestingHistory != null)
+            {
+                userTestingHistory.ResultStatus = resultStatus;
+                userTestingHistory.TestScore = testScore;
+                userTestingHistory.IsChecked = isChecked;
+
+                await _dbContext.SaveChangesAsync();
+                return true;
+            }
+
+            return false;
+        }
+
         public async Task<TestingHistoryQuestionAnswer> CreateTestingHistoryQuestionAnswer(bool isMarked, Guid answerId, Guid userTestingHistoryId)
         {
             var testingHistoryQuestionAnswer = new TestingHistoryQuestionAnswer
@@ -70,6 +86,22 @@ namespace PsyPersonServer.Infrastructure.Repositories
             await _dbContext.SaveChangesAsync();
 
             return testingHistoryCustomQuestionAnswer;
+        }
+
+        public async Task<bool> UpdateTestingHistoryCustomQuestionAnswer(Guid id, double answerScore, AnswerResultStatusEnum? answerStatus)
+        {
+            var testingHistoryCustomQuestionAnswer = await _dbContext.TestingHistoryCustomQuestionAnswers.FirstOrDefaultAsync(x => x.Id == id);
+
+            if (testingHistoryCustomQuestionAnswer != null)
+            {
+                testingHistoryCustomQuestionAnswer.AnswerScore = answerScore;
+                testingHistoryCustomQuestionAnswer.AnswerStatus = answerStatus.Value;
+
+                await _dbContext.SaveChangesAsync();
+                return true;
+            }
+
+            return false;
         }
 
         public async Task<UserTestingHistory> GetById(Guid id)

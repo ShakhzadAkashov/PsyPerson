@@ -82,7 +82,7 @@ namespace PsyPersonServer.Application.Testings.Queries.GetTestingHistory
                 testQuestionDtos.Add(question);
             }
 
-            return new TestingHistoryDto<TestingHistoryQuestionDto>(testQuestionDtos, testQuestions.Total, userTestingHistory.UserTestFk.TestFk.Name, userTestingHistory.TestScore);
+            return new TestingHistoryDto<TestingHistoryQuestionDto>(testQuestionDtos, testQuestions.Total, userTestingHistory.UserTestFk.TestFk.Name, userTestingHistory.TestScore, userTestingHistory.UserTestFk.TestFk.Id);
         }
     }
 }

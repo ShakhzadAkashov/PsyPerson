@@ -13,6 +13,6 @@ export const initialUserTestState: UserTestState = {
     userTestUsers: { data:[], total:0, loading: true },
     userTests: { data:[], total:0, loading: true },
     userTestsDetails: { data:[], total:0, loading: true },
-    testingHistory: { data:[], total:0, loading: true, testName:'',testScore:0 },
+    testingHistory: { data:[], total:0, loading: true, testName:'',testScore:0, testId:'' },
     userTestingListForCheck: { data:[], total:0, loading: true }
 };

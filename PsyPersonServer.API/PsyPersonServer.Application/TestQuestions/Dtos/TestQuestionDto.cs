@@ -16,5 +16,8 @@ namespace PsyPersonServer.Application.TestQuestions.Dtos
         public int AmountCorrectAnswers { get; set; }
         public TestQuestionAnswerDto? SelectedAnswer { get; set; }
         public string CustomAnswer {get;set;}
+        public double? CustomAnswerScore { get; set; }
+        public AnswerResultStatusEnum? CustomAnswerStatus { get; set; }
+        public Guid? CustomAnswerId { get; set; }
     }
 }

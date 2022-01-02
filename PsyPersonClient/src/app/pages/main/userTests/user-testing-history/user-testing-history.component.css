@@ -33,6 +33,26 @@ label {
     vertical-align: middle;
 }
 
+.custom-sq-pink:before {
+    content: "";
+    display: inline-block;
+    width: 17px;
+    height: 17px;
+    margin-right: 5px;
+    background-color: var(--pink-200);
+    vertical-align: middle;
+}
+
+.custom-sq-green:before {
+    content: "";
+    display: inline-block;
+    width: 17px;
+    height: 17px;
+    margin-right: 5px;
+    background-color: var(--green-200);
+    vertical-align: middle;
+}
+
 :host ::ng-deep .p-toolbar{
     border: 0;
     margin-bottom: 0.5rem;
@@ -40,4 +60,17 @@ label {
 
 textarea[readonly] {
     background-color: white;
+}
+
+.paddingBtn{
+    padding-bottom: 2rem;
+    padding-top: 2rem;
+}
+
+input[readonly] {
+    background-color: var(--pink-100);
+}
+
+textarea[readonly] {
+    background-color: var(--green-100);
 }

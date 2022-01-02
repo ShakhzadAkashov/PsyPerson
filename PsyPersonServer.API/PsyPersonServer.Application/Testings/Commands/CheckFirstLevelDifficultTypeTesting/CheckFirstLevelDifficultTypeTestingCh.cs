@@ -69,7 +69,7 @@ namespace PsyPersonServer.Application.Testings.Commands.CheckFirstLevelDifficult
 
                 foreach (var i in test.TestResultList)
                 {
-                    if (i.RangeFrom >= ball && i.RangeTo <= ball)
+                    if (i.RangeFrom <= ball && i.RangeTo >= ball)
                     {
                         score = ball;
                         status = i.Status;
@@ -109,7 +109,7 @@ namespace PsyPersonServer.Application.Testings.Commands.CheckFirstLevelDifficult
                 string lastName = user.LastName ?? "";
                 string patronymic = user.Patronymic ?? "";
                 string fullName = firstName + " " + lastName + " " + patronymic;
-                string letterHeader = $"Перепрохождение теста: {test.Name}";
+                string letterHeader = $"Прохождение теста: {test.Name}";
 
                 await _mediator.Send(new SendEmailMessageC
                 {

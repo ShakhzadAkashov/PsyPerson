@@ -1,3 +1,5 @@
+import { AnswerResultStatusEnum } from "./userTests.model";
+
 export class TestDto{
     id: string = '';
     name: string = '';
@@ -26,6 +28,9 @@ export class TestQuestionDto{
     selectedAnswer?: TestQuestionAnswerDto;
     customAnswer: string = '';
     idForView: number = 0;
+    customAnswerScore?: number = 0;
+    customAnswerStatus?: AnswerResultStatusEnum | any;
+    customAnswerId?: string;
 }
 
 export class TestQuestionAnswerDto{
@@ -57,6 +62,7 @@ export class CheckTestingCRq{
     testForTesting:TestForTestingDto = new TestForTestingDto();
     userId: string = '';
     isChecked?: boolean;
+    userTestingHistoryId?: string;
 }
 
 export class TestResultDto{

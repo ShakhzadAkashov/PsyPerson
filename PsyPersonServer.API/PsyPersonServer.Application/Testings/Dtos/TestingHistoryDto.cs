@@ -9,13 +9,15 @@ namespace PsyPersonServer.Application.Testings.Dtos
 {
     public class TestingHistoryDto<T> : PagedResponse<T>
     {
-        public TestingHistoryDto(IEnumerable<T> data, int total, string testName, double testScore) : base(data, total)
+        public TestingHistoryDto(IEnumerable<T> data, int total, string testName, double testScore, Guid testId) : base(data, total)
         {
             TestName = testName;
             TestScore = testScore;
+            TestId = testId;
         }
         public string TestName { get; set; }
         public double TestScore { get; set; }
+        public Guid TestId { get; set; }
     }
 
     public class TestingHistoryQuestionDto

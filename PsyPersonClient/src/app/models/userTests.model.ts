@@ -42,7 +42,17 @@ export class UserTestDetailDto extends UserTestDto{
     status: string = '';
 }
 
-export class TestingHistoryQuestionAnswerDto extends TestQuestionAnswerDto{
+// export class TestingHistoryQuestionAnswerDto extends TestQuestionAnswerDto{
+//     isMarked: boolean = false;
+// }
+
+export class TestingHistoryQuestionAnswerDto {
+    id: string = '';
+    name: string = '';
+    isCorrect: boolean = false;
+    testQuestionId: string = '';
+    idForView: number = 0;
+    score: number = 0;
     isMarked: boolean = false;
 }
 
@@ -54,11 +64,12 @@ export class TestingHistoryQuestionDto{
 }
 
 export class TestingHistoryDto implements PagedResponse<TestingHistoryQuestionDto>{
-    data = [];
+    data: TestingHistoryQuestionDto[] = [];
     total = 0;
     loading = false;
     testName: string = '';
     testScore: number = 0;
+    testId: string = '';
 }
 
 export class TestingHistoryCustomQuestionAnswerDto{

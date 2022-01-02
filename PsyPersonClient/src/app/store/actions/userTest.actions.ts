@@ -9,8 +9,8 @@ export enum EUserTestActions{
     GetUserTestsSuccess = '[User Test] Get User Tests Success',
     GetUserTestsDetails = '[User Test] Get User Tests Details',
     GetUserTestsDetailsSuccess = '[User Test] Get User Tests Details Success',
-    GetTestingHistory = '[User Test] Get Get Testing History',
-    GetTestingHistorySuccess = '[User Test] Get Get Testing History Success',
+    GetTestingHistory = '[User Test] Get Testing History',
+    GetTestingHistorySuccess = '[User Test] Get Testing History Success',
     GetUserTestingListForCheck = '[User Test] Get User Testing List For Check',
     GetUserTestingListForCheckSuccess = '[User Test] Get User Testing List For Check Success',
 }
