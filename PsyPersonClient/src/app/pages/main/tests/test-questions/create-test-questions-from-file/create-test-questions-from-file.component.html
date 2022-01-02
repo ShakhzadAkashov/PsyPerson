@@ -12,11 +12,21 @@
                 </div>
                 <div class="modal-body">
                     <p-fieldset legend="Интсрукция">
-                        <label for="instruction" style="font-size: 1.1rem;">
-                            {{ instruction }} <br>
+                        <label *ngIf="testType == 0" for="instruction" style="font-size: 1.1rem;">
+                            {{ SimpleTypeinstruction }} <br>
                             <span>.docx - </span> <app-file-download [fileName]="'TestQuestionsDOCX.docx'" [type]="'Link'"></app-file-download> <br>
                             <span>.doc - </span> <app-file-download [fileName]="'TestQuestionsDOC.doc'" [type]="'Link'"></app-file-download> <br>
                             <span>.txt - </span> <app-file-download [fileName]="'TestQuestionsTXT.txt'" [type]="'Link'"></app-file-download> <br>
+                        </label>
+                        <label *ngIf="testType == 1" for="instruction" style="font-size: 1.1rem;">
+                            {{ FLDTypeinstruction }} <br>
+                            <span>.docx - </span> <app-file-download [fileName]="'FLDT_TestQuestionsDOCX.docx'" [type]="'Link'"></app-file-download> <br>
+                            <span>.doc - </span> <app-file-download [fileName]="'FLDT_TestQuestionsDOC.doc'" [type]="'Link'"></app-file-download> <br>
+                        </label>
+                        <label *ngIf="testType == 2" for="instruction" style="font-size: 1.1rem;">
+                            {{ SLDTypeinstruction }} <br>
+                            <span>.docx - </span> <app-file-download [fileName]="'SLDT_TestQuestionsDOCX.docx'" [type]="'Link'"></app-file-download> <br>
+                            <span>.doc - </span> <app-file-download [fileName]="'SLDT_TestQuestionsDOC.doc'" [type]="'Link'"></app-file-download> <br>
                         </label>
                     </p-fieldset>
                     <div class="mb-3"></div>

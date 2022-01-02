@@ -13,5 +13,6 @@ namespace PsyPersonServer.Application.TestQuestions.Commands.CreateTestQuestionF
     {
         public IFormFile File { get; set; }
         public Guid TestId { get; set; }
+        public TestTypeEnum TestType { get; set; }
     }
 }

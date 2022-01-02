@@ -75,24 +75,53 @@ namespace PsyPersonServer.Application.TestQuestions.Commands.CreateTestQuestions
                     question.Name = b.InnerText.ToString();
                     question.TestId = request.TestId;
 
-                    for (int j = 0; j < questionList[i].ChildNodes.Count; j++)
+                    if (request.TestType == TestTypeEnum.SimpleTest)
                     {
-                        var a = questionList[i].ChildNodes[j].Name;
+                        for (int j = 0; j < questionList[i].ChildNodes.Count; j++)
+                        {
+                            var a = questionList[i].ChildNodes[j].Name;
 
-                        if (a == _uploadTQFFSettings.AnswerRight)
-                        {
-                            var answer = new TestQuestionAnswer();
-                            answer.Name = questionList[i].ChildNodes[j].InnerText;
-                            answer.IsCorrect = true;
-                            answer.IdForView = j;
-                            question.Answers.Add(answer);
+                            if (a == _uploadTQFFSettings.AnswerRight)
+                            {
+                                var answer = new TestQuestionAnswer();
+                                answer.Name = questionList[i].ChildNodes[j].InnerText;
+                                answer.IsCorrect = true;
+                                answer.IdForView = j;
+                                question.Answers.Add(answer);
+                            }
+                            else if (a == _uploadTQFFSettings.Answer)
+                            {
+                                var answer = new TestQuestionAnswer();
+                                answer.Name = questionList[i].ChildNodes[j].InnerText;
+                                answer.IsCorrect = false;
+                                answer.IdForView = j;
+                                question.Answers.Add(answer);
+                            }
                         }
-                        else if (a == _uploadTQFFSettings.Answer)
+                    }
+                    else if (request.TestType == TestTypeEnum.FirstLevelDifficultTest)
+                    {
+                        var nodes = questionList[i].SelectNodes(_uploadTQFFSettings.Answer);
+                        foreach (XmlNode item in nodes)
                         {
+                            var it = item.ChildNodes;
+
+                            string answerName = "";
+                            double answerScore = 0.0;
+
+                            for (int k = 0; k < it.Count; k++)
+                            {
+                                if (it[k].Name == _uploadTQFFSettings.AnswerName)
+                                    answerName = it[k].InnerText.ToString();
+                                else if(it[k].Name == _uploadTQFFSettings.AnswerScore)
+                                    answerScore = Convert.ToDouble(it[k].InnerText);
+                            }
+
                             var answer = new TestQuestionAnswer();
-                            answer.Name = questionList[i].ChildNodes[j].InnerText;
-                            answer.IsCorrect = false;
-                            answer.IdForView = j;
+                            answer.Name = answerName;
+                            answer.IsCorrect = true;
+                            answer.IdForView = i;
+                            answer.Score = answerScore;
                             question.Answers.Add(answer);
                         }
                     }

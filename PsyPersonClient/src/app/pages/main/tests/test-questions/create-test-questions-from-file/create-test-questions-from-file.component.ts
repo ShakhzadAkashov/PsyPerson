@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { finalize } from 'rxjs/operators';
+import { TestTypeEnum } from 'src/app/models/tests.models';
 import { TestService } from 'src/app/services/api/test.service';
 
 @Component({
@@ -19,9 +20,12 @@ export class CreateTestQuestionsFromFileModalComponent implements OnInit {
   saving = false;
 
   buttonName: string = "Загрузить файл";
-  instruction: string = "Можно загружать файлы с такими расширениями как: .txt, .doc, .docx; Шаблоны для загрузки файлов приведены ниже:";
+  SimpleTypeinstruction: string = "Можно загружать файлы с такими расширениями как: .txt, .doc, .docx; Шаблоны для загрузки файлов приведены ниже:";
+  FLDTypeinstruction: string = "Можно загружать файлы с такими расширениями как: .doc, .docx; Шаблоны для загрузки файлов приведены ниже:";
+  SLDTypeinstruction: string = "Можно загружать файлы с такими расширениями как: .doc, .docx; Шаблоны для загрузки файлов приведены ниже:";
   testId = '';
   fileToUpload: any;
+  testType: TestTypeEnum | any;
 
   constructor(
     private toastr: ToastrService, 
@@ -29,6 +33,7 @@ export class CreateTestQuestionsFromFileModalComponent implements OnInit {
     public activatedRoute: ActivatedRoute,
   ) { 
     this.testId = this.activatedRoute.snapshot.queryParams['testId'];
+    this.testType = this.activatedRoute.snapshot.queryParams['type'];
   }
 
   ngOnInit(): void {
@@ -47,6 +52,7 @@ export class CreateTestQuestionsFromFileModalComponent implements OnInit {
     const testQuestionsFromFile = new FormData();
     testQuestionsFromFile.append('file',this.fileToUpload,this.fileToUpload.name);
     testQuestionsFromFile.append('testId',this.testId);
+    testQuestionsFromFile.append('testType',this.testType);
 
     this.service.uploadTestQuestionsFromFile(testQuestionsFromFile)
     .pipe(finalize(() => { this.saving = false;}))
