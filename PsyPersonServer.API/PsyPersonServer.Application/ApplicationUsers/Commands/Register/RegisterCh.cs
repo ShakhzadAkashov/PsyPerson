@@ -24,11 +24,10 @@ namespace PsyPersonServer.Application.ApplicationUsers.Commands.Register
             var applicationUser = new ApplicationUser()
             {
                 UserName = request.UserName,
-                FirstName = request.FirstName,
-                LastName = request.LastName,
-                Patronymic = request.Patronymic,
                 Email = request.Email,
-                PhoneNumber = request.PhoneNumber
+                FirstName = "",
+                LastName = "",
+                Patronymic = ""
             };
 
             try

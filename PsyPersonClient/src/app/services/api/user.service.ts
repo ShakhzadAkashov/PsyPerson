@@ -53,4 +53,8 @@ export class UserService {
   changePassword(command:ChangePasswordDto){
     return this.http.post(this.BaseURI + '/Users/ChangePassword',command);
   }
+
+  register(formData: any){
+    return this.http.post(this.BaseURI + '/ApplicationUser/Register', formData);
+  }
 }
