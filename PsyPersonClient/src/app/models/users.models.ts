@@ -19,7 +19,7 @@ export class AssignRoleToUserCommand{
 }
 
 export class ChangePasswordDto{
-    id?: string | null;
+    userId?: string | null;
     newPassword: string = '';
     IsOwner: boolean = false;
 }

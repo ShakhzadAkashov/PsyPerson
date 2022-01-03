@@ -99,7 +99,7 @@
                         <li>
                             <a href="javascript:;" 
                                 class="dropdown-item" style="font-size: small;"
-                                >Изменить пароль</a>
+                                (click)="changePasswordModal.show(false,record.id)">Изменить пароль</a>
                         </li>
                         <div class="dropdown-divider"></div>
                         <li>
@@ -144,3 +144,4 @@
 
 <app-create-or-edit-user-modal #createOrEditUsersModal (modalSave)="onLazyLoad()"></app-create-or-edit-user-modal>
 <app-view-user-modal #viewUsersModal></app-view-user-modal>
+<app-change-password-modal #changePasswordModal></app-change-password-modal>

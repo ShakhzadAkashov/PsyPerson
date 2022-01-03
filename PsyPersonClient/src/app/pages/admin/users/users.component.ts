@@ -13,6 +13,7 @@ import { AppState } from 'src/app/store/state/app.state';
 import { CreateOrEditUserModalComponent } from './create-or-edit-user-modal/create-or-edit-user-modal.component';
 import { ViewUserModalComponent } from './view-user-modal/view-user-modal.component';
 import Swal from 'sweetalert2'
+import { ChangePasswordModalComponent } from '../../user/change-password-modal/change-password-modal.component';
 
 @Component({
   selector: 'app-users',
@@ -24,6 +25,7 @@ export class UsersComponent implements OnInit {
   @ViewChild('createOrEditUsersModal', { static: true })
   createOrEditUsersModal: CreateOrEditUserModalComponent = new CreateOrEditUserModalComponent(this.store,this.toastr,this.service);
   @ViewChild('viewUsersModal', { static: true }) viewUsersModal: ViewUserModalComponent = new ViewUserModalComponent(this.store); 
+  @ViewChild('changePasswordModal', { static: true }) changePasswordModal: ChangePasswordModalComponent = new ChangePasswordModalComponent(this.service);
   users$: Observable<PagedResponse<UserDto> | any> = this.store.pipe(select(selectUserList));
   // loading: boolean = false;
   filterText='';

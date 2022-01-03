@@ -40,7 +40,7 @@ import { AppFilesService } from './services/api/appFiles.serive';
 import { UserTestService } from './services/api/userTest.service';
 import { UserTestEffects } from './store/effects/userTest.effects';
 import { SharedModule } from '../app/shared/shared.module';
-import { ChangePasswordModalComponent } from '../app/pages/user/change-password-modal/change-password-modal.component';
+
 
 registerLocaleData(ru);
 
@@ -52,7 +52,6 @@ registerLocaleData(ru);
     RegistrationComponent,
     HomeComponent,
     StatisticsComponent,
-    ChangePasswordModalComponent,
   ],
   imports: [
     BrowserModule,

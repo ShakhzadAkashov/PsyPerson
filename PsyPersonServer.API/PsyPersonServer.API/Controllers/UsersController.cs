@@ -109,7 +109,7 @@ namespace PsyPersonServer.API.Controllers
             {
                 userId = User.Claims.First(c => c.Type == "UserID").Value;
             }
-            else if(command.IsOwner == true && (command.UserId == null || string.IsNullOrEmpty(command.UserId)))
+            else if (command.IsOwner == false && (command.UserId == null || string.IsNullOrEmpty(command.UserId)))
             {
                 return BadRequest(new { message = "User not Founded" });
             }

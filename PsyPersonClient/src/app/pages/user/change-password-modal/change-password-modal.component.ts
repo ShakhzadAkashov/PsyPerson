@@ -30,9 +30,9 @@ export class ChangePasswordModalComponent implements OnInit {
     this.changePassword = new ChangePasswordDto();
     this.changePassword.IsOwner = isOwner;
     if (id != null) {
-      this.changePassword.id = id;
+      this.changePassword.userId = id;
     }else{
-      this.changePassword.id = null;
+      this.changePassword.userId = null;
     }
     this.modal.show();
   }
@@ -81,12 +81,12 @@ export class ChangePasswordModalComponent implements OnInit {
         err => {
           Swal.fire({
             title: 'Ошибка!',
-            text: err,
+            text: err.error,
             icon: 'error',
             confirmButtonText: 'Ок',
             confirmButtonColor: '#DC3545',
           })
-          console.log(err)
+          console.log(err.error)
         });
     }
   }
