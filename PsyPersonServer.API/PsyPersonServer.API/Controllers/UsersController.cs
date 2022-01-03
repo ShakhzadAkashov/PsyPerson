@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PsyPersonServer.Application.Users.Commands.AssignRoleToUser;
+using PsyPersonServer.Application.Users.Commands.ChangePassword;
 using PsyPersonServer.Application.Users.Commands.CreateUser;
 using PsyPersonServer.Application.Users.Commands.RemoveRoleFromUser;
 using PsyPersonServer.Application.Users.Commands.RemoveUser;
@@ -90,6 +91,30 @@ namespace PsyPersonServer.API.Controllers
         public async Task<IActionResult> RemoveRoleFromUser([FromBody] RemoveRoleFromUserC command)
         {
             return Ok(await _mediator.Send(command));
+        }
+
+        [Authorize(Permissions.Users_ChangePassword)]
+        [HttpPost]
+        [Route("ChangePassword")]
+        //POST : /api/Users/ChangePassword
+        public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordC command)
+        {
+            string userId = "";
+
+            if (command.UserId != null && !string.IsNullOrEmpty(command.UserId))
+            {
+                userId = command.UserId;
+            }
+            else if (command.IsOwner == true && (command.UserId == null || string.IsNullOrEmpty(command.UserId)))
+            {
+                userId = User.Claims.First(c => c.Type == "UserID").Value;
+            }
+            else if(command.IsOwner == true && (command.UserId == null || string.IsNullOrEmpty(command.UserId)))
+            {
+                return BadRequest(new { message = "User not Founded" });
+            }
+
+            return Ok(await _mediator.Send(new ChangePasswordC { UserId = userId, NewPassword = command.NewPassword }));
         }
     }
 }

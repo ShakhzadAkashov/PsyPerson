@@ -66,7 +66,8 @@ namespace PsyPersonServer.API
 
             services.AddIdentityCore<ApplicationUser>()
                 .AddRoles<ApplicationRole>()
-                .AddEntityFrameworkStores<DBContext>();
+                .AddEntityFrameworkStores<DBContext>()
+                .AddDefaultTokenProviders();
 
             services.AddTransient<IUserRepository,UserRepository>();
             services.AddTransient<ITestRepository,TestRepository>();

@@ -90,3 +90,29 @@
     overflow-y: auto;
     background: #fff
   }
+
+  .custom-btn-sm {
+    padding: 0rem 0rem;
+    font-size: .875rem;
+    line-height: 1.5;
+    border-radius: 2rem;
+  }
+
+  :host ::ng-deep .p-sidebar .p-sidebar-header{
+    border-bottom:2px solid rgb(209, 207, 207); 
+    padding:0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  dt {
+    float: left;
+    width: 25%;
+  }
+
+  dd {
+    margin-left: 25%;
+    background-color: #F8F9FA;
+  }
+  dl{
+    margin-bottom: 0 !important;
+  }

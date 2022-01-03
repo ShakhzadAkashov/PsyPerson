@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { PagedRequest, PagedResponse } from 'src/app/models/base';
 import { RoleDto } from 'src/app/models/roles.models';
-import { AssignRoleToUserCommand, UserDto } from 'src/app/models/users.models';
+import { AssignRoleToUserCommand, ChangePasswordDto, UserDto } from 'src/app/models/users.models';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -44,5 +44,13 @@ export class UserService {
 
   removeRoleFromUser(userId:any, roleId:any){
     return this.http.delete(this.BaseURI + '/Users/RemoveRoleFromUser',{body: {userId:userId, roleId: roleId}});
+  }
+
+  currentUserProfile(){
+    return this.http.get<UserDto>(this.BaseURI + '/ApplicationUser/CurrentUserProfile');
+  }
+
+  changePassword(command:ChangePasswordDto){
+    return this.http.post(this.BaseURI + '/Users/ChangePassword',command);
   }
 }

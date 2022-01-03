@@ -17,3 +17,9 @@ export class AssignRoleToUserCommand{
     roleId: string = '';
     roleName: string = '';
 }
+
+export class ChangePasswordDto{
+    id?: string | null;
+    newPassword: string = '';
+    IsOwner: boolean = false;
+}

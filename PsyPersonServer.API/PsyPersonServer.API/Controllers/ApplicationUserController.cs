@@ -7,6 +7,8 @@ using PsyPersonServer.Application.ApplicationUsers.Commands.ForgotPassword;
 using PsyPersonServer.Application.ApplicationUsers.Commands.Login;
 using PsyPersonServer.Application.ApplicationUsers.Commands.Register;
 using PsyPersonServer.Application.ApplicationUsers.Commands.ResetPassword;
+using PsyPersonServer.Application.ApplicationUsers.Queries.GetUserProfile;
+using PsyPersonServer.Domain.Models.Permission;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -67,6 +69,16 @@ namespace PsyPersonServer.API.Controllers
         public async Task<IActionResult> ResetPassword(ResetPasswordC command)
         {
             return Ok(await _mediator.Send(command));
+        }
+
+        [Authorize(Permissions.Users_ViewProfile)]
+        [HttpGet]
+        [Route("CurrentUserProfile")]
+        //Get : /api/ApplicationUser/CurrentUserProfile
+        public async Task<IActionResult> CurrentUserProfile()
+        {
+            string userId = User.Claims.First(c => c.Type == "UserID").Value;
+            return Ok(await _mediator.Send(new GetCurrentUserProfileQ { UserId = userId }));
         }
     }
 }

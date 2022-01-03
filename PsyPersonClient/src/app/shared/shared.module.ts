@@ -18,11 +18,15 @@ import {DividerModule} from 'primeng/divider';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import {RadioButtonModule} from 'primeng/radiobutton';
 import { NoSanitizePipe } from './pipes/noSanitize.pipe';
+import {AvatarModule} from 'primeng/avatar';
+import {SidebarModule} from 'primeng/sidebar';
 
 @NgModule({
   imports: [
   ],
-  declarations: [NoSanitizePipe],
+  declarations: [
+    NoSanitizePipe,
+  ],
   exports: [
     TableModule,
     FormsModule,
@@ -43,7 +47,9 @@ import { NoSanitizePipe } from './pipes/noSanitize.pipe';
     DividerModule,
     AngularEditorModule,
     RadioButtonModule,
-    NoSanitizePipe
+    NoSanitizePipe,
+    AvatarModule,
+    SidebarModule,
   ]
 })
 export class SharedModule { }

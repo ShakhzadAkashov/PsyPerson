@@ -29,7 +29,7 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { environment } from 'src/environments/environment';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { TableModule } from 'primeng/table';
-import { SharedModule } from 'primeng/api';
+// import { SharedModule } from 'primeng/api';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { RoleEffects } from './store/effects/role.effects';
 import { UserService } from './services/api/user.service';
@@ -39,6 +39,8 @@ import { TestEffects } from './store/effects/test.effects';
 import { AppFilesService } from './services/api/appFiles.serive';
 import { UserTestService } from './services/api/userTest.service';
 import { UserTestEffects } from './store/effects/userTest.effects';
+import { SharedModule } from '../app/shared/shared.module';
+import { ChangePasswordModalComponent } from '../app/pages/user/change-password-modal/change-password-modal.component';
 
 registerLocaleData(ru);
 
@@ -50,6 +52,7 @@ registerLocaleData(ru);
     RegistrationComponent,
     HomeComponent,
     StatisticsComponent,
+    ChangePasswordModalComponent,
   ],
   imports: [
     BrowserModule,
