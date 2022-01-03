@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { UserDto } from 'src/app/models/users.models';
 import { UserService } from 'src/app/services/api/user.service';
 import { UserHelper } from 'src/app/shared/helpers/user.helper';
-import { ChangePasswordModalComponent } from '../user/change-password-modal/change-password-modal.component';
+import { ChangePasswordModalComponent } from '../users/user/change-password-modal/change-password-modal.component';
 
 @Component({
   selector: 'app-home',
@@ -38,7 +38,7 @@ export class HomeComponent implements OnInit {
 
   onLogout(){
     localStorage.removeItem('token');
-    this.router.navigate(['/user/login']);
+    this.router.navigate(['/users/user/login']);
   }
 
   changePassword(){

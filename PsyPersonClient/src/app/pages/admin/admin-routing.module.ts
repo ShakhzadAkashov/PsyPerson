@@ -7,16 +7,21 @@ import { UrerRolesComponent } from './roles/urer-roles/urer-roles.component';
 import { UsersComponent } from './users/users.component';
 
 const routes: Routes = [
-  { path: '', component: AdminComponent },
-  { path: 'users', component:UsersComponent},
-  { path: 'roles', component:RolesComponent},
-  { path: 'userRoles', component:UrerRolesComponent},
-  { path: 'rolePermissions', component:RolePermissionsComponent},
-  {
-    path: '',
-    redirectTo: 'users',
-    pathMatch: 'full',
-  },
+  { 
+    path: '', 
+    component: AdminComponent,
+    children:[
+      { path: 'users', component:UsersComponent},
+      { path: 'roles', component:RolesComponent},
+      { path: 'userRoles', component:UrerRolesComponent},
+      { path: 'rolePermissions', component:RolePermissionsComponent},
+      {
+        path: '',
+        redirectTo: 'users',
+        pathMatch: 'full',
+      }
+    ] 
+  }
 ];
 
 @NgModule({

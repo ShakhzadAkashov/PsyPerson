@@ -8,9 +8,9 @@ import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { UserComponent } from './pages/user/user.component';
-import { LoginComponent } from './pages/user/login/login.component';
-import { RegistrationComponent } from './pages/user/registration/registration.component';
+import { UserComponent } from './pages/users/user/user.component';
+import { LoginComponent } from './pages/users/user/login/login.component';
+import { RegistrationComponent } from './pages/users/user/registration/registration.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './pages/home/home.component';
 import { StatisticsComponent } from './pages/home/statistics/statistics.component';
@@ -47,9 +47,9 @@ registerLocaleData(ru);
 @NgModule({
   declarations: [
     AppComponent,
-    UserComponent,
-    LoginComponent,
-    RegistrationComponent,
+    // UserComponent,
+    // LoginComponent,
+    // RegistrationComponent,
     HomeComponent,
     StatisticsComponent,
   ],

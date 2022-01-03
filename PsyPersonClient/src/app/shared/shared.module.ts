@@ -20,7 +20,7 @@ import {RadioButtonModule} from 'primeng/radiobutton';
 import { NoSanitizePipe } from './pipes/noSanitize.pipe';
 import {AvatarModule} from 'primeng/avatar';
 import {SidebarModule} from 'primeng/sidebar';
-import { ChangePasswordModalComponent } from '../pages/user/change-password-modal/change-password-modal.component';
+import { ChangePasswordModalComponent } from '../pages/users/user/change-password-modal/change-password-modal.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 
 

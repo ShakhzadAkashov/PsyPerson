@@ -16,57 +16,59 @@ import { UserTestingListForCheckComponent } from './userTests/user-testing-list-
 const routes: Routes = [
   { 
     path: '', 
-    component: MainComponent 
-  },
-  { 
-    path: 'tests', 
-    component:TestsComponent
-  },
-  { 
-    path: 'testQuestions', 
-    component:TestQuestionsComponent
-  },
-  { 
-    path: 'simpleTypeTesting', 
-    component:SimpleTypeTestingComponent
-  },
-  { 
-    path: 'L1DTypeTesting', 
-    component:FirstLevelDifficultTypeTestingComponent
-  },
-  { 
-    path: 'l2DTypeTesting', 
-    component:SecondLevelDifficultTypeTestingComponent
-  },
-  { 
-    path: 'userTestUsers', 
-    component:UserListComponent
-  },
-  { 
-    path: 'createOrEditL1DTypeTestQuestion', 
-    component:CreateOrEditFirstLevelDifficultTestQuestionComponent
-  },
-  { 
-    path: 'createOrEditL2DTypeTestQuestion', 
-    component:CreateOrEditSecondLevelDifficultTestQuestionComponent
-  },
-  { 
-    path: 'userTests', 
-    component:UserTestListComponent
-  },
-  { 
-    path: 'userTestingListForCheck', 
-    component:UserTestingListForCheckComponent
-  },
-  { 
-    path: 'TestingHistory', 
-    component:UserTestingHistoryComponent
-  },
-  {
-    path: '',
-    redirectTo: 'tests',
-    pathMatch: 'full',
-  },
+    component: MainComponent,
+    children:[
+      { 
+        path: 'tests', 
+        component:TestsComponent
+      },
+      { 
+        path: 'testQuestions', 
+        component:TestQuestionsComponent
+      },
+      { 
+        path: 'simpleTypeTesting', 
+        component:SimpleTypeTestingComponent
+      },
+      { 
+        path: 'L1DTypeTesting', 
+        component:FirstLevelDifficultTypeTestingComponent
+      },
+      { 
+        path: 'l2DTypeTesting', 
+        component:SecondLevelDifficultTypeTestingComponent
+      },
+      { 
+        path: 'userTestUsers', 
+        component:UserListComponent
+      },
+      { 
+        path: 'createOrEditL1DTypeTestQuestion', 
+        component:CreateOrEditFirstLevelDifficultTestQuestionComponent
+      },
+      { 
+        path: 'createOrEditL2DTypeTestQuestion', 
+        component:CreateOrEditSecondLevelDifficultTestQuestionComponent
+      },
+      { 
+        path: 'userTests', 
+        component:UserTestListComponent
+      },
+      { 
+        path: 'userTestingListForCheck', 
+        component:UserTestingListForCheckComponent
+      },
+      { 
+        path: 'TestingHistory', 
+        component:UserTestingHistoryComponent
+      },
+      {
+        path: '',
+        redirectTo: 'tests',
+        pathMatch: 'full',
+      }
+    ] 
+  } 
 ];
 
 @NgModule({

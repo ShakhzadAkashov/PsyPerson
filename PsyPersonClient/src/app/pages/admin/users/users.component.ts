@@ -13,7 +13,7 @@ import { AppState } from 'src/app/store/state/app.state';
 import { CreateOrEditUserModalComponent } from './create-or-edit-user-modal/create-or-edit-user-modal.component';
 import { ViewUserModalComponent } from './view-user-modal/view-user-modal.component';
 import Swal from 'sweetalert2'
-import { ChangePasswordModalComponent } from '../../user/change-password-modal/change-password-modal.component';
+import { ChangePasswordModalComponent } from '../../users/user/change-password-modal/change-password-modal.component';
 
 @Component({
   selector: 'app-users',
