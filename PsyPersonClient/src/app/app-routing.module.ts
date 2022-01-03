@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { StatisticsComponent } from './pages/home/statistics/statistics.component';
 import { AuthGuard } from './services/auth/auth.guard';
+import { ForbiddenComponent } from './shared/components/forbidden/forbidden.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'users', pathMatch: 'full' },
@@ -21,6 +22,7 @@ const routes: Routes = [
       }
     ]
   },
+  { path: 'forbidden', component: ForbiddenComponent },
 ];
 
 @NgModule({

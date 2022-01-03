@@ -22,6 +22,8 @@ import {AvatarModule} from 'primeng/avatar';
 import {SidebarModule} from 'primeng/sidebar';
 import { ChangePasswordModalComponent } from '../pages/users/user/change-password-modal/change-password-modal.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { ForbiddenComponent } from './components/forbidden/forbidden.component';
+import {ScrollPanelModule} from 'primeng/scrollpanel';
 
 
 @NgModule({
@@ -34,6 +36,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
   declarations: [
     NoSanitizePipe,
     ChangePasswordModalComponent,
+    ForbiddenComponent,
   ],
   exports: [
     TableModule,
@@ -59,6 +62,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     AvatarModule,
     SidebarModule,
     ChangePasswordModalComponent,
+    ScrollPanelModule
   ]
 })
 export class SharedModule { }
