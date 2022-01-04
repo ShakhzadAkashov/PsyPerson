@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { PagedRequest, PagedResponse } from 'src/app/models/base';
 import { RoleDto } from 'src/app/models/roles.models';
-import { AssignRoleToUserCommand, BlockAndUnBlockUserResponseDto, ChangePasswordDto, UserDto } from 'src/app/models/users.models';
+import { AssignRoleToUserCommand, BlockAndUnBlockUserResponseDto, ChangePasswordDto, ForgotPasswordDto, ResetPasswordDto, UserDto } from 'src/app/models/users.models';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -60,5 +60,13 @@ export class UserService {
 
   blockAndUnBlockUser(userId: string){
     return this.http.post<BlockAndUnBlockUserResponseDto>(this.BaseURI + '/Users/BlockAndUnBlockUser', { userId:userId });
+  }
+
+  forgotPassword(forgotPswd: ForgotPasswordDto){
+    return this.http.post(this.BaseURI + '/ApplicationUser/ForgotPassword',forgotPswd);
+  }
+
+  resetPassword(resetPswd: ResetPasswordDto){
+    return this.http.post(this.BaseURI + '/ApplicationUser/ResetPassword',resetPswd);
   }
 }

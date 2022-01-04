@@ -28,3 +28,15 @@ export class BlockAndUnBlockUserResponseDto{
     isBlocked: boolean = false;
     result: boolean = false;
 }
+
+export class ForgotPasswordDto{
+    email: string = '';
+    clientURI: string = '';
+}
+
+export class ResetPasswordDto{
+    password: string = '';
+    confirmPassword: string = '';
+    email: string = '';
+    token: string = '';
+}

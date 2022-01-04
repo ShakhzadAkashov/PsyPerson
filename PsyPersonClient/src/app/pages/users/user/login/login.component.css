@@ -16,3 +16,15 @@ div.form-group label:not(.text-danger){
     color: #545d6a;
     font-weight: 500;
 }
+
+.forgotPswd{
+    color: #5791FF;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    align-self: center;
+}
+.forgotPswd:hover{
+    text-decoration:underline;
+}

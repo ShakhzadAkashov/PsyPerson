@@ -64,6 +64,7 @@ namespace PsyPersonServer.API.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         [Route("ResetPassword")]
         //POST : /api/ApplicationUser/ResetPassword
         public async Task<IActionResult> ResetPassword(ResetPasswordC command)
