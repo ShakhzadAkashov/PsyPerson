@@ -5,7 +5,7 @@ import { LazyLoadEvent } from 'primeng/api';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { PagedRequest, PagedResponse, TableFilter } from 'src/app/models/base';
-import { UserDto } from 'src/app/models/users.models';
+import { BlockAndUnBlockUserResponseDto, UserDto } from 'src/app/models/users.models';
 import { UserService } from 'src/app/services/api/user.service';
 import { GetUsers } from 'src/app/store/actions/user.actions';
 import { selectUserList } from 'src/app/store/selectors/user.selector';
@@ -27,7 +27,6 @@ export class UsersComponent implements OnInit {
   @ViewChild('viewUsersModal', { static: true }) viewUsersModal: ViewUserModalComponent = new ViewUserModalComponent(this.store); 
   @ViewChild('changePasswordModal', { static: true }) changePasswordModal: ChangePasswordModalComponent = new ChangePasswordModalComponent(this.service);
   users$: Observable<PagedResponse<UserDto> | any> = this.store.pipe(select(selectUserList));
-  // loading: boolean = false;
   filterText='';
   tableFilter: TableFilter = new TableFilter();
 
@@ -35,13 +34,7 @@ export class UsersComponent implements OnInit {
     private store: Store<AppState>,
     private toastr: ToastrService, 
     private service:UserService,
-    ) {
-    // let request: PagedRequest = {
-    //   page: 1,
-    //   itemPerPage: 10
-    // };
-    // this.store.dispatch(new GetUsers(request))
-   }
+    ) {}
 
   ngOnInit(): void {
   }
@@ -96,12 +89,6 @@ export class UsersComponent implements OnInit {
               res.errors.forEach((element:any) => {
                 switch(element.code)
                 {
-                  // case 'DuplicateRoleName':
-                  //   this.toastr.error('Role is already taken','Assigned failed.');
-                  //   break;
-                  // case 'UserAlreadyInRole':
-                  //   this.toastr.error('User Already Assigned To Role','Assigned failed.');
-                  //   break;
                   default:
                     this.toastr.error(element.description,'Remove failed.');
                     break;
@@ -116,6 +103,36 @@ export class UsersComponent implements OnInit {
         );
       } 
     })
+  }
+
+  blockAndUnBlockUser(userId: string)
+  {
+    this.service.blockAndUnBlockUser(userId).toPromise().then((res: BlockAndUnBlockUserResponseDto) => {
+      if(res.result)
+      {
+        if(res.isBlocked)
+        {
+          this.toastr.success('User Blocked!', 'Block successful.');
+          this.onLazyLoad();
+        }else{
+          this.toastr.success('User UnBlocked!', 'UnBlock successful.');
+          this.onLazyLoad();
+        }
+      }
+      else
+      {
+        this.toastr.error('Block And UnBlock Failed','Failed');
+      }
+    },
+    err => {
+      if(err.status == '403'){
+        this.toastr.error('You do not have permissions for this action','Block And UnBlock Failed');
+        console.log(err.error)
+      }else{
+        this.toastr.error(err.error,'Block And UnBlock Failed');
+        console.log(err.error)
+      }
+    });
   }
 
 }

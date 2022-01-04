@@ -23,3 +23,8 @@ export class ChangePasswordDto{
     newPassword: string = '';
     IsOwner: boolean = false;
 }
+
+export class BlockAndUnBlockUserResponseDto{
+    isBlocked: boolean = false;
+    result: boolean = false;
+}

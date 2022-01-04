@@ -77,12 +77,12 @@
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <li *ngIf="!record.isBlocked">
                             <a href="javascript:;" class="dropdown-item" style="font-size: small;"
-                            >Заблокировать</a>
+                            (click)="blockAndUnBlockUser(record.id)">Заблокировать</a>
                         </li>
                         <div *ngIf="!record.isBlocked" class="dropdown-divider"></div>
                         <li *ngIf="record.isBlocked">
                             <a href="javascript:;" class="dropdown-item" style="font-size: small;"
-                            >Разблокировать</a>
+                            (click)="blockAndUnBlockUser(record.id)">Разблокировать</a>
                         </li>
                         <div *ngIf="record.isBlocked" class="dropdown-divider"></div>
                         <li>

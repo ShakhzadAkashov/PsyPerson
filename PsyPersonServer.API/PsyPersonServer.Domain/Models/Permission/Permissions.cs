@@ -14,6 +14,7 @@ namespace PsyPersonServer.Domain.Models.Permission
         public const string Users_Delete = "Permissions.Users.Delete";
         public const string Users_ViewProfile = "Permissions.Users.ViewProfile";
         public const string Users_ChangePassword = "Permissions.Users.ChangePassword";
+        public const string Users_BLockAndUnBlock = "Permissions.Users.BLockAndUnBlock";
 
         // Roles
         public const string Roles = "Permissions.Roles.Pages";

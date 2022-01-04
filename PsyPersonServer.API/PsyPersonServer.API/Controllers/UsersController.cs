@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PsyPersonServer.Application.Users.Commands.AssignRoleToUser;
+using PsyPersonServer.Application.Users.Commands.BlockAndUnBlockUser;
 using PsyPersonServer.Application.Users.Commands.ChangePassword;
 using PsyPersonServer.Application.Users.Commands.CreateUser;
 using PsyPersonServer.Application.Users.Commands.RemoveRoleFromUser;
@@ -116,5 +117,15 @@ namespace PsyPersonServer.API.Controllers
 
             return Ok(await _mediator.Send(new ChangePasswordC { UserId = userId, NewPassword = command.NewPassword }));
         }
+
+        [Authorize(Permissions.Users_BLockAndUnBlock)]
+        [HttpPost]
+        [Route("BlockAndUnBlockUser")]
+        //POST : /api/Users/BlockAndUnBlockUser
+        public async Task<IActionResult> BlockAndUnBlockUser([FromBody] BlockAndUnBlockUserC command)
+        {
+            return Ok(await _mediator.Send(command));
+        }
+
     }
 }
