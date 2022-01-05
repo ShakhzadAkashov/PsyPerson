@@ -52,6 +52,14 @@
             </li>
           </ul>
         </li>
+        <li nz-submenu nzOpen nzTitle="Statistics" nzIcon="form">
+          <ul>
+            <li  *ngIf="UserHelper.UserHasPermission('Permissions.Statistics.Pages')"
+                nz-menu-item nzMatchRouter>
+              <a routerLink="/home/main/statistics">Statistics</a>
+            </li>
+          </ul>
+        </li>
       </ul>
     </nz-sider>
     <nz-layout>

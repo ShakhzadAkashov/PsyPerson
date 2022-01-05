@@ -159,5 +159,11 @@ namespace PsyPersonServer.Infrastructure.Repositories
             }
             return false;
         }
+
+        public async Task<IEnumerable<Test>> GetAll()
+        {
+            var tests = await _dbContext.Tests.ToListAsync();
+            return tests;
+        }
     }
 }

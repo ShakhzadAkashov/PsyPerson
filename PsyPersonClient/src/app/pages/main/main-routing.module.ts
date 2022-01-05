@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MainComponent } from './main.component';
+import { StatisticsComponent } from './statistics/statistics.component';
 import { CreateOrEditFirstLevelDifficultTestQuestionComponent } from './tests/test-questions/create-or-edit-first-level-difficult-test-question/create-or-edit-first-level-difficult-test-question.component';
 import { CreateOrEditSecondLevelDifficultTestQuestionComponent } from './tests/test-questions/create-or-edit-second-level-difficult-test-question/create-or-edit-second-level-difficult-test-question.component';
 import { TestQuestionsComponent } from './tests/test-questions/test-questions.component';
@@ -61,6 +62,10 @@ const routes: Routes = [
       { 
         path: 'TestingHistory', 
         component:UserTestingHistoryComponent
+      },
+      { 
+        path: 'statistics', 
+        component:StatisticsComponent
       },
       {
         path: '',

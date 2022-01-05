@@ -68,5 +68,10 @@ namespace PsyPersonServer.Domain.Models.Permission
         // AppFiles
         public const string AppFiles_Download = "Permissions.AppFiles.Download";
         public const string AppFiles_Upload = "Permissions.AppFiles.Upload";
+
+        // Statistics
+        public const string Statistics = "Permissions.Statistics.Pages";
+        public const string Statistics_ForManagers = "Permissions.Statistics.ForManagers";
+        public const string Statistics_ForEmployees = "Permissions.Statistics.ForEmployees";
     }
 }
