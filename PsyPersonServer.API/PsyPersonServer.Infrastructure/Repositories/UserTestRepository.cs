@@ -109,5 +109,11 @@ namespace PsyPersonServer.Infrastructure.Repositories
             var userTests = _dbContext.UserTests.Where(x => x.TestId == testId);
             return Task.FromResult<IEnumerable<UserTest>>(userTests);
         }
+
+        public async Task<UserTest> GetById(Guid id)
+        {
+            var userTest = await _dbContext.UserTests.FirstOrDefaultAsync(x => x.Id == id);
+            return userTest;
+        }
     }
 }

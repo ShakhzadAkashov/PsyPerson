@@ -84,4 +84,23 @@ export class UserTestsDetailsModalComponent implements OnInit {
   close(): void {
     this.modal.hide();
   }
+
+  reAssignTest(userTestId: any){
+    this.service.reAssignTest(userTestId).toPromise().then(
+      (res: any) => {
+        if(res){
+          this.toastr.success('Test ReAssigned to User!', 'ReAssigned successful.');
+          this.onLazyLoad();
+        }else{
+          res.errors.forEach((element:any) => {
+            this.toastr.error(element.description,'ReAssign failed.');
+          });
+        }
+      },
+      err => {
+        this.toastr.error(err,'ReAssigned failed.');
+        console.log(err)
+      }
+    );
+  }
 }

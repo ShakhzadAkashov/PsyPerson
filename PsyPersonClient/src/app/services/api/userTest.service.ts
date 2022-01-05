@@ -36,4 +36,8 @@ import { environment } from "src/environments/environment";
     getUserTestingsForCheck(request: PagedRequest | any){
         return this.http.get<PagedResponse<UserTestingHistoryDto>>(this.BaseURI + '/Testings/GetUserTestingForCheck',{params: request});
     }
+
+    reAssignTest(userTestId: string) {
+        return this.http.post(this.BaseURI + '/UserTests/ReAssignTest', {userTestId: userTestId});
+    }
 }

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PsyPersonServer.Application.UserTests.Commands.CreateUserTest;
+using PsyPersonServer.Application.UserTests.Commands.ReAssignTestForUser;
 using PsyPersonServer.Application.UserTests.Queries.GetAllUsers;
 using PsyPersonServer.Application.UserTests.Queries.GetUserTests;
 using PsyPersonServer.Application.UserTests.Queries.GetUserTestsDetails;
@@ -55,6 +56,15 @@ namespace PsyPersonServer.API.Controllers
         [Route("CreateUserTest")]
         //POST : /api/UserTests/CreateUserTest
         public async Task<IActionResult> CreateUserTest([FromBody] CreateUserTestC command)
+        {
+            return Ok(await _mediator.Send(command));
+        }
+
+        [Authorize(Permissions.UserTests_Edit)]
+        [HttpPost]
+        [Route("ReAssignTest")]
+        //POST : /api/UserTests/ReAssignTest
+        public async Task<IActionResult> ReAssignTest([FromBody] ReAssignTestForUserC command)
         {
             return Ok(await _mediator.Send(command));
         }
