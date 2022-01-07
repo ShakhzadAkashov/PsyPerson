@@ -102,6 +102,7 @@ namespace PsyPersonServer.Application.TestQuestions.Commands.CreateTestQuestions
                     else if (request.TestType == TestTypeEnum.FirstLevelDifficultTest)
                     {
                         var nodes = questionList[i].SelectNodes(_uploadTQFFSettings.Answer);
+                        var counter = 0;
                         foreach (XmlNode item in nodes)
                         {
                             var it = item.ChildNodes;
@@ -117,10 +118,11 @@ namespace PsyPersonServer.Application.TestQuestions.Commands.CreateTestQuestions
                                     answerScore = Convert.ToDouble(it[k].InnerText);
                             }
 
+                            counter += 1;
                             var answer = new TestQuestionAnswer();
                             answer.Name = answerName;
                             answer.IsCorrect = true;
-                            answer.IdForView = i;
+                            answer.IdForView = counter;
                             answer.Score = answerScore;
                             question.Answers.Add(answer);
                         }
