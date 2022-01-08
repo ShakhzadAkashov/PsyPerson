@@ -94,4 +94,4 @@
 </p-table>
 
 <app-test-lookup-table-modal #testLookupTableModal (modalSave)="selectTest($event)"></app-test-lookup-table-modal>
-<app-user-tests-details-modal #userTestsDetailsModal></app-user-tests-details-modal>
+<app-user-tests-details-modal #userTestsDetailsModal (modalSave)="onLazyLoad()"></app-user-tests-details-modal>

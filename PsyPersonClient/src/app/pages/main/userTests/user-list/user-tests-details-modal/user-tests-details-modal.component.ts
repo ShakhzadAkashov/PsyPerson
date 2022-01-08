@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
@@ -19,6 +19,7 @@ import { AppState } from 'src/app/store/state/app.state';
 export class UserTestsDetailsModalComponent implements OnInit {
 
   @ViewChild('userTestsDetailsModal', { static: true }) modal!: ModalDirective;
+  @Output() modalSave: EventEmitter<any> = new EventEmitter<any>();
   userTestsDetails$: Observable<PagedResponse<UserTestDetailDto> | any> = this.store.pipe(select(selectUserTestsDetails));
 
   tableFilter: TableFilter = new TableFilter();
@@ -99,6 +100,26 @@ export class UserTestsDetailsModalComponent implements OnInit {
       },
       err => {
         this.toastr.error(err,'ReAssigned failed.');
+        console.log(err)
+      }
+    );
+  }
+
+  cancelTest(userTestId: any){
+    this.service.cancelTest(userTestId).toPromise().then(
+      (res: any) => {
+        if(res){
+          this.toastr.success('Test Canceled!', 'Canceled successful.');
+          this.onLazyLoad();
+          this.modalSave.emit(null);
+        }else{
+          res.errors.forEach((element:any) => {
+            this.toastr.error(element.description,'Cancel Test failed.');
+          });
+        }
+      },
+      err => {
+        this.toastr.error(err,'Cancel failed.');
         console.log(err)
       }
     );

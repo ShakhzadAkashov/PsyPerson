@@ -43,7 +43,7 @@ namespace PsyPersonServer.Infrastructure.Repositories
 
             if (!string.IsNullOrEmpty(userId))
             {
-                var userTests = _dbContext.UserTests.Where(x => x.UserId == userId);
+                var userTests = _dbContext.UserTests.Where(x => x.UserId == userId && x.IsActive == true);
 
                 foreach (var i in userTests)
                 {

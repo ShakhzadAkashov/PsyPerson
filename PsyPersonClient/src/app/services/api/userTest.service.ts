@@ -40,4 +40,8 @@ import { environment } from "src/environments/environment";
     reAssignTest(userTestId: string) {
         return this.http.post(this.BaseURI + '/UserTests/ReAssignTest', {userTestId: userTestId});
     }
+
+    cancelTest(userTestId: string) {
+        return this.http.post(this.BaseURI + '/UserTests/CancelTest', {userTestId: userTestId});
+    }
 }

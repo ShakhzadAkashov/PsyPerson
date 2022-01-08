@@ -21,14 +21,14 @@ namespace PsyPersonServer.Infrastructure.Repositories
 
         public Task<IEnumerable<UserTest>> GetUserTestsByUserId(string userId)
         {
-            var userTests = _dbContext.UserTests.Where(x => x.UserId == userId);
+            var userTests = _dbContext.UserTests.Where(x => x.UserId == userId && x.IsActive == true);
             return Task.FromResult<IEnumerable<UserTest>>(userTests);
         }
 
         public async Task<PagedResponse<UserTest>> GetUserTests(int page, int itemPerPage, string userId)
         {
             var userTests1 = _dbContext.UserTests
-                .Include(x => x.TestFk).Where(x => x.UserId == userId);
+                .Include(x => x.TestFk).Where(x => x.UserId == userId && x.IsActive == true);
 
             var total = await userTests1.CountAsync();
 
@@ -73,19 +73,30 @@ namespace PsyPersonServer.Infrastructure.Repositories
 
         public async Task<UserTest> Create(string userId, Guid testId)
         {
-            var userTest = new UserTest
+            var userTest = await _dbContext.UserTests.FirstOrDefaultAsync(x => x.UserId == userId && x.TestId == testId);
+
+            if (userTest == null)
             {
-                Id = new Guid(),
-                IsActive = true,
-                IsTested = false,
-                UserId = userId,
-                TestId = testId,
-                AssignedDate = DateTime.Now
-            };
+                userTest = new UserTest
+                {
+                    Id = new Guid(),
+                    IsActive = true,
+                    IsTested = false,
+                    UserId = userId,
+                    TestId = testId,
+                    AssignedDate = DateTime.Now
+                };
 
-            await _dbContext.UserTests.AddAsync(userTest);
+                await _dbContext.UserTests.AddAsync(userTest);
+            }
+            else 
+            {
+                userTest.IsActive = true;
+                userTest.IsTested = false;
+                userTest.AssignedDate = DateTime.Now;
+            }
+            
             await _dbContext.SaveChangesAsync();
-
             return userTest;
         }
 

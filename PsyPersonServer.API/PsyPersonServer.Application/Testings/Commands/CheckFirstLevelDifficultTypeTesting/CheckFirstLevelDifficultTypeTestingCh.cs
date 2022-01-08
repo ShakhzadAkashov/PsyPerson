@@ -47,11 +47,11 @@ namespace PsyPersonServer.Application.Testings.Commands.CheckFirstLevelDifficult
 
                 foreach (var i in request.TestForTesting.TestQuestionList)
                 {
-                    ball += i.SelectedAnswer.Score.Value;
+                    ball += i.SelectedAnswer != null ? i.SelectedAnswer.Score.Value : 0;
 
                     foreach (var j in i.Answers)
                     {
-                        if (i.SelectedAnswer.Id == j.Id)
+                        if (i.SelectedAnswer != null && i.SelectedAnswer.Id == j.Id)
                         {
                             j.IsCorrect = true;
                         }
