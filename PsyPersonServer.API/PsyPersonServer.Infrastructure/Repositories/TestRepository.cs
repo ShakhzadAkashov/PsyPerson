@@ -165,5 +165,50 @@ namespace PsyPersonServer.Infrastructure.Repositories
             var tests = await _dbContext.Tests.ToListAsync();
             return tests;
         }
+
+        public async Task<bool> Remove(Guid id)
+        {
+            var test = await _dbContext.Tests.FirstOrDefaultAsync(x => x.Id == id);
+
+            if (test != null)
+            {
+                //Need Refactoring
+                var userTests = await _dbContext.UserTests.Where(x => x.TestId == id).ToListAsync();
+
+                if (userTests != null)
+                {
+                    foreach (var i in userTests)
+                    {
+                        var userTestingHistoryList = await _dbContext.UserTestingHistories.Where(x => x.UserTestId == i.Id).ToListAsync();
+
+                        if (userTestingHistoryList != null)
+                        {
+                            foreach (var j in userTestingHistoryList)
+                            {
+                                var testingHistoryQuestionAnswers = await _dbContext.TestingHistoryQuestionAnswers.Where(x => x.UserTestingHistoryId == j.Id).ToListAsync();
+
+                                if (testingHistoryQuestionAnswers != null)
+                                {
+                                    foreach (var k in testingHistoryQuestionAnswers) 
+                                    {
+                                        _dbContext.TestingHistoryQuestionAnswers.Remove(k);
+                                    }
+                                }
+
+                                _dbContext.UserTestingHistories.Remove(j);
+                            }   
+                        }
+
+                        _dbContext.UserTests.Remove(i);
+                    }
+                }
+                //Need Refactoring
+                _dbContext.Tests.Remove(test);
+                await _dbContext.SaveChangesAsync();
+                return true;
+            }
+
+            return false;
+        }
     }
 }

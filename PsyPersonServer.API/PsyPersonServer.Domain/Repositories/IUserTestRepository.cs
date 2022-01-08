@@ -16,5 +16,6 @@ namespace PsyPersonServer.Domain.Repositories
         Task<bool> Update(Guid id, bool isActive, bool isTested, DateTime assignedDate);
         Task<IEnumerable<UserTest>> GetUserTestsByTestId(Guid testId);
         Task<UserTest> GetById(Guid id);
+        bool Remove(Guid id);
     }
 }

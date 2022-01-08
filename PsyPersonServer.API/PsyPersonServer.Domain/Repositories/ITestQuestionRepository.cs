@@ -16,5 +16,6 @@ namespace PsyPersonServer.Domain.Repositories
         Task<IEnumerable<TestQuestion>> GetAllForTestingById(Guid testId);
         Task<IEnumerable<TestQuestion>> GetAllWithOnlyTruAnswersByTestId(Guid testId);
         Task<TestQuestion> GetById(Guid id);
+        Task<bool> Remove(Guid id);
     }
 }

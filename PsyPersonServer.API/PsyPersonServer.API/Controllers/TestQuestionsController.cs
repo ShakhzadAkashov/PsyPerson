@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using PsyPersonServer.Application.TestQuestions.Commands.CreateTestQuestion;
 using PsyPersonServer.Application.TestQuestions.Commands.CreateTestQuestionFromFile;
 using PsyPersonServer.Application.TestQuestions.Commands.CreateTestQuestions;
+using PsyPersonServer.Application.TestQuestions.Commands.RemoveTestQuestion;
 using PsyPersonServer.Application.TestQuestions.Commands.UpdateTestQuestion;
 using PsyPersonServer.Application.TestQuestions.Queries.GetTestQuestionById;
 using PsyPersonServer.Application.TestQuestions.Queries.GetTestQuestions;
@@ -79,6 +80,15 @@ namespace PsyPersonServer.API.Controllers
         [Route("UploadFromFile")]
         //POST : /api/TestQuestions/UploadFromFile
         public async Task<IActionResult> UploadFromFile([FromForm] CreateTestQuestionsFromFileC command)
+        {
+            return Ok(await _mediator.Send(command));
+        }
+
+        [Authorize(Permissions.TestQuestions_Delete)]
+        [HttpDelete]
+        [Route("Remove")]
+        //Delete : /api/TestQuestions/Remove
+        public async Task<IActionResult> Remove([FromBody] RemoveTestQuestionC command)
         {
             return Ok(await _mediator.Send(command));
         }

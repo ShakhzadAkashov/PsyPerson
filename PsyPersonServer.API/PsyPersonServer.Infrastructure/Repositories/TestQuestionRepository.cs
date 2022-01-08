@@ -164,5 +164,19 @@ namespace PsyPersonServer.Infrastructure.Repositories
             }
             return false;
         }
+
+        public async Task<bool> Remove(Guid id)
+        {
+            var testQuestion = await _dbContext.TestQuestions.FirstOrDefaultAsync(x => x.Id == id);
+
+            if (testQuestion != null)
+            {
+                _dbContext.TestQuestions.Remove(testQuestion);
+                await _dbContext.SaveChangesAsync();
+                return true;
+            }
+
+            return false;
+        }
     }
 }

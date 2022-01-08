@@ -10,6 +10,7 @@ import { TestService } from 'src/app/services/api/test.service';
 import { GetTests } from 'src/app/store/actions/test.actions';
 import { selectTestList } from 'src/app/store/selectors/test.selector';
 import { AppState } from 'src/app/store/state/app.state';
+import Swal from 'sweetalert2';
 import { CreateOrEditTestModalComponent } from './create-or-edit-test-modal/create-or-edit-test-modal.component';
 
 @Component({
@@ -68,5 +69,36 @@ export class TestsComponent implements OnInit {
       return image;
     }
     return '';
+  }
+
+  remove(test:TestDto)
+  {
+    Swal.fire({
+      title: 'Удаление тестога',
+      text: 'Вы Уверены ?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Ок',
+      cancelButtonText: 'Отмена',
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#7367F0',
+    }).then((result) => {
+      if (result.value) {
+        this.service.removeTest(test.id).toPromise().then(
+          (res: any) => {
+            if(res){
+              this.toastr.success(`Test ${test.name} Removed!`, 'Removed successful.');
+              this.onLazyLoad();
+            }else{
+              this.toastr.error('Remove Test Failed','Remove failed.');
+            }
+          },
+          err => {
+            this.toastr.error(err.error,'Remove failed.');
+            console.log(err)
+          }
+        );
+      } 
+    })
   }
 }

@@ -126,5 +126,18 @@ namespace PsyPersonServer.Infrastructure.Repositories
             var userTest = await _dbContext.UserTests.FirstOrDefaultAsync(x => x.Id == id);
             return userTest;
         }
+
+        public bool Remove(Guid id)
+        {
+            var userTest = _dbContext.UserTests.FirstOrDefault(x => x.Id == id);
+            if (userTest != null)
+            {
+                _dbContext.UserTests.Remove(userTest);
+                _dbContext.SaveChangesAsync();
+                return true;
+            }
+
+            return false;
+        }
     }
 }

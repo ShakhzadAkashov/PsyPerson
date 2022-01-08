@@ -48,6 +48,7 @@ namespace PsyPersonServer.Domain.Models.Permission
         public const string TestQuestions_Create = "Permissions.TestQuestions.Create";
         public const string TestQuestions_Edit = "Permissions.TestQuestions.Edit";
         public const string TestQuestions_Upload = "Permissions.TestQuestions.Upload";
+        public const string TestQuestions_Delete = "Permissions.TestQuestions.Delete";
 
         // Testings
         public const string Testings = "Permissions.Testings.Pages";

@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using PsyPersonServer.Domain.Models.Permission;
+using PsyPersonServer.Application.Tests.Commands.RemoveTest;
 
 namespace PsyPersonServer.API.Controllers
 {
@@ -59,6 +60,15 @@ namespace PsyPersonServer.API.Controllers
         [Route("UpdateTest")]
         //PUT : /api/Tests/UpdateTest
         public async Task<IActionResult> UpdateTest([FromBody] UpdateTestC command)
+        {
+            return Ok(await _mediator.Send(command));
+        }
+
+        [Authorize(Permissions.Tests_Delete)]
+        [HttpDelete]
+        [Route("Remove")]
+        //Delete : /api/Tests/Remove
+        public async Task<IActionResult> Remove([FromBody] RemoveTestC command)
         {
             return Ok(await _mediator.Send(command));
         }

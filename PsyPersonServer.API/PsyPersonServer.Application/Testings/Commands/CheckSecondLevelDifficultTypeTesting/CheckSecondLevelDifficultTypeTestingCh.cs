@@ -28,7 +28,7 @@ namespace PsyPersonServer.Application.Testings.Commands.CheckSecondLevelDifficul
             _userManager = userManager;
         }
 
-        private ILogger<CheckSecondLevelDifficultTypeTestingCh> _logger;
+        private readonly ILogger<CheckSecondLevelDifficultTypeTestingCh> _logger;
         private readonly IMediator _mediator;
         private readonly ITestRepository _testRepository;
         private readonly IUserTestRepository _userTestRepository;

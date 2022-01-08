@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using PsyPersonServer.Domain.Entities;
+using PsyPersonServer.Domain.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,14 +13,16 @@ namespace PsyPersonServer.Application.Users.Commands.RemoveUser
 {
     public class RemoveUserCh : IRequestHandler<RemoveUserC, IdentityResult>
     {
-        public RemoveUserCh(UserManager<ApplicationUser> userManager, ILogger<RemoveUserCh> logger)
+        public RemoveUserCh(UserManager<ApplicationUser> userManager, ILogger<RemoveUserCh> logger, IUserTestRepository userTestRepository)
         {
             _userManager = userManager;
             _logger = logger;
+            _userTestRepository = userTestRepository;
         }
 
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ILogger<RemoveUserCh> _logger;
+        private readonly IUserTestRepository _userTestRepository;
         public async Task<IdentityResult> Handle(RemoveUserC request, CancellationToken cancellationToken)
         {
             try
@@ -28,6 +31,17 @@ namespace PsyPersonServer.Application.Users.Commands.RemoveUser
 
                 if (user != null)
                 {
+                    //Need Refactoring
+                    var userTests = _userTestRepository.GetUserTestsByUserId(request.UserId).Result;
+
+                    if (userTests != null)
+                    {
+                        foreach (var i in userTests)
+                        {
+                            _userTestRepository.Remove(i.Id);
+                        }
+                    }
+                    //Need Refactoring
                     var result = await _userManager.DeleteAsync(user);
                     return result;
                 }

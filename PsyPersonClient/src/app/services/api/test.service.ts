@@ -69,4 +69,12 @@ import { environment } from "src/environments/environment";
     checkSecondLevelDifficultTypeTesting(command:CheckTestingCRq){
         return this.http.post<CheckTestingResponseDto>(this.BaseURI + '/Testings/CheckSecondLevelDifficultTypeTesting',command);
     }
+
+    removeTestQuestion(id:any){
+        return this.http.delete(this.BaseURI + '/TestQuestions/Remove', { body: { id: id } });
+    }
+
+    removeTest(id:any){
+        return this.http.delete(this.BaseURI + '/Tests/Remove', { body: { id: id } });
+    }
   }

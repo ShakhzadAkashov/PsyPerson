@@ -10,6 +10,7 @@ import { TestService } from 'src/app/services/api/test.service';
 import { GetTestQuestions } from 'src/app/store/actions/test.actions';
 import { selectTestQuestionList } from 'src/app/store/selectors/test.selector';
 import { AppState } from 'src/app/store/state/app.state';
+import Swal from 'sweetalert2';
 import { CreateOrEditSimpleTypeTestQuestionModalComponent } from './create-or-edit-simple-type-test-question-modal/create-or-edit-simple-type-test-question-modal.component';
 import { CreateTestQuestionsFromFileModalComponent } from './create-test-questions-from-file/create-test-questions-from-file.component';
 
@@ -90,5 +91,36 @@ export class TestQuestionsComponent implements OnInit {
   goBack(){
     const from = '../' + this.from;
     this.router.navigate([from]);
+  }
+
+  remove(testQuestion:TestQuestionDto)
+  {
+    Swal.fire({
+      title: 'Удаление тестого вапроса',
+      text: 'Вы Уверены ?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Ок',
+      cancelButtonText: 'Отмена',
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#7367F0',
+    }).then((result) => {
+      if (result.value) {
+        this.service.removeTestQuestion(testQuestion.id).toPromise().then(
+          (res: any) => {
+            if(res){
+              this.toastr.success(`Test Question ${testQuestion.name} Removed!`, 'Removed successful.');
+              this.onLazyLoad();
+            }else{
+              this.toastr.error('Remove Test Question Failed','Remove failed.');
+            }
+          },
+          err => {
+            this.toastr.error(err.error,'Remove failed.');
+            console.log(err)
+          }
+        );
+      } 
+    })
   }
 }

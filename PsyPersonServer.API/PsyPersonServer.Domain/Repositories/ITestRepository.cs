@@ -17,5 +17,6 @@ namespace PsyPersonServer.Domain.Repositories
         Task<int> GetAmountTestQuestionsById(Guid id);
         Task<PagedResponse<Test>> GetTestsByUserId(int page, int itemPerPage, string userId);
         Task<IEnumerable<Test>> GetAll();
+        Task<bool> Remove(Guid id);
     }
 }
