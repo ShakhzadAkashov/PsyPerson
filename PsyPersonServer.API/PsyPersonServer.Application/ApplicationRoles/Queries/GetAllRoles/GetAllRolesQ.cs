@@ -11,5 +11,6 @@ namespace PsyPersonServer.Application.ApplicationRoles.Queries.GetAllRoles
     {
         public int Page { get; set; } = 1;
         public int ItemPerPage { get; set; } = 10;
+        public string Name { get; set; }
     }
 }

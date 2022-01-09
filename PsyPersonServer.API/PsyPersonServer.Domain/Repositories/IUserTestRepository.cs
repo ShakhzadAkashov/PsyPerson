@@ -10,7 +10,7 @@ namespace PsyPersonServer.Domain.Repositories
     public interface IUserTestRepository
     {
         Task<IEnumerable<UserTest>> GetUserTestsByUserId(string userId);
-        Task<PagedResponse<UserTest>> GetUserTests(int page, int itemPerPage, string userId);
+        Task<PagedResponse<UserTest>> GetUserTests(int page, int itemPerPage, string userId, string testName);
         Task<UserTest> Create(string userId, Guid testId);
         Task<UserTest> GetUserTest(string userId, Guid testId);
         Task<bool> Update(Guid id, bool isActive, bool isTested, DateTime assignedDate);

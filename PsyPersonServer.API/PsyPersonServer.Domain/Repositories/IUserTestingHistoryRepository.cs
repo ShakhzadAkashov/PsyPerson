@@ -15,7 +15,7 @@ namespace PsyPersonServer.Domain.Repositories
         Task<UserTestingHistory> GetById(Guid id);
         Task<IEnumerable<TestingHistoryQuestionAnswer>> GetAnswersById(Guid userTestingHistoryId);
         Task<TestingHistoryCustomQuestionAnswer> CreateTestingHistoryCustomQuestionAnswer(Guid userTestingHistoryId, string name, Guid testQuestionId);
-        Task<PagedResponse<UserTestingHistory>> GetUserTestingHistoryForCheck(int page, int itemPerPage, bool isChecked);
+        Task<PagedResponse<UserTestingHistory>> GetUserTestingHistoryForCheck(int page, int itemPerPage, bool isChecked, string testName);
         Task<IEnumerable<TestingHistoryCustomQuestionAnswer>> GetCustomAnswersById(Guid userTestingHistoryId);
         Task<bool> Update(Guid id, double testScore, TestResultStatusEnum resultStatus, bool isChecked);
         Task<bool> UpdateTestingHistoryCustomQuestionAnswer(Guid id, double answerScore, AnswerResultStatusEnum? answerStatus);

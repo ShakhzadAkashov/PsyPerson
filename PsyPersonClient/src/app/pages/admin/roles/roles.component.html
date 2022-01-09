@@ -2,7 +2,7 @@
     <div class="col-xl-12">
         <div class="form-group m-form__group align-items-center">
             <div class="input-group">
-                <input style="box-shadow: none;" (keyup)="filterInput($event)" [(ngModel)]="filterText" name="filterText" class="form-control" placeholder="Поиск по всем параметрам" type="text">
+                <input style="box-shadow: none;" (keyup)="filterInput($event)" [(ngModel)]="filterText" name="filterText" class="form-control" placeholder="Поиск по названию роли" type="text">
                 <span class="input-group-btn">
                     <button class="btn btn-primary bnt-md" (click)="onLazyLoad()" type="submit"><i class="fa fa-search"></i></button>
                 </span>
@@ -18,12 +18,14 @@
     <ng-template pTemplate="caption">
         <div class="table-header">
             <div class="col-md-12">
-                <span>ВЕСЬ СПИСОК РОЛЕЙ</span>
-                <span>
-                    <button class="btn btn-md btn-outline-primary ml-3" ><i class="fa fa-refresh"></i> Обновить</button>
-                </span>
-                <span>
-                    <button class="btn btn-md btn-outline-primary float-right" (click)="create()"><i class="fa fa-plus"></i> Создать новую роль</button>
+                <span class="row">
+                    <span class="col-md-6 pt-2">ВЕСЬ СПИСОК РОЛЕЙ</span>
+                    <!-- <span>
+                        <button class="btn btn-md btn-outline-primary ml-3" ><i class="fa fa-refresh"></i> Обновить</button>
+                    </span> -->
+                    <span class="col-md-6">
+                        <button class="btn btn-md btn-outline-primary float-right" (click)="create()"><i class="fa fa-plus"></i> Создать новую роль</button>
+                    </span>
                 </span>
             </div>
         </div>

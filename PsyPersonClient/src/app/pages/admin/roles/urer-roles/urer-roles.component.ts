@@ -42,7 +42,11 @@ export class UrerRolesComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  filterInput(event: any){}
+  filterInput(event: any){
+    if (event.key === 'Enter' || event.keyCode === 13){
+      this.onLazyLoad();
+    }
+  }
 
   onLazyLoad(event?: LazyLoadEvent){
     if(event)
@@ -52,6 +56,7 @@ export class UrerRolesComponent implements OnInit {
       let request: PagedRequest = {
         page: pageIndex,
         itemPerPage: rows as number,
+        roleName: this.filterText ?? ''
       };
       request.userId = this.userId;
       this.store.dispatch(new GetUserRoles(request));
@@ -60,7 +65,8 @@ export class UrerRolesComponent implements OnInit {
       const pageIndex = Math.ceil((this.tableFilter.first)/ (this.tableFilter.itemPerPage)) + 1;  
       let request: PagedRequest = {
         page: pageIndex,
-        itemPerPage: this.tableFilter.itemPerPage
+        itemPerPage: this.tableFilter.itemPerPage,
+        roleName: this.filterText ?? ''
       };
       request.userId = this.userId;
       this.store.dispatch(new GetUserRoles(request));

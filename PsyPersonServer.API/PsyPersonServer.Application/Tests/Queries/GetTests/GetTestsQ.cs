@@ -11,5 +11,6 @@ namespace PsyPersonServer.Application.Tests.Queries.GetTests
     {
         public int Page { get; set; } = 1;
         public int ItemPerPage { get; set; } = 10;
+        public string Name { get; set; }
     }
 }

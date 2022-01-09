@@ -21,6 +21,7 @@ export class UserTestListComponent implements OnInit {
   
   tests$: Observable<PagedResponse<UserTestDto> | any> = this.store.pipe(select(selectUserTests));
   tableFilter: TableFilter = new TableFilter();
+  filterText='';
 
   resultStatuses :{ [key: number]: any } = {
     0: {
@@ -57,6 +58,12 @@ export class UserTestListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  filterInput(event: any){
+    if (event.key === 'Enter' || event.keyCode === 13){
+      this.onLazyLoad();
+    }
+  }
+
   onLazyLoad(event?: LazyLoadEvent){
     if(event)
     {
@@ -64,7 +71,8 @@ export class UserTestListComponent implements OnInit {
       const pageIndex = Math.ceil((first as number)/ (rows as number)) + 1;  
       let request: PagedRequest = {
         page: pageIndex,
-        itemPerPage: rows as number
+        itemPerPage: rows as number,
+        testName: this.filterText ?? ''
       };
       this.store.dispatch(new GetUserTests(request));
     }else
@@ -72,7 +80,8 @@ export class UserTestListComponent implements OnInit {
       const pageIndex = Math.ceil((this.tableFilter.first)/ (this.tableFilter.itemPerPage)) + 1;  
       let request: PagedRequest = {
         page: pageIndex,
-        itemPerPage: this.tableFilter.itemPerPage
+        itemPerPage: this.tableFilter.itemPerPage,
+        testName: this.filterText ?? ''
       };
       this.store.dispatch(new GetUserTests(request));
     }

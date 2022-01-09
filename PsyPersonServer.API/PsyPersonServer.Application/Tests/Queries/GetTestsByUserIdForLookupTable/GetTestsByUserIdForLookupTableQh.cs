@@ -26,7 +26,7 @@ namespace PsyPersonServer.Application.Tests.Queries.GetTestsByUserIdForLookupTab
 
         public async Task<PagedResponse<TestDto>> Handle(GetTestsByUserIdForLookupTableQ request, CancellationToken cancellationToken)
         {
-            var tests = await _repository.GetTestsByUserId(request.Page, request.ItemPerPage, request.UserId);
+            var tests = await _repository.GetTestsByUserId(request.Page, request.ItemPerPage, request.UserId,request.Name);
             return new PagedResponse<TestDto>(tests.Data.Select(x => _mapper.Map<TestDto>(x)),tests.Total);
         }
     }

@@ -25,10 +25,15 @@ namespace PsyPersonServer.Infrastructure.Repositories
             return Task.FromResult<IEnumerable<UserTest>>(userTests);
         }
 
-        public async Task<PagedResponse<UserTest>> GetUserTests(int page, int itemPerPage, string userId)
+        public async Task<PagedResponse<UserTest>> GetUserTests(int page, int itemPerPage, string userId, string testName)
         {
             var userTests1 = _dbContext.UserTests
                 .Include(x => x.TestFk).Where(x => x.UserId == userId && x.IsActive == true);
+
+            if (!string.IsNullOrEmpty(testName))
+            {
+                userTests1 = userTests1.Where(x => x.TestFk.Name.Contains(testName));
+            }
 
             var total = await userTests1.CountAsync();
 

@@ -24,6 +24,7 @@ export class TestsComponent implements OnInit {
   createOrEditTestModal: CreateOrEditTestModalComponent = new CreateOrEditTestModalComponent(this.store,this.toastr,this.service, this.fileService);
   tests$: Observable<PagedResponse<TestDto> | any> = this.store.pipe(select(selectTestList));
   tableFilter: TableFilter = new TableFilter();
+  filterText='';
 
   constructor(
     private store: Store<AppState>,
@@ -37,6 +38,12 @@ export class TestsComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  filterInput(event: any){
+    if (event.key === 'Enter' || event.keyCode === 13){
+      this.onLazyLoad();
+    }
+  }
+
   onLazyLoad(event?: LazyLoadEvent){
     if(event)
     {
@@ -44,7 +51,8 @@ export class TestsComponent implements OnInit {
       const pageIndex = Math.ceil((first as number)/ (rows as number)) + 1;  
       let request: PagedRequest = {
         page: pageIndex,
-        itemPerPage: rows as number
+        itemPerPage: rows as number,
+        name: this.filterText ?? ''
       };
       this.store.dispatch(new GetTests(request));
     }else
@@ -52,7 +60,8 @@ export class TestsComponent implements OnInit {
       const pageIndex = Math.ceil((this.tableFilter.first)/ (this.tableFilter.itemPerPage)) + 1;  
       let request: PagedRequest = {
         page: pageIndex,
-        itemPerPage: this.tableFilter.itemPerPage
+        itemPerPage: this.tableFilter.itemPerPage,
+        name: this.filterText ?? ''
       };
       this.store.dispatch(new GetTests(request));
     }

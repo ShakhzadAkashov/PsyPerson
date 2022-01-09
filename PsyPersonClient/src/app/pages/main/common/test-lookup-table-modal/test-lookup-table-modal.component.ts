@@ -42,7 +42,8 @@ export class TestLookupTableModalComponent implements OnInit {
       let request: PagedRequest = {
         page: pageIndex,
         itemPerPage: rows as number,
-        userId: this.userId ?? ''
+        userId: this.userId ?? '',
+        name: this.filterText ?? ''
       };
       console.log(first, rows);
       this.store.dispatch(new GetTestsForLookupTable(request));
@@ -52,7 +53,8 @@ export class TestLookupTableModalComponent implements OnInit {
       let request: PagedRequest = {
         page: pageIndex,
         itemPerPage: this.tableFilter.itemPerPage,
-        userId: this.userId ?? ''
+        userId: this.userId ?? '',
+        name: this.filterText ?? ''
       };
       console.log(this.tableFilter);
       this.store.dispatch(new GetTestsForLookupTable(request));
@@ -79,5 +81,9 @@ export class TestLookupTableModalComponent implements OnInit {
     this.modal.hide();
   }
 
-  filterInput(event: any){}
+  filterInput(event: any){
+    if (event.key === 'Enter' || event.keyCode === 13){
+      this.onLazyLoad();
+    }
+  }
 }

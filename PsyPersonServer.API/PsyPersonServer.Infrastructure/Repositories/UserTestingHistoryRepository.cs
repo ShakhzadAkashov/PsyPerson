@@ -114,7 +114,7 @@ namespace PsyPersonServer.Infrastructure.Repositories
             return userTestingHistory;
         }
 
-        public async Task<PagedResponse<UserTestingHistory>> GetUserTestingHistoryForCheck(int page, int itemPerPage, bool isChecked)
+        public async Task<PagedResponse<UserTestingHistory>> GetUserTestingHistoryForCheck(int page, int itemPerPage, bool isChecked, string testName)
         {
             var userTestingHistoryList = _dbContext.UserTestingHistories
                 .Include(x => x.UserTestFk).ThenInclude(x => x.TestFk)
@@ -124,6 +124,11 @@ namespace PsyPersonServer.Infrastructure.Repositories
             if (isChecked == false)
             {
                 userTestingHistoryList = userTestingHistoryList.Where(x => x.IsChecked == isChecked);
+            }
+
+            if (!string.IsNullOrEmpty(testName))
+            {
+                userTestingHistoryList = userTestingHistoryList.Where(x => x.UserTestFk.TestFk.Name.Contains(testName));
             }
 
             var total = await userTestingHistoryList.CountAsync();

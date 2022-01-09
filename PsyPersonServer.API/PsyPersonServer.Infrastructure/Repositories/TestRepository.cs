@@ -19,9 +19,14 @@ namespace PsyPersonServer.Infrastructure.Repositories
         }
         private readonly DBContext _dbContext;
 
-        public async Task<PagedResponse<Test>> GetTests(int page, int itemPerPage)
+        public async Task<PagedResponse<Test>> GetTests(int page, int itemPerPage, string name)
         {
             var tests = _dbContext.Tests.Include(x => x.TestResultList).AsQueryable();
+
+            if (!string.IsNullOrEmpty(name))
+            {
+                tests = tests.Where(x => x.Name.Contains(name));
+            }
 
             var total = await tests.CountAsync();
 
@@ -37,7 +42,7 @@ namespace PsyPersonServer.Infrastructure.Repositories
             return test;
         }
 
-        public async Task<PagedResponse<Test>> GetTestsByUserId(int page, int itemPerPage, string userId)
+        public async Task<PagedResponse<Test>> GetTestsByUserId(int page, int itemPerPage, string userId, string name)
         {
             var tests = _dbContext.Tests.AsQueryable();
 
@@ -55,6 +60,11 @@ namespace PsyPersonServer.Infrastructure.Repositories
                         }
                     }
                 }
+            }
+
+            if (!string.IsNullOrEmpty(name))
+            {
+                tests = tests.Where(x => x.Name.Contains(name));
             }
 
             var total = await tests.CountAsync();

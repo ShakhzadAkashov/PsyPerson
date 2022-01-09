@@ -40,7 +40,8 @@ export class RoleLookupTableModalComponent implements OnInit {
       const pageIndex = Math.ceil((first as number)/ (rows as number)) + 1;  
       let request: PagedRequest = {
         page: pageIndex,
-        itemPerPage: rows as number
+        itemPerPage: rows as number,
+        name: this.filterText ?? ''
       };
       console.log(first, rows);
       this.store.dispatch(new GetRoles(request));
@@ -49,7 +50,8 @@ export class RoleLookupTableModalComponent implements OnInit {
       const pageIndex = Math.ceil((this.tableFilter.first)/ (this.tableFilter.itemPerPage)) + 1;  
       let request: PagedRequest = {
         page: pageIndex,
-        itemPerPage: this.tableFilter.itemPerPage
+        itemPerPage: this.tableFilter.itemPerPage,
+        name: this.filterText ?? ''
       };
       console.log(this.tableFilter);
       this.store.dispatch(new GetRoles(request));
@@ -74,5 +76,9 @@ export class RoleLookupTableModalComponent implements OnInit {
     this.modal.hide();
   }
 
-  filterInput(event: any){}
+  filterInput(event: any){
+    if (event.key === 'Enter' || event.keyCode === 13){
+      this.onLazyLoad();
+    }
+  }
 }

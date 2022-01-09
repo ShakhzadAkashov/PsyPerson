@@ -28,7 +28,11 @@ export class UserTestingListForCheckComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  filterInput(event: any){}
+  filterInput(event: any){
+    if (event.key === 'Enter' || event.keyCode === 13){
+      this.onLazyLoad();
+    }
+  }
 
   onLazyLoad(event?: LazyLoadEvent){
     if(event)
@@ -37,7 +41,8 @@ export class UserTestingListForCheckComponent implements OnInit {
       const pageIndex = Math.ceil((first as number)/ (rows as number)) + 1;  
       let request: PagedRequest = {
         page: pageIndex,
-        itemPerPage: rows as number
+        itemPerPage: rows as number,
+        testName: this.filterText ?? ''
       };
       this.store.dispatch(new GetUserTestingListForCheck(request));
     }else
@@ -45,7 +50,8 @@ export class UserTestingListForCheckComponent implements OnInit {
       const pageIndex = Math.ceil((this.tableFilter.first)/ (this.tableFilter.itemPerPage)) + 1;  
       let request: PagedRequest = {
         page: pageIndex,
-        itemPerPage: this.tableFilter.itemPerPage
+        itemPerPage: this.tableFilter.itemPerPage,
+        testName: this.filterText ?? ''
       };
       this.store.dispatch(new GetUserTestingListForCheck(request));
     }

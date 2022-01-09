@@ -24,6 +24,7 @@ export class UserTestsDetailsModalComponent implements OnInit {
 
   tableFilter: TableFilter = new TableFilter();
   userId: string = '';
+  filterText='';
 
   resultStatuses :{ [key: number]: any } = {
     0: {
@@ -52,6 +53,12 @@ export class UserTestsDetailsModalComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  filterInput(event: any){
+    if (event.key === 'Enter' || event.keyCode === 13){
+      this.onLazyLoad();
+    }
+  }
+
   show(userId: any): void {
     this.userId = userId;
     this.onLazyLoad();
@@ -67,7 +74,8 @@ export class UserTestsDetailsModalComponent implements OnInit {
       let request: PagedRequest = {
         page: pageIndex,
         itemPerPage: rows as number,
-        userId: this.userId
+        userId: this.userId,
+        testName: this.filterText ?? ''
       };
       this.store.dispatch(new GetUserTestsDetails(request));
     }else
@@ -76,7 +84,8 @@ export class UserTestsDetailsModalComponent implements OnInit {
       let request: PagedRequest = {
         page: pageIndex,
         itemPerPage: this.tableFilter.itemPerPage,
-        userId: this.userId
+        userId: this.userId,
+        testName: this.filterText ?? ''
       };
       this.store.dispatch(new GetUserTestsDetails(request));
     }

@@ -26,7 +26,7 @@ namespace PsyPersonServer.Application.UserTests.Queries.GetUserTestsDetails
 
         public async Task<PagedResponse<UserTestDetailDto>> Handle(GetUserTestsDetailsQ request, CancellationToken cancellationToken)
         {
-            var userTests = await _userTestRepository.GetUserTests(request.Page, request.ItemPerPage, request.UserId);
+            var userTests = await _userTestRepository.GetUserTests(request.Page, request.ItemPerPage, request.UserId, request.TestName);
 
             var userTestDtos = userTests.Data.Select(x => _mapper.Map<UserTestDetailDto>(x)).ToList();
 

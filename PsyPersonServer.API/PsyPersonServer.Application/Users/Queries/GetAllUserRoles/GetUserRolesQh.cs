@@ -26,6 +26,11 @@ namespace PsyPersonServer.Application.Users.Queries.GetAllUserRoles
         {
             var roles = await _repository.GetUserRoles(request.UserId);
 
+            if (!string.IsNullOrEmpty(request.RoleName))
+            {
+                roles = roles.Where(x => x.Name.Contains(request.RoleName)).ToList();
+            }
+
             var total = roles.Count();
 
             if (request.Page > 0 && request.ItemPerPage > 0)

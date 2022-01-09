@@ -36,7 +36,11 @@ export class RolesComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  filterInput(event: any){}
+  filterInput(event: any){
+    if (event.key === 'Enter' || event.keyCode === 13){
+      this.onLazyLoad();
+    }
+  }
 
   onLazyLoad(event?: LazyLoadEvent){
     if(event)
@@ -45,7 +49,8 @@ export class RolesComponent implements OnInit {
       const pageIndex = Math.ceil((first as number)/ (rows as number)) + 1;  
       let request: PagedRequest = {
         page: pageIndex,
-        itemPerPage: rows as number
+        itemPerPage: rows as number,
+        name: this.filterText ?? ''
       };
       this.store.dispatch(new GetRoles(request));
     }else
@@ -53,7 +58,8 @@ export class RolesComponent implements OnInit {
       const pageIndex = Math.ceil((this.tableFilter.first)/ (this.tableFilter.itemPerPage)) + 1;  
       let request: PagedRequest = {
         page: pageIndex,
-        itemPerPage: this.tableFilter.itemPerPage
+        itemPerPage: this.tableFilter.itemPerPage,
+        name: this.filterText ?? ''
       };
       this.store.dispatch(new GetRoles(request));
     }

@@ -12,5 +12,6 @@ namespace PsyPersonServer.Application.UserTests.Queries.GetUserTestsDetails
         public int Page { get; set; } = 1;
         public int ItemPerPage { get; set; } = 10;
         public string UserId { get; set; }
+        public string TestName { get; set; }
     }
 }

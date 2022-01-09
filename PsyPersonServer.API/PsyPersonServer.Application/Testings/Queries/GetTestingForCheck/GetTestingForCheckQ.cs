@@ -12,5 +12,6 @@ namespace PsyPersonServer.Application.Testings.Queries.GetTestingForCheck
         public int Page { get; set; } = 1;
         public int ItemPerPage { get; set; } = 10;
         public bool IsChecked { get; set; } = false;
+        public string TestName { get; set; }
     }
 }

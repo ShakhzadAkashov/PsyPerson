@@ -39,7 +39,11 @@ export class UsersComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  filterInput(event: any){}
+  filterInput(event: any){
+    if (event.key === 'Enter' || event.keyCode === 13){
+      this.onLazyLoad();
+    }
+  }
 
   onLazyLoad(event?: LazyLoadEvent){
     if(event)
@@ -48,7 +52,8 @@ export class UsersComponent implements OnInit {
       const pageIndex = Math.ceil((first as number)/ (rows as number)) + 1;  
       let request: PagedRequest = {
         page: pageIndex,
-        itemPerPage: rows as number
+        itemPerPage: rows as number,
+        userName: this.filterText ?? ''
       };
       this.store.dispatch(new GetUsers(request));
     }else
@@ -56,7 +61,8 @@ export class UsersComponent implements OnInit {
       const pageIndex = Math.ceil((this.tableFilter.first)/ (this.tableFilter.itemPerPage)) + 1;  
       let request: PagedRequest = {
         page: pageIndex,
-        itemPerPage: this.tableFilter.itemPerPage
+        itemPerPage: this.tableFilter.itemPerPage,
+        userName: this.filterText ?? ''
       };
       this.store.dispatch(new GetUsers(request));
     }

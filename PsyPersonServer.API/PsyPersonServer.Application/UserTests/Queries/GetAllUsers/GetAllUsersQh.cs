@@ -34,6 +34,11 @@ namespace PsyPersonServer.Application.UserTests.Queries.GetAllUsers
         {
             var u = _userManager.Users.AsQueryable();
 
+            if (!string.IsNullOrEmpty(request.UserName))
+            {
+                u = u.Where(x => x.UserName.Contains(request.UserName));
+            }
+
             var total = await u.CountAsync(cancellationToken);
 
             if (request.Page > 0 && request.ItemPerPage > 0)

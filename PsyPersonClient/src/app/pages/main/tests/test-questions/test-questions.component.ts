@@ -47,7 +47,11 @@ export class TestQuestionsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  filterInput(event: any){}
+  filterInput(event: any){
+    if (event.key === 'Enter' || event.keyCode === 13){
+      this.onLazyLoad();
+    }
+  }
 
   onLazyLoad(event?: LazyLoadEvent){
     if(event)
@@ -57,6 +61,7 @@ export class TestQuestionsComponent implements OnInit {
       let request: PagedRequest = {
         page: pageIndex,
         itemPerPage: rows as number,
+        name: this.filterText ?? ''
       };
       request.testId = this.testId ?? '';
       this.store.dispatch(new GetTestQuestions(request));
@@ -65,7 +70,8 @@ export class TestQuestionsComponent implements OnInit {
       const pageIndex = Math.ceil((this.tableFilter.first)/ (this.tableFilter.itemPerPage)) + 1;  
       let request: PagedRequest = {
         page: pageIndex,
-        itemPerPage: this.tableFilter.itemPerPage
+        itemPerPage: this.tableFilter.itemPerPage,
+        name: this.filterText ?? ''
       };
       request.testId = this.testId ?? '';
       this.store.dispatch(new GetTestQuestions(request));
@@ -96,7 +102,7 @@ export class TestQuestionsComponent implements OnInit {
   remove(testQuestion:TestQuestionDto)
   {
     Swal.fire({
-      title: 'Удаление тестого вапроса',
+      title: 'Удаление тестого вопроса',
       text: 'Вы Уверены ?',
       icon: 'warning',
       showCancelButton: true,

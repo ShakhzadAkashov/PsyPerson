@@ -48,7 +48,8 @@ namespace PsyPersonServer.API.Controllers
             {
                 Page = query.Page,
                 ItemPerPage = query.ItemPerPage,
-                UserId = userId
+                UserId = userId,
+                TestName = query.TestName
             }));
         }
 

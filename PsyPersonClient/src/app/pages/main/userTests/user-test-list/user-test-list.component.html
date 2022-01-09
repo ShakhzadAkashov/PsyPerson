@@ -1,4 +1,16 @@
 <div class="card">
+    <div class="row align-items-center">
+        <div class="col-xl-12">
+            <div class="form-group m-form__group align-items-center pt-2">
+                <div class="input-group">
+                    <input style="box-shadow: none;" (keyup)="filterInput($event)" [(ngModel)]="filterText" name="filterText" class="form-control" placeholder="Поиск по названию теста" type="text">
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary bnt-md" (click)="onLazyLoad()" type="submit"><i class="fa fa-search"></i></button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
     <p-dataView #dv [value]="(tests$ | async).data " [paginator]="true" layout="grid" [showCurrentPageReport]="true"
         [rows]="tableFilter.itemPerPage" [rowsPerPageOptions]="[4,8,12,16]" [loading]="(tests$ | async).loading"
         [totalRecords]="(tests$ | async).total" [lazy]="true" [first]="tableFilter.first"
@@ -6,7 +18,7 @@
         currentPageReportTemplate="Показаны записи с {first} по {last} из {totalRecords}">
         <ng-template pTemplate="header">
             <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between">
-                <span>ВЕСЬ СПИСОК ТЕСТОВ</span>
+                <span class="pt-2">ВЕСЬ СПИСОК ТЕСТОВ</span>
                 <span class="float-right">
                     <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
                 </span>

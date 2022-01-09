@@ -28,6 +28,11 @@ namespace PsyPersonServer.Application.ApplicationRoles.Queries.GetAllRoles
         {
             var roles = _roleManager.Roles.AsQueryable();
 
+            if (!string.IsNullOrEmpty(request.Name))
+            {
+                roles = roles.Where(x => x.Name.Contains(request.Name));
+            }
+
             var total = await roles.CountAsync(cancellationToken);
 
             if (request.Page > 0 && request.ItemPerPage > 0)

@@ -10,7 +10,7 @@ namespace PsyPersonServer.Domain.Repositories
 {
     public interface ITestQuestionRepository
     {
-        Task<PagedResponse<TestQuestion>> GetAll(int page, int itemPerPage, Guid? testId);
+        Task<PagedResponse<TestQuestion>> GetAll(int page, int itemPerPage, Guid? testId, string name);
         Task<TestQuestion> Create(string name, Guid testId, List<TestQuestionAnswer> answers);
         Task<bool> Update(Guid id, string name, List<TestQuestionAnswer> answers);
         Task<IEnumerable<TestQuestion>> GetAllForTestingById(Guid testId);

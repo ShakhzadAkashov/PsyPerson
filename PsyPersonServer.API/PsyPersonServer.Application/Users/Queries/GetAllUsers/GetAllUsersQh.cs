@@ -28,6 +28,11 @@ namespace PsyPersonServer.Application.Users.Queries.GetAllUsers
         {
             var users = _userManager.Users.AsQueryable();
 
+            if (!string.IsNullOrEmpty(request.UserName))
+            {
+                users = users.Where(x => x.UserName.Contains(request.UserName));
+            }
+
             var total = await users.CountAsync(cancellationToken);
 
             if (request.Page > 0 && request.ItemPerPage > 0)

@@ -25,7 +25,7 @@ namespace PsyPersonServer.Application.TestQuestions.Queries.GetTestQuestions
 
         public async Task<PagedResponse<TestQuestionDto>> Handle(GetTestQuestionsQ request, CancellationToken cancellationToken)
         {
-            var testQuestions =  await _repository.GetAll(request.Page, request.ItemPerPage, request.TestId);
+            var testQuestions =  await _repository.GetAll(request.Page, request.ItemPerPage, request.TestId,request.Name);
             var testQuestionDtos = testQuestions.Data.Select(x => _mapper.Map<TestQuestionDto>(x)).ToList();
 
             foreach (var i in testQuestionDtos) 

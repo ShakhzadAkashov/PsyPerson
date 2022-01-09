@@ -20,13 +20,18 @@ namespace PsyPersonServer.Infrastructure.Repositories
 
         private readonly DBContext _dbContext;
 
-        public async Task<PagedResponse<TestQuestion>> GetAll(int page, int itemPerPage, Guid? testId)
+        public async Task<PagedResponse<TestQuestion>> GetAll(int page, int itemPerPage, Guid? testId, string name)
         {
             var testQuestions = _dbContext.TestQuestions.Include(x => x.Answers).AsQueryable();
 
             if (testId.HasValue)
             {
                 testQuestions = testQuestions.Where(x => x.TestId == testId);
+            }
+
+            if (!string.IsNullOrEmpty(name))
+            {
+                testQuestions = testQuestions.Where(x => x.Name.Contains(name));
             }
 
             var total = await testQuestions.CountAsync();

@@ -25,7 +25,7 @@ namespace PsyPersonServer.Application.Testings.Queries.GetTestingForCheck
 
         public async Task<PagedResponse<UserTestingHistoryDto>> Handle(GetTestingForCheckQ request, CancellationToken cancellationToken)
         {
-            var userTestingHistoryes = await _repository.GetUserTestingHistoryForCheck(request.Page, request.ItemPerPage, request.IsChecked);
+            var userTestingHistoryes = await _repository.GetUserTestingHistoryForCheck(request.Page, request.ItemPerPage, request.IsChecked, request.TestName);
             return new PagedResponse<UserTestingHistoryDto>(userTestingHistoryes.Data.Select(x => _mapper.Map<UserTestingHistoryDto>(x)), userTestingHistoryes.Total);
         }
     }

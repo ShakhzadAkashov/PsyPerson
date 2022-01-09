@@ -2,7 +2,7 @@
     <div class="col-xl-12">
         <div class="form-group m-form__group align-items-center">
             <div class="input-group">
-                <input style="box-shadow: none;" (keyup)="filterInput($event)" [(ngModel)]="filterText" name="filterText" class="form-control" placeholder="Поиск по всем параметрам" type="text">
+                <input style="box-shadow: none;" (keyup)="filterInput($event)" [(ngModel)]="filterText" name="filterText" class="form-control" placeholder="Поиск по названию вопроса" type="text">
                 <span class="input-group-btn">
                     <button class="btn btn-primary bnt-md" (click)="onLazyLoad()" type="submit"><i class="fa fa-search"></i></button>
                 </span>
@@ -22,9 +22,9 @@
                     <button class="btn btn-md btn-outline-primary mr-3" (click)="goBack()"><i class="pi pi-arrow-left"></i></button>
                 </span>
                 <span>СПИСОК ВОПРОСОВ</span>
-                <span>
+                <!-- <span>
                     <button class="btn btn-md btn-outline-primary ml-3" ><i class="fa fa-refresh"></i> Обновить</button>
-                </span>
+                </span> -->
                 <span *ngIf="type==0">
                     <button class="btn btn-md btn-outline-primary float-right" (click)="createSimpleTypeTestQuestion()"><i class="fa fa-plus"></i> Создать вопрос</button>
                 </span>

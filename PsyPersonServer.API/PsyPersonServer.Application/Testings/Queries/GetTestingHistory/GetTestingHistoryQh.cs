@@ -22,7 +22,7 @@ namespace PsyPersonServer.Application.Testings.Queries.GetTestingHistory
         public async Task<TestingHistoryDto<TestingHistoryQuestionDto>> Handle(GetTestingHistoryQ request, CancellationToken cancellationToken)
         {
             var userTestingHistory = await _userTestingHistoryRepository.GetById(request.UserTestingHistoryId);
-            var testQuestions = await _testQuestionRepository.GetAll(request.Page, request.ItemPerPage, userTestingHistory.UserTestFk.TestId);
+            var testQuestions = await _testQuestionRepository.GetAll(request.Page, request.ItemPerPage, userTestingHistory.UserTestFk.TestId,"");
             var answers = await _userTestingHistoryRepository.GetAnswersById(request.UserTestingHistoryId);
             var customAnswers = await _userTestingHistoryRepository.GetCustomAnswersById(request.UserTestingHistoryId);
 

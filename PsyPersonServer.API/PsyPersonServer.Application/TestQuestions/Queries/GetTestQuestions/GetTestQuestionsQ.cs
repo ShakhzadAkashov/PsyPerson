@@ -12,5 +12,6 @@ namespace PsyPersonServer.Application.TestQuestions.Queries.GetTestQuestions
         public int Page { get; set; } = 1;
         public int ItemPerPage { get; set; } = 10;
         public Guid? TestId { get; set; }
+        public string Name { get; set; }
     }
 }

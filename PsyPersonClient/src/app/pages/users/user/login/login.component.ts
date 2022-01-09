@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
           }else{
             this.user = result;
             this.router.navigateByUrl('home');
-            this.toastr.success("success",`Welcome ${this.user.userName}`,{timeOut:3000});
+            this.toastr.success("PsyPerson App.",`Welcome ${this.user.userName}`,{timeOut:3000});
           }
         });
       },
