@@ -75,7 +75,6 @@ namespace PsyPersonServer.API
             services.AddTransient<IUserTestRepository, UserTestRepository>();
             services.AddTransient<IUserTestingHistoryRepository, UserTestingHistoryRepository>();
 
-            //.AddDefaultTokenProviders();
 
             services.Configure<IdentityOptions>(options => {
                 options.Password.RequireDigit = false;

@@ -39,7 +39,7 @@ export class RegistrationComponent implements OnInit {
 
   ngOnInit(): void {
     if(localStorage.getItem('token') != null)
-      this.router.navigateByUrl('/home/statistics');
+      this.router.navigateByUrl('/home/main/statistics');
   }
 
   onSubmit(){

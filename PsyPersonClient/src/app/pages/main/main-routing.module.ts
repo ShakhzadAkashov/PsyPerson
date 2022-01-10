@@ -69,7 +69,7 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: 'tests',
+        redirectTo: 'statistics',
         pathMatch: 'full',
       }
     ] 
