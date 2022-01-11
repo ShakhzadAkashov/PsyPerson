@@ -12,7 +12,15 @@
         </a>
       </div>
       <ul nz-menu nzTheme="light" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
-        <li nz-submenu nzOpen nzTitle="Admin" nzIcon="dashboard">
+        <li *ngIf="UserHelper.UserHasPermission('Permissions.Statistics.Navigation-Menu')" nz-submenu nzOpen nzTitle="Statistics" nzIcon="menu">
+          <ul>
+            <li  *ngIf="UserHelper.UserHasPermission('Permissions.Statistics.Pages')"
+                nz-menu-item nzMatchRouter>
+              <a routerLink="/home/main/statistics">Statistics</a>
+            </li>
+          </ul>
+        </li>
+        <li *ngIf="UserHelper.UserHasPermission('Permissions.Admin.Navigation-Menu')" nz-submenu nzOpen nzTitle="Admin" nzIcon="menu">
           <ul>
             <li *ngIf="UserHelper.UserHasPermission('Permissions.Users.Pages')"  
                 nz-menu-item nzMatchRouter>
@@ -24,16 +32,12 @@
             </li>
           </ul>
         </li>
-        <li nz-submenu nzOpen nzTitle="Main" nzIcon="form">
+        <li *ngIf="UserHelper.UserHasPermission('Permissions.HR/Managers.Navigation-Menu')" nz-submenu nzOpen nzTitle="HR/Managers" nzIcon="menu">
           <ul>
             <li *ngIf="UserHelper.UserHasPermission('Permissions.Tests.Pages')"
                 nz-menu-item nzMatchRouter>
               <a routerLink="/home/main/tests">Tests</a>
             </li>
-          </ul>
-        </li>
-        <li nz-submenu nzOpen nzTitle="HR/Managers" nzIcon="form">
-          <ul>
             <li *ngIf="UserHelper.UserHasPermission('Permissions.UserTestUsers.Pages')" 
                 nz-menu-item nzMatchRouter>
               <a routerLink="/home/main/userTestUsers">Users</a>
@@ -44,19 +48,11 @@
             </li>
           </ul>
         </li>
-        <li nz-submenu nzOpen nzTitle="Employees" nzIcon="form">
+        <li *ngIf="UserHelper.UserHasPermission('Permissions.Employees.Navigation-Menu')" nz-submenu nzOpen nzTitle="Employees" nzIcon="menu">
           <ul>
             <li  *ngIf="UserHelper.UserHasPermission('Permissions.UserTests.Pages')"
                 nz-menu-item nzMatchRouter>
               <a routerLink="/home/main/userTests">Tests</a>
-            </li>
-          </ul>
-        </li>
-        <li nz-submenu nzOpen nzTitle="Statistics" nzIcon="form">
-          <ul>
-            <li  *ngIf="UserHelper.UserHasPermission('Permissions.Statistics.Pages')"
-                nz-menu-item nzMatchRouter>
-              <a routerLink="/home/main/statistics">Statistics</a>
             </li>
           </ul>
         </li>

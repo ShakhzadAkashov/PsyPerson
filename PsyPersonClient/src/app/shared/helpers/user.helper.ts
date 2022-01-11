@@ -24,13 +24,16 @@ export class UserHelper {
     }
 
     static UserHasPermission(permissionName: string): boolean{
-        var payLoad = JSON.parse(window.atob(localStorage.getItem('token')!.split('.')[1]));
-        var permissions = payLoad.Permission;
-
-        if(permissions){
-            for (let i = 0; i < permissions.length; i++) {
-                if(permissions[i] === permissionName)
-                    return true;
+        var token = localStorage.getItem('token')?.split('.')[1];
+        if(token){
+            var payLoad = JSON.parse(window.atob(token));
+            var permissions = payLoad.Permission;
+    
+            if(permissions){
+                for (let i = 0; i < permissions.length; i++) {
+                    if(permissions[i] === permissionName)
+                        return true;
+                }
             }
         }
         
