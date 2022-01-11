@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using PsyPersonServer.Application.Statistics.Queries.GetStatisticsForEmployees;
 using PsyPersonServer.Application.Statistics.Queries.GetStatisticsForManager;
 using PsyPersonServer.Domain.Models.Permission;
 using System;
@@ -27,9 +28,19 @@ namespace PsyPersonServer.API.Controllers
         [HttpGet]
         [Route("StatisticsForManager")]
         //Get : /api/Statistics/StatisticsForManager
-        public async Task<IActionResult> GetTests([FromQuery] GetStatisticsForManagersQ query)
+        public async Task<IActionResult> StatisticsForManager()
         {
-            return Ok(await _mediator.Send(query));
+            return Ok(await _mediator.Send(new GetStatisticsForManagersQ()));
+        }
+
+        [Authorize(Permissions.Statistics_ForEmployees)]
+        [HttpGet]
+        [Route("StatisticsForEmployee")]
+        //Get : /api/Statistics/StatisticsForEmployee
+        public async Task<IActionResult> StatisticsForEmployee()
+        {
+            string userId = User.Claims.First(c => c.Type == "UserID").Value;
+            return Ok(await _mediator.Send(new GetStatisticsForEmployeesQ { UserId = userId }));
         }
     }
 }

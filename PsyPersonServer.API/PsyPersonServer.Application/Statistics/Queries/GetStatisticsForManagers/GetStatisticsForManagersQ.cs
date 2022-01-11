@@ -6,7 +6,7 @@ using System.Text;
 
 namespace PsyPersonServer.Application.Statistics.Queries.GetStatisticsForManager
 {
-    public class GetStatisticsForManagersQ : IRequest<StatisticDto>
+    public class GetStatisticsForManagersQ : IRequest<List<StatisticDto>>
     {
     }
 }

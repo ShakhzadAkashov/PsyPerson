@@ -24,6 +24,7 @@ import { ChangePasswordModalComponent } from '../pages/users/user/change-passwor
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ForbiddenComponent } from './components/forbidden/forbidden.component';
 import {ScrollPanelModule} from 'primeng/scrollpanel';
+import {ChartModule} from 'primeng/chart';
 
 
 @NgModule({
@@ -62,7 +63,8 @@ import {ScrollPanelModule} from 'primeng/scrollpanel';
     AvatarModule,
     SidebarModule,
     ChangePasswordModalComponent,
-    ScrollPanelModule
+    ScrollPanelModule,
+    ChartModule
   ]
 })
 export class SharedModule { }

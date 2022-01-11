@@ -155,5 +155,15 @@ namespace PsyPersonServer.Infrastructure.Repositories
             var list = await _dbContext.TestingHistoryCustomQuestionAnswers.Where(x => x.UserTestingHistoryId == userTestingHistoryId).AsNoTracking().ToListAsync();
             return list;
         }
+
+        public async Task<IEnumerable<UserTestingHistory>> GetByPeriod(DateTime fromDate, DateTime toDate)
+        {
+            var userTestingHistoryList = await _dbContext.UserTestingHistories
+                .Include(x => x.UserTestFk).ThenInclude(x => x.UserFk)
+                .Include(x => x.UserTestFk).ThenInclude(x => x.TestFk)
+                .Where(x => x.TestedDate.Date >= fromDate && x.TestedDate.Date <= toDate).ToListAsync();
+
+            return userTestingHistoryList;
+        }
     }
 }

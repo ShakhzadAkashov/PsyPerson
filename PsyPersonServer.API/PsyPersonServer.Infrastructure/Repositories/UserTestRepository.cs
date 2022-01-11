@@ -128,7 +128,7 @@ namespace PsyPersonServer.Infrastructure.Repositories
 
         public async Task<UserTest> GetById(Guid id)
         {
-            var userTest = await _dbContext.UserTests.FirstOrDefaultAsync(x => x.Id == id);
+            var userTest = await _dbContext.UserTests.Include(x => x.UserFk).FirstOrDefaultAsync(x => x.Id == id);
             return userTest;
         }
 

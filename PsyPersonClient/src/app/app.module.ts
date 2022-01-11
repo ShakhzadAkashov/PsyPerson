@@ -40,6 +40,7 @@ import { AppFilesService } from './services/api/appFiles.serive';
 import { UserTestService } from './services/api/userTest.service';
 import { UserTestEffects } from './store/effects/userTest.effects';
 import { SharedModule } from '../app/shared/shared.module';
+import { StatisticService } from './services/api/statistic.service';
 
 
 registerLocaleData(ru);
@@ -79,6 +80,7 @@ registerLocaleData(ru);
     TestService,
     AppFilesService,
     UserTestService,
+    StatisticService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

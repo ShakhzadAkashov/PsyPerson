@@ -1,1 +1,16 @@
-<p>statistics works!</p>
+<div *ngIf="userHelper.UserHasPermission('Permissions.Statistics.ForManagers')">
+    <div class="card">
+        <h5>{{forManagerData_Users?.name}}</h5>
+        <p-chart type="line" [data]="forManagerData_Users?.data" [options]="multiAxisOptions"></p-chart>
+    </div>
+    <div class="card">
+        <h5>{{forManagerData_Tests?.name}}</h5>
+        <p-chart type="line" [data]="forManagerData_Tests?.data" [options]="multiAxisOptions"></p-chart>
+    </div>
+</div>
+<div *ngIf="userHelper.UserHasPermission('Permissions.Statistics.ForEmployees')">
+    <div class="card">
+        <h5>{{forEmployeeData?.name}}</h5>
+        <p-chart type="line" [data]="forEmployeeData?.data" [options]="multiAxisOptions"></p-chart>
+    </div>
+</div>
