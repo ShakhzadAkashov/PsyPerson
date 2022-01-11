@@ -13,7 +13,6 @@ import { LoginComponent } from './pages/users/user/login/login.component';
 import { RegistrationComponent } from './pages/users/user/registration/registration.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './pages/home/home.component';
-import { StatisticsComponent } from './pages/home/statistics/statistics.component';
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { ru_RU } from 'ng-zorro-antd/i18n';
 import ru from '@angular/common/locales/ru';
@@ -52,7 +51,6 @@ registerLocaleData(ru);
     // LoginComponent,
     // RegistrationComponent,
     HomeComponent,
-    StatisticsComponent,
   ],
   imports: [
     BrowserModule,
