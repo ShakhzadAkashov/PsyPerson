@@ -25,6 +25,7 @@ using PsyPersonServer.Domain.Models.Tests;
 using PsyPersonServer.Domain.Repositories;
 using PsyPersonServer.Infrastructure;
 using PsyPersonServer.Infrastructure.Repositories;
+using PsyPersonServer.Infrastructure.SeedData;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -159,6 +160,9 @@ namespace PsyPersonServer.API
             {
                 endpoints.MapControllers();
             });
+
+            //Seed Data to Db
+            //SeedData.EnsurePopulated(app);
         }
     }
 }
