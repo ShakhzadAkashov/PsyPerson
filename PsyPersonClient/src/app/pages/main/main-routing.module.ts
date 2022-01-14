@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from 'src/app/services/auth/auth.guard';
 import { MainComponent } from './main.component';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { CreateOrEditFirstLevelDifficultTestQuestionComponent } from './tests/test-questions/create-or-edit-first-level-difficult-test-question/create-or-edit-first-level-difficult-test-question.component';
@@ -15,65 +16,24 @@ import { UserTestingHistoryComponent } from './userTests/user-testing-history/us
 import { UserTestingListForCheckComponent } from './userTests/user-testing-list-for-check/user-testing-list-for-check.component';
 
 const routes: Routes = [
-  { 
-    path: '', 
-    component: MainComponent,
-    children:[
-      { 
-        path: 'tests', 
-        component:TestsComponent
-      },
-      { 
-        path: 'testQuestions', 
-        component:TestQuestionsComponent
-      },
-      { 
-        path: 'simpleTypeTesting', 
-        component:SimpleTypeTestingComponent
-      },
-      { 
-        path: 'L1DTypeTesting', 
-        component:FirstLevelDifficultTypeTestingComponent
-      },
-      { 
-        path: 'l2DTypeTesting', 
-        component:SecondLevelDifficultTypeTestingComponent
-      },
-      { 
-        path: 'userTestUsers', 
-        component:UserListComponent
-      },
-      { 
-        path: 'createOrEditL1DTypeTestQuestion', 
-        component:CreateOrEditFirstLevelDifficultTestQuestionComponent
-      },
-      { 
-        path: 'createOrEditL2DTypeTestQuestion', 
-        component:CreateOrEditSecondLevelDifficultTestQuestionComponent
-      },
-      { 
-        path: 'userTests', 
-        component:UserTestListComponent
-      },
-      { 
-        path: 'userTestingListForCheck', 
-        component:UserTestingListForCheckComponent
-      },
-      { 
-        path: 'TestingHistory', 
-        component:UserTestingHistoryComponent
-      },
-      { 
-        path: 'statistics', 
-        component:StatisticsComponent
-      },
-      {
-        path: '',
-        redirectTo: 'statistics',
-        pathMatch: 'full',
-      }
-    ] 
-  } 
+  {
+    path: '', component: MainComponent, canActivate: [AuthGuard],
+    children: [
+      { path: 'tests', component: TestsComponent, canActivate: [AuthGuard], data: { permission: 'Permissions.Tests.Pages' } },
+      { path: 'testQuestions', component: TestQuestionsComponent, canActivate: [AuthGuard], data: { permission: 'Permissions.TestQuestions.Pages' } },
+      { path: 'simpleTypeTesting', component: SimpleTypeTestingComponent, canActivate: [AuthGuard], data: { permission: 'Permissions.Testings.Pages' } },
+      { path: 'L1DTypeTesting', component: FirstLevelDifficultTypeTestingComponent, canActivate: [AuthGuard], data: { permission: 'Permissions.Testings.Pages' } },
+      { path: 'l2DTypeTesting', component: SecondLevelDifficultTypeTestingComponent, canActivate: [AuthGuard], data: { permission: 'Permissions.Testings.Pages' } },
+      { path: 'userTestUsers', component: UserListComponent, canActivate: [AuthGuard], data: { permission: 'Permissions.UserTests.ViewUsers' } },
+      { path: 'createOrEditL1DTypeTestQuestion', component: CreateOrEditFirstLevelDifficultTestQuestionComponent, canActivate: [AuthGuard], data: { permission: 'Permissions.TestQuestions.Create' } },
+      { path: 'createOrEditL2DTypeTestQuestion', component: CreateOrEditSecondLevelDifficultTestQuestionComponent, canActivate: [AuthGuard], data: { permission: 'Permissions.TestQuestions.Create' } },
+      { path: 'userTests', component: UserTestListComponent, canActivate: [AuthGuard], data: { permission: 'Permissions.UserTests.Pages' } },
+      { path: 'userTestingListForCheck', component: UserTestingListForCheckComponent, canActivate: [AuthGuard], data: { permission: 'Permissions.Testings.ForCheck' } },
+      { path: 'TestingHistory', component: UserTestingHistoryComponent, canActivate: [AuthGuard], data: { permission: 'Permissions.Testings.ViewHistory' } },
+      { path: 'statistics', component: StatisticsComponent, canActivate: [AuthGuard], data: { permission: 'Permissions.Statistics.Pages' } },
+      { path: '', redirectTo: 'statistics', pathMatch: 'full', }
+    ]
+  }
 ];
 
 @NgModule({
