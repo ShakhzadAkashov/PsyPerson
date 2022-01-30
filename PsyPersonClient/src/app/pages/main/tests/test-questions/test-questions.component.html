@@ -1,6 +1,7 @@
+<div class="card">
 <div class="row align-items-center">
     <div class="col-xl-12">
-        <div class="form-group m-form__group align-items-center">
+        <div class="form-group m-form__group align-items-center pt-1">
             <div class="input-group">
                 <input style="box-shadow: none;" (keyup)="filterInput($event)" [(ngModel)]="filterText" name="filterText" class="form-control" placeholder="Поиск по названию вопроса" type="text">
                 <span class="input-group-btn">
@@ -17,7 +18,7 @@
     [lazy]="true"  [(first)]="tableFilter.first"[(rows)]="tableFilter.itemPerPage" (onLazyLoad)="onLazyLoad($event)">
     <ng-template pTemplate="caption">
         <div class="table-header">
-            <div class="col-md-12">
+            <div >
                 <span *ngIf="from">
                     <button class="btn btn-md btn-outline-primary mr-3" (click)="goBack()"><i class="pi pi-arrow-left"></i></button>
                 </span>
@@ -139,5 +140,6 @@
         </tr>
     </ng-template>
 </p-table>
+</div>
 <app-create-or-edit-simple-type-test-question-modal #createOrEditSimpleTypeTestQuestionModal (modalSave)="onLazyLoad()"></app-create-or-edit-simple-type-test-question-modal>
 <app-create-test-questions-from-file-modal #createTestQuestionsFromFileModal (modalSave)="onLazyLoad()"></app-create-test-questions-from-file-modal>

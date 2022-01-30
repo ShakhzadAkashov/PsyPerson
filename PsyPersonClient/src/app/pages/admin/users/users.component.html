@@ -1,6 +1,7 @@
+<div class="card">
 <div class="row align-items-center">
     <div class="col-xl-12">
-        <div class="form-group m-form__group align-items-center">
+        <div class="form-group m-form__group align-items-center pt-1">
             <div class="input-group">
                 <input style="box-shadow: none;" (keyup)="filterInput($event)" [(ngModel)]="filterText" name="filterText" class="form-control" placeholder="Поиск по логин" type="text">
                 <span class="input-group-btn">
@@ -143,6 +144,7 @@
         </tr>
     </ng-template>
 </p-table>
+</div>
 
 <app-create-or-edit-user-modal #createOrEditUsersModal (modalSave)="onLazyLoad()"></app-create-or-edit-user-modal>
 <app-view-user-modal #viewUsersModal></app-view-user-modal>
