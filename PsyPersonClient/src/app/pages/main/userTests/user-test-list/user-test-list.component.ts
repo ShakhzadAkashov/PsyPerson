@@ -25,23 +25,23 @@ export class UserTestListComponent implements OnInit {
 
   resultStatuses :{ [key: number]: any } = {
     0: {
-      label: 'Low',
+      label: 'Низкий уровень',
       color: 'info'
     },
     4: {
-      label: 'Unknown',
+      label: 'Неизвестно',
       color: 'danger'
     },
     3: {
-      label: 'Excelent',
+      label: 'Уровень-отлично',
       color: 'success'
     },
     1: {
-      label: 'Satisfactory',
+      label: 'Средний уровень',
       color: 'warning'
     },
     2: {
-      label: 'Good',
+      label: 'Уровень-хорошо',
       color: 'primary'
     }
   }

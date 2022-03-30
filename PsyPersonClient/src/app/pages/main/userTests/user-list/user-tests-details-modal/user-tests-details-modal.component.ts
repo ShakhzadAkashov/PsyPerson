@@ -28,19 +28,19 @@ export class UserTestsDetailsModalComponent implements OnInit {
 
   resultStatuses :{ [key: number]: any } = {
     0: {
-      label: 'Low'
+      label: 'Низкий уровень'
     },
     4: {
-      label: 'Unknown'
+      label: 'Неизвестно'
     },
     3: {
-      label: 'Excelent'
+      label: 'Уровень-отлично'
     },
     1: {
-      label: 'Satisfactory'
+      label: 'Средний уровень'
     },
     2: {
-      label: 'Good'
+      label: 'Уровень-хорошо'
     }
   }
 

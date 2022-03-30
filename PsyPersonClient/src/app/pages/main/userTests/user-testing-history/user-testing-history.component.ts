@@ -32,19 +32,19 @@ export class UserTestingHistoryComponent implements OnInit {
 
   AnswerResultStatuses :{key: any, value: AnswerResultStatusEnum}[] = [
     {
-      key: 'Low',
+      key: 'Низкий уровень',
       value: AnswerResultStatusEnum.Low
     },
     {
-      key: 'Satisfactory',
+      key: 'Средний уровень',
       value: AnswerResultStatusEnum.Satisfactory
     },
     {
-      key: 'Good',
+      key: 'Уровень-хорошо',
       value: AnswerResultStatusEnum.Good
     },
     {
-      key: 'Excelent',
+      key: 'Уровень-отлично',
       value: AnswerResultStatusEnum.Excelent
     }
   ]

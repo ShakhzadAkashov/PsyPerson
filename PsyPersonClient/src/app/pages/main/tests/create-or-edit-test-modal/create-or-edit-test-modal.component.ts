@@ -33,34 +33,34 @@ export class CreateOrEditTestModalComponent implements OnInit {
 
   testTypes :{key: any, value: TestTypeEnum}[] = [
     {
-      key: 'Simple Test',
+      key: 'Тест 1-ого уровня сложности',
       value: TestTypeEnum.SimpleTest
     },
     {
-      key: 'First Level Difficult Test',
+      key: 'Тест 2-ого уровня сложности',
       value: TestTypeEnum.FirstLevelDifficultTest
     },
     {
-      key: 'Second Level Difficult Test',
+      key: 'Тест 3-ого уровня сложности',
       value: TestTypeEnum.SecondLevelDifficultTest
     }
   ]
 
   testResultStatuses :{key: any, value: TestResultStatusEnum}[] = [
     {
-      key: 'Low',
+      key: 'Низкий уровень',
       value: TestResultStatusEnum.Low
     },
     {
-      key: 'Satisfactory',
+      key: 'Средний уровень',
       value: TestResultStatusEnum.Satisfactory
     },
     {
-      key: 'Good',
+      key: 'Уровень-хороший ',
       value: TestResultStatusEnum.Good
     },
     {
-      key: 'Excelent',
+      key: 'Уровень-отличный',
       value: TestResultStatusEnum.Excelent
     }
   ]
