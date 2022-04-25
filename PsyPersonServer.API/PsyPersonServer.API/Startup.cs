@@ -75,6 +75,7 @@ namespace PsyPersonServer.API
             services.AddTransient<ITestQuestionRepository,TestQuestionRepository>();
             services.AddTransient<IUserTestRepository, UserTestRepository>();
             services.AddTransient<IUserTestingHistoryRepository, UserTestingHistoryRepository>();
+            services.AddTransient<IEmailMessageRepository, EmailMessageRepository>();
 
 
             services.Configure<IdentityOptions>(options => {
@@ -162,7 +163,7 @@ namespace PsyPersonServer.API
             });
 
             //Seed Data to Db
-            //SeedData.EnsurePopulated(app);
+            SeedData.EnsurePopulated(app);
         }
     }
 }

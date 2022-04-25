@@ -80,5 +80,12 @@ namespace PsyPersonServer.Domain.Models.Permission
         public const string Navigation_Menu_Admin = "Permissions.Admin.Navigation-Menu";
         public const string Navigation_Menu_HRManagers = "Permissions.HR/Managers.Navigation-Menu";
         public const string Navigation_Menu_Employees = "Permissions.Employees.Navigation-Menu";
+
+        // EmailMessage
+        public const string EmailMessageSetting = "Permissions.EmailMessageSetting.Pages";
+        public const string EmailMessageSetting_View = "Permissions.EmailMessageSetting.View";
+        public const string EmailMessageSetting_Create = "Permissions.EmailMessageSetting.Create";
+        public const string EmailMessageSetting_Edit = "Permissions.EmailMessageSetting.Edit";
+        public const string EmailMessageSetting_Delete = "Permissions.EmailMessageSetting.Delet";
     }
 }

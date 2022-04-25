@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using PsyPersonServer.Application.ApplicationRoles.Dtos;
+using PsyPersonServer.Application.EmailMessage.Dtos;
 using PsyPersonServer.Application.TestQuestions.Dtos;
 using PsyPersonServer.Application.Tests.Dtos;
 using PsyPersonServer.Application.Users.Dtos;
@@ -32,6 +33,7 @@ namespace PsyPersonServer.Infrastructure
             CreateMap<UserTest, UserTestDetailDto>()
                 .ForMember(dest => dest.Test, opt => opt.MapFrom(src => src.TestFk))
                 .ReverseMap();
+            CreateMap<EmailMessageSetting, EmailMessageSettingDto>().ReverseMap();
         }
     }
 }
