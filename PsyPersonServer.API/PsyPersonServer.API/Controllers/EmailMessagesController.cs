@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using PsyPersonServer.Application.EmailMessage.Commands.CreateEmailMessageSetting;
 using PsyPersonServer.Application.EmailMessage.Commands.RemoveEmailMessageSetting;
 using PsyPersonServer.Application.EmailMessage.Commands.UpdateEmailMessageSetting;
+using PsyPersonServer.Application.EmailMessage.Queries.GetEmailMessageSetting;
 using PsyPersonServer.Domain.Models.Permission;
 using System;
 using System.Collections.Generic;
@@ -28,9 +29,9 @@ namespace PsyPersonServer.API.Controllers
         [HttpGet]
         [Route("GetSetting")]
         //Get : /api/EmailMessageSettings/GetSetting
-        public async Task<IActionResult> GetSetting([FromQuery] CreateEmailMessageSettingC query)
+        public async Task<IActionResult> GetSetting()
         {
-            return Ok(await _mediator.Send(query));
+            return Ok(await _mediator.Send(new GetEmailMessageSettingQ()));
         }
 
         [Authorize(Permissions.EmailMessageSetting_Create)]
