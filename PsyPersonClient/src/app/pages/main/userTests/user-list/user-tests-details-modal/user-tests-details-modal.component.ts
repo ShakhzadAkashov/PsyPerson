@@ -44,6 +44,24 @@ export class UserTestsDetailsModalComponent implements OnInit {
     }
   }
 
+  emotionStatuses :{ [key: string]: any } = {
+    "Low": {
+      label: 'Низкое'
+    },
+    "Unknown": {
+      label: 'Неизвестно'
+    },
+    "Excelent": {
+      label: 'Отличное'
+    },
+    "Satisfactory": {
+      label: 'Среднее'
+    },
+    "Good": {
+      label: 'Xорошee'
+    }
+  }
+
   constructor(
     private store: Store<AppState>,
     private toastr: ToastrService, 

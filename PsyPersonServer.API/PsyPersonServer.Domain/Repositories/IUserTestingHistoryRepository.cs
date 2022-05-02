@@ -20,5 +20,6 @@ namespace PsyPersonServer.Domain.Repositories
         Task<bool> Update(Guid id, double testScore, TestResultStatusEnum resultStatus, bool isChecked);
         Task<bool> UpdateTestingHistoryCustomQuestionAnswer(Guid id, double answerScore, AnswerResultStatusEnum? answerStatus);
         Task<IEnumerable<UserTestingHistory>> GetByPeriod(DateTime fromDate, DateTime toDate);
+        Task<IList<UserTestingHistory>> GetTestingHistoryByUserTestId(Guid userTestId);
     }
 }

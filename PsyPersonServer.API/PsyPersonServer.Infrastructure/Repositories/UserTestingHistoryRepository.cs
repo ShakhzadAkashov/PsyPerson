@@ -165,5 +165,11 @@ namespace PsyPersonServer.Infrastructure.Repositories
 
             return userTestingHistoryList;
         }
+
+        public async Task<IList<UserTestingHistory>> GetTestingHistoryByUserTestId(Guid userTestId)
+        {
+            var hist = await _dbContext.UserTestingHistories.Where(x => x.UserTestId == userTestId && x.IsChecked == true).ToListAsync();
+            return hist;
+        }
     }
 }

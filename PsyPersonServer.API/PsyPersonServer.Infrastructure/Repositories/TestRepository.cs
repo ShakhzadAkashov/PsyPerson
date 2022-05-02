@@ -42,6 +42,12 @@ namespace PsyPersonServer.Infrastructure.Repositories
             return test;
         }
 
+        public async Task<IList<TestResult>> GetTestResultsById(Guid id)
+        {
+            var testReslts = await _dbContext.TestResults.IgnoreAutoIncludes().Where(x => x.TestId == id).ToListAsync();
+            return testReslts;
+        }
+
         public async Task<PagedResponse<Test>> GetTestsByUserId(int page, int itemPerPage, string userId, string name)
         {
             var tests = _dbContext.Tests.AsQueryable();

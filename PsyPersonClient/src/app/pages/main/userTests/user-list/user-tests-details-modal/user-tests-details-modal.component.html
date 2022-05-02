@@ -100,7 +100,7 @@
                                     <p-tag *ngIf="record.isTested" severity="success" icon="pi pi-check" [rounded]="true"></p-tag>
                                     <p-tag *ngIf="!record.isTested" severity="warning" icon="pi pi-minus" [rounded]="true"></p-tag>
                                 </span> <br>
-                                <span>Эмоциональное состояние: <b>{{record.status}}</b></span>
+                                <span>Эмоциональное состояние: <b>{{emotionStatuses [record.status].label}}</b></span>
                             </td>
                             <td>
                                 <span class="p-column-title">История прохождения</span>
