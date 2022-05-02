@@ -36,9 +36,7 @@ namespace PsyPersonServer.Infrastructure.Repositories
         public async Task<EmailMessageSetting> GetSetting()
         {
             var setting = await _dbContext.EmailMessageSettings.FirstOrDefaultAsync();
-            if(setting != null)
-                return setting;
-            return new EmailMessageSetting();
+            return setting;
         }
 
         public async Task<bool> UpdateSetting(string hostName, string senderAddress, string senderPswd, string messageDisplayName)

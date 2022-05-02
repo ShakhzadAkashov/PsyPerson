@@ -1,0 +1,52 @@
+<div bsModal #emailMessageSettings="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="emailMessageSettings" aria-hidden="true" [config]="{backdrop: 'static'}">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <form #setting="ngForm" novalidate (ngSubmit)="save()" autocomplete="off">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        <span>Настойки почты</span>
+                    </h4>
+                    <button type="button" class="close" (click)="close()" aria-label="Close" [disabled]="saving">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="hostName" style="font-size: 1.1rem;">Название хоста: *</label>
+                        <input type="text" id="hostName" class="form-control mb-2" [(ngModel)]="settings.hostName" name="hostName" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="senderAddress" style="font-size: 1.1rem;">Адрес почты отправки: *</label>
+                        <input type="text" id="senderAddress" class="form-control mb-2" [(ngModel)]="settings.senderAddress" name="senderAddress" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="password" style="font-size: 1.1rem;">Пароль: *</label>
+                        <div class="input-group">
+                            <input [type]="showPswd ? 'text' : 'password'" min="4" id="password" class="form-control" data-toggle="password" [(ngModel)]="settings.senderPswd"
+                                name="password" required />
+                    
+                            <span class="input-group-append">
+                                <span (click)="showHidePassword()" class="btn btn-outline-primary">
+                                    <i *ngIf="!showPswd" class="fa fa-eye-slash"></i>
+                                    <i *ngIf="showPswd" class="fa fa-eye"></i>
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="messageDisplayName" style="font-size: 1.1rem;">Название заголовка письма: *</label>
+                        <input type="text" id="messageDisplayName" class="form-control mb-2" [(ngModel)]="settings.messageDisplayName" name="messageDisplayName" required />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button [disabled]="saving" type="button" class="btn btn-outline-danger" (click)="close()">Закрыть</button>
+                    <button [disabled]="saving || !setting.form.valid" type="button" class="btn btn-outline-danger" (click)="remove(settings)"> Удалить</button>
+                    <button type="submit" class="btn btn-outline-primary blue" [disabled]="!setting.form.valid" ><i class="fa fa-save"></i> <span> Сохранить</span></button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+

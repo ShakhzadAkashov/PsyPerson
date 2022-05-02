@@ -28,7 +28,7 @@ namespace PsyPersonServer.API.Controllers
         [Authorize(Permissions.EmailMessageSetting_View)]
         [HttpGet]
         [Route("GetSetting")]
-        //Get : /api/EmailMessageSettings/GetSetting
+        //Get : /api/EmailMessages/GetSetting
         public async Task<IActionResult> GetSetting()
         {
             return Ok(await _mediator.Send(new GetEmailMessageSettingQ()));
@@ -37,7 +37,7 @@ namespace PsyPersonServer.API.Controllers
         [Authorize(Permissions.EmailMessageSetting_Create)]
         [HttpPost]
         [Route("CreateSetting")]
-        //POST : /api/EmailMessageSetting/CreateSetting
+        //POST : /api/EmailMessages/CreateSetting
         public async Task<IActionResult> CreateSetting([FromBody] CreateEmailMessageSettingC command)
         {
             return Ok(await _mediator.Send(command));
@@ -46,7 +46,7 @@ namespace PsyPersonServer.API.Controllers
         [Authorize(Permissions.EmailMessageSetting_Edit)]
         [HttpPut]
         [Route("UpdateSetting")]
-        //PUT : /api/EmailMessageSetting/UpdateSetting
+        //PUT : /api/EmailMessages/UpdateSetting
         public async Task<IActionResult> UpdateSetting([FromBody] UpdateEmailMessageSettingC command)
         {
             return Ok(await _mediator.Send(command));
@@ -55,7 +55,7 @@ namespace PsyPersonServer.API.Controllers
         [Authorize(Permissions.EmailMessageSetting_Delete)]
         [HttpDelete]
         [Route("RemoveSetting")]
-        //Delete : /api/EmailMessageSetting/RemoveSetting
+        //Delete : /api/EmailMessages/RemoveSetting
         public async Task<IActionResult> RemoveSetting([FromBody] RemoveEmailMessageSettingC command)
         {
             return Ok(await _mediator.Send(command));

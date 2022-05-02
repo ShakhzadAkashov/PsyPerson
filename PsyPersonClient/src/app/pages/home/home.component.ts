@@ -1,8 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { UserDto } from 'src/app/models/users.models';
+import { EmailMessageSettingService } from 'src/app/services/api/emailMessageSetting.service';
 import { UserService } from 'src/app/services/api/user.service';
 import { UserHelper } from 'src/app/shared/helpers/user.helper';
+import { EmailMessageSettingsModalComponent } from '../admin/email-message-settings-modal/email-message-settings-modal.component';
 import { ChangePasswordModalComponent } from '../users/user/change-password-modal/change-password-modal.component';
 
 @Component({
@@ -18,8 +21,14 @@ export class HomeComponent implements OnInit {
   user: UserDto = new UserDto();
   @ViewChild('changePasswordModal', { static: true }) changePasswordModal: 
   ChangePasswordModalComponent = new ChangePasswordModalComponent(this.service);
+  @ViewChild('emailMessageSettingsModal', { static: true }) emailMessageSettingsModal: 
+  EmailMessageSettingsModalComponent = new EmailMessageSettingsModalComponent(this.emailMessageSettingsServive, this.toastr);
   
-  constructor(private router: Router, private service: UserService) { 
+  constructor(
+    private router: Router, 
+    private service: UserService, 
+    private emailMessageSettingsServive: EmailMessageSettingService,
+    private toastr: ToastrService) { 
     this.UserHelper = UserHelper;
   }
 
@@ -43,5 +52,9 @@ export class HomeComponent implements OnInit {
 
   changePassword(){
     this.changePasswordModal.show(true);
+  }
+
+  messageSettings(){
+    this.emailMessageSettingsModal.show();
   }
 }

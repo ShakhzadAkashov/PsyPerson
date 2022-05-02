@@ -13,18 +13,18 @@ export class EmailMessageSettingService {
     constructor(private http: HttpClient) { }
 
     get() {
-        return this.http.get<EmailMessageSettingDto>(this.BaseURI + '/EmailMessageSettings/GetSetting');
+        return this.http.get<EmailMessageSettingDto>(this.BaseURI + '/EmailMessages/GetSetting');
     }
 
     create(setting: EmailMessageSettingDto) {
-        return this.http.post(this.BaseURI + '/EmailMessageSetting/CreateSetting', setting);
+        return this.http.post(this.BaseURI + '/EmailMessages/CreateSetting', setting);
     }
 
-    update() {
-        return this.http.put(this.BaseURI + '/EmailMessageSetting/UpdateSetting', {});
+    update(setting: EmailMessageSettingDto) {
+        return this.http.put(this.BaseURI + '/EmailMessages/UpdateSetting', setting);
     }
 
     remove(id:any){
-        return this.http.delete(this.BaseURI + '/EmailMessageSetting/RemoveSetting', { body: { id: id } });
+        return this.http.delete(this.BaseURI + '/EmailMessages/RemoveSetting', { body: { id: id } });
     }
 }

@@ -25,6 +25,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { ForbiddenComponent } from './components/forbidden/forbidden.component';
 import {ScrollPanelModule} from 'primeng/scrollpanel';
 import {ChartModule} from 'primeng/chart';
+import { EmailMessageSettingsModalComponent } from '../pages/admin/email-message-settings-modal/email-message-settings-modal.component';
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import {ChartModule} from 'primeng/chart';
   declarations: [
     NoSanitizePipe,
     ChangePasswordModalComponent,
+    EmailMessageSettingsModalComponent,
     ForbiddenComponent,
   ],
   exports: [
@@ -63,6 +65,7 @@ import {ChartModule} from 'primeng/chart';
     AvatarModule,
     SidebarModule,
     ChangePasswordModalComponent,
+    EmailMessageSettingsModalComponent,
     ScrollPanelModule,
     ChartModule
   ]

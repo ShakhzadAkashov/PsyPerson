@@ -34,7 +34,7 @@ import { RolePermissionsComponent } from './roles/role-permissions/role-permissi
       ViewRoleModalComponent, 
       UrerRolesComponent, 
       RoleLookupTableModalComponent, 
-      RolePermissionsComponent
+      RolePermissionsComponent, 
     ],
   exports: [AdminComponent]
 })
