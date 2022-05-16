@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using PsyPersonServer.Domain.Models.EmailMessage;
+using PsyPersonServer.Domain.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -16,28 +17,35 @@ namespace PsyPersonServer.Application.EmailMessage.Commands.SendEmailMessage
     {
         private readonly EmailMessageSettings _emailMessageSettings;
         private readonly ILogger<SendEmailMessageCh> _logger;
-        public SendEmailMessageCh(IOptions<EmailMessageSettings> emailMessageSettings, ILogger<SendEmailMessageCh> logger)
+        private IEmailMessageRepository _emailMessageRepository;
+        public SendEmailMessageCh(IOptions<EmailMessageSettings> emailMessageSettings, ILogger<SendEmailMessageCh> logger, IEmailMessageRepository emailMessageRepository)
         {
             _emailMessageSettings = emailMessageSettings.Value;
             _logger = logger;
+            _emailMessageRepository = emailMessageRepository;
         }
         public Task<bool> Handle(SendEmailMessageC request, CancellationToken cancellationToken)
         {
+            var emailMessageSettings = _emailMessageRepository.GetSetting().Result;
+
+            if (emailMessageSettings == null)
+                throw new ApplicationException("Cannot settting email message sender, email message settings not found!");
+
             try
             {
-                SmtpClient mySmtpClient = new SmtpClient(_emailMessageSettings.HostName, 25);
+                SmtpClient mySmtpClient = new SmtpClient(emailMessageSettings.HostName, 25);
 
                 mySmtpClient.UseDefaultCredentials = false;
                 mySmtpClient.EnableSsl = true;
 
-                NetworkCredential basicAuthenticationInfo = new NetworkCredential(_emailMessageSettings.SenderAddress, _emailMessageSettings.SenderPswd);
+                NetworkCredential basicAuthenticationInfo = new NetworkCredential(emailMessageSettings.SenderAddress, emailMessageSettings.SenderPswd);
                 mySmtpClient.Credentials = basicAuthenticationInfo;
 
-                MailAddress from = new MailAddress(_emailMessageSettings.SenderAddress, _emailMessageSettings.MessageDisplayName);
+                MailAddress from = new MailAddress(emailMessageSettings.SenderAddress, emailMessageSettings.MessageDisplayName);
                 MailAddress to = new MailAddress(request.ReceiverMailAddress, request.ReceiverFullName);
                 MailMessage myMail = new MailMessage(from, to);
 
-                MailAddress replyTo = new MailAddress(_emailMessageSettings.SenderAddress);
+                MailAddress replyTo = new MailAddress(emailMessageSettings.SenderAddress);
                 myMail.ReplyToList.Add(replyTo);
 
                 myMail.Subject = request.LetterHeader;
