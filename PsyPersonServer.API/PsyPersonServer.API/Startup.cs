@@ -18,12 +18,14 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using PsyPersonServer.Application.ApplicationUsers.Commands.Register;
 using PsyPersonServer.Application.Permissions.Filters;
+using PsyPersonServer.Domain.DapperRepositories;
 using PsyPersonServer.Domain.Entities;
 using PsyPersonServer.Domain.Models.ApplicationSettings;
 using PsyPersonServer.Domain.Models.EmailMessage;
 using PsyPersonServer.Domain.Models.Tests;
 using PsyPersonServer.Domain.Repositories;
 using PsyPersonServer.Infrastructure;
+using PsyPersonServer.Infrastructure.DapperRepositories;
 using PsyPersonServer.Infrastructure.Repositories;
 using PsyPersonServer.Infrastructure.SeedData;
 using System;
@@ -69,6 +71,10 @@ namespace PsyPersonServer.API
                 .AddRoles<ApplicationRole>()
                 .AddEntityFrameworkStores<DBContext>()
                 .AddDefaultTokenProviders();
+
+            // Dapper
+            services.AddSingleton<DapperContext>();
+            services.AddScoped<IDapperTestRepository, DapperTestRepository>();
 
             services.AddTransient<IUserRepository,UserRepository>();
             services.AddTransient<ITestRepository,TestRepository>();
