@@ -44,7 +44,7 @@ namespace PsyPersonServer.API.Controllers
             return Ok(await _mediator.Send(new GetStatisticsForEmployeesQ { UserId = userId }));
         }
 
-        //[Authorize(Permissions.Statistics_ForEmployees)]
+        [Authorize(Permissions.Statistics_UserTestingHistoryReports)]
         [HttpGet]
         [Route("UserTestingHistoryStatistics")]
         //Get : /api/Statistics/UserTestingHistoryStatistics

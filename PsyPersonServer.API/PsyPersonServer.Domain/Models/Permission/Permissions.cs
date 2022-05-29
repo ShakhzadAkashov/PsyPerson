@@ -74,6 +74,7 @@ namespace PsyPersonServer.Domain.Models.Permission
         public const string Statistics = "Permissions.Statistics.Pages";
         public const string Statistics_ForManagers = "Permissions.Statistics.ForManagers";
         public const string Statistics_ForEmployees = "Permissions.Statistics.ForEmployees";
+        public const string Statistics_UserTestingHistoryReports = "Permissions.Statistics.UserTestingHistoryReports";
 
         //Navigation-Menu For Client
         public const string Navigation_Menu_Statistics = "Permissions.Statistics.Navigation-Menu";
