@@ -74,7 +74,7 @@ namespace PsyPersonServer.API
 
             // Dapper
             services.AddSingleton<DapperContext>();
-            services.AddScoped<IDapperTestRepository, DapperTestRepository>();
+            services.AddTransient<IDapperUserTestingHistoryRepository, DapperUserTestingHistoryRepository>();
 
             services.AddTransient<IUserRepository,UserRepository>();
             services.AddTransient<ITestRepository,TestRepository>();

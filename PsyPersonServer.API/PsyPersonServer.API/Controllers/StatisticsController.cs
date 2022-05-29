@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PsyPersonServer.Application.Statistics.Queries.GetStatisticsForEmployees;
 using PsyPersonServer.Application.Statistics.Queries.GetStatisticsForManager;
+using PsyPersonServer.Application.Statistics.Queries.GetUserTestingHistoryStatistics;
 using PsyPersonServer.Domain.Models.Permission;
 using System;
 using System.Collections.Generic;
@@ -41,6 +42,15 @@ namespace PsyPersonServer.API.Controllers
         {
             string userId = User.Claims.First(c => c.Type == "UserID").Value;
             return Ok(await _mediator.Send(new GetStatisticsForEmployeesQ { UserId = userId }));
+        }
+
+        //[Authorize(Permissions.Statistics_ForEmployees)]
+        [HttpGet]
+        [Route("UserTestingHistoryStatistics")]
+        //Get : /api/Statistics/UserTestingHistoryStatistics
+        public async Task<IActionResult> UserTestingHistoryStatistics([FromQuery] GetUserTestingHistoryStatisticsQ query)
+        {
+            return Ok(await _mediator.Send(query));
         }
     }
 }
