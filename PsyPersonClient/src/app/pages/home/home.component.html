@@ -127,7 +127,7 @@
             <a href="javascript:;" style="font-size: 1.1rem; color:#495057;" (click)="changePassword()">
               <i class="fa fa-key"></i> Изменить пароль
             </a><br/>
-            <a href="javascript:;" style="font-size: 1.1rem; color:#495057;" (click)="messageSettings()">
+            <a *ngIf="UserHelper.UserHasPermission('Permissions.EmailMessageSetting.Pages')" href="javascript:;" style="font-size: 1.1rem; color:#495057;" (click)="messageSettings()">
               <i class="fa fa-cog"></i> Настройки почты
             </a>
           </p-sidebar>
