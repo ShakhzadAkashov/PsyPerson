@@ -10,6 +10,6 @@ namespace PsyPersonServer.Domain.Dtos
         public string TestName { get; set; }
         public DateTime TestedDate { get; set; }
         public double TestScore { get; set; }
-        public TestResultStatusEnum ResultStatus { get; set; }
+        public string ResultStatus { get; set; }
     }
 }

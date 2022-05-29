@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from 'src/app/services/auth/auth.guard';
 import { MainComponent } from './main.component';
 import { StatisticsComponent } from './statistics/statistics.component';
+import { UserTestingReportComponent } from './statistics/user-testing-report/user-testing-report.component';
 import { CreateOrEditFirstLevelDifficultTestQuestionComponent } from './tests/test-questions/create-or-edit-first-level-difficult-test-question/create-or-edit-first-level-difficult-test-question.component';
 import { CreateOrEditSecondLevelDifficultTestQuestionComponent } from './tests/test-questions/create-or-edit-second-level-difficult-test-question/create-or-edit-second-level-difficult-test-question.component';
 import { TestQuestionsComponent } from './tests/test-questions/test-questions.component';
@@ -31,6 +32,7 @@ const routes: Routes = [
       { path: 'userTestingListForCheck', component: UserTestingListForCheckComponent, canActivate: [AuthGuard], data: { permission: 'Permissions.Testings.ForCheck' } },
       { path: 'TestingHistory', component: UserTestingHistoryComponent, canActivate: [AuthGuard], data: { permission: 'Permissions.Testings.ViewHistory' } },
       { path: 'statistics', component: StatisticsComponent, canActivate: [AuthGuard], data: { permission: 'Permissions.Statistics.Pages' } },
+      { path: 'userTestingReport', component: UserTestingReportComponent, canActivate: [AuthGuard], data: { permission: 'Permissions.Statistics.UserTestingHistoryReports' } },
       { path: '', redirectTo: 'statistics', pathMatch: 'full', }
     ]
   }

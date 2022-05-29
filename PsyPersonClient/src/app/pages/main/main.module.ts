@@ -25,6 +25,7 @@ import { CreateOrEditSecondLevelDifficultTestQuestionComponent } from './tests/t
 import { SecondLevelDifficultTypeTestingComponent } from './tests/testing/second-level-difficult-type-testing/second-level-difficult-type-testing.component';
 import { UserTestingListForCheckComponent } from './userTests/user-testing-list-for-check/user-testing-list-for-check.component';
 import { StatisticsComponent } from './statistics/statistics.component';
+import { UserTestingReportComponent } from './statistics/user-testing-report/user-testing-report.component';
 
 @NgModule({
   imports: [
@@ -55,6 +56,7 @@ import { StatisticsComponent } from './statistics/statistics.component';
       SecondLevelDifficultTypeTestingComponent,
       UserTestingListForCheckComponent,
       StatisticsComponent,
+      UserTestingReportComponent,
     ],
   exports: [MainComponent]
 })

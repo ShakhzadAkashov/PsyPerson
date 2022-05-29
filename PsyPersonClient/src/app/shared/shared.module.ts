@@ -26,7 +26,7 @@ import { ForbiddenComponent } from './components/forbidden/forbidden.component';
 import {ScrollPanelModule} from 'primeng/scrollpanel';
 import {ChartModule} from 'primeng/chart';
 import { EmailMessageSettingsModalComponent } from '../pages/admin/email-message-settings-modal/email-message-settings-modal.component';
-
+import {AccordionModule} from 'primeng/accordion';
 
 @NgModule({
   imports: [
@@ -67,7 +67,8 @@ import { EmailMessageSettingsModalComponent } from '../pages/admin/email-message
     ChangePasswordModalComponent,
     EmailMessageSettingsModalComponent,
     ScrollPanelModule,
-    ChartModule
+    ChartModule,
+    AccordionModule
   ]
 })
 export class SharedModule { }
