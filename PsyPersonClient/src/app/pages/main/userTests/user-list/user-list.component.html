@@ -76,7 +76,7 @@
             <td>
                 <span class="p-column-title">Статус</span>
                 <a [routerLink]="['../userTestingReport']"
-                    [queryParams]="{userId: record.id, userName: record.userName, from: 'home/main/userTestUsers'}"
+                    [queryParams]="{userId: record.id, userName: record.userName, status: record.status, from: 'home/main/userTestUsers'}"
                     style="color:#0078D7;" class="a-hover">{{resultStatuses[record.status].label}}</a>
             </td>
             <td>

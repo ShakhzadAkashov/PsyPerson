@@ -69,4 +69,8 @@ export class UserService {
   resetPassword(resetPswd: ResetPasswordDto){
     return this.http.post(this.BaseURI + '/ApplicationUser/ResetPassword',resetPswd);
   }
+
+  otherUserProfile(userId: string){
+    return this.http.get<UserDto>(this.BaseURI + '/Users/OtherUserProfile', {params: {userId: userId}});
+  }
 }

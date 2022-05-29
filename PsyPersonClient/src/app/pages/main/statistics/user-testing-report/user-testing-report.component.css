@@ -39,3 +39,17 @@
     border-radius: 6px !important;
     padding: 1rem;
 }
+
+
+dt {
+    float: left;
+    width: 25%;
+  }
+
+  dd {
+    margin-left: 25%;
+    background-color: #F8F9FA;
+  }
+  dl{
+    margin-bottom: 0 !important;
+  }

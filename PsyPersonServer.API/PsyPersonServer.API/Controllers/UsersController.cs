@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using PsyPersonServer.Application.ApplicationUsers.Queries.GetUserProfile;
 using PsyPersonServer.Application.Users.Commands.AssignRoleToUser;
 using PsyPersonServer.Application.Users.Commands.BlockAndUnBlockUser;
 using PsyPersonServer.Application.Users.Commands.ChangePassword;
@@ -127,5 +128,13 @@ namespace PsyPersonServer.API.Controllers
             return Ok(await _mediator.Send(command));
         }
 
+        [Authorize(Permissions.Users_ViewOtherUserProfile)]
+        [HttpGet]
+        [Route("OtherUserProfile")]
+        //Get : /api/ApplicationUser/OtherUserProfile
+        public async Task<IActionResult> OtherUserProfile([FromQuery] GetCurrentUserProfileQ query)
+        {
+            return Ok(await _mediator.Send(query));
+        }
     }
 }

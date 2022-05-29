@@ -20,25 +20,81 @@
     </div>
     
     <p-fieldset legend="Профиль пользователя" class="mb-1">
-        <div class="col-md-8">
-            
+        <div class="row">
+            <div class="col-md-8">
+                <dl class="pt-3">
+                    <dt>
+                        <label for="userName" style="font-size: 0.rem; color: #676869;"><b>Логин: </b></label>
+                    </dt>
+                    <dd>
+                        <label for="userName" style="font-size: 1.1rem; margin-bottom: 0rem !important;">{{user.userName}}</label>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        <label for="userName" style="font-size: 0.rem; color: #676869;;"><b>Почта: </b></label>
+                    </dt>
+                    <dd>
+                        <label for="userName" style="font-size: 1.1rem; margin-bottom: 0rem !important;">{{user.email}}</label>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        <label for="userName" style="font-size: 0.rem; color: #676869;"><b>Номер телефона: </b></label>
+                    </dt>
+                    <dd>
+                        <label for="userName" style="font-size: 1.1rem; margin-bottom: 0rem !important;">{{user.phoneNumber}}</label>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        <label for="userName" style="font-size: 0.rem; color: #676869;"><b>Фамилия: </b></label>
+                    </dt>
+                    <dd>
+                        <label for="userName" style="font-size: 1.1rem; margin-bottom: 0rem !important;">{{user.lastName}}</label>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        <label for="userName" style="font-size: 0.9rem; color: #676869;"><b>Имя: </b></label>
+                    </dt>
+                    <dd>
+                        <label for="userName" style="font-size: 1.1rem; margin-bottom: 0rem !important;">{{user.firstName}}</label>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        <label for="userName" style="font-size: 0.rem; color: #676869;"><b>Отчество: </b></label>
+                    </dt>
+                    <dd>
+                        <label for="userName" style="font-size: 1.1rem; margin-bottom: 0rem !important;">{{user.patronymic}}</label>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        <label for="userName" style="font-size: 0.rem; color: #676869;"><b>Дата рождения: </b></label>
+                    </dt>
+                    <dd>
+                        <label for="userName" style="font-size: 1.1rem; margin-bottom: 0rem !important;">
+                            <span *ngIf="!user.dateBirthday || user.dateBirthday === null || user.dateBirthday === undefined">__-__-____ </span>
+                            {{user.dateBirthday| date: 'dd.MM.yyyy'}}
+                        </label>
+                    </dd>
+                </dl>
+            </div>
+            <div class="col-md-4">
+                <h5 class="text-center">Эмоциональный статус: {{emotionStatus}}</h5>
+                <div class="row">
+                    <div class="col-lg-2"></div>
+                    <div class="col-lg-8">
+                        <p-chart type="doughnut" [data]="donutChart" [style]="{'width': '100%', 'height': '10%'}"></p-chart>
+                    </div>
+                    <div class="col-lg-2"></div>
+                </div>
+                
+            </div>
         </div>
-        <div class="col-md-4">
-            
-        </div>
-        <!-- <div class="form-group">
-            <label for="testTypes" style="font-size: 1.1rem;">Тип теста: *</label>
-            <p-dropdown [options]="testTypes" styleClass="form-control mb-2 p-0" optionLabel="key" 
-                optionValue="value" name="testTypes"  [(ngModel)]="test.testType" [autoDisplayFirst]="false" [readonly]="edit"></p-dropdown>
-        </div>
-        <div class="form-group">
-            <label for="name" style="font-size: 1.1rem;">Название: *</label>
-            <input type="text" id="name" class="form-control mb-2" [(ngModel)]="test.name" name="name" required />
-        </div>
-        <div class="form-group">
-            <label for="description" style="font-size: 1.1rem;">Описание: *</label>
-            <textarea type="text" id="description" class="form-control mb-2" [(ngModel)]="test.description" name="description" required></textarea>
-        </div> -->
+
     </p-fieldset>
 
     <p-fieldset legend="История тестирования" class="mb-1 mt-2">
