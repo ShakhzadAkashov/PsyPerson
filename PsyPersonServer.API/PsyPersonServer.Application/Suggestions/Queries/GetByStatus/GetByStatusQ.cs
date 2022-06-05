@@ -8,7 +8,7 @@ using System.Text;
 
 namespace PsyPersonServer.Application.Suggestions.Queries.GetByStatus
 {
-    class GetByStatusQ : IRequest<PagedResponse<SuggestionDto>>
+    public class GetByStatusQ : IRequest<PagedResponse<SuggestionDto>>
     {
         public int Page { get; set; } = 1;
         public int ItemPerPage { get; set; } = 10;

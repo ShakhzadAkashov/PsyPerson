@@ -7,7 +7,7 @@ using System.Text;
 
 namespace PsyPersonServer.Application.Suggestions.Queries.GetSuggestions
 {
-    class GetSuggestionsQ : IRequest<PagedResponse<SuggestionDto>>
+    public class GetSuggestionsQ : IRequest<PagedResponse<SuggestionDto>>
     {
         public int Page { get; set; } = 1;
         public int ItemPerPage { get; set; } = 10;

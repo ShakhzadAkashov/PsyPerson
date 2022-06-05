@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace PsyPersonServer.Application.Suggestions.Queries.GetById
 {
-    class GetByIdQh : IRequestHandler<GetByIdQ, SuggestionDto>
+    public class GetByIdQh : IRequestHandler<GetByIdQ, SuggestionDto>
     {
         public GetByIdQh(ISuggestionRepository repository, IMapper mapper)
         {

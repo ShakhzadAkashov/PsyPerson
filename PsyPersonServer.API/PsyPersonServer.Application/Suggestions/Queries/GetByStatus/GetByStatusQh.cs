@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace PsyPersonServer.Application.Suggestions.Queries.GetByStatus
 {
-    class GetByStatusQh : IRequestHandler<GetByStatusQ, PagedResponse<SuggestionDto>>
+    public class GetByStatusQh : IRequestHandler<GetByStatusQ, PagedResponse<SuggestionDto>>
     {
         public GetByStatusQh(IMapper mapper, ISuggestionRepository repository)
         {
