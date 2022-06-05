@@ -75,9 +75,16 @@
             </td>
             <td>
                 <span class="p-column-title">Статус</span>
+                <div class="float-left mr-2">
+                    <button class="btn custom-btn-sm btn-outline" pTooltip="Предложения для данного пользователя" tooltipPosition="bottom">
+                        <p-avatar icon="pi pi-bell" [style]="{'background-color':'var(--green-700)', 'color': '#ffffff'}"
+                            shape="circle">
+                        </p-avatar>
+                    </button>
+                </div>
                 <a [routerLink]="['../userTestingReport']"
                     [queryParams]="{userId: record.id, userName: record.userName, status: record.status, from: 'home/main/userTestUsers'}"
-                    style="color:#0078D7;" class="a-hover">{{resultStatuses[record.status].label}}</a>
+                    style="color:#0078D7;" class="a-hover float-left">{{resultStatuses[record.status].label}}</a>
             </td>
             <td>
                 <span class="p-column-title">Назначенные Тесты</span>
