@@ -10,5 +10,9 @@ namespace PsyPersonServer.Application.Syggestions.Dtos
         public Guid Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public double RangeFrom { get; set; }
+        public double RangeTo { get; set; }
+        public TestResultStatusEnum Status { get; set; }
+        public SuggestionSelectTypeEnum SelectionType { get; set; }
     }
 }
