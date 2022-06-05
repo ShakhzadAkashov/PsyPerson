@@ -82,6 +82,7 @@ namespace PsyPersonServer.API
             services.AddTransient<IUserTestRepository, UserTestRepository>();
             services.AddTransient<IUserTestingHistoryRepository, UserTestingHistoryRepository>();
             services.AddTransient<IEmailMessageRepository, EmailMessageRepository>();
+            services.AddTransient<ISuggestionRepository, SuggestionRepository>();
 
 
             services.Configure<IdentityOptions>(options => {
