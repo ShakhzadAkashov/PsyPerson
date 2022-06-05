@@ -42,6 +42,7 @@ import { SharedModule } from '../app/shared/shared.module';
 import { StatisticService } from './services/api/statistic.service';
 import { EmailMessageSettingService } from './services/api/emailMessageSetting.service';
 import { SuggestionService } from './services/api/suggestion.service';
+import { SuggestionEffects } from './store/effects/suggestion.effects';
 
 
 registerLocaleData(ru);
@@ -70,7 +71,7 @@ registerLocaleData(ru);
     TableModule,
     SharedModule,
     StoreModule.forRoot(appReducers,{metaReducers}),
-    EffectsModule.forRoot([UserEffects,RoleEffects,TestEffects,UserTestEffects]),
+    EffectsModule.forRoot([UserEffects,RoleEffects,TestEffects,UserTestEffects, SuggestionEffects]),
     // StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
   ],

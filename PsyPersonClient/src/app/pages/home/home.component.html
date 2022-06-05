@@ -55,6 +55,10 @@
               <!-- <a routerLink="/home/main/userTestingListForCheck">User Testings</a> -->
               <a routerLink="/home/main/userTestingListForCheck">Пользовательские тесты</a>
             </li>
+            <li *ngIf="UserHelper.UserHasPermission('Permissions.Suggestions.Pages')" 
+                nz-menu-item nzMatchRouter>
+              <a routerLink="/home/main/suggestions">Предложения</a>
+            </li>
           </ul>
         </li>
         <!-- <li *ngIf="UserHelper.UserHasPermission('Permissions.Employees.Navigation-Menu')" nz-submenu nzOpen nzTitle="Employees" nzIcon="menu"> -->

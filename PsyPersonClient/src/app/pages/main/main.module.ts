@@ -26,6 +26,8 @@ import { SecondLevelDifficultTypeTestingComponent } from './tests/testing/second
 import { UserTestingListForCheckComponent } from './userTests/user-testing-list-for-check/user-testing-list-for-check.component';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { UserTestingReportComponent } from './statistics/user-testing-report/user-testing-report.component';
+import { SuggestionListComponent } from './suggestions/suggestion-list/suggestion-list.component';
+import { CreateOrEditSuggestionModalComponent } from './suggestions/create-or-edit-suggestion-modal/create-or-edit-suggestion-modal.component';
 
 @NgModule({
   imports: [
@@ -57,6 +59,8 @@ import { UserTestingReportComponent } from './statistics/user-testing-report/use
       UserTestingListForCheckComponent,
       StatisticsComponent,
       UserTestingReportComponent,
+      SuggestionListComponent,
+      CreateOrEditSuggestionModalComponent,
     ],
   exports: [MainComponent]
 })

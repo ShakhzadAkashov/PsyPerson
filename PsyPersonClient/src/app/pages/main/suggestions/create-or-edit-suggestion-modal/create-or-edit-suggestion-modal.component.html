@@ -1,0 +1,79 @@
+<div bsModal #createOrEditModal="bs-modal" class="modal fade" tabindex="-1" role="dialog"
+    aria-labelledby="createOrEditModal" aria-hidden="true" [config]="{backdrop: 'static'}">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form *ngIf="active" #suggestionForm="ngForm" novalidate (ngSubmit)="save()" autocomplete="off">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        <span *ngIf="suggestion.id">Редактирование предложения</span>
+                        <span *ngIf="!suggestion.id">Создание предложения</span>
+                    </h4>
+                    <button type="button" class="close" (click)="close()" aria-label="Close" [disabled]="saving">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="name" style="font-size: 1.1rem;">Название: *</label>
+                        <input type="text" id="name" class="form-control mb-2" [(ngModel)]="suggestion.name" name="name"
+                            required />
+                    </div>
+                    <div class="form-group">
+                        <label for="description" style="font-size: 1.1rem;">Описание: *</label>
+                        <textarea type="text" id="description" class="form-control mb-2"
+                            [(ngModel)]="suggestion.description" name="description" required></textarea>
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="selectionTypes" style="font-size: 1.1rem;">Тип выборки: *</label>
+                                <p-dropdown [options]="selectionTypes" styleClass="form-control mb-2 p-0"
+                                    optionLabel="key" [ngModelOptions]="{standalone: true}" optionValue="value"
+                                    name="selectionTypes" [(ngModel)]="suggestion.selectionType" [required]="true" 
+                                    [autoDisplayFirst]="false"></p-dropdown>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" *ngIf="++suggestion.selectionType === 0">
+                        <div class="col-md-6 col-p-right">
+                            <div class="form-group">
+                                <label for="rangeFrom" style="font-size: 1.1rem;">От: *</label>
+                                <input type="number" min="1" max="100" id="rangeFrom" class="form-control mb-2"
+                                    [(ngModel)]="suggestion.rangeFrom" name="rangeFrom"
+                                    [ngModelOptions]="{standalone: true}" required />
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-p-right">
+                            <div class="form-group">
+                                <label for="rangeTo" style="font-size: 1.1rem;">До: *</label>
+                                <input type="number" min="1" max="100" id="rangeTo" class="form-control mb-2"
+                                    [(ngModel)]="suggestion.rangeTo" name="rangeTo"
+                                    [ngModelOptions]="{standalone: true}" required />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" *ngIf="++suggestion.selectionType === 1">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="testResultStatuses" style="font-size: 1.1rem;">Статус: *</label>
+                                <p-dropdown [options]="testResultStatuses" styleClass="form-control mb-2 p-0"
+                                    optionLabel="key" [ngModelOptions]="{standalone: true}" [required]="true" optionValue="value"
+                                    name="status" [(ngModel)]="suggestion.status" [autoDisplayFirst]="false">
+                                </p-dropdown>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button [disabled]="saving" type="button" class="btn btn-outline-danger"
+                        (click)="close()">Закрыть</button>
+                    <button type="submit" class="btn btn-outline-primary blue"
+                        [disabled]="!suggestionForm.form.valid"><i class="fa fa-save"></i> <span>
+                            Сохранить</span></button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>

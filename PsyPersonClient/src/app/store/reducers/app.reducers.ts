@@ -3,6 +3,7 @@ import { ActionReducer, ActionReducerMap, MetaReducer } from "@ngrx/store";
 import { environment } from "src/environments/environment";
 import { AppState } from "../state/app.state";
 import { roleReducers } from "./role.reducers";
+import { suggestionReducers } from "./suggestion.reducers";
 import { testReducers } from "./test.reducers";
 import { userReducers} from "./user.reducers";
 import { userTestReducers } from "./userTest.reducers";
@@ -12,7 +13,8 @@ export const appReducers: ActionReducerMap<AppState, any> = {
     users: userReducers,
     roles:roleReducers,
     tests:testReducers,
-    userTests: userTestReducers
+    userTests: userTestReducers,
+    suggestions: suggestionReducers
 };
 
 export function logger(reducer: ActionReducer<AppState>): ActionReducer<AppState> {
