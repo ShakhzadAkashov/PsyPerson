@@ -28,6 +28,7 @@ import { StatisticsComponent } from './statistics/statistics.component';
 import { UserTestingReportComponent } from './statistics/user-testing-report/user-testing-report.component';
 import { SuggestionListComponent } from './suggestions/suggestion-list/suggestion-list.component';
 import { CreateOrEditSuggestionModalComponent } from './suggestions/create-or-edit-suggestion-modal/create-or-edit-suggestion-modal.component';
+import { SuggestionListForUserComponent } from './suggestions/suggestion-list-for-user/suggestion-list-for-user.component';
 
 @NgModule({
   imports: [
@@ -61,6 +62,7 @@ import { CreateOrEditSuggestionModalComponent } from './suggestions/create-or-ed
       UserTestingReportComponent,
       SuggestionListComponent,
       CreateOrEditSuggestionModalComponent,
+      SuggestionListForUserComponent,
     ],
   exports: [MainComponent]
 })

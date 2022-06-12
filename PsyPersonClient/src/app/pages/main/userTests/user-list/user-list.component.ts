@@ -4,13 +4,16 @@ import { ToastrService } from 'ngx-toastr';
 import { LazyLoadEvent } from 'primeng/api';
 import { Observable } from 'rxjs';
 import { PagedRequest, PagedResponse, TableFilter } from 'src/app/models/base';
-import { TestDto } from 'src/app/models/tests.models';
+import { TestDto, TestResultStatusEnum } from 'src/app/models/tests.models';
 import { UserTestDto, UserTestUserDto } from 'src/app/models/userTests.model';
+import { EmailMessageSettingService } from 'src/app/services/api/emailMessageSetting.service';
+import { SuggestionService } from 'src/app/services/api/suggestion.service';
 import { UserTestService } from 'src/app/services/api/userTest.service';
 import { GetUserTestUsers } from 'src/app/store/actions/userTest.actions';
 import { selectUserTestUsers } from 'src/app/store/selectors/userTest.selector';
 import { AppState } from 'src/app/store/state/app.state';
 import { TestLookupTableModalComponent } from '../../common/test-lookup-table-modal/test-lookup-table-modal.component';
+import { SuggestionListForUserComponent } from '../../suggestions/suggestion-list-for-user/suggestion-list-for-user.component';
 
 @Component({
   selector: 'app-user-list',
@@ -19,6 +22,8 @@ import { TestLookupTableModalComponent } from '../../common/test-lookup-table-mo
 })
 export class UserListComponent implements OnInit {
 
+  @ViewChild('suggestionsForUser', { static: true })
+  suggestionForUser: SuggestionListForUserComponent = new SuggestionListForUserComponent(this.store,this.toastr,this.emailMessageService);
   @ViewChild('testLookupTableModal', { static: true }) testLookupTableModal: TestLookupTableModalComponent = new TestLookupTableModalComponent(this.store);
   users$: Observable<PagedResponse<UserTestUserDto> | any> = this.store.pipe(select(selectUserTestUsers));
   filterText='';
@@ -46,6 +51,7 @@ export class UserListComponent implements OnInit {
     private store: Store<AppState>,
     private toastr: ToastrService, 
     private service:UserTestService,
+    private emailMessageService: EmailMessageSettingService
     ) {}
 
   ngOnInit(): void {
@@ -82,6 +88,10 @@ export class UserListComponent implements OnInit {
   
   openSelectTestModal(userId: string){
     this.testLookupTableModal.show(userId);
+  }
+
+  openSuggestionsForUser(status: TestResultStatusEnum, user: UserTestUserDto){
+    this.suggestionForUser.show(status, user);
   }
 
   selectTest(response: any){

@@ -89,6 +89,7 @@ namespace PsyPersonServer.Domain.Models.Permission
         public const string EmailMessageSetting_Create = "Permissions.EmailMessageSetting.Create";
         public const string EmailMessageSetting_Edit = "Permissions.EmailMessageSetting.Edit";
         public const string EmailMessageSetting_Delete = "Permissions.EmailMessageSetting.Delet";
+        public const string EmailMessage_Send = "Permissions.EmailMessage.Send";
 
         // Suggestions
         public const string Suggestions = "Permissions.Suggestions.Pages";

@@ -1,0 +1,100 @@
+<div bsModal #suggestionForUser="bs-modal" class="modal fade" tabindex="-1" role="dialog"
+    aria-labelledby="suggestionForUser" aria-hidden="true" [config]="{backdrop: 'static'}">
+    <div class="modal-dialog modal-dialog-centered" *ngIf="active">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">
+                    <span>Выбрать предложение</span>
+                </h4>
+                <button type="button" class="close" (click)="close()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="card card-custom gutter-b">
+                <div class="card-body" *ngIf="answerMode == false">
+                    <form class="form" autocomplete="off">
+                        <div class="row align-items-center">
+                            <div class="col-xl-12">
+                                <div class="form-group m-form__group align-items-center">
+                                    <div class="input-group">
+                                        <input style="box-shadow: none;" (keyup)="filterInput($event)"
+                                            [(ngModel)]="filterText" name="filterText" class="form-control"
+                                            placeholder="Поиск по названию" type="text">
+                                        <span class="input-group-btn">
+                                            <button (click)="onLazyLoad()" class="btn btn-primary" type="submit"><i
+                                                    class="fa fa-search"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="row align-items-center pl-1 pr-1">
+                        <p-table #dt [value]="(suggestions$ | async).data " dataKey="id"
+                            styleClass="p-datatable-customers" [rowHover]="true" [showCurrentPageReport]="true"
+                            [rowsPerPageOptions]="[5,10,25,50]" [loading]="(suggestions$ | async).loading"
+                            [paginator]="true"
+                            currentPageReportTemplate="Показаны записи с {first} по {last} из {totalRecords}"
+                            [filterDelay]="0" [globalFilterFields]="['name','name']"
+                            [totalRecords]="(suggestions$ | async).total" [lazy]="true" [(first)]="tableFilter.first"
+                            [(rows)]="tableFilter.itemPerPage" (onLazyLoad)="onLazyLoad($event)">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th style="width: 30%;">
+                                        <div class="p-d-flex p-jc-between p-ai-center">
+                                            Действия
+                                        </div>
+                                    </th>
+                                    <th style="width: 70%;" pSortableColumn="name">
+                                        <div class="p-d-flex p-jc-between p-ai-center">
+                                            Название
+                                            <!-- <p-sortIcon field="name"></p-sortIcon>
+                                        <p-columnFilter type="text" field="name" display="menu" class="p-ml-auto"></p-columnFilter> -->
+                                        </div>
+                                    </th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-record>
+                                <tr class="p-selectable-row">
+                                    <td style="width: 30px">
+                                        <div class="btn-group dropdown" normalizePosition>
+                                            <button class="btn btn-sm btn-outline-primary" type="button"
+                                                (click)="Send(record)">
+                                                Отправить
+                                            </button>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        {{record.name}}
+                                    </td>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="emptymessage">
+                                <tr>
+                                    <td colspan="2" class="text-center">Записей не найдено.</td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </div>
+
+                </div>
+                <div class="card-body" *ngIf="answerMode == true">
+                    <div class="form-group">
+                        <label for="name" style="font-size: 1.1rem;">Название: *</label>
+                        <input type="text" id="name" class="form-control mb-2" [(ngModel)]="customSuggestionName" name="name" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="description" style="font-size: 1.1rem;">Описание: *</label>
+                        <textarea type="text" id="description" class="form-control mb-2" [(ngModel)]="customSuggestionDesc" name="description" required></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button *ngIf="answerMode == false" type="button" class="btn btn-outline-success" (click)="changeAnswerMode()">Кастомное предложение</button>
+                <button *ngIf="answerMode == true" type="button" class="btn btn-outline-danger" (click)="changeAnswerMode()">Отменить предложение</button>
+                <button *ngIf="answerMode == true" type="button" class="btn btn-outline-primary" (click)="Send()">Отправить</button>
+                <button *ngIf="answerMode == false" type="button" class="btn btn-outline-primary" (click)="close()">Закрыть</button>
+            </div>
+        </div>
+    </div>
+</div>

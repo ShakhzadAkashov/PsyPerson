@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { EmailMessageSettingDto } from "src/app/models/emailMessageSettings.models";
+import { EmailMessageSettingDto, SendEmailMessageC } from "src/app/models/emailMessageSettings.models";
 import { environment } from "src/environments/environment";
 
 @Injectable({
@@ -26,5 +26,9 @@ export class EmailMessageSettingService {
 
     remove(id:any){
         return this.http.delete(this.BaseURI + '/EmailMessages/RemoveSetting', { body: { id: id } });
+    }
+
+    sendMessage(message: SendEmailMessageC) {
+        return this.http.post(this.BaseURI + '/EmailMessages/SendEmailMessage', message);
     }
 }

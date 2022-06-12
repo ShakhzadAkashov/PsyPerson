@@ -75,8 +75,9 @@
             </td>
             <td>
                 <span class="p-column-title">Статус</span>
-                <div class="float-left mr-2">
-                    <button class="btn custom-btn-sm btn-outline" pTooltip="Предложения для данного пользователя" tooltipPosition="bottom">
+                <div *ngIf="record.amountTestedUserTests > 0" class="float-left mr-2">
+                    <button class="btn custom-btn-sm btn-outline" pTooltip="Предложения для данного пользователя" tooltipPosition="bottom" 
+                        (click)="openSuggestionsForUser(record.status, record)">
                         <p-avatar icon="pi pi-bell" [style]="{'background-color':'var(--green-700)', 'color': '#ffffff'}"
                             shape="circle">
                         </p-avatar>
@@ -106,3 +107,4 @@
 
 <app-test-lookup-table-modal #testLookupTableModal (modalSave)="selectTest($event)"></app-test-lookup-table-modal>
 <app-user-tests-details-modal #userTestsDetailsModal (modalSave)="onLazyLoad()"></app-user-tests-details-modal>
+<app-suggestion-list-for-user #suggestionsForUser></app-suggestion-list-for-user>
